@@ -58,8 +58,8 @@ export default {
       menus: [
         { type: "default", menuComponent: Menu1 },
         { type: "primary", menuComponent: Menu2 },
-        { type: "success", menuComponent: Menu3 },
-        { type: "danger", menuComponent: Menu4 },
+        { type: "secondary", menuComponent: Menu3 },
+        { type: "tertiary", menuComponent: Menu4 },
         { type: "warning", menuComponent: Menu5 },
         { type: "info", menuComponent: Menu6 }
       ]
