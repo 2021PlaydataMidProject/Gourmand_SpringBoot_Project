@@ -1,4 +1,4 @@
-package io.playdata;
+package io.gourmand;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
