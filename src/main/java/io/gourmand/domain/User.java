@@ -1,6 +1,7 @@
 package io.gourmand.domain;
 
 import java.time.LocalDate;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,12 +11,19 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
+@Getter
+@Setter
+@ToString
+@Builder
+
 @Entity(name = "USER")
 public class User {
 	@Id
@@ -43,5 +51,5 @@ public class User {
 	
 	@OneToOne
 	@JoinColumn(name="ID")
-	private UserStandard userStandard;
+	private UserStandard userStandard;	
 }
