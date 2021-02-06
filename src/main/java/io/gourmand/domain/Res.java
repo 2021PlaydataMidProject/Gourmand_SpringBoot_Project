@@ -7,17 +7,24 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
 @ToString
+@Builder
+
 @Entity
 public class Res {
 	
@@ -47,20 +54,11 @@ public class Res {
 	
 	@Column(name = "IMG_LINK")
 	private String imgLink;
+
+	@OneToOne
+	@JoinColumn(name="ID")
+	private RatingStandard ratingStandard;
 	
-	@OneToMany(mappedBy = "review")
+	@OneToMany(mappedBy = "user")
 	private List<Review> review;
-	
-	public Res(String resName, BigDecimal xValue, BigDecimal yValue, String resHour, String tel, BigDecimal avgStar,
-			String category, String imgLink) {
-		super();
-		this.resName = resName;
-		this.xValue = xValue;
-		this.yValue = yValue;
-		this.resHour = resHour;
-		this.tel = tel;
-		this.avgStar = avgStar;
-		this.category = category;
-		this.imgLink = imgLink;
-	}
 }

@@ -57,6 +57,6 @@ public class Review {
 	@OneToOne(mappedBy = "reviewNum")
 	private RatingStandard ratingStandard;
 	
-	@OneToMany(mappedBy = "")
+	@OneToMany(mappedBy = "reviewNum")
 	private List<Thread> thread;
 }

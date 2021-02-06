@@ -20,9 +20,6 @@ public class UserStandard {
 	@Column(name = "ID")
 	private Long id;
 	
-	@Column(name = "USER_ID")
-	private String userId;
-	
 	@Column(name = "U_FLAVOR")
 	private BigDecimal uFlavor;
 	

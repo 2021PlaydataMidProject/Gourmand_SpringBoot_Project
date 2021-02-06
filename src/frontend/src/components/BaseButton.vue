@@ -14,7 +14,7 @@
           <slot>
             {{text}}
           </slot>
-    </span>
+        </span>
         <slot v-if="!$slots.icon && !icon"></slot>
     </component>
 </template>
