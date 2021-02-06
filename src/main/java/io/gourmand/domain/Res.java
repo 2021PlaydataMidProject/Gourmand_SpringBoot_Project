@@ -20,9 +20,10 @@ import lombok.ToString;
 @ToString
 @Entity
 public class Res {
-	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "RES_NUM")
-	private @Id @GeneratedValue(strategy = GenerationType.IDENTITY)Long res_num;
+	private Long res_num;
 	
 	@Column(name = "RES_NAME")
 	private String resName;
