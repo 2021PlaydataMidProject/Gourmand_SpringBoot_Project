@@ -35,7 +35,7 @@ public class UserResList {
 	private Long listNum;
 	
 	@ManyToOne
-	@JoinColumn(name= "USER_ID")
+	@JoinColumn(name= "ID")
 	private User user;
 	
 	@Column(name = "LIST_NAME")

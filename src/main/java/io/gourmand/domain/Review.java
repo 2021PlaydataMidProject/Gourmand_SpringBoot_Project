@@ -54,9 +54,8 @@ public class Review {
 	@Column(name = "IMG_LINK")
 	private String imgLink;
 	
-	@OneToOne(mappedBy = "reviewNum")
-	private RatingStandard ratingStandard;
+	@OneToOne
+	@JoinColumn(name="ID")
+	private ReviewStandard reviewStandard;
 	
-	@OneToMany(mappedBy = "reviewNum")
-	private List<Thread> thread;
 }

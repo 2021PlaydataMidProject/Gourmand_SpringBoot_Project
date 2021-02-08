@@ -37,7 +37,7 @@ public class ReviewLikes {
 	private List<Review> review;
 	
 	@OneToOne
-	@JoinColumn(name="USER_ID")
+	@JoinColumn(name="ID")
 	private User user;
 	
 	
