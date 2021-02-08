@@ -38,6 +38,6 @@ public class ListLikes {
 	private List<UserResList> listNum;
 	
 	@OneToOne
-	@JoinColumn(name= "USER_ID")
+	@JoinColumn(name= "ID")
 	private User user;
 }

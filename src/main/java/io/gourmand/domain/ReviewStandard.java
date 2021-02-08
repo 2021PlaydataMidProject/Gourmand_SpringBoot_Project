@@ -22,7 +22,7 @@ import lombok.ToString;
 @Builder
 
 @Entity(name="RATING_STANDARD")
-public class RatingStandard {
+public class ReviewStandard {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
