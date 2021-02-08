@@ -7,9 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -30,7 +28,7 @@ public class Res {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "RES_NUM")
-	private Long res_num;
+	private Long resNum;
 	
 	@Column(name = "RES_NAME")
 	private String resName;
@@ -53,13 +51,9 @@ public class Res {
 	@Column(name = "CATEGORY")
 	private String category;
 	
-	@Column(name = "IMG_LINK")
-	private String imgLink;
+	@OneToMany(mappedBy = "resNum")
+	private List<ResImg> resImg;
 
-	@OneToOne
-	@JoinColumn(name="ID")
-	private RatingStandard ratingStandard;
-	
-	@OneToMany(mappedBy = "user")
+	@OneToMany(mappedBy = "res")
 	private List<Review> review;
 }

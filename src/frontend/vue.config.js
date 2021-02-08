@@ -27,6 +27,11 @@ module.exports = {
             ws: true,
             changeOrigin: true,
         },
+        '/res' : {
+          target: 'http://localhost:80',
+          ws: true,
+          changeOrigin: true,
+      },
     }
 }
 };

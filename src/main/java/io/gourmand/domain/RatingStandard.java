@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -46,4 +48,9 @@ public class RatingStandard {
 	
 	@Column(name= "R_ACCESS")
 	private BigDecimal rAccess;
+	
+	@OneToOne
+	@JoinColumn(name="REVIEW_NUM")
+	private Review reviewNum;
+	
 }
