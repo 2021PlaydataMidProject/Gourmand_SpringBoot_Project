@@ -58,7 +58,7 @@ public class Res {
 
 	@OneToOne
 	@JoinColumn(name="ID")
-	private RatingStandard ratingStandard;
+	private ReviewStandard ratingStandard;
 	
 	@OneToMany(mappedBy = "user")
 	private List<Review> review;
