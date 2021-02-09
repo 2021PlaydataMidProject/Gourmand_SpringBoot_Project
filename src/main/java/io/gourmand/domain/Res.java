@@ -2,14 +2,13 @@ package io.gourmand.domain;
 
 import java.math.BigDecimal;
 import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -35,10 +34,10 @@ public class Res {
 	@Column(name = "RES_NAME")
 	private String resName;
 	
-	@Column(name = "X_VALUE")
+	@Column(name = "X_VALUE", precision=7, scale=5)
 	private BigDecimal xValue;
 	
-	@Column(name = "Y_VALUE")
+	@Column(name = "Y_VALUE", precision=7, scale=4)
 	private BigDecimal yValue;
 	
 	@Column(name = "RES_HOUR")
@@ -56,10 +55,6 @@ public class Res {
 	@OneToMany(mappedBy = "res")
 	private List<ResImg> resImg;
 
-	@OneToOne
-	@JoinColumn(name="ID")
-	private ReviewStandard ratingStandard;
-	
 	@OneToMany(mappedBy = "res")
 	private List<Review> review;
 }

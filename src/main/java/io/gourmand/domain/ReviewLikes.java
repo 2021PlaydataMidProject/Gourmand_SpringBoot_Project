@@ -26,7 +26,7 @@ import lombok.ToString;
 public class ReviewLikes {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="ID")
+	@Column(name="RL_ID")
 	private Long id;
 	
 	@ManyToOne

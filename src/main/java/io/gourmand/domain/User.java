@@ -61,7 +61,7 @@ public class User {
 	private LocalDate suDate;
 	
 	@OneToOne
-	@JoinColumn(name="ID")
+	@JoinColumn(name="US_ID")
 	private UserStandard userStandard;	
 	
 	@OneToMany(mappedBy = "threadNum")

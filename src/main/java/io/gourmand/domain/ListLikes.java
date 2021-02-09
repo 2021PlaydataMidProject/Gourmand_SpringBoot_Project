@@ -26,7 +26,7 @@ import lombok.ToString;
 public class ListLikes {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ID")
+	@Column(name = "LL_ID")
 	private Long id;
 	
 	@ManyToOne
