@@ -22,16 +22,31 @@ module.exports = {
   },
   devServer: {
     proxy: {
-        '/api' : {
-            target: 'http://localhost:80',
-            ws: true,
-            changeOrigin: true,
-        },
-        '/res/regi' : {
-          target: 'http://localhost:80',
-          ws: true,
-          changeOrigin: true,
+      '/api': {
+        target: 'http://localhost:80',
+        ws: true,
+        changeOrigin: true,
       },
+      '/res': {
+        target: 'http://localhost:80',
+        ws: true,
+        changeOrigin: true,
+      },
+      '/#/res': {
+        target: 'http://localhost:80',
+        ws: true,
+        changeOrigin: true,
+      },
+      '/auth' :{
+        target: 'http://localhost:80',
+        ws: true,
+        changeOrigin: true,
+      },
+      '/#/auth' :{
+        target: 'http://localhost:80',
+        ws: true,
+        changeOrigin: true,
+      }
     }
-}
+  }
 };

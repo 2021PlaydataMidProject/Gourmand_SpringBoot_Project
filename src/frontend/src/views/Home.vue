@@ -41,6 +41,8 @@ import { BCarousel } from "bootstrap-vue/esm/components/carousel/carousel";
 import { BCarouselSlide } from "bootstrap-vue/esm/components/carousel/carousel-slide";
 import myMap from "./Map";
 
+console.log(sessionStorage.getItem("user"))
+
 export default {
   name: "home",
   components: {

@@ -15,9 +15,10 @@ public class ResService {
 	@Autowired
 	ResRepository resDAO;
 	
+	
 	// 가게 정보페이지에 필요한 DTO를 생성해서 controller에 보낸다.
-	public ResInfo getResInfo(ResThumbnail res) {
-		return ResInfo.of(resDAO.findById(res.getResNum()).get());
+	public ResInfo getResInfo(Long id) {
+		return ResInfo.of(resDAO.findById(id).get());
 	}
 	
 	// Thumnail을 불러와 controller에 보낸다.

@@ -5,6 +5,6 @@ import org.springframework.data.repository.CrudRepository;
 import io.gourmand.domain.User;
 
 public interface UserRepository extends CrudRepository<User, String> {
-
+	User findUserByUserId(String userId);
 }
 
