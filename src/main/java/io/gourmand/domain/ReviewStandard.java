@@ -46,4 +46,5 @@ public class ReviewStandard {
 	
 	@Column(name= "R_ACCESS")
 	private BigDecimal rAccess;
+	
 }

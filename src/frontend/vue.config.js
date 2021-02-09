@@ -27,6 +27,11 @@ module.exports = {
             ws: true,
             changeOrigin: true,
         },
+        '/res/regi' : {
+          target: 'http://localhost:80',
+          ws: true,
+          changeOrigin: true,
+      },
     }
 }
 };
