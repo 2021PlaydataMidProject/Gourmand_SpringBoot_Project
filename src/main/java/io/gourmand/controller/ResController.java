@@ -1,24 +1,23 @@
 package io.gourmand.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import io.gourmand.dao.ResImgRepository;
 import io.gourmand.domain.Res;
-import io.gourmand.dto.ResDTO;
+import io.gourmand.domain.ResImg;
 import io.gourmand.dto.ResDTO.ResInfo;
 import io.gourmand.dto.ResDTO.ResRegister;
 import io.gourmand.dto.ResDTO.ResThumbnail;
@@ -46,17 +45,20 @@ public class ResController {
 	
 	// 가게 정보 저장
 	@PostMapping("/res/regi")
-	//public void createRes(@RequestBody ResRegister res) {
-//	System.out.println(res.getResImg());
-//	resService.insertRes(res);
 	public void createRes(@RequestParam("resImg") List<MultipartFile> resImg, @RequestParam("res") String resRegi) {
-		
+		System.out.println(resRegi);
 		ObjectMapper mapper = new ObjectMapper();
 		try {
-			ResRegister regi = mapper.readValue(resRegi, ResRegister.class);
-			resService.insertRes(regi);
-			
-		} catch (JsonProcessingException e) {
+			Res res = resService.insertRes(mapper.readValue(resRegi, ResRegister.class));
+			resImg.forEach(img->{
+				ResImg ri = resService.insertResImg(img, res);
+				try {
+					resService.saveImg(img, ri);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			});
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
