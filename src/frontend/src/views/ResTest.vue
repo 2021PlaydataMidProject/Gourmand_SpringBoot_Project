@@ -5,25 +5,25 @@
         <tr>
           <td width="70">가게이름</td>
           <td align="left">
-            <input type="text" v-model="newRes.res_name" />
+            <input type="text" v-model="newRes.resName" />
           </td>
         </tr>
         <tr>
           <td width="70">xValue</td>
           <td align="left">
-            <input type="text" v-model="newRes.x_value" />
+            <input type="text" v-model="newRes.xValue" />
           </td>
         </tr>
         <tr>
           <td width="70">yValue</td>
           <td align="left">
-            <input type="text" v-model="newRes.y_value" />
+            <input type="text" v-model="newRes.yValue" />
           </td>
         </tr>
         <tr>
           <td>운영시간</td>
           <td align="left">
-            <input type="text" v-model="newRes.res_hour" size="10" />
+            <input type="text" v-model="newRes.resHour" size="10" />
           </td>
         </tr>
         <tr>
@@ -65,10 +65,10 @@ export default {
       return {
         newRes:
         {
-            res_name:"",
-            x_value:"",
-            y_value:"",
-            res_hour:"",
+            resName:"",
+            //xValue:"",
+            //yValue:"",
+            resHour:"",
             tel:"",
             category:"",
         }
@@ -77,12 +77,13 @@ export default {
   methods:{
       addRes: function(){
           const formData = new FormData();
+
+          //this.newRes.xValue = parseFloat(this.newRes.xValue);
+          //this.newRes.yValue = parseFloat(this.newRes.yValue);
           formData.append("res", JSON.stringify(this.newRes));
-          console.log(this.$refs.imgdata.files.length)
           for (let i=0; i<this.$refs.imgdata.files.length; i++){
             formData.append('resImg', this.$refs.imgdata.files[i])
           }
-          console.log(formData.getAll("resImg"));
           return this.axios.post('/res/regi', formData, {
             headers: {
               "Content-Type": `multipart/form-data`

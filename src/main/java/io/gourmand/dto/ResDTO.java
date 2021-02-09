@@ -11,7 +11,6 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 // 가게 table에 주소 column 추가 고려
 public class ResDTO {
@@ -104,6 +103,4 @@ public class ResDTO {
 					.build();
 		}
 	}
-	
-	
 }
