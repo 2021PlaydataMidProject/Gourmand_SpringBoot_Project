@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import io.gourmand.dao.ReviewRepository;
 import io.gourmand.domain.Review;
+import io.gourmand.dto.RevDTO;
 import io.gourmand.dto.RevDTO.RevInfo;
 import io.gourmand.dto.RevDTO.RevRegister;
 
@@ -35,6 +36,17 @@ public class RevService {
 	public void insertRev(RevRegister rev) {
 		revDAO.save(RevRegister.toEntity(rev));
 	}
+	
+	// 댓글 수정
+	public void updateReview(Review review) {
+		Review findReview = revDAO.findById(review.getReviewNum()).get();
+		
+		findReview.setReview(review.getReview());
+		findReview.setReviewImg(review.getReviewImg());
+		revDAO.save(findReview);
+	}
+	
+	
 	
 	
 

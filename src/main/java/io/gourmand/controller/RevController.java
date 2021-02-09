@@ -60,9 +60,16 @@ public class RevController {
 		System.out.println(rev);
 		revService.insertRev(rev);
 	}
-		
-
 	
+	//댓글 수정
+	@PostMapping("/rev/{id}/update")
+	public String updateRev(@ModelAttribute("user") User user, Review review) {
+		if (user.getUserId() == null) {
+			return "redirect:login";
+		}
+		revService.updateReview(review);
+		return "forward:getReview";
+	}
 
-	
+
 }
