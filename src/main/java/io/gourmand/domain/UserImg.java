@@ -8,8 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-@Entity(name="RES_IMG")
-public class ResImg {
+@Entity(name="USER_IMG")
+public class UserImg {
 	
 	@Id
 	@Column(name="RES_IMG_ID")
@@ -17,8 +17,8 @@ public class ResImg {
 	private Long resImgId; 
 	
 	@ManyToOne
-	@JoinColumn(name="RES_NUM")
-	private Res res;
+	@JoinColumn(name="USER_NUM")
+	private User user;
 	
 	@Column(name="NAME")
 	private String name;

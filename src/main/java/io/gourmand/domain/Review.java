@@ -1,6 +1,6 @@
 package io.gourmand.domain;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -35,7 +35,7 @@ public class Review {
 	private Long reviewNum;
 
 	@ManyToOne
-	@JoinColumn(name= "USER_ID")
+	@JoinColumn(name= "USER_NUM")
 	private User user;
 	
 	@ManyToOne
@@ -48,15 +48,17 @@ public class Review {
 	@Column(name = "REVIEW")
 	private String review;
 	
-	@Column(name = "WRITE_DAY")
-	private LocalDateTime writeDate;
+	@Column(name = "WRITE_DATE")
+	private LocalDate writeDate;
 	
 	@Column(name = "IMG_LINK")
 	private String imgLink;
 	
-	@OneToOne(mappedBy = "reviewNum")
-	private RatingStandard ratingStandard;
+	@OneToOne
+	@JoinColumn(name="ID")
+	private ReviewStandard reviewStandard;
 	
-	@OneToMany(mappedBy = "reviewNum")
-	private List<Thread> thread;
+	@OneToMany(mappedBy = "review")
+	private List<ReviewImg> reviewImg;
+	
 }

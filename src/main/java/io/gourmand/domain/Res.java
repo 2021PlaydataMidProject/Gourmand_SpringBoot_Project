@@ -7,7 +7,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -51,9 +53,13 @@ public class Res {
 	@Column(name = "CATEGORY")
 	private String category;
 	
-	@OneToMany(mappedBy = "resNum")
+	@OneToMany(mappedBy = "res")
 	private List<ResImg> resImg;
 
+	@OneToOne
+	@JoinColumn(name="ID")
+	private ReviewStandard ratingStandard;
+	
 	@OneToMany(mappedBy = "res")
 	private List<Review> review;
 }

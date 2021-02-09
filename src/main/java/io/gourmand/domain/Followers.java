@@ -2,6 +2,8 @@ package io.gourmand.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -21,16 +23,23 @@ import lombok.ToString;
 @Builder
 
 @Entity
-public class Relationships {
+public class Followers {
 	@Id
-	@Column(name = "ID")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@ManyToOne
-	@JoinColumn(name="USER_ID")
-	private User follower;
-	
+	@JoinColumn(name="from_user_fk")
+	private User from;
+
 	@ManyToOne
-	@JoinColumn(name="USER_ID")
-	private User following;
+	@JoinColumn(name="to_user_fk")
+	private User to;
+
+	public Followers(User from, User to) {
+	    this.from = from;
+	    this.to = to;
+	}
 }
+
+

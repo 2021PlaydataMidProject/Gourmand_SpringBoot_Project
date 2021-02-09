@@ -36,7 +36,7 @@ public class ResController {
 	// 가게 정보 저장
 	@PostMapping("/res/regi")
 	public void createRes(@RequestBody ResRegister res) {
-		System.out.println("등록");
+		System.out.println(res);
 		resService.insertRes(res);
 	}
 	

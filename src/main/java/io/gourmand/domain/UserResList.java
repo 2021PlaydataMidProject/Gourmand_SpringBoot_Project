@@ -3,6 +3,7 @@ package io.gourmand.domain;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -24,14 +25,17 @@ import lombok.ToString;
 @Entity(name="USER_RES_LIST")
 public class UserResList {
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "LIST_NUM")
 	private Long listNum;
 	
 	@ManyToOne
-	@JoinColumn(name= "USER_ID")
+	@JoinColumn(name= "USER_NUM")
 	private User user;
 	
 	@Column(name = "LIST_NAME")
 	private String listName;
+	
+	@Column(name = "RES_ID")
+	private Long resId;
 }

@@ -1,15 +1,12 @@
 package io.gourmand.domain;
 
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -32,11 +29,12 @@ public class ReviewLikes {
 	@Column(name="ID")
 	private Long id;
 	
-	@OneToMany(mappedBy = "reviewNum")
-	private List<Review> review;
+	@ManyToOne
+	@JoinColumn(name="REVIEW_NUM")
+	private Review review;
 	
-	@OneToOne
-	@JoinColumn(name="USER_ID")
+	@ManyToOne
+	@JoinColumn(name="USER_NUM")
 	private User user;
 	
 	

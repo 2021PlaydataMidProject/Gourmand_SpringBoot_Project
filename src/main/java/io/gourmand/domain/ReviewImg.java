@@ -8,17 +8,17 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-@Entity(name="RES_IMG")
-public class ResImg {
+@Entity(name="REVIEW_IMG")
+public class ReviewImg {
 	
 	@Id
-	@Column(name="RES_IMG_ID")
+	@Column(name="REVIEW_IMG_ID")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long resImgId; 
+	private Long reviewImgId; 
 	
 	@ManyToOne
-	@JoinColumn(name="RES_NUM")
-	private Res res;
+	@JoinColumn(name="REVIEW_NUM")
+	private Review review;
 	
 	@Column(name="NAME")
 	private String name;

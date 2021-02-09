@@ -5,25 +5,25 @@
           <tr>
             <td width="70">가게이름</td>
             <td align="left">
-              <input type="text" v-model="newRes.resName" />
+              <input type="text" v-model="newRes.res_name" />
             </td>
           </tr>
           <tr>
             <td width="70">xValue</td>
             <td align="left">
-              <input type="text" v-model="newRes.xValue" />
+              <input type="text" v-model="newRes.x_value" />
             </td>
           </tr>
           <tr>
             <td width="70">yValue</td>
             <td align="left">
-              <input type="text" v-model="newRes.yValue" />
+              <input type="text" v-model="newRes.y_value" />
             </td>
           </tr>
           <tr>
             <td>운영시간</td>
             <td align="left">
-              <input type="text" v-model="newRes.resHour" size="10" />
+              <input type="text" v-model="newRes.res_hour" size="10" />
             </td>
           </tr>
           <tr>
@@ -55,10 +55,10 @@ export default {
   data: function(){
       return {
         newRes:{
-            resName:"",
-            xValue:"",
-            yValue:"",
-            resHour:"",
+            res_name:"",
+            x_value:"",
+            y_value:"",
+            res_hour:"",
             tel:"",
             category:""
         }
@@ -66,7 +66,12 @@ export default {
   },
   methods:{
       addRes: function(){
-          return 
+          console.log("ddd")
+          return this.axios.post('/res/regi', this.newRes)
+          .then(res => {
+              alert(this.newRes.res_name + "가게 등록완료");
+              location.href="/home"
+            });
       }
   },
   components: { BaseButton },
