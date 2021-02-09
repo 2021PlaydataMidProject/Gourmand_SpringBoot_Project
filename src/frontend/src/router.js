@@ -9,11 +9,13 @@ import Register from "./views/Register.vue";
 import Profile from "./views/Profile.vue";
 import Home from "./views/Home.vue";
 import ResTest from "./views/ResTest.vue";
+import UserSignUp from "./views/UserSignUp.vue";
 
 Vue.use(Router);
 
 export default new Router({
   linkExactActiveClass: "active",
+  mode: 'history',
   routes: [
     {
       path: "/",
@@ -70,14 +72,24 @@ export default new Router({
       }
     },
     {
-      path: "/res",
-      name: "res",
+      path: "/resregi",
+      name: "resregi",
       components: {
         header: AppHeader,
         default: ResTest,
         footer: AppFooter
       }
+    },
+    {
+      path: "/signup",
+      name: "userSignUp",
+      components: {
+        header: AppHeader,
+        default: UserSignUp,
+        footer: AppFooter
+      }
     }
+
 
   ],
   scrollBehavior: to => {

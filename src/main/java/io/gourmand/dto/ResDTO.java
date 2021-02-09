@@ -11,6 +11,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 // 가게 table에 주소 column 추가 고려
 public class ResDTO {
@@ -91,7 +92,6 @@ public class ResDTO {
 		private String resHour;
 		private String tel;
 		private String category;
-		private List<ResImg> resImg;
 		
 		public static Res toEntity(ResRegister res) {
 			return Res.builder()
@@ -100,10 +100,7 @@ public class ResDTO {
 					.yValue(res.getYValue())
 					.resHour(res.getResHour())
 					.tel(res.getTel())
-					.avgStar(null)
 					.category(res.getCategory())
-					.resImg(res.getResImg())
-					.review(null)
 					.build();
 		}
 	}
