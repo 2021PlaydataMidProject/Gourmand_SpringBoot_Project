@@ -9,8 +9,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinColumns;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -31,9 +29,12 @@ import lombok.ToString;
 @Entity(name = "USER")
 public class User {
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name = "ID")
-	private Long id;
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name = "USER_NUM")
+	private Long userNum;
+	
+	@Column(name = "USER_ID")
+	private String userId;
 	
 	@OneToMany(mappedBy="to")
 	private List<Followers> followers;
@@ -65,6 +66,15 @@ public class User {
 	
 	@OneToMany(mappedBy = "threadNum")
 	private List<Thread> Thread;
+	
+	@OneToMany(mappedBy = "user")
+	private List<UserImg> userImg;
+	
+	@OneToMany(mappedBy = "user")
+	private List<ReviewLikes> reviewLikes;
+	
+	@OneToMany(mappedBy = "user")
+	private List<ListLikes> listlikes;
 	
 	public User(String name) {
 	    this.name = name;

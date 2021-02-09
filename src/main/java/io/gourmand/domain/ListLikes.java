@@ -1,16 +1,12 @@
 package io.gourmand.domain;
 
-import java.time.LocalDateTime;
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -33,11 +29,11 @@ public class ListLikes {
 	@Column(name = "ID")
 	private Long id;
 	
-	@OneToMany
+	@ManyToOne
 	@JoinColumn(name = "LIST_NUM")
-	private List<UserResList> listNum;
+	private UserResList listNum;
 	
-	@OneToOne
-	@JoinColumn(name= "ID")
+	@ManyToOne
+	@JoinColumn(name= "USER_NUM")
 	private User user;
 }

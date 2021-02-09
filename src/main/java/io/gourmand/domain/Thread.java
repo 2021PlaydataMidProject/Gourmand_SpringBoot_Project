@@ -1,7 +1,6 @@
 package io.gourmand.domain;
 
 import java.time.LocalDate;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,7 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -38,7 +36,7 @@ public class Thread {
    private Review reviewNum;
    
    @ManyToOne
-   @JoinColumn(name= "ID")
+   @JoinColumn(name= "USER_NUM")
    private User user; // 한명 user - 여러개 댓글  1:N 
    
    @Column(name="REVIEW_THREAD")
