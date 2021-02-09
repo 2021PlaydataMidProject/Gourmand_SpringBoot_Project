@@ -35,6 +35,9 @@ public class User {
 	@Column(name = "ID")
 	private Long id;
 	
+//	@Column(name = "ID")
+//	private Long id;
+	
 	@OneToMany(mappedBy="to")
 	private List<Followers> followers;
 
