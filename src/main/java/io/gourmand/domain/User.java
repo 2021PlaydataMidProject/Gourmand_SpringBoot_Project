@@ -28,6 +28,8 @@ import lombok.ToString;
 
 @Entity(name = "USER")
 public class User {
+
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "USER_NUM")
@@ -35,9 +37,6 @@ public class User {
 	
 	@Column(name = "USER_ID")
 	private String userId;
-	
-//	@Column(name = "ID")
-//	private Long id;
 	
 	@OneToMany(mappedBy="to")
 	private List<Followers> followers;
