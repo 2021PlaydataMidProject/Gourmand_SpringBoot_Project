@@ -24,12 +24,12 @@ import lombok.ToString;
 @ToString
 @Builder
 
-@Entity(name = "THREAD")
-public class Thread {
+@Entity(name = "Reply")
+public class Reply {
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
-   @Column(name = "THREAD_NUM")
-   private Long threadNum;
+   @Column(name = "REPLY_NUM")
+   private Long replyNum;
    
    @ManyToOne
    @JoinColumn(name= "REVIEW_NUM")
@@ -39,9 +39,9 @@ public class Thread {
    @JoinColumn(name= "USER_NUM")
    private User user; // 한명 user - 여러개 댓글  1:N 
    
-   @Column(name="REVIEW_THREAD")
-   private String reviewThread;
+   @Column(name="REVIEW_REPLY")
+   private String reviewReply;
    
-   @Column(name="REVIEW_THREAD_DATE")
-   private LocalDate reviewThreadDate;
+   @Column(name="REVIEW_REPLY_DATE")
+   private LocalDate reviewReplyDate;
 }
