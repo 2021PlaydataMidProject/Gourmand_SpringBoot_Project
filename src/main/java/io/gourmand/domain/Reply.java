@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -24,24 +25,24 @@ import lombok.ToString;
 @ToString
 @Builder
 
-@Entity(name = "THREAD")
-public class Thread {
+@Entity(name = "REPLY")
+public class Reply {
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
-   @Column(name = "THREAD_NUM")
-   private Long threadNum;
+   @Column(name = "REPLY_NUM")
+   private Long replyNum;
    
-   @ManyToOne
+   @ManyToOne(fetch = FetchType.LAZY)
    @JoinColumn(name= "REVIEW_NUM")
    private Review reviewNum;
    
-   @ManyToOne
+   @ManyToOne(fetch = FetchType.LAZY)
    @JoinColumn(name= "USER_NUM")
-   private User user; // 한명 user - 여러개 댓글  1:N 
+   private User user; // 한명 user - 여러개 댓글  1:N
    
-   @Column(name="REVIEW_THREAD")
-   private String reviewThread;
+   @Column(name="REVIEW_REPLY")
+   private String reviewReply;
    
-   @Column(name="REVIEW_THREAD_DATE")
-   private LocalDate reviewThreadDate;
+   @Column(name="REVIEW_REPLY_DATE")
+   private LocalDate reviewReplyDate;
 }

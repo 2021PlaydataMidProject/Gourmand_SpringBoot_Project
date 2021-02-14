@@ -56,4 +56,7 @@ public class Res {
 
 	@OneToMany(mappedBy = "res")
 	private List<Review> review;
+	
+	@OneToMany(mappedBy = "res")
+	private List<UserResList> userResList;
 }

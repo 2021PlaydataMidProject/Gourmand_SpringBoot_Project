@@ -1,8 +1,5 @@
 package io.gourmand.controller;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,6 +29,11 @@ public class LoginController {
 		}
 	}
 
+	@PostMapping("/auth/check")
+	public void check(@RequestBody User user) {
+		System.out.println(user);
+	}
+	
 	@GetMapping("auth/signout")
 	public String logout(SessionStatus status) {
 		status.setComplete();

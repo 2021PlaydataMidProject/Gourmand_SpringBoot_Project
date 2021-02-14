@@ -26,7 +26,7 @@ import lombok.ToString;
 public class UserStandard {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ID")
+	@Column(name = "US_ID")
 	private Long id;
 	
 	@Column(name = "U_FLAVOR")

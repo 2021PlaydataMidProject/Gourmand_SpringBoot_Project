@@ -26,7 +26,7 @@ public class ReviewStandard {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ID")
+	@Column(name = "RS_ID")
 	private Long id;
 	
 	@Column(name= "R_FLAVOR")

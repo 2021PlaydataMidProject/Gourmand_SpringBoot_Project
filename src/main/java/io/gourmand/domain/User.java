@@ -61,11 +61,11 @@ public class User {
 	private LocalDate suDate;
 	
 	@OneToOne
-	@JoinColumn(name="ID")
-	private UserStandard userStandard;	
+	@JoinColumn(name="US_ID")
+	private UserStandard userStandard;
 	
-	@OneToMany(mappedBy = "threadNum")
-	private List<Thread> Thread;
+	@OneToMany(mappedBy = "replyNum")
+	private List<Reply> reply;
 	
 	@OneToMany(mappedBy = "user")
 	private List<UserImg> userImg;
@@ -74,7 +74,7 @@ public class User {
 	private List<ReviewLikes> reviewLikes;
 	
 	@OneToMany(mappedBy = "user")
-	private List<ListLikes> listlikes;
+	private List<ListLikes> listLikes; //대문자 L로 바꿨어야 하는데.........
 	
 	public User(String name) {
 	    this.name = name;
