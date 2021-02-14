@@ -8,7 +8,6 @@ import {
 } from '@/utils/cookies';
 import { loginUser } from '@/api/auth';
 
-import layout from './layout';
 
 Vue.use(Vuex);
 
@@ -46,8 +45,5 @@ export default new Vuex.Store({
       saveUserToCookie(data.user.username);
       return data;
     },
-  },
-  modules: {
-    layout,
   },
 });
