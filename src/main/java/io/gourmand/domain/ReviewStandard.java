@@ -21,7 +21,7 @@ import lombok.ToString;
 @ToString
 @Builder
 
-@Entity(name="REVIEW_STANDARD")
+@Entity(name="RATING_STANDARD")
 public class ReviewStandard {
 	
 	@Id

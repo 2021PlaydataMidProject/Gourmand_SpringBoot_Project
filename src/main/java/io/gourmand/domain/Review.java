@@ -55,7 +55,7 @@ public class Review {
 	private String imgLink;
 	
 	@OneToOne
-	@JoinColumn(name="ID")
+	@JoinColumn(name="RS_ID")
 	private ReviewStandard reviewStandard;
 	
 	@OneToMany(mappedBy = "review")
