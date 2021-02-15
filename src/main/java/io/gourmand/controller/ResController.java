@@ -62,10 +62,10 @@ public class ResController {
 	}
 	
 	// 해당 가게를 리스트에 넣은 유저 반환
-	@GetMapping("/res/{id}/user")
-	public List<User> getUserByRes(@PathVariable Long id){
-		return resService.getUserByRes(id);
-	}
+//	@GetMapping("/res/{id}/user")
+//	public List<User> getUserByRes(@PathVariable Long id){
+//		return resService.getUserByRes(id);
+//	}
 	
 	// 가게 정보 저장
 	@PostMapping("/res/regi")

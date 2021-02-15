@@ -41,7 +41,12 @@ module.exports = {
         target: 'http://localhost:80',
         ws: true,
         changeOrigin: true,
-      }
+      }, 
+      '/user/' :{
+          target: 'http://localhost:80',
+          ws: true,
+          changeOrigin: true,
+        }
     }
   }
 };

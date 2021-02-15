@@ -3,8 +3,10 @@ package io.gourmand.controller;
 import java.io.IOException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,7 +19,9 @@ import io.gourmand.domain.Res;
 import io.gourmand.domain.ResImg;
 import io.gourmand.domain.User;
 import io.gourmand.dto.ResDTO.ResRegister;
+import io.gourmand.dto.UserDTO.UserInfo;
 import io.gourmand.dto.UserDTO.UserRegister;
+import io.gourmand.dto.UserStandardDTO.UserStandardRegister;
 
 @RestController
 public class UserController {
@@ -31,45 +35,55 @@ public class UserController {
 		return new User();
 	}
 
-	// 회원 가입을 위한 User 정보 저장
+	/* 회원 가입을 위한 User 정보 저장(with image) - /user/regi와 /user/regiUserStandard는 @Transactional로 처리해야 할듯
+		아니면 두개 한번에 합치는 법 고민*/
+	//@Transactional
+	//@PostMapping("/user/regi")
+	//public void createUser(@RequestParam("userImg") List<MultipartFile> userImg, @RequestParam("user") String userRegi) {
+	//System.out.println(userRegi);
+	//ObjectMapper mapper = new ObjectMapper();
+	//mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);  //과연 해결해줄것인가!!!!!!!!!!!
+	//try {
+	//User user = userService.insertUser(mapper.readValue(userRegi, UserRegister.class));
+	//userImg.forEach(img->{
+	//UserImg uimg = userService.insertUserImg(img, user);
+	//try {
+	//userService.saveImg(img, uimg);
+	//} catch (IOException e) {
+	//e.printStackTrace();
+	//}
+	//});
+	//} catch (Exception e) {
+	//e.printStackTrace();
+	//}
+	//}
+	//
+	
 	@PostMapping("/user/regi")
-	public void createUser(@RequestParam("userImg" List<MultipartFile> userImg, @RequestParam("user" String userRegi) {
-		System.out.println(userRegi);
-		ObjectMapper mapper = new ObjectMapper();
-		try {
-			User user = userService.insertUser(mapper.readValue(resUser, UserRegister.class));
-			userImg.forEach(img->{
-				userImg ri = userService.insertUserImg(img, user);
-				try {
-					userService.saveImg(img, ri);
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			});
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	public void createUser(@RequestBody UserRegister user) {
+	System.out.println( "신규 회원 기준 저장" + user.getUserId() );
+	userService.insertUser(user);
+	}
+	
+	//	 회원 기준 저장 
+	@PostMapping("/user/regiNewStandard")
+	public void createUserStandard(@RequestBody UserStandardRegister userStandard) {
+	System.out.println( "신규 회원 기준 저장" + userStandard.getId() );
+	userService.insertUserStandard(userStandard);
+	}
+	
+	// 회원 1인의 전체 정보 가져오기
+	@GetMapping("/user/{id}/info")
+	public UserInfo getUserInfo(@PathVariable String userId) {
+	System.out.println("회원 정보 조회" + userId);
+	return userService.getUserInfo(userId);
 	}
 	
 	
-//	//User 1인 조회
-//	@GetMapping("user/{id}/userinfo")
-//	public String getUser(@RequestBody UserRegister userId) {
-//		if (userRegister.getUserId() == null) {
-//			return "redirect:/auth/signup";
-//		} return getUser(user);
-//	}
-//
-//	
-	// User id 관련 정보 삭제 - 테이블이외 또 삭제해야 할 user 정보가 있는지? (그 사람이 썼던 리뷰, 리스트 등)
-	@GetMapping("/user/{id}/delete")
-	public String deleteUser(@ModelAttribute("user") User user) {
-		System.out.println("회원 정보 삭제");
-		if (user.getUserId() == null) {
-			return "redirect:/auth/signup";
-		}
-		userService.deleteUser(user);
-		return "user";
+	@DeleteMapping("/user/{id}") //(User 테이블 외에 다른 테이블 삭제할 거 고민해야 )
+	public String deleteUser(@RequestBody User user) {
+	userService.deleteUser(user);
+	return "탈퇴 완료";
 	}
 
 //	/*유저 정보를 변경한다. 

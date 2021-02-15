@@ -11,6 +11,7 @@ import io.gourmand.domain.ReviewLikes;
 import io.gourmand.domain.User;
 import io.gourmand.domain.UserImg;
 import io.gourmand.domain.UserStandard;
+import io.gourmand.dto.UserDTO.UserThumbnail;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -128,6 +129,30 @@ public class UserDTO {
 		}
 	}
 	
+	//회원 이미지와 간단 설명 - 근데 리뷰수, LIKE수는 어떻게  카운트하지??? 
+	@NoArgsConstructor
+	@AllArgsConstructor
+	@Setter
+	@Getter
+	@Builder
+	public static class UserThumbnail {
+		private Long userNum;		
+		private String userId;
+		private String name;
+		private int pageStatus;
+		private UserImg userImg;
+		
+		public static UserThumbnail of(User user) {
+			return UserThumbnail.builder()
+					.userNum(user.getUserNum())
+					.name(user.getName())
+					.pageStatus(user.getPageStatus())
+					.userImg(user.getUserImg().get(0))
+					// 대표 이미지 선택방법 고려해야함
+					.build();
+		}
+	}
+	
 	@Getter
 	@Setter
 	@NoArgsConstructor
@@ -137,16 +162,5 @@ public class UserDTO {
 		private boolean isExist;
 	}
 	
-//	@Getter
-//	   @Setter
-//	   @NoArgsConstructor
-//	   @AllArgsConstructor
-//	   @Builder
-//	   public static class UserInfoEditRequest{
-//	      private String name;
-//	      private String pw;
-//	      private String job;
-//	      private int pageStatus;
-//	      private UserStandard userStandard;//확실히 모르겠음 찾아보기 
-//	   }
+
 }
