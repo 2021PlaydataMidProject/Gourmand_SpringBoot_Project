@@ -13,6 +13,8 @@ import javax.persistence.ManyToOne;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -36,6 +38,7 @@ public class ResImg {
 	private Long resImgId;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
+	@JsonIgnore
 	@JoinColumn(name="RES_NUM")
 	private Res res;
 	
@@ -58,7 +61,7 @@ public class ResImg {
         String originFileName = file.getOriginalFilename();
         String ext = originFileName.substring(originFileName.lastIndexOf(".") + 1);
         String fileName = String.format("%s.%s", UUID.randomUUID().toString(), ext);
-        String filePath = "C:\\MyGit\\midProject\\Gourmand_SpringBoot_Project\\res\\" + res.getResName() + "\\";
+        String filePath = "C:\\MyGit\\midProject\\Gourmand_SpringBoot_Project\\images\\res\\" + res.getResName() + "\\";
         
         return ResImg.builder()
                 .originName(originFileName)

@@ -36,7 +36,7 @@
           </a>
           <div class="dropdown-menu-inner">
             <a
-              href="https://demos.creative-tim.com/vue-argon-design-system/documentation/"
+              href="/mapforall"
               class="media d-flex align-items-center"
             >
               <div class="media-body ml-3">
@@ -120,7 +120,6 @@ export default {
       }
     },
     logout: function(){
-        console.log("dss")
         if (sessionStorage.getItem("user")!=null){
             sessionStorage.removeItem("user");
             location.href="/"

@@ -54,14 +54,21 @@ public class ResDTO {
 		private BigDecimal avgStar;
 		private String category;
 		private ResImg resImg;
-
+		private String resAddress;
 		public static ResThumbnail of(Res res) {
 			ResImg rImg = null;
 			if (res.getResImg().size() > 0) {
 				rImg = res.getResImg().get(0);
 			}
-			return ResThumbnail.builder().resNum(res.getResNum()).resName(res.getResName()).resHour(res.getResHour())
-					.tel(res.getTel()).avgStar(res.getAvgStar()).category(res.getCategory()).resImg(rImg)
+			return ResThumbnail.builder()
+					.resNum(res.getResNum())
+					.resName(res.getResName())
+					.resHour(res.getResHour())
+					.tel(res.getTel())
+					.avgStar(res.getAvgStar())
+					.resAddress(res.getResAddress())
+					.category(res.getCategory())
+					.resImg(rImg)
 					// 대표 이미지 선택방법 고려해야함
 					.build();
 		}
@@ -82,8 +89,6 @@ public class ResDTO {
 
 		public static Res toEntity(ResRegister res) {
 			BigDecimal[] axis = NaverGeoCoding.returnAxis(res.getResAddress());
-			System.out.println(axis[0]);
-			System.out.println(axis[1]);
 			return Res.builder()
 					.resName(res.getResName())
 					.xValue(axis[1])

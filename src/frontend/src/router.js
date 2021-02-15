@@ -10,7 +10,8 @@ import Profile from "./views/Profile.vue";
 import Home from "./views/Home.vue";
 import ResTest from "./views/ResTest.vue";
 import UserSignUp from "./views/UserSignUp.vue";
-import MapForAll from "./views/MapForAll.vue"
+import MapForAll from "./views/MapForAll.vue";
+import ResPage from "./views/ResPage.vue";
 
 Vue.use(Router);
 
@@ -96,6 +97,15 @@ export default new Router({
       components: {
         header: AppHeader,
         default: MapForAll,
+        footer: AppFooter
+      }
+    },
+    {
+      path: "/respage",
+      name: "ResPage",
+      components: {
+        header: AppHeader,
+        default: ResPage,
         footer: AppFooter
       }
     }
