@@ -94,19 +94,22 @@ export default {
   },
   methods: {
     login: function () {
-      return this.axios.post("/auth/login", {
-          "user_id" : this.id,
-          "pw" : this.pw,
-      }).then((res) => {
-          if (res.data){
-              sessionStorage.setItem("user" ,res.data);
-              location.href="/home"
-          } else{
-              alert("없는 아이디거나 비밀번호가 맞지 않습니다.");
+      return this.axios
+        .post("/auth/login", {
+          user_id: this.id,
+          pw: this.pw,
+        })
+        .then((res) => {
+          if (res.data) {
+            sessionStorage.setItem("user", res.data);
+            location.href = "/";
+          } else {
+            alert("없는 아이디거나 비밀번호가 맞지 않습니다.");
           }
-      }).catch(error => {
-          alert("서버 오류입니다. 다시 시도해주세요.")
-      })
+        })
+        .catch((error) => {
+          alert("서버 오류입니다. 다시 시도해주세요.");
+        });
     },
   },
 };

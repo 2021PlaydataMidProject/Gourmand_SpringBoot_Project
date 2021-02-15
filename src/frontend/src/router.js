@@ -10,6 +10,7 @@ import Profile from "./views/Profile.vue";
 import Home from "./views/Home.vue";
 import ResTest from "./views/ResTest.vue";
 import UserSignUp from "./views/UserSignUp.vue";
+import MapForAll from "./views/MapForAll.vue"
 
 Vue.use(Router);
 
@@ -86,6 +87,15 @@ export default new Router({
       components: {
         header: AppHeader,
         default: UserSignUp,
+        footer: AppFooter
+      }
+    },
+    {
+      path: "/mapforall",
+      name: "MapForAll",
+      components: {
+        header: AppHeader,
+        default: MapForAll,
         footer: AppFooter
       }
     }
