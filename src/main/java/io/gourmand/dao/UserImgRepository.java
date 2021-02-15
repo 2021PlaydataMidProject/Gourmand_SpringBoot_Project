@@ -8,4 +8,6 @@ import io.gourmand.domain.UserImg;
 
 public interface UserImgRepository extends CrudRepository<UserImg, Long>{
 
+public interface UserImgRepository extends CrudRepository<UserImg, Long> {
+
 }

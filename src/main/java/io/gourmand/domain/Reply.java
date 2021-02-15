@@ -24,7 +24,11 @@ import lombok.ToString;
 @ToString
 @Builder
 
+
 @Entity(name = "REPLY")
+
+@Entity(name = "Reply")
+
 public class Reply {
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)

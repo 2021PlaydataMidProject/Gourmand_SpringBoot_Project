@@ -81,8 +81,8 @@ export default new Router({
       }
     },
     {
-      path: "/signup",
-      name: "userSignUp",
+      path: "/userregi",
+      name: "userregi",
       components: {
         header: AppHeader,
         default: UserSignUp,

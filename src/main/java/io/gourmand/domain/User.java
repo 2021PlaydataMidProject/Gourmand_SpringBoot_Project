@@ -28,6 +28,8 @@ import lombok.ToString;
 
 @Entity(name = "USER")
 public class User {
+
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "USER_NUM")
@@ -35,9 +37,6 @@ public class User {
 	
 	@Column(name = "USER_ID")
 	private String userId;
-	
-//	@Column(name = "ID")
-//	private Long id;
 	
 	@OneToMany(mappedBy="to")
 	private List<Followers> followers;
@@ -67,8 +66,8 @@ public class User {
 	@JoinColumn(name="US_ID")
 	private UserStandard userStandard;	
 	
-	@OneToMany(mappedBy = "threadNum")
-	private List<Thread> Thread;
+	@OneToMany(mappedBy = "replyNum")
+	private List<Reply> reply;
 	
 	@OneToMany(mappedBy = "user")
 	private List<UserImg> userImg;
@@ -77,9 +76,9 @@ public class User {
 	private List<ReviewLikes> reviewLikes;
 	
 	@OneToMany(mappedBy = "user")
-	private List<ListLikes> listlikes;
+	private List<ListLikes> listLikes;
 	
-	public User(String name) {
+	public User(String name) {  //여기 왜 있나? 궁금 (연지)
 	    this.name = name;
 	}
 }
