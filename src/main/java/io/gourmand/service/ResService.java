@@ -1,21 +1,27 @@
 package io.gourmand.service;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.multipart.MultipartFile;
 
 import io.gourmand.dao.ResImgRepository;
 import io.gourmand.dao.ResRepository;
+import io.gourmand.dao.UserRepository;
 import io.gourmand.domain.Res;
 import io.gourmand.domain.ResImg;
+import io.gourmand.domain.User;
 import io.gourmand.dto.ResDTO.ResInfo;
 import io.gourmand.dto.ResDTO.ResRegister;
 import io.gourmand.dto.ResDTO.ResThumbnail;
@@ -27,6 +33,8 @@ public class ResService {
 	ResRepository resDAO;
 	@Autowired
 	ResImgRepository resImgDAO;
+	@Autowired
+	UserRepository userDAO;
 
 	// 가게 정보페이지에 필요한 DTO를 생성해서 controller에 보낸다.
 	public ResInfo getResInfo(Long id) {
@@ -34,21 +42,62 @@ public class ResService {
 	}
 
 	// Thumnail을 불러와 controller에 보낸다.
-	public ResThumbnail getResThumbnail(Res res) {
-		return ResThumbnail.of(resDAO.findById(res.getResNum()).get());
+	public ResThumbnail getResThumbnail(Long id) {
+		return ResThumbnail.of(resDAO.findById(id).get());
+	}
+
+	// 전체 가게 -> 거리순
+	public List<ResThumbnail> getAllRes(BigDecimal xValue, BigDecimal yValue) {
+		List<ResThumbnail> resThumbList = new ArrayList<>();
+		resDAO.findAllOrderByAxis(xValue, yValue).forEach(r -> resThumbList.add(ResThumbnail.of(r)));
+		return resThumbList;
+	}
+
+	// 카테고리(음식종류) 별 반환 (거리순)
+	public List<ResThumbnail> getAllResByCategory(BigDecimal xValue, BigDecimal yValue, String category) {
+		List<ResThumbnail> resThumbList = new ArrayList<>();
+		resDAO.findAllbyCategory(category, xValue, yValue).forEach(r -> resThumbList.add(ResThumbnail.of(r)));
+		return resThumbList;
+	}
+
+	// 평균 평점별 반환
+	public List<ResThumbnail> getAllResByAvgStar(BigDecimal xValue, BigDecimal yValue, BigDecimal limit) {
+		List<ResThumbnail> resThumbList = new ArrayList<>();
+		resDAO.findAllbyAvgStar(xValue, yValue, limit).forEach(r -> resThumbList.add(ResThumbnail.of(r)));
+		return resThumbList;
+	}
+
+	// 해당 가게를 리스트에 넣은 유저 반환
+	public List<User> getUserByRes(Long id) {
+		return userDAO.findUsersOfRes(id);
 	}
 
 	// 가게 등록 페이지에서 저장
 	public Res insertRes(ResRegister res) {
 		return resDAO.save(ResRegister.toEntity(res));
 	}
-	
-	//MultipartFile -> entity -> SQL저장
-	public ResImg insertResImg(MultipartFile resImg, Res res){
+
+	public void updateRes(Long id, ResRegister resRegi) {
+		Res res = resDAO.findById(id).get();
+		res.setResName(resRegi.getResName());
+		res.setCategory(resRegi.getCategory());
+		res.setResHour(resRegi.getResHour());
+		res.setTel(resRegi.getTel());
+		res.setXValue(resRegi.getXValue());
+		res.setYValue(resRegi.getYValue());
+		resDAO.save(res);
+	}
+
+	public void deleteRes(Long id) {
+		resDAO.deleteById(id);
+	}
+
+	// MultipartFile -> entity -> SQL저장
+	public ResImg insertResImg(MultipartFile resImg, Res res) {
 		return resImgDAO.save(ResImg.of(resImg, res));
 	}
-	
-	//MultipartFile -> 저장
+
+	// MultipartFile -> 저장
 	public void saveImg(MultipartFile file, ResImg res) throws IOException {
 		// parent directory를 찾는다.
 		Path directory = Paths.get(res.getPath()).toAbsolutePath().normalize();

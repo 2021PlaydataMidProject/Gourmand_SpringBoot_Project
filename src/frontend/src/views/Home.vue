@@ -10,7 +10,7 @@
                       <base-input class="my-3 col-lg-10"
                                   placeholder="음식점 검색하기">
                       </base-input>
-                      <base-button type="primary" class="my-3 col-lg-2">Search</base-button>
+                      <base-button @click="check()" type="primary" class="my-3 col-lg-2">Search</base-button>
                       </div>
                   </form>
             </div>
@@ -40,8 +40,6 @@
 import { BCarousel } from "bootstrap-vue/esm/components/carousel/carousel";
 import { BCarouselSlide } from "bootstrap-vue/esm/components/carousel/carousel-slide";
 import myMap from "./Map";
-
-console.log(sessionStorage.getItem("user"))
 
 export default {
   name: "home",

@@ -5,7 +5,6 @@ import java.util.List;
 
 import io.gourmand.domain.Res;
 import io.gourmand.domain.ResImg;
-import io.gourmand.domain.Review;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -31,7 +30,6 @@ public class ResDTO {
 		private BigDecimal avgStar;
 		private String category;
 		private List<ResImg> resImg;
-		private List<Review> review;
 		
 		public static ResInfo of(Res res) {
 			return ResInfo.builder()
@@ -44,7 +42,6 @@ public class ResDTO {
 					.avgStar(res.getAvgStar())
 					.category(res.getCategory())
 					.resImg(res.getResImg())
-					.review(res.getReview())
 					.build();
 		}
 	}
@@ -65,6 +62,10 @@ public class ResDTO {
 		private ResImg resImg;
 		
 		public static ResThumbnail of(Res res) {
+			ResImg rImg = null;
+			if (res.getResImg().size()>0) {
+				rImg = res.getResImg().get(0);
+			}
 			return ResThumbnail.builder()
 					.resNum(res.getResNum())
 					.resName(res.getResName())
@@ -72,7 +73,7 @@ public class ResDTO {
 					.tel(res.getTel())
 					.avgStar(res.getAvgStar())
 					.category(res.getCategory())
-					.resImg(res.getResImg().get(0))
+					.resImg(rImg)
 					// 대표 이미지 선택방법 고려해야함
 					.build();
 		}

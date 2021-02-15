@@ -28,8 +28,6 @@ import lombok.ToString;
 
 @Entity(name = "USER")
 public class User {
-
-	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "USER_NUM")
@@ -64,7 +62,7 @@ public class User {
 	
 	@OneToOne
 	@JoinColumn(name="US_ID")
-	private UserStandard userStandard;	
+	private UserStandard userStandard;
 	
 	@OneToMany(mappedBy = "replyNum")
 	private List<Reply> reply;
@@ -76,9 +74,9 @@ public class User {
 	private List<ReviewLikes> reviewLikes;
 	
 	@OneToMany(mappedBy = "user")
-	private List<ListLikes> listLikes;
+	private List<ListLikes> listLikes; //대문자 L로 바꿨어야 하는데.........
 	
-	public User(String name) {  //여기 왜 있나? 궁금 (연지)
+	public User(String name) {
 	    this.name = name;
 	}
 }

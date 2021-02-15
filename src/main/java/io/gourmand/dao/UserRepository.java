@@ -6,6 +6,5 @@ import io.gourmand.domain.User;
 
 public interface UserRepository extends JpaRepository<User, String> {
 	User findUserByUserId(String userId);
-
 }
 
