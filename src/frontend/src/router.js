@@ -19,6 +19,15 @@ export default new Router({
   routes: [
     {
       path: "/",
+      name: "mainpage",
+      components: {
+        header: AppHeader,
+        default: Home,
+        footer: AppFooter
+      }
+    },
+    {
+      path: "/components",
       name: "components",
       components: {
         header: AppHeader,
@@ -59,15 +68,6 @@ export default new Router({
       components: {
         header: AppHeader,
         default: Profile,
-        footer: AppFooter
-      }
-    },
-    {
-      path: "/home",
-      name: "home",
-      components: {
-        header: AppHeader,
-        default: Home,
         footer: AppFooter
       }
     },
