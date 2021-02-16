@@ -4,20 +4,27 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
+import io.gourmand.dao.ReviewRepository;
 import io.gourmand.dao.UserImgRepository;
 import io.gourmand.dao.UserRepository;
 import io.gourmand.dao.UserStandardRepository;
 import io.gourmand.domain.User;
 import io.gourmand.domain.UserImg;
 import io.gourmand.domain.UserStandard;
+import io.gourmand.dto.ReviewDTO;
 import io.gourmand.dto.UserDTO.SigninRequest;
 import io.gourmand.dto.UserDTO.UserInfo;
 import io.gourmand.dto.UserDTO.UserRegister;
@@ -32,6 +39,8 @@ public class UserService {
 	UserImgRepository userImgDAO;
 	@Autowired
 	UserStandardRepository userStandardDAO;
+	@Autowired
+	ReviewRepository reviewDAO;
 	/**
 	 * 아이디과 비밀번호가 일치하는 유저를 조회한다. 해당 아이디 유저가 존재하지 않거나 비밀번호가 일치하지 않으면 Exception
 	 * 
@@ -130,4 +139,21 @@ public class UserService {
 //	      //USERSTANDARD를 변경할 수 있는지? 
 ////	      if (userInfo.getUserStandard != null) user.setUserStandard(userInfo.getUserStandard());
 //	   }
+		
+		//마이페이지 - 내 리뷰 확인 - 더보기 - 시간순 정렬  - 자바스트림... 모름
+//	      //시간순으로 리뷰 리스트를 반환한다.
+//	      @Transactional
+//	       public List<ReviewDTO> findByPageRequest(PageRequest pageRequest) {
+//	           return reviewDAO.findAll(pageRequest).stream()
+//	                   .map(ReviewDTO::new)
+//	                   .collect(Collectors.toList());
+//	       }
+//	      
+//	      //역시간순으로 리뷰 리스트를 반환한다. 
+//	      @Transactional
+//	       public List<ReviewDTO> findByPageRequestReverse(PageRequest pageRequest) {
+//	           return reviewDAO.findAllByOrderByIdDesc(pageRequest).stream()
+//	                   .map(ReviewDTO::new)
+//	                   .collect(Collectors.toList());
+//	       }
 }

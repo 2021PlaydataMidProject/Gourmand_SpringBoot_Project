@@ -1,8 +1,10 @@
 package io.gourmand.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -19,6 +21,7 @@ import io.gourmand.domain.Res;
 import io.gourmand.domain.ResImg;
 import io.gourmand.domain.User;
 import io.gourmand.dto.ResDTO.ResRegister;
+import io.gourmand.dto.ReviewDTO;
 import io.gourmand.dto.UserDTO.UserInfo;
 import io.gourmand.dto.UserDTO.UserRegister;
 import io.gourmand.dto.UserStandardDTO.UserStandardRegister;
@@ -37,33 +40,33 @@ public class UserController {
 
 	/* 회원 가입을 위한 User 정보 저장(with image) - /user/regi와 /user/regiUserStandard는 @Transactional로 처리해야 할듯
 		아니면 두개 한번에 합치는 법 고민*/
-	//@Transactional
-	//@PostMapping("/user/regi")
-	//public void createUser(@RequestParam("userImg") List<MultipartFile> userImg, @RequestParam("user") String userRegi) {
-	//System.out.println(userRegi);
-	//ObjectMapper mapper = new ObjectMapper();
-	//mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);  //과연 해결해줄것인가!!!!!!!!!!!
-	//try {
-	//User user = userService.insertUser(mapper.readValue(userRegi, UserRegister.class));
-	//userImg.forEach(img->{
-	//UserImg uimg = userService.insertUserImg(img, user);
-	//try {
-	//userService.saveImg(img, uimg);
-	//} catch (IOException e) {
-	//e.printStackTrace();
-	//}
-	//});
-	//} catch (Exception e) {
-	//e.printStackTrace();
-	//}
-	//}
-	//
+//	@Transactional
+//	@PostMapping("/user/regi")
+//	public void createUser(@RequestParam("userImg") List<MultipartFile> userImg, @RequestParam("user") String userRegi) {
+//		System.out.println(userRegi);
+//		ObjectMapper mapper = new ObjectMapper();
+//		mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);  //과연 해결해줄것인가!!!!!!!!!!!
+//	try {
+//		User user = userService.insertUser(mapper.readValue(userRegi, UserRegister.class));
+//		userImg.forEach(img->{
+//		UserImg uimg = userService.insertUserImg(img, user);
+//	try {
+//		userService.saveImg(img, uimg);
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+//		});
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//	}
+//	
 	
-	@PostMapping("/user/regi")
-	public void createUser(@RequestBody UserRegister user) {
-	System.out.println( "신규 회원 기준 저장" + user.getUserId() );
-	userService.insertUser(user);
-	}
+//	@PostMapping("/user/regi")
+//	public void createUser(@RequestBody UserRegister user) {
+//	System.out.println( "신규 회원 기준 저장" + user.getUserId() );
+//	userService.insertUser(user);
+//	}
 	
 	//	 회원 기준 저장 
 	@PostMapping("/user/regiNewStandard")
@@ -96,4 +99,18 @@ public class UserController {
 //	      userService.editUserInfo(userId, userInfo);
 //	   }
 
-}
+	//시간순 정렬 
+//	   @GetMapping("/user/{id}/res/myratings/{reviewNum}")
+//	   public List<ReviewDTO> getReviewByPageRequest(@PathVariable Long reviewNum,
+//	          @RequestParam(value = "reverseAll", required = false) boolean reverseAll){
+//	        PageRequest pageRequest = pageRequest.of(reviewNum, 30);
+//	        
+//	        if(pageRequest !=null) {
+//	           return userService.findByPageRequest(pageRequest);
+//	          
+//	        }
+//	        else if(reverseAll) {
+//	           return userService.findByPageRequestReverse(pageRequest);
+//	        }
+//	   }
+//}
