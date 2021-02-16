@@ -101,20 +101,20 @@ public class RevDTO {
 	         private ReviewStandard reviewStandard;
 	         
 	         
-	         public static ReviewThumbnail of(ReviewThumbnail review) {
+	         public static ReviewThumbnail of(ReviewThumbnail rev) {
 	            ReviewImg revImg = null;
-	            if (review.getReviewImg().size()>0) {
-	               revImg = review.getReviewImg().get(0);
+	            if (rev.getReviewImg().size()>0) {
+	               revImg = rev.getReviewImg().get(0);
 	            }
 	            return ReviewThumbnail.builder()
-	            .reviewNum(review.getReviewNum())
-	            .user(review.getUser())
-	            .res (review.getRes())
-	            .foodType ( review.getFoodType())
-	            .review (review.getReview())
-	            .writeDate (review.getWriteDate())
-	            .reviewImg (review.getReviewImg())
-	            .reviewStandard (review.getReviewStandard())
+	            .reviewNum(rev.getReviewNum())
+	            .user(rev.getUser())
+	            .res (rev.getRes())
+	            .foodType ( rev.getFoodType())
+	            .review (rev.getReview())
+	            .writeDate (rev.getWriteDate())
+	            .reviewImg (rev.getReviewImg())
+	            .reviewStandard (rev.getReviewStandard())
 	            .build();
 	         }
 	      }
