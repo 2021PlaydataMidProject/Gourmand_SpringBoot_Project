@@ -1065,3 +1065,16 @@ java.lang.IllegalStateException: Cannot call sendError() after the response has 
 [2021-02-16 14:15:52:9068153][http-nio-80-exec-7] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json, application/json, application/*+json]
 [2021-02-16 14:15:52:9068153][http-nio-80-exec-7] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [io.gourmand.dto.ResDTO$ResInfo@7be2fa63]
 [2021-02-16 14:15:52:9068155][http-nio-80-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+[2021-02-16 15:13:21:7545][restartedMain] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerAdapter - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+[2021-02-16 15:13:21:7666][restartedMain] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - 23 mappings in 'requestMappingHandlerMapping'
+[2021-02-16 15:13:21:7732][restartedMain] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+[2021-02-16 15:13:21:7764][restartedMain] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+[2021-02-16 15:22:47:573382][http-nio-80-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+[2021-02-16 15:22:47:573385][http-nio-80-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected StandardServletMultipartResolver
+[2021-02-16 15:22:47:573425][http-nio-80-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+[2021-02-16 15:22:47:573425][http-nio-80-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 41 ms
+[2021-02-16 15:22:47:573442][http-nio-80-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - GET "/res/thumbnail/37.2822,126.9994", parameters={}
+[2021-02-16 15:22:47:573455][http-nio-80-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to io.gourmand.controller.ResController#getAllResThumbnail(BigDecimal, BigDecimal)
+[2021-02-16 15:22:47:573742][http-nio-80-exec-1] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json, application/json, application/*+json]
+[2021-02-16 15:22:47:573743][http-nio-80-exec-1] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [[]]
+[2021-02-16 15:22:47:573824][http-nio-80-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
