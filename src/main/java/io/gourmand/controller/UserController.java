@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import io.gourmand.service.UserService;
@@ -22,6 +24,7 @@ import io.gourmand.dto.ResDTO.ResRegister;
 import io.gourmand.dto.UserDTO.UserInfo;
 import io.gourmand.dto.UserDTO.UserRegister;
 import io.gourmand.dto.UserStandardDTO.UserStandardRegister;
+import io.gourmand.dto.UserStandardDTO.UserStandardRegistertest;
 
 @RestController
 public class UserController {
@@ -67,9 +70,11 @@ public class UserController {
 	
 	//	 회원 기준 저장 
 	@PostMapping("/user/regiNewStandard")
-	public void createUserStandard(@RequestBody UserStandardRegister userStandard) {
-	System.out.println( "신규 회원 기준 저장" + userStandard.getId() );
-	userService.insertUserStandard(userStandard);
+	public UserStandardRegister createUserStandard(@RequestBody UserStandardRegister userStandard) {
+		System.out.println(userStandard);
+		return userStandard;
+	//System.out.println( "신규 회원 기준 저장" + userStandard.getId() );
+	//userService.insertUserStandard(userStandard);
 	}
 	
 	// 회원 1인의 전체 정보 가져오기

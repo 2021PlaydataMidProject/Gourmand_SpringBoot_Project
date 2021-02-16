@@ -22,7 +22,7 @@
             style="width: 150px"
           />
           <h3 class="heading mb-0">★★★★☆  {{value.avg_star}}/5.0</h3>
-          <h3 class="heading-title mb-0">{{value.res_name}}</h3>
+          <a :href="'/respage?' + value.res_num"><h3 class="heading-title mb-0">{{value.res_name}}</h3></a>
           <h3 class="heading">{{value.category}}</h3>
           <h6 class="mb-0">{{value.res_address}}</h6>
           <hr>

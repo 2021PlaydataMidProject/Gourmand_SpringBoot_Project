@@ -8,6 +8,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 public class UserStandardDTO {
 
@@ -23,6 +24,7 @@ public class UserStandardDTO {
 	@Setter
 	@AllArgsConstructor
 	@NoArgsConstructor
+	@ToString
 	@Builder
 	public static class UserStandardRegister {
 		private Long id;
@@ -41,6 +43,33 @@ public class UserStandardDTO {
 					.uMood(userStandard.getUMood())
 					.uKindness(userStandard.getUKindness())
 					.uAccess(userStandard.getUAccess())
+					.build();
+		}
+	}
+	
+	@Getter	
+	@Setter
+	@AllArgsConstructor
+	@NoArgsConstructor
+	@ToString
+	@Builder
+	public static class UserStandardRegistertest {
+		private Long id;
+		private String uFlavor;
+		private String uClean;
+		private String uCost;
+		private String uMood;
+		private String uKindness;
+		private String uAccess;
+		
+		public static UserStandard toEntity(UserStandardRegistertest userStandard) {
+			return UserStandard.builder()
+					.uFlavor(new BigDecimal(userStandard.getUFlavor()))
+					.uClean(new BigDecimal(userStandard.getUClean()))
+					.uCost(new BigDecimal(userStandard.getUCost()))
+					.uMood(new BigDecimal(userStandard.getUMood()))
+					.uKindness(new BigDecimal(userStandard.getUKindness()))
+					.uAccess(new BigDecimal(userStandard.getUAccess()))
 					.build();
 		}
 	}

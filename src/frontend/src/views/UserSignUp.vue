@@ -75,37 +75,37 @@
           <tr>
           <td width="70">맛</td>
           <td align="left">
-            <input type="text" v-model="userStandard.uFlavor" />
+            <input type="text" v-model="userStandard.uflavor" />
           </td>
         </tr>
         <tr>
           <td width="70">위생</td>
           <td align="left">
-            <input type="text" v-model="userStandard.uClean" />
+            <input type="text" v-model="userStandard.uclean" />
           </td>
         </tr>
         <tr>
           <td width="70">가격대</td>
           <td align="left">
-            <input type="text" v-model="userStandard.uCost" />
+            <input type="text" v-model="userStandard.ucost" />
           </td>
         </tr>
         <tr>
           <td>분위기</td>
           <td align="left">
-            <input type="text" v-model="userStandard.uMood" size="10" />
+            <input type="text" v-model="userStandard.umood" size="10" />
           </td>
         </tr>
         <tr>
           <td>서비스</td>
           <td align="left">
-            <input type="text" v-model="userStandard.uKindness" size="10" />
+            <input type="text" v-model="userStandard.ukindness" size="10" />
           </td>
         </tr>
         <tr>
           <td>접근성</td>
           <td align="left">
-            <input type="text" v-model="userStandard.uAccess" size="10" />
+            <input type="text" v-model="userStandard.uaccess" size="10" />
           </td>
         </tr>
         <tr>
@@ -133,12 +133,12 @@ export default {
             pageStatus : "",
         },
          userStandard :{
-            uFlavor : "",
-            uClean : "",
-            uCost :  "",
-            uMood : "",
-            uKindness : "",
-            uAccess : "",
+            uflavor : "",
+            uclean : "",
+            upost :  "",
+            umood : "",
+            ukindness : "",
+            uaccess : "",
         }
       }
   },
@@ -153,10 +153,10 @@ export default {
       },
       addUserStandard: function(){
           console.log("userStandardSign")
-          return this.axios.post('/user/regiNewStandard', this.newUser)
+          return this.axios.post('/user/regiNewStandard', {"userStandard" :this.userStandard})
           .then(res => {
               alert( this.newUser.name + this.newUser.userStandard + "회원 기준 등록완료");
-              location.href="/home"
+              //location.href="/home"
             });
       }   
 
