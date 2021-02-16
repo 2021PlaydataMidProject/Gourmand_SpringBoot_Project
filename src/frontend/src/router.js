@@ -15,7 +15,7 @@ import ResPage from "./views/ResPage.vue";
 import UserEdit from "./views/UserEdit.vue";
 import MyPage from "./views/MyPage.vue";
 
-// Vue.use(Router);
+Vue.use(Router);
 
 export default new Router({
   linkExactActiveClass: "active",
@@ -131,12 +131,12 @@ export default new Router({
     }
 
 
-//   ],
-//   scrollBehavior: to => {
-//     if (to.hash) {
-//       return { selector: to.hash };
-//     } else {
-//       return { x: 0, y: 0 };
-//     }
-//   }
-// })
+  ],
+  scrollBehavior: to => {
+    if (to.hash) {
+      return { selector: to.hash };
+    } else {
+      return { x: 0, y: 0 };
+    }
+  }
+})

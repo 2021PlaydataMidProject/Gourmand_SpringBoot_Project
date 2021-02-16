@@ -249,3 +249,34 @@
 [2021-02-16 09:40:35:61134977][restartedMain] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - 23 mappings in 'requestMappingHandlerMapping'
 [2021-02-16 09:40:35:61134987][restartedMain] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
 [2021-02-16 09:40:35:61135007][restartedMain] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+[2021-02-16 10:35:53:5753][restartedMain] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerAdapter - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+[2021-02-16 10:35:53:5886][restartedMain] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - 22 mappings in 'requestMappingHandlerMapping'
+[2021-02-16 10:35:53:5914][restartedMain] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+[2021-02-16 10:35:53:5945][restartedMain] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+[2021-02-16 10:41:23:335051][http-nio-80-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+[2021-02-16 10:41:23:335052][http-nio-80-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - Detected StandardServletMultipartResolver
+[2021-02-16 10:41:23:335070][http-nio-80-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+[2021-02-16 10:41:23:335071][http-nio-80-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 19 ms
+[2021-02-16 10:41:23:335087][http-nio-80-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - GET "/api/hello", parameters={}
+[2021-02-16 10:41:23:335091][http-nio-80-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to io.gourmand.controller.TestController#hello()
+[2021-02-16 10:41:23:335123][http-nio-80-exec-2] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'text/html', given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, application/signed-exchange;v=b3;q=0.9, */*;q=0.8] and supported [text/plain, */*, text/plain, */*, application/json, application/*+json, application/json, application/*+json]
+[2021-02-16 10:41:23:335123][http-nio-80-exec-2] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing ["String"]
+[2021-02-16 10:41:23:335154][http-nio-80-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+[2021-02-16 10:50:13:865564][http-nio-80-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - POST "/auth/login", parameters={}
+[2021-02-16 10:50:13:865566][http-nio-80-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to io.gourmand.controller.LoginController#signin(SigninRequest)
+[2021-02-16 10:50:13:865756][http-nio-80-exec-1] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Read "application/json;charset=UTF-8" to [io.gourmand.dto.UserDTO$SigninRequest@5eab121]
+[2021-02-16 10:50:13:865991][http-nio-80-exec-1] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json, application/json, application/*+json]
+[2021-02-16 10:50:13:865992][http-nio-80-exec-1] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Nothing to write: null body
+[2021-02-16 10:50:13:865992][http-nio-80-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+[2021-02-16 10:52:59:1031273][http-nio-80-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - POST "/auth/login", parameters={}
+[2021-02-16 10:52:59:1031274][http-nio-80-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to io.gourmand.controller.LoginController#signin(SigninRequest)
+[2021-02-16 10:52:59:1031275][http-nio-80-exec-3] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Read "application/json;charset=UTF-8" to [io.gourmand.dto.UserDTO$SigninRequest@1015ac3b]
+[2021-02-16 10:52:59:1031281][http-nio-80-exec-3] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json, application/json, application/*+json]
+[2021-02-16 10:52:59:1031282][http-nio-80-exec-3] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Nothing to write: null body
+[2021-02-16 10:52:59:1031283][http-nio-80-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+[2021-02-16 10:56:13:1225256][http-nio-80-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - POST "/user/regiNewStandard", parameters={}
+[2021-02-16 10:56:13:1225257][http-nio-80-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to io.gourmand.controller.UserController#createUserStandard(UserStandardRegister)
+[2021-02-16 10:56:13:1225282][http-nio-80-exec-4] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Read "application/json;charset=UTF-8" to [io.gourmand.dto.UserStandardDTO$UserStandardRegister@b0defc9]
+[2021-02-16 10:56:13:1225362][http-nio-80-exec-4] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json, application/json, application/*+json]
+[2021-02-16 10:56:13:1225363][http-nio-80-exec-4] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Nothing to write: null body
+[2021-02-16 10:56:13:1225363][http-nio-80-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK

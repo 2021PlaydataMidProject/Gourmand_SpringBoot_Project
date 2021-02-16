@@ -8,7 +8,7 @@ import io.gourmand.domain.Review;
 import io.gourmand.domain.ReviewImg;
 import io.gourmand.domain.ReviewStandard;
 import io.gourmand.domain.User;
-import io.gourmand.dto.ReviewDTO.ReviewThumbnail;
+import io.gourmand.dto.RevDTO.ReviewThumbnail;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

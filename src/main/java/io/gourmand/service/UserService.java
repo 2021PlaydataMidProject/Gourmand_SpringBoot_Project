@@ -6,7 +6,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import javax.transaction.Transactional;
 
@@ -40,7 +39,7 @@ public class UserService {
 	@Autowired
 	UserStandardRepository userStandardDAO;
 	@Autowired
-	ReviewRepository reviewDAO;
+	ReviewRepository revDAO;
 	/**
 	 * 아이디과 비밀번호가 일치하는 유저를 조회한다. 해당 아이디 유저가 존재하지 않거나 비밀번호가 일치하지 않으면 Exception
 	 * 

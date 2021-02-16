@@ -21,7 +21,7 @@ import io.gourmand.domain.Res;
 import io.gourmand.domain.ResImg;
 import io.gourmand.domain.User;
 import io.gourmand.dto.ResDTO.ResRegister;
-import io.gourmand.dto.ReviewDTO;
+import io.gourmand.dto.RevDTO;
 import io.gourmand.dto.UserDTO.UserInfo;
 import io.gourmand.dto.UserDTO.UserRegister;
 import io.gourmand.dto.UserStandardDTO.UserStandardRegister;
@@ -113,4 +113,4 @@ public class UserController {
 //	           return userService.findByPageRequestReverse(pageRequest);
 //	        }
 //	   }
-//}
+}
