@@ -23,6 +23,7 @@ import io.gourmand.domain.User;
 import io.gourmand.dto.ResDTO.ResInfo;
 import io.gourmand.dto.ResDTO.ResRegister;
 import io.gourmand.dto.ResDTO.ResThumbnail;
+import io.gourmand.dto.UserDTO.UserThumbnail;
 
 @Service
 public class ResService {
@@ -66,9 +67,11 @@ public class ResService {
 	}
 
 	// 해당 가게를 리스트에 넣은 유저 반환 - res 팀 작업 중
-//	public List<User> getUserByRes(Long id) {
-//		return userDAO.findUsersOfRes(id);
-//	}
+	public List<UserThumbnail> getUserByRes(Long id) {
+		List<UserThumbnail> userThumbList = new ArrayList<>();
+		userDAO.findUsersOfRes(id).forEach(user -> userThumbList.add(UserThumbnail.of(user)));
+		return userThumbList;
+	}
 
 	// 가게 등록 페이지에서 저장
 	public Res insertRes(ResRegister res) {

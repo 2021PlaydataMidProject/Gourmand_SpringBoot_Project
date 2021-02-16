@@ -7,6 +7,7 @@ import io.gourmand.domain.Followers;
 import io.gourmand.domain.ListLikes;
 import io.gourmand.domain.Reply;
 import io.gourmand.domain.Res;
+import io.gourmand.domain.ResImg;
 import io.gourmand.domain.ReviewLikes;
 import io.gourmand.domain.User;
 import io.gourmand.domain.UserImg;
@@ -143,11 +144,16 @@ public class UserDTO {
 		private UserImg userImg;
 		
 		public static UserThumbnail of(User user) {
+			UserImg umg = null;
+			if (user.getUserImg().size() > 0) {
+				umg = user.getUserImg().get(0);
+			}
 			return UserThumbnail.builder()
 					.userNum(user.getUserNum())
+					.userId(user.getUserId())
 					.name(user.getName())
 					.pageStatus(user.getPageStatus())
-					.userImg(user.getUserImg().get(0))
+					.userImg(umg)
 					// 대표 이미지 선택방법 고려해야함
 					.build();
 		}

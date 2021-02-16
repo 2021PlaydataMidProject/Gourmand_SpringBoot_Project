@@ -8,7 +8,7 @@
 
           <div class="mt-5 mt-sm-0">
             <img
-              v-if="resInfo.res_img"
+              v-if="resInfo.res_img!=null"
               :src="'img/res/' + resInfo.res_img[0].name"
               alt="Rounded image"
               class="img-fluid rounded shadow"
@@ -53,19 +53,22 @@
         <hr />
         <h3 class="h5 font-weight-bold">이 가게를 맛집으로 등록한 구르망들</h3>
         <div class="mt-4 row">
-          <img
-            v-lazy="'img/theme/team-4-800x800.jpg'"
-            alt="Raised circle image"
-            class="img-fluid rounded-circle shadow-lg"
-            style="width: 100px"
-          />
-
-          <img
-            v-lazy="'img/theme/team-4-800x800.jpg'"
-            alt="Raised circle image"
-            class="img-fluid rounded-circle shadow-lg"
-            style="width: 100px"
-          />
+          <div v-for="(value,key) in resUser" v-bind:key="key">
+            <img
+              v-if="value.user_img!=null"
+              v-lazy="'img/user/'+value.user_img.name"
+              alt="Raised circle image"
+              class="img-fluid rounded-circle shadow-lg"
+              style="width: 100px"
+            />
+            <img
+              v-else
+              v-lazy="'img/theme/team-4-800x800.jpg'"
+              alt="Raised circle image"
+              class="img-fluid rounded-circle shadow-lg"
+              style="width: 100px"
+            />
+          </div>
         </div>
         <hr />
       </div>
@@ -82,6 +85,7 @@ export default {
   data() {
     return {
       resInfo: "",
+      resUser: "",
     };
   },
   components: {
@@ -98,13 +102,22 @@ export default {
 
     this.axios
       .get("/res/" + str + "/resinfo", {})
-      .then((res) => {
-        this.resInfo = res.data;
-        console.log(this.resInfo)
+      .then((req) => {
+        this.resInfo = req.data;
       })
-      .catch((erroe) => {
+      .catch((error) => {
         alert("서버 오류");
       });
+
+    this.axios
+      .get("/res/" + str + "/user", {})
+      .then((us) => {
+        this.resUser = us.data;
+      })
+      .catch((error) => {
+        alert("서버 오류");
+      });
+    
   },
 };
 </script>

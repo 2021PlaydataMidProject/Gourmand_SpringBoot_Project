@@ -6,16 +6,16 @@
         <hr />
       </h2>
       <div class="row">
-        <div v-for="value in resThumbnails.data" class="col-sm-4" v-bind:key="value">
+        <div v-for="(value, key) in resThumbnails.data" class="col-sm-4" v-bind:key="key">
           <img
-            v-if="value.res_img"
+            v-if="value.res_img!=null"
             :src="'img/res/'+value.res_img.name"
             alt="Rounded image"
             class="img-fluid rounded shadow"
             style="height: 150px"
           />
           <img
-            v-if="!value.res_img"
+            v-else
             v-lazy="'img/theme/team-1-800x800.jpg'"
             alt="Rounded image"
             class="img-fluid rounded shadow"
@@ -35,7 +35,7 @@
 export default {
     data: function (){
         return {
-            resThumbnails : null,
+            resThumbnails : "",
         }
     },
     mounted(){
@@ -51,6 +51,7 @@ export default {
             .get("/res/thumbnail/"+ xValue + "," + yValue, {})
             .then((res) => {
                 this.resThumbnails = res;
+                console.log(res);
             })
             .catch((error) => {
                 alert("서버오류")
