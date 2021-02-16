@@ -65,10 +65,10 @@ public class ResService {
 		return resThumbList;
 	}
 
-	// 해당 가게를 리스트에 넣은 유저 반환
-	public List<User> getUserByRes(Long id) {
-		return userDAO.findUsersOfRes(id);
-	}
+	// 해당 가게를 리스트에 넣은 유저 반환 - res 팀 작업 중
+//	public List<User> getUserByRes(Long id) {
+//		return userDAO.findUsersOfRes(id);
+//	}
 
 	// 가게 등록 페이지에서 저장
 	public Res insertRes(ResRegister res) {
