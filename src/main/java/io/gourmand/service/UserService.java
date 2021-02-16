@@ -24,7 +24,7 @@ import io.gourmand.dao.UserStandardRepository;
 import io.gourmand.domain.User;
 import io.gourmand.domain.UserImg;
 import io.gourmand.domain.UserStandard;
-import io.gourmand.dto.ReviewDTO;
+import io.gourmand.dto.RevDTO;
 import io.gourmand.dto.UserDTO.SigninRequest;
 import io.gourmand.dto.UserDTO.UserInfo;
 import io.gourmand.dto.UserDTO.UserRegister;
@@ -141,19 +141,19 @@ public class UserService {
 //	   }
 		
 		//마이페이지 - 내 리뷰 확인 - 더보기 - 시간순 정렬  - 자바스트림... 모름
-//	      //시간순으로 리뷰 리스트를 반환한다.
+	      //시간순으로 리뷰 리스트를 반환한다.
 //	      @Transactional
-//	       public List<ReviewDTO> findByPageRequest(PageRequest pageRequest) {
+//	       public List<RevDTO> findByPageRequest(PageRequest pageRequest) {
 //	           return reviewDAO.findAll(pageRequest).stream()
-//	                   .map(ReviewDTO::new)
+//	                   .map(RevDTO::new)
 //	                   .collect(Collectors.toList());
 //	       }
 //	      
 //	      //역시간순으로 리뷰 리스트를 반환한다. 
 //	      @Transactional
-//	       public List<ReviewDTO> findByPageRequestReverse(PageRequest pageRequest) {
+//	       public List<RevDTO> findByPageRequestReverse(PageRequest pageRequest) {
 //	           return reviewDAO.findAllByOrderByIdDesc(pageRequest).stream()
-//	                   .map(ReviewDTO::new)
+//	                   .map(RevDTO::new)
 //	                   .collect(Collectors.toList());
 //	       }
-}
+//}
