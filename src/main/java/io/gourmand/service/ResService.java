@@ -12,8 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.multipart.MultipartFile;
 
 import io.gourmand.dao.ResImgRepository;
@@ -78,14 +76,16 @@ public class ResService {
 	}
 
 	public void updateRes(Long id, ResRegister resRegi) {
-		Res res = resDAO.findById(id).get();
-		res.setResName(resRegi.getResName());
-		res.setCategory(resRegi.getCategory());
-		res.setResHour(resRegi.getResHour());
-		res.setTel(resRegi.getTel());
-		res.setXValue(resRegi.getXValue());
-		res.setYValue(resRegi.getYValue());
-		resDAO.save(res);
+		Res newres = resDAO.findById(id).get();
+		Res res = ResRegister.toEntity(resRegi);
+		
+		newres.setResHour(res.getResHour());
+		newres.setResAddress(res.getResAddress());
+		newres.setResName(res.getResName());
+		newres.setTel(res.getTel());
+		newres.setCategory(res.getCategory());
+		
+		resDAO.save(newres);
 	}
 
 	public void deleteRes(Long id) {
@@ -117,4 +117,5 @@ public class ResService {
 		Assert.state(!Files.exists(targetPath), fileName + " File alerdy exists.");
 		file.transferTo(targetPath);
 	}
+
 }

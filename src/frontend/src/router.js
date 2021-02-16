@@ -10,10 +10,12 @@ import Profile from "./views/Profile.vue";
 import Home from "./views/Home.vue";
 import ResTest from "./views/ResTest.vue";
 import UserSignUp from "./views/UserSignUp.vue";
+import MapForAll from "./views/MapForAll.vue";
+import ResPage from "./views/ResPage.vue";
 import UserEdit from "./views/UserEdit.vue";
 import MyPage from "./views/MyPage.vue";
 
-Vue.use(Router);
+// Vue.use(Router);
 
 export default new Router({
   linkExactActiveClass: "active",
@@ -21,6 +23,15 @@ export default new Router({
   routes: [
     {
       path: "/",
+      name: "mainpage",
+      components: {
+        header: AppHeader,
+        default: Home,
+        footer: AppFooter
+      }
+    },
+    {
+      path: "/components",
       name: "components",
       components: {
         header: AppHeader,
@@ -65,15 +76,6 @@ export default new Router({
       }
     },
     {
-      path: "/home",
-      name: "home",
-      components: {
-        header: AppHeader,
-        default: Home,
-        footer: AppFooter
-      }
-    },
-    {
       path: "/resregi",
       name: "resregi",
       components: {
@@ -88,6 +90,24 @@ export default new Router({
       components: {
         header: AppHeader,
         default: UserSignUp,
+        footer: AppFooter
+      }
+    },
+    {
+      path: "/mapforall",
+      name: "MapForAll",
+      components: {
+        header: AppHeader,
+        default: MapForAll,
+        footer: AppFooter
+      }
+    },
+    {
+      path: "/respage",
+      name: "ResPage",
+      components: {
+        header: AppHeader,
+        default: ResPage,
         footer: AppFooter
       }
     },
@@ -108,15 +128,15 @@ export default new Router({
           default: MyPage,
           footer: AppFooter
         }  
-    }  
-
-
-  ],
-  scrollBehavior: to => {
-    if (to.hash) {
-      return { selector: to.hash };
-    } else {
-      return { x: 0, y: 0 };
     }
-  }
-});
+
+
+//   ],
+//   scrollBehavior: to => {
+//     if (to.hash) {
+//       return { selector: to.hash };
+//     } else {
+//       return { x: 0, y: 0 };
+//     }
+//   }
+// })

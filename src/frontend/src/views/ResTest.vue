@@ -9,15 +9,9 @@
           </td>
         </tr>
         <tr>
-          <td width="70">xValue</td>
+          <td width="70">주소</td>
           <td align="left">
-            <input type="text" v-model="newRes.xValue" />
-          </td>
-        </tr>
-        <tr>
-          <td width="70">yValue</td>
-          <td align="left">
-            <input type="text" v-model="newRes.yValue" />
+            <input type="text" v-model="newRes.resAddress" />
           </td>
         </tr>
         <tr>
@@ -66,8 +60,7 @@ export default {
         newRes:
         {
             resName:"",
-            //xValue:"",
-            //yValue:"",
+            resAddress:"",
             resHour:"",
             tel:"",
             category:"",
@@ -78,8 +71,6 @@ export default {
       addRes: function(){
           const formData = new FormData();
 
-          //this.newRes.xValue = parseFloat(this.newRes.xValue);
-          //this.newRes.yValue = parseFloat(this.newRes.yValue);
           formData.append("res", JSON.stringify(this.newRes));
           for (let i=0; i<this.$refs.imgdata.files.length; i++){
             formData.append('resImg', this.$refs.imgdata.files[i])
@@ -90,7 +81,7 @@ export default {
             }
           })
           .then(res => {
-               //alert(this.newRes.res_name + "가게 등록완료");
+               alert(this.newRes.res_name + "가게 등록완료");
                //location.href="/home"
              });
       }

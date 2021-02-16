@@ -7,12 +7,15 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-
 import io.gourmand.domain.Review;
+import io.gourmand.dto.RevDTO.RevRegister;
+
 import io.gourmand.dto.ReviewDTO;
 import io.gourmand.dto.ReviewDTO.ReviewThumbnail;
 
 public interface ReviewRepository extends JpaRepository<Review, String> {
+
+	void save(RevRegister entity);
 
 	// 전체 목록 내림차순
     List<ReviewDTO> findAllByOrderByIdDesc(PageRequest pageRequest);
