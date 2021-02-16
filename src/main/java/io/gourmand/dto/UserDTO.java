@@ -1,7 +1,12 @@
 package io.gourmand.dto;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import io.gourmand.domain.Followers;
 import io.gourmand.domain.ListLikes;
@@ -71,6 +76,7 @@ public class UserDTO {
 		private String dob;
 		private String job;
 		private int pageStatus;
+		private LocalDate suDate;
 
 		public static User toEntity(UserRegister user) {
 			return User.builder()
@@ -79,6 +85,7 @@ public class UserDTO {
 					.name(user.getName())
 					.dob(user.getDob())
 					.job(user.getJob())
+					.suDate(LocalDate.now())
 					.pageStatus(user.getPageStatus())
 					.build();
 		}

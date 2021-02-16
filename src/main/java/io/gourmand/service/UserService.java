@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -72,27 +73,29 @@ public class UserService {
 	}
 	
 	// 회원 1인 탈퇴 - 얽혀있는 테이블이 많아서 null point exception이 많이 뜬다.0
-	public void deleteUser(User user) {
-		userStandardDAO.deleteById(user.getUserStandard().getId());
-		userDAO.deleteById(user.getUserId());
-		userImgDAO.deleteById(user.getUserNum());
-	}
+//	public void deleteUser(User user) {
+//		userStandardDAO.deleteById(user.getUserStandard().getId());
+//		userDAO.deleteById(user.getUserId());
+//		userImgDAO.deleteById(user.getUserNum());
+//	}
 
 
-	//	회원가입
-	public User insertUser(UserRegister user) {
-		return userDAO.save(UserRegister.toEntity(user));
-	}
-	
 	// 회원 가입시 회원 기준 저장
 	public UserStandard insertUserStandard(UserStandardRegister userStandard) {
 		return userStandardDAO.save(UserStandardRegister.toEntity(userStandard));
 	}
+
+	//	회원가입
+	public User insertUser(UserRegister user) {
+		return userDAO.save(UserRegister.toEntity(user));
+	};
+	
 	
 	//MultipartFile -> entity -> SQL저장
 		public UserImg insertUserImg(MultipartFile userImg, User user){
 			return userImgDAO.save(UserImg.of(userImg, user));
 		}
+		
 		
 		//MultipartFile -> 저장
 		public void saveImg(MultipartFile file, UserImg user) throws IOException {

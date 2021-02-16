@@ -3,14 +3,21 @@ package io.gourmand.domain;
 import java.time.LocalDate;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
+
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -27,7 +34,7 @@ import lombok.ToString;
 @Builder
 
 @Entity(name = "USER")
-public class User {
+public class User  {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "USER_NUM")
@@ -56,12 +63,12 @@ public class User {
 	
 	@Column(name = "PAGE_STATUS")
 	private int pageStatus;
-	
+
 	@Column(name = "SU_DATE")
 	private LocalDate suDate;
-	
+
 	@OneToOne
-	@JoinColumn(name="US_ID")
+	@JoinColumn(name = "US_ID")
 	private UserStandard userStandard;
 	
 	@OneToMany(mappedBy = "replyNum")
@@ -79,6 +86,8 @@ public class User {
 	public User(String name) {
 	    this.name = name;
 	}
+	
+
 }
 
 

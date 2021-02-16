@@ -103,6 +103,7 @@
 </template>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
+
 import BaseButton from '../components/BaseButton.vue';
 export default {
   data: function(){
@@ -163,8 +164,6 @@ export default {
   },
   components: { BaseButton },
 };
-
-var date = new Date();
 </script>
 <style>
 </style>

@@ -1,10 +1,12 @@
 package io.gourmand.controller;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -13,13 +15,18 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import io.gourmand.service.UserService;
 import io.gourmand.domain.Res;
 import io.gourmand.domain.ResImg;
 import io.gourmand.domain.User;
+import io.gourmand.domain.UserImg;
+import io.gourmand.domain.UserStandard;
 import io.gourmand.dto.ResDTO.ResRegister;
 import io.gourmand.dto.RevDTO;
 import io.gourmand.dto.UserDTO.UserInfo;
@@ -40,27 +47,26 @@ public class UserController {
 
 	/* 회원 가입을 위한 User 정보 저장(with image) - /user/regi와 /user/regiUserStandard는 @Transactional로 처리해야 할듯
 		아니면 두개 한번에 합치는 법 고민*/
-//	@Transactional
-//	@PostMapping("/user/regi")
-//	public void createUser(@RequestParam("userImg") List<MultipartFile> userImg, @RequestParam("user") String userRegi) {
-//		System.out.println(userRegi);
-//		ObjectMapper mapper = new ObjectMapper();
+	@PostMapping("/user/regi")
+	public void createUser(@RequestParam("userImg") List<MultipartFile> userImg, @RequestParam("user") String userRegi) {
+		System.out.println(userRegi);
+		ObjectMapper mapper = new ObjectMapper();
 //		mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);  //과연 해결해줄것인가!!!!!!!!!!!
-//	try {
-//		User user = userService.insertUser(mapper.readValue(userRegi, UserRegister.class));
-//		userImg.forEach(img->{
-//		UserImg uimg = userService.insertUserImg(img, user);
-//	try {
-//		userService.saveImg(img, uimg);
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//		});
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//	}
-//	
+	try {
+		User user = userService.insertUser(mapper.readValue(userRegi, UserRegister.class));
+		userImg.forEach(img->{
+		UserImg uimg = userService.insertUserImg(img, user);
+	try {
+		userService.saveImg(img, uimg);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			});
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+	}
+	
 	
 //	@PostMapping("/user/regi")
 //	public void createUser(@RequestBody UserRegister user) {
@@ -71,8 +77,9 @@ public class UserController {
 	//	 회원 기준 저장 
 	@PostMapping("/user/regiNewStandard")
 	public void createUserStandard(@RequestBody UserStandardRegister userStandard) {
-	System.out.println( "신규 회원 기준 저장" + userStandard.getId() );
-	userService.insertUserStandard(userStandard);
+//	System.out.println( "신규 회원 기준 저장" + userStandard.get());
+		System.out.println(userStandard);
+		userService.insertUserStandard(userStandard);
 	}
 	
 	// 회원 1인의 전체 정보 가져오기
@@ -83,11 +90,11 @@ public class UserController {
 	}
 	
 	
-	@DeleteMapping("/user/{id}") //(User 테이블 외에 다른 테이블 삭제할 거 고민해야 )
-	public String deleteUser(@RequestBody User user) {
-	userService.deleteUser(user);
-	return "탈퇴 완료";
-	}
+//	@DeleteMapping("/user/{id}") //(User 테이블 외에 다른 테이블 삭제할 거 고민해야 )
+//	public String deleteUser(@RequestBody User user) {
+//	userService.deleteUser(user);
+//	return "탈퇴 완료";
+//	}
 
 //	/*유저 정보를 변경한다. 
 //	    *name, pw, job, pageStatus, standard
