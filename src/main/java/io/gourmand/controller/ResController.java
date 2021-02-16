@@ -70,7 +70,6 @@ public class ResController {
 	// 가게 정보 저장
 	@PostMapping("/res/regi")
 	public void createRes(@RequestParam("resImg") List<MultipartFile> resImg, @RequestParam("res") String resRegi) {
-		System.out.println(resRegi);
 		ObjectMapper mapper = new ObjectMapper();
 		try {
 			Res res = resService.insertRes(mapper.readValue(resRegi, ResRegister.class));
