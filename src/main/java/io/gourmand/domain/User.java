@@ -62,7 +62,7 @@ public class User {
 	
 	@OneToOne
 	@JoinColumn(name="US_ID")
-	private UserStandard userStandard;	
+	private UserStandard userStandard;
 	
 	@OneToMany(mappedBy = "replyNum")
 	private List<Reply> reply;
@@ -74,7 +74,7 @@ public class User {
 	private List<ReviewLikes> reviewLikes;
 	
 	@OneToMany(mappedBy = "user")
-	private List<ListLikes> listLikes; //대문자 L로 바꿨어야 하는데.........
+	private List<ListLikes> listLikes;
 	
 	public User(String name) {
 	    this.name = name;

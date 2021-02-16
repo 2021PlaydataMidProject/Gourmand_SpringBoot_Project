@@ -38,6 +38,9 @@ public class Res {
 
 	@Column(name = "Y_VALUE", precision = 7, scale = 4)
 	private BigDecimal yValue;
+	
+	@Column(name = "RES_ADDRESS")
+	private String resAddress;
 
 	@Column(name = "RES_HOUR")
 	private String resHour;
@@ -57,4 +60,7 @@ public class Res {
 	@OneToMany(mappedBy = "res")
 
 	private List<Review> review;
+	
+	@OneToMany(mappedBy = "res")
+	private List<UserResList> userResList;
 }

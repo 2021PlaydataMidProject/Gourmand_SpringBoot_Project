@@ -1,84 +1,135 @@
-// import Vue from "vue";
-// import Router from "vue-router";
-// import AppHeader from "./layout/AppHeader";
-// import AppFooter from "./layout/AppFooter";
-// import Components from "./views/Components.vue";
-// import Landing from "./views/Landing.vue";
-// import Login from "./views/Login.vue";
-// import Register from "./views/Register.vue";
-// import Profile from "./views/Profile.vue";
-// import Home from "./views/Home.vue";
-// import ResTest from "./views/ResTest.vue";
+import Vue from "vue";
+import Router from "vue-router";
+import AppHeader from "./layout/AppHeader";
+import AppFooter from "./layout/AppFooter";
+import Components from "./views/Components.vue";
+import Landing from "./views/Landing.vue";
+import Login from "./views/Login.vue";
+import Register from "./views/Register.vue";
+import Profile from "./views/Profile.vue";
+import Home from "./views/Home.vue";
+import ResTest from "./views/ResTest.vue";
+import UserSignUp from "./views/UserSignUp.vue";
+import MapForAll from "./views/MapForAll.vue";
+import ResPage from "./views/ResPage.vue";
+import UserEdit from "./views/UserEdit.vue";
+import MyPage from "./views/MyPage.vue";
 
 // Vue.use(Router);
 
-// export default new Router({
-//   // mode: 'history',
-//   linkExactActiveClass: "active",
-//   routes: [
-//     {
-//       path: "/",
-//       name: "components",
-//       components: {
-//         header: AppHeader,
-//         default: Components,
-//         footer: AppFooter
-//       }
-//     },
-//     {
-//       path: "/landing",
-//       name: "landing",
-//       components: {
-//         header: AppHeader,
-//         default: Landing,
-//         footer: AppFooter
-//       }
-//     },
-//     {
-//       path: "/login",
-//       name: "login",
-//       components: {
-//         header: AppHeader,
-//         default: Login,
-//         footer: AppFooter
-//       }
-//     },
-//     {
-//       path: "/register",
-//       name: "register",
-//       components: {
-//         header: AppHeader,
-//         default: Register,
-//         footer: AppFooter
-//       }
-//     },
-//     {
-//       path: "/profile",
-//       name: "profile",
-//       components: {
-//         header: AppHeader,
-//         default: Profile,
-//         footer: AppFooter
-//       }
-//     },
-//     {
-//       path: "/home",
-//       name: "home",
-//       components: {
-//         header: AppHeader,
-//         default: Home,
-//         footer: AppFooter
-//       }
-//     },
-//     {
-//       path: "/res",
-//       name: "res",
-//       components: {
-//         header: AppHeader,
-//         default: ResTest,
-//         footer: AppFooter
-//       }
-//     }
+export default new Router({
+  linkExactActiveClass: "active",
+  mode: 'history',
+  routes: [
+    {
+      path: "/",
+      name: "mainpage",
+      components: {
+        header: AppHeader,
+        default: Home,
+        footer: AppFooter
+      }
+    },
+    {
+      path: "/components",
+      name: "components",
+      components: {
+        header: AppHeader,
+        default: Components,
+        footer: AppFooter
+      }
+    },
+    {
+      path: "/landing",
+      name: "landing",
+      components: {
+        header: AppHeader,
+        default: Landing,
+        footer: AppFooter
+      }
+    },
+    {
+      path: "/login",
+      name: "login",
+      components: {
+        header: AppHeader,
+        default: Login,
+        footer: AppFooter
+      }
+    },
+    {
+      path: "/register",
+      name: "register",
+      components: {
+        header: AppHeader,
+        default: Register,
+        footer: AppFooter
+      }
+    },
+    {
+      path: "/profile",
+      name: "profile",
+      components: {
+        header: AppHeader,
+        default: Profile,
+        footer: AppFooter
+      }
+    },
+    {
+      path: "/resregi",
+      name: "resregi",
+      components: {
+        header: AppHeader,
+        default: ResTest,
+        footer: AppFooter
+      }
+    },
+    {
+      path: "/userregi",
+      name: "userregi",
+      components: {
+        header: AppHeader,
+        default: UserSignUp,
+        footer: AppFooter
+      }
+    },
+    {
+      path: "/mapforall",
+      name: "MapForAll",
+      components: {
+        header: AppHeader,
+        default: MapForAll,
+        footer: AppFooter
+      }
+    },
+    {
+      path: "/respage",
+      name: "ResPage",
+      components: {
+        header: AppHeader,
+        default: ResPage,
+        footer: AppFooter
+      }
+    },
+    {
+      path: "/useredit",
+      name: "userEdit",
+      components: {
+        header: AppHeader,
+        default: UserEdit,
+        footer: AppFooter
+      }
+    },
+      {
+        path: "/mypage",
+        name: "myPage",
+        components: {
+          header: AppHeader,
+          default: MyPage,
+          footer: AppFooter
+        }  
+    }
+
 
 //   ],
 //   scrollBehavior: to => {
@@ -88,4 +139,4 @@
 //       return { x: 0, y: 0 };
 //     }
 //   }
-// });
+// })

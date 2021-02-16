@@ -10,7 +10,7 @@
                       <base-input class="my-3 col-lg-10"
                                   placeholder="음식점 검색하기">
                       </base-input>
-                      <base-button type="primary" class="my-3 col-lg-2">Search</base-button>
+                      <base-button @click="check()" type="primary" class="my-3 col-lg-2">Search</base-button>
                       </div>
                   </form>
             </div>
