@@ -1847,3 +1847,6 @@ java.lang.IllegalStateException: Cannot call sendError() after the response has 
 [2021-02-16 16:17:31:16367618][http-nio-80-exec-7] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json, application/json, application/*+json]
 [2021-02-16 16:17:31:16367618][http-nio-80-exec-7] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [io.gourmand.dto.ResDTO$ResInfo@52fe171a]
 [2021-02-16 16:17:31:16367619][http-nio-80-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+[2021-02-16 16:17:31:16367632][http-nio-80-exec-9] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json, application/json, application/*+json]
+[2021-02-16 16:17:31:16367633][http-nio-80-exec-9] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [[io.gourmand.dto.UserDTO$UserThumbnail@4d5a9011, io.gourmand.dto.UserDTO$UserThumbnail@74d014b]]
+[2021-02-16 16:17:31:16367634][http-nio-80-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
