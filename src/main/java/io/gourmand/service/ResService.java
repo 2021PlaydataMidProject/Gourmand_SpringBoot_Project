@@ -46,9 +46,9 @@ public class ResService {
 	}
 
 	// 전체 가게 -> 거리순
-	public List<ResThumbnail> getAllRes(BigDecimal xValue, BigDecimal yValue) {
+	public List<ResThumbnail> getAllRes(BigDecimal xValue, BigDecimal yValue, BigDecimal limit) {
 		List<ResThumbnail> resThumbList = new ArrayList<>();
-		resDAO.findAllOrderByAxis(xValue, yValue).forEach(r -> resThumbList.add(ResThumbnail.of(r)));
+		resDAO.findAllOrderByAxis(xValue, yValue, limit).forEach(r -> resThumbList.add(ResThumbnail.of(r)));
 		return resThumbList;
 	}
 

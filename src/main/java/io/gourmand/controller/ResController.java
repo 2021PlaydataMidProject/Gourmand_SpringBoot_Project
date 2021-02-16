@@ -17,7 +17,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import io.gourmand.domain.Res;
 import io.gourmand.domain.ResImg;
-import io.gourmand.domain.User;
 import io.gourmand.dto.ResDTO.ResInfo;
 import io.gourmand.dto.ResDTO.ResRegister;
 import io.gourmand.dto.ResDTO.ResThumbnail;
@@ -43,9 +42,9 @@ public class ResController {
 	}
 	
 	// 거리별(default)
-	@GetMapping("/res/thumbnail/{xValue},{yValue}")
-	public List<ResThumbnail> getAllResThumbnail(@PathVariable BigDecimal xValue, @PathVariable BigDecimal yValue){
-		return resService.getAllRes(xValue, yValue);
+	@GetMapping("/res/thumbnail/{xValue},{yValue}/{limit}")
+	public List<ResThumbnail> getAllResThumbnail(@PathVariable BigDecimal xValue, @PathVariable BigDecimal yValue, @PathVariable BigDecimal limit){
+		return resService.getAllRes(xValue, yValue, limit);
 	}
 	
 	// 카테고리별
