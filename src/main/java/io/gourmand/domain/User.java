@@ -62,7 +62,7 @@ public class User {
 	
 	@OneToOne
 	@JoinColumn(name="US_ID")
-	private UserStandard userStandard;	
+	private UserStandard userStandard;
 	
 	@OneToMany(mappedBy = "replyNum")
 	private List<Reply> reply;

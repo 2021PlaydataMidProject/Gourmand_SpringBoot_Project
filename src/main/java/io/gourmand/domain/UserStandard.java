@@ -29,21 +29,21 @@ public class UserStandard {
 	@Column(name = "US_ID")
 	private Long id;
 	
-	@Column(name = "U_FLAVOR")
+	@Column(name = "U_FLAVOR", precision = 2, scale = 1)
 	private BigDecimal uFlavor;
 	
-	@Column(name = "U_CLEAN")
+	@Column(name = "U_CLEAN", precision = 2, scale = 1)
 	private BigDecimal uClean;
 	
-	@Column(name = "U_COST")
+	@Column(name = "U_COST", precision = 2, scale = 1)
 	private BigDecimal uCost;
 	
-	@Column(name = "U_MOOD")
+	@Column(name = "U_MOOD", precision = 2, scale = 1)
 	private BigDecimal uMood;
 	
-	@Column(name = "U_KINDNESS")
+	@Column(name = "U_KINDNESS", precision = 2, scale = 1)
 	private BigDecimal uKindness;
 	
-	@Column(name = "U_ACCESS")
+	@Column(name = "U_ACCESS", precision = 2, scale = 1)
 	private BigDecimal uAccess;
 }
