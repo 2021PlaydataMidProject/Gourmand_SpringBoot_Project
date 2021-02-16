@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -31,13 +32,13 @@ public class Reply {
    @Column(name = "REPLY_NUM")
    private Long replyNum;
    
-   @ManyToOne
+   @ManyToOne(fetch = FetchType.LAZY)
    @JoinColumn(name= "REVIEW_NUM")
    private Review reviewNum;
    
-   @ManyToOne
+   @ManyToOne(fetch = FetchType.LAZY)
    @JoinColumn(name= "USER_NUM")
-   private User user; // 한명 user - 여러개 댓글  1:N 
+   private User user; // 한명 user - 여러개 댓글  1:N
    
    @Column(name="REVIEW_REPLY")
    private String reviewReply;

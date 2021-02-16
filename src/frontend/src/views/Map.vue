@@ -39,8 +39,6 @@ export default {
               center: new kakao.maps.LatLng(parseFloat(this.$props.Xaxis), parseFloat(this.$props.Yaxis)),
               level: 3
             };
-            console.log(parseFloat(this.$props.Xaxis));
-            console.log(parseFloat(this.$props.Yaxis))
             var map = new kakao.maps.Map(container, options);
             map.setMapTypeId(kakao.maps.MapTypeId.HYBRID);
         }
