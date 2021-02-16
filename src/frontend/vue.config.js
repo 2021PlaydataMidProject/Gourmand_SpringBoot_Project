@@ -1,6 +1,9 @@
 const webpack = require('webpack');
 
 module.exports = {
+  devServer: {
+    overlay: false,
+  },
   configureWebpack: {
     // Set up all the aliases we use in our app.
     plugins: [
@@ -41,7 +44,12 @@ module.exports = {
         target: 'http://localhost:80',
         ws: true,
         changeOrigin: true,
-      }
+      }, 
+      '/user/' :{
+          target: 'http://localhost:80',
+          ws: true,
+          changeOrigin: true,
+        }
     }
   }
 };

@@ -12,8 +12,10 @@ import ResTest from "./views/ResTest.vue";
 import UserSignUp from "./views/UserSignUp.vue";
 import MapForAll from "./views/MapForAll.vue";
 import ResPage from "./views/ResPage.vue";
+import UserEdit from "./views/UserEdit.vue";
+import MyPage from "./views/MyPage.vue";
 
-Vue.use(Router);
+// Vue.use(Router);
 
 export default new Router({
   linkExactActiveClass: "active",
@@ -83,8 +85,8 @@ export default new Router({
       }
     },
     {
-      path: "/signup",
-      name: "userSignUp",
+      path: "/userregi",
+      name: "userregi",
       components: {
         header: AppHeader,
         default: UserSignUp,
@@ -108,15 +110,33 @@ export default new Router({
         default: ResPage,
         footer: AppFooter
       }
+    },
+    {
+      path: "/useredit",
+      name: "userEdit",
+      components: {
+        header: AppHeader,
+        default: UserEdit,
+        footer: AppFooter
+      }
+    },
+      {
+        path: "/mypage",
+        name: "myPage",
+        components: {
+          header: AppHeader,
+          default: MyPage,
+          footer: AppFooter
+        }  
     }
 
 
-  ],
-  scrollBehavior: to => {
-    if (to.hash) {
-      return { selector: to.hash };
-    } else {
-      return { x: 0, y: 0 };
-    }
-  }
-});
+//   ],
+//   scrollBehavior: to => {
+//     if (to.hash) {
+//       return { selector: to.hash };
+//     } else {
+//       return { x: 0, y: 0 };
+//     }
+//   }
+// })
