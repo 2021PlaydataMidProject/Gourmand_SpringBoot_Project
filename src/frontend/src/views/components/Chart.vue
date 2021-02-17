@@ -58,6 +58,8 @@ export default {
         },
         legend: {
           position: "right",
+
+          display: false
         },
       },
     });

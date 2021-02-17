@@ -8,7 +8,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import io.gourmand.domain.Res;
-import io.gourmand.domain.User;
 
 public interface ResRepository extends JpaRepository<Res, Long> {
 
@@ -17,10 +16,18 @@ public interface ResRepository extends JpaRepository<Res, Long> {
 	List<Res> findAllbyCategory(@Param("category") String category, @Param("xValue") BigDecimal xValue, @Param("yValue") BigDecimal yValue);
 
 	// 거리순 반환
+<<<<<<< HEAD
 	@Query(value = "select * from res where pow(:limit,2) >= pow(res.x_value - :xValue,2) + pow(res.y_value - :yValue,2) order by res.x_value + res.y_value - :xValue - :yValue asc", nativeQuery = true)
+=======
+	@Query(value = "select * from res where pow(:limit,2) >= pow(res.x_value - :xValue,2) + pow(res.y_value - :yValue,2) order by pow(res.x_value - :xValue,2) + pow(res.y_value - :yValue,2) asc", nativeQuery = true)
+>>>>>>> 00fdd0bf3b8cda7e556b4d6ec446853e6b47a624
 	List<Res> findAllOrderByAxis(@Param("xValue") BigDecimal xValue, @Param("yValue") BigDecimal yValue, @Param("limit") BigDecimal limit);
 		
 	// 평균 평점별 반환
-	@Query(value = "select * from res where res.x_value + res.y_value - :xValue - :yValue < :limit order by avg_star desc", nativeQuery = true)
+	@Query(value = "select * from res where pow(:limit,2) >= pow(res.x_value - :xValue,2) + pow(res.y_value - :yValue,2) order by avg_star desc", nativeQuery = true)
 	List<Res> findAllbyAvgStar(@Param("xValue") BigDecimal xValue, @Param("yValue") BigDecimal yValue, @Param("limit") BigDecimal limit);
+	
+	// 음식점 검색
+	@Query(value = "select * from res where pow(:limit,2) >= pow(res.x_value - :xValue,2) + pow(res.y_value - :yValue,2) and res_name like %:search% order by pow(res.x_value - :xValue,2) + pow(res.y_value - :yValue,2) asc" , nativeQuery=true)
+	List<Res> findAllbyResName(@Param("xValue") BigDecimal xValue, @Param("yValue") BigDecimal yValue, @Param("limit") BigDecimal limit, @Param("search") String search);
 }
