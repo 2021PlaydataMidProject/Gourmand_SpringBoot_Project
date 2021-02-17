@@ -109,6 +109,7 @@ function displayInfowindow(marker, title, address, lat, lng) {
             ${title}<br>
             ${address}<br>
             <button onclick="onSubmit('${title}','${address}',${lat},${lng});">등록</button>
+            <button onclick="onDelete('${title}');">삭제</button>
             <button onclick="removeMarker();">마커 숨기기</button>
         </div>
         `;
@@ -117,6 +118,22 @@ function displayInfowindow(marker, title, address, lat, lng) {
         //작성된 content를 넣어줌
         infowindow.setContent(content);
         infowindow.open(map, marker);
+}
+
+function onDelete(title) {
+    $.ajax({
+        url: "/location",
+        data: {title},
+        type: "DELETE", 
+    })
+    .done((response) => {
+        console.log("데이터 요청 성공");
+        alert("맛집이 삭제되었습니다.");
+    })
+    .fail((error) => {
+        console.log("데이터 요청 실패");
+        alert("맛집 삭제 실패.");
+    });
 }
 
 function onSubmit(title, address, lat, lng) {
@@ -135,21 +152,7 @@ function onSubmit(title, address, lat, lng) {
     });
 }
 
-function onDelete(title) {
-    $.ajax({
-        url: "/location",
-        data: {title},
-        type: "DELETE", 
-    })
-    .done((response) => {
-        console.log("데이터 요청 성공");
-        alert("맛집이 삭제되었습니다.");
-    })
-    .fail((error) => {
-        console.log("데이터 요청 실패");
-        alert("맛집 삭제 실패.");
-    });
-}
+
 
 // placesList 안에 있는 노드, 태그들을 제거함
 function removeAllChildNodes(el) {

@@ -36,6 +36,14 @@ $.ajax({
     //     }
     // }
 
+    function removeMarker() {
+        for (let i = 0; i < markerList.length; i++) {
+            markerList[i].setMap(null);
+        }
+        
+        markerList = [];
+    }
+
     //data1에 있는 여러개의 마커를 동시에 표시
     for (let i in data) {
         const target = data[i];
@@ -55,9 +63,8 @@ $.ajax({
             <div class="infowindow_wrap">
                 <div class="infowindow_title">${target.res_name}</div>
                 <div class="infowindow_address">${target.res_address}</div>
-                <button onclick="function onDelete(address) { alert(1)}">맛집에서 제외</button>
             </div>`;
-
+        
         const infowindow = new naver.maps.InfoWindow({
             content : content,
             backgroundColor: "#00ff0000",
