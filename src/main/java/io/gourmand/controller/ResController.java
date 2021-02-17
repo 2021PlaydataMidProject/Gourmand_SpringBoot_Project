@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,6 +23,7 @@ import io.gourmand.dto.ResDTO.ResRegister;
 import io.gourmand.dto.ResDTO.ResThumbnail;
 import io.gourmand.dto.UserDTO.UserThumbnail;
 import io.gourmand.service.ResService;
+import io.gourmand.util.NaverGeoCoding;
 
 @RestController
 public class ResController {
@@ -43,7 +45,7 @@ public class ResController {
 	
 	// 거리별(default)
 	@GetMapping("/res/thumbnail/{xValue},{yValue}/{limit}")
-	public List<ResThumbnail> getAllResThumbnail(@PathVariable BigDecimal xValue, @PathVariable BigDecimal yValue, @PathVariable BigDecimal limit){
+	public List<ResThumbnail> getAllResThumbnail(@PathVariable BigDecimal xValue, @PathVariable BigDecimal yValue, @PathVariable Double limit){
 		return resService.getAllRes(xValue, yValue, limit);
 	}
 	
@@ -59,6 +61,21 @@ public class ResController {
 	public List<ResThumbnail> getResThumbnailByAvgStar(@PathVariable BigDecimal xValue, @PathVariable BigDecimal yValue
 			, @PathVariable BigDecimal limit){
 		return resService.getAllResByAvgStar(xValue, yValue, limit);
+	}
+	
+	// 이름 검색
+	@GetMapping("/res/thumbnail/search/{name}/{xValue},{yValue}/{limit}")
+	public List<ResThumbnail> getResThumbnailByResName(@PathVariable BigDecimal xValue, @PathVariable BigDecimal yValue,
+			@PathVariable Double limit, @PathVariable String name){
+		return resService.returnAllResByName(xValue, yValue, limit, name);
+	}
+	
+	// 지역 검색
+	@GetMapping("/res/thumbnail/region/{region}/{limit}")
+	public List<ResThumbnail> getResThumbnailByLocation(@PathVariable Double limit, @PathVariable String region){
+		BigDecimal[] axis = NaverGeoCoding.returnAxis(region);
+		System.out.println(axis[0] + " " +axis[1]);
+		return resService.getAllRes(axis[1], axis[0], limit);
 	}
 	
 	// 해당 가게를 리스트에 넣은 유저 반환

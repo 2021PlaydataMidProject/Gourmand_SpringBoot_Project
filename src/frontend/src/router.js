@@ -14,6 +14,7 @@ import MapForAll from "./views/MapForAll.vue";
 import ResPage from "./views/ResPage.vue";
 import UserEdit from "./views/UserEdit.vue";
 import MyPage from "./views/MyPage.vue";
+import MapForAllSearch from "./views/MapForAllSearch.vue"
 
 Vue.use(Router);
 
@@ -99,6 +100,15 @@ export default new Router({
       components: {
         header: AppHeader,
         default: MapForAll,
+        footer: AppFooter
+      }
+    },
+    {
+      path: "/search",
+      name: "Serch",
+      components: {
+        header: AppHeader,
+        default: MapForAllSearch,
         footer: AppFooter
       }
     },

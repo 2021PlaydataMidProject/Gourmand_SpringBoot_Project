@@ -10,14 +10,19 @@
           />
         </div>
         <div class="row justify-content-center">
-          <div class="row col-lg-8">
+          <div class="row col-lg-10">
+            <b-dropdown :text="dropDownText" class="my-3 col-lg-2 col-sm-2" variant="primary">
+              <b-dropdown-item @click="drop('음식점')">음식점</b-dropdown-item>
+              <b-dropdown-item @click="drop('지역')">지역</b-dropdown-item>
+            </b-dropdown>
             <base-input
-              class="my-3 col-lg-10 col-sm-8"
-              placeholder="음식점 검색하기"
+              class="my-3 col-lg-8 col-sm-8"
+              :placeholder="dropDownText + ' 검색하기'"
+              v-model="name"
             >
             </base-input>
             <base-button
-              @click="check()"
+              @click="search()"
               type="primary"
               class="my-3 col-lg-2 col-sm-2"
               >Search</base-button
@@ -40,9 +45,6 @@
       </div>
 
       <div class="text-center pt-lg">
-        <div class="col-sm-8">
-          <chart width="100px" height="100px" :data="wow"></chart>
-        </div>
       </div>
     </div>
   </section>
@@ -51,21 +53,41 @@
 <script>
 import { BCarousel } from "bootstrap-vue/esm/components/carousel/carousel";
 import { BCarouselSlide } from "bootstrap-vue/esm/components/carousel/carousel-slide";
+import { BDropdown } from "bootstrap-vue";
+import { BDropdownItem } from "bootstrap-vue";
 import myMap from "./Map";
-import chart from "./components/Chart"
 
 export default {
   name: "home",
+  data() {
+    return {
+      name: "",
+      dropDownText: "음식점",
+    };
+  },
   components: {
     BCarousel,
     BCarouselSlide,
+    BDropdown,
+    BDropdownItem,
     myMap,
-    chart
   },
-  data(){
-    return {
-      wow : [1,2,3,4,2,5]
-    }
-  }
+  methods: {
+    search() {
+      if (this.name) {
+        if (this.dropDownText=="음식점"){
+          this.$router.push({ path: "/search", query: { name: this.name } });
+        } else{
+          this.$router.push({ path: "/search", query: { location: this.name } });
+        }
+      }
+    },
+    update(value) {
+      this.name = value;
+    },
+    drop(value) {
+      this.dropDownText = value;
+    },
+  },
 };
 </script>
