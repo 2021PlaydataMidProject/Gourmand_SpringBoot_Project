@@ -17,7 +17,7 @@ import io.gourmand.dto.RevDTO.RevThumbnail;
 
 public interface ReviewRepository extends JpaRepository<Review, Long> {
 
-//	void save(RevRegister entity);
+	void save(RevRegister entity);
 
 	// 전체 목록 내림차순
     
