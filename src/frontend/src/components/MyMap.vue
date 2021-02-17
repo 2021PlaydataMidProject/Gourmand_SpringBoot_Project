@@ -6,14 +6,14 @@
 export default {
     data () {
     return {
-      maps: []
+      mymap: []
         }
     },
     created () {
     // 컴포넌트가 생성될 때, /api/mymap에 요청을 보냅니다.          
-    this.$http.get('/api/mymap')
+    this.$http.get('/api/mymap/${id}')
         .then((response) => {
-          this.maps = response.data
+          this.mymap = response.data
         })
   }
 }
