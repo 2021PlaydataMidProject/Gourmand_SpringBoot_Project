@@ -55,7 +55,7 @@ $.ajax({
             <div class="infowindow_wrap">
                 <div class="infowindow_title">${target.res_name}</div>
                 <div class="infowindow_address">${target.res_address}</div>
-                <button onClick="">삭제</button>
+                <button onclick="function onDelete(address) { alert(1)}">맛집에서 제외</button>
             </div>`;
 
         const infowindow = new naver.maps.InfoWindow({
@@ -70,21 +70,7 @@ $.ajax({
         infowindowList.push(infowindow);
     }
 
-    // function onDelete(title, address, lat, lng) {
-    //     $.ajax({
-    //         url: "/location",
-    //         data: {title, address, lat, lng},
-    //         type: "POST", 
-    //     })
-    //     .done((response) => {
-    //         console.log("데이터 요청 성공");
-    //         alert("성공");
-    //     })
-    //     .fail((error) => {
-    //         console.log("데이터 요청 실패");
-    //         alert("실패");
-    //     });
-    // }
+    
 
     //i를 파라미터로 받고 function을 리턴
     const getClickMap = (i) => () => {
@@ -143,102 +129,102 @@ $.ajax({
 });
 
 // 행정구역 데이터 레이어 소개 및 표시하기
-const urlPrefix = "https://navermaps.github.io/maps.js/docs/data/region";
-const urlSuffix = ".json";
+// const urlPrefix = "https://navermaps.github.io/maps.js/docs/data/region";
+// const urlSuffix = ".json";
 
-//지역을 담는 배열 
-let regionGeoJson = [];
-// for문을 돌때 17개까지 요청을 해야되기 때문에 그것을 count해주는 변수를 만듬
-let loadCount = 0;
+// //지역을 담는 배열 
+// let regionGeoJson = [];
+// // for문을 돌때 17개까지 요청을 해야되기 때문에 그것을 count해주는 변수를 만듬
+// let loadCount = 0;
 
-const tooltip = $(
-    `<div style="position:absolute;z-index:1000;padding:5px 10px; background:white;border:1px solid black;font-size:14px;display:none;pointer-events:none;"></div>`
-    )
+// const tooltip = $(
+//     `<div style="position:absolute;z-index:1000;padding:5px 10px; background:white;border:1px solid black;font-size:14px;display:none;pointer-events:none;"></div>`
+//     )
 
-tooltip.appendTo(map.getPanes().floatPane);
+// tooltip.appendTo(map.getPanes().floatPane);
 
-naver.maps.Event.once(map, "init_stylemap", () => {
-    for (let i = 1; i < 18; i++) {
-        let keyword = i.toString();
-        //키워드가 한자리 수일 때 1
-        // 1이면 01로 생성, 2이면 02로 생성
-        if (keyword.length === 1) {
-            keyword = "0" + keyword; //keyword가 01,02,03 ~ 17까지 생성됨
-        }
-        $.ajax({
-            url : urlPrefix + keyword + urlSuffix, //url에 17번 요청이 들어감-> 17개에 대한 결과값이 regionGeoJson 빈 배열에 들어가게됨
-        }).done((geojson) => {
-            regionGeoJson.push(geojson);// 빈배열에 모두 다 찼을때는 startDataLayer함수를 통해서 정보를 바탕으로 해당 지도에 결과값을 띄우게됨
-            loadCount++;
-            //17개의 도를 다 돌았을때 startDataLayer 함수 실행
-            if (loadCount === 17){
-                startDataLayer();
-            }
-        })
-    }
-})
+// naver.maps.Event.once(map, "init_stylemap", () => {
+//     for (let i = 1; i < 18; i++) {
+//         let keyword = i.toString();
+//         //키워드가 한자리 수일 때 1
+//         // 1이면 01로 생성, 2이면 02로 생성
+//         if (keyword.length === 1) {
+//             keyword = "0" + keyword; //keyword가 01,02,03 ~ 17까지 생성됨
+//         }
+//         $.ajax({
+//             url : urlPrefix + keyword + urlSuffix, //url에 17번 요청이 들어감-> 17개에 대한 결과값이 regionGeoJson 빈 배열에 들어가게됨
+//         }).done((geojson) => {
+//             regionGeoJson.push(geojson);// 빈배열에 모두 다 찼을때는 startDataLayer함수를 통해서 정보를 바탕으로 해당 지도에 결과값을 띄우게됨
+//             loadCount++;
+//             //17개의 도를 다 돌았을때 startDataLayer 함수 실행
+//             if (loadCount === 17){
+//                 startDataLayer();
+//             }
+//         })
+//     }
+// })
 
-function startDataLayer() {
-    map.data.setStyle(feature => {
-        // 행정구역 도 17개 중 클릭을 하지 않았을때 아래 스타일 적용
-        const styleOptions = {
-            fillColor : "#ff0000",
-            fillOpacity: 0.0001,
-            strokeColor: "#ff0000",
-            strokeWeight: 2, // 두꺼운 외곽선
-            strokedOpacity: 0.4,
-        };
-        // 행정구역 도  17개 중 클릭했을때 아래 스타일 적용
-        if(feature.getProperty("focus")) {
-            styleOptions.fillOpacity = 0.6
-            styleOptions.fillColor = "#0f0";
-            styleOptions.strokeColor = "#0f0";
-            styleOptions.strokeWeight = 4;
-            styleOptions.strokedOpacity = 1;
-        }
+// function startDataLayer() {
+//     map.data.setStyle(feature => {
+//         // 행정구역 도 17개 중 클릭을 하지 않았을때 아래 스타일 적용
+//         const styleOptions = {
+//             // fillColor : "#ff0000",
+//             // fillOpacity: 0,
+//             // strokeColor: "#ff0000",
+//             // strokeWeight: 2, // 두꺼운 외곽선
+//             // strokedOpacity: 0.4,
+//         };
+//         // 행정구역 도  17개 중 클릭했을때 아래 스타일 적용
+//         if(feature.getProperty("focus")) {
+//             // styleOptions.fillOpacity = 0
+//             // styleOptions.fillColor = "#0f0";
+//             // styleOptions.strokeColor = "#0f0";
+//             // styleOptions.strokeWeight = 4;
+//             // styleOptions.strokedOpacity = 1;
+//         }
 
-        return styleOptions;
-    }); 
-    //결과값을 기반으로 도의 경계선을 표시
-    regionGeoJson.forEach((geojson) => {
-        map.data.addGeoJson(geojson);
-    });
+//         return styleOptions;
+//     }); 
+//     //결과값을 기반으로 도의 경계선을 표시
+//     regionGeoJson.forEach((geojson) => {
+//         map.data.addGeoJson(geojson);
+//     });
 
-    map.data.addListener("click",(e) => {
-        let feature = e.feature;
-        // 클릭이 되어있지 않다면
-        if (feature.getProperty('focus') !== true) {
-            // 해당 도가 focus가 되어 있다는 것을 명시
-            feature.setProperty("focus", true);
-        } else {
-            feature.setProperty("focus", false);
-        }
-    });
+//     map.data.addListener("click",(e) => {
+//         let feature = e.feature;
+//         // 클릭이 되어있지 않다면
+//         if (feature.getProperty('focus') !== true) {
+//             // 해당 도가 focus가 되어 있다는 것을 명시
+//             feature.setProperty("focus", true);
+//         } else {
+//             feature.setProperty("focus", false);
+//         }
+//     });
 
-    // 도 17개 대상으로 마우스가 올라갔을때/벗어났을때 이벤트 적용
-    map.data.addListener("mouseover", (e) => {
-        let feature = e.feature;
-        //해당 도의 이름이 regionName에 담기게됨 
-        let regionName = feature.getProperty("areal");
-        tooltip.css({
-            display : "block",
-            left : e.offset.x, //x축 받아옴
-            top : e.offset.y,  //y축 받아옴
-        })
-        .text(regionName);
-        // mouseover된 구역의 스타일링을 재정의함
-        map.data.overrideStyle(feature, {
-            fillOpacity : 0.6,
-            strokeWeight : 4,
-            strokedOpacity :1,
-        });
-    });
-    // 마우스가 도를 벗어났을때 스타일링 적용
-    map.data.addListener("mouseout", (e) => {
-        tooltip.hide().empty();
-        map.data.revertStyle();
-    });
-}
+//     // 도 17개 대상으로 마우스가 올라갔을때/벗어났을때 이벤트 적용
+//     map.data.addListener("mouseover", (e) => {
+//         let feature = e.feature;
+//         //해당 도의 이름이 regionName에 담기게됨 
+//         let regionName = feature.getProperty("areal");
+//         tooltip.css({
+//             display : "block",
+//             left : e.offset.x, //x축 받아옴
+//             top : e.offset.y,  //y축 받아옴
+//         })
+//         .text(regionName);
+//         // mouseover된 구역의 스타일링을 재정의함
+//         map.data.overrideStyle(feature, {
+//             // fillOpacity : 0.6,
+//             // strokeWeight : 4,
+//             // strokedOpacity :1,
+//         });
+//     });
+//     // 마우스가 도를 벗어났을때 스타일링 적용
+//     map.data.addListener("mouseout", (e) => {
+//         tooltip.hide().empty();
+//         map.data.revertStyle();
+//     });
+// }
 
 
 
