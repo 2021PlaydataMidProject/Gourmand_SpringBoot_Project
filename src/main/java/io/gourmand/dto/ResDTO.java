@@ -101,6 +101,7 @@ public class ResDTO {
 					.resHour(res.getResHour())
 					.tel(res.getTel())
 					.category(res.getCategory())
+					.avgStar(BigDecimal.valueOf(0.0))
 					.build();
 		}
 	}

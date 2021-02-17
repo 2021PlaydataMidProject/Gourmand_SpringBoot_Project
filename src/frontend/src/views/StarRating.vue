@@ -1,3 +1,4 @@
+/* eslint-disable vue/no-parsing-error */
 
 
 <template>
@@ -8,12 +9,14 @@
       <h2>0.5씩 커지는 StarRating</h2>
       <div @mouseleave="mouseOverRating = null" style="display: inline-block">
         <star-rating
+          :defaultValue="3"
           :show-rating="false"
           @hover:rating="mouseOverRating = $event"
           :increment="0.5"
           :starSize="50"
-          :fixedPoints="4.5"
-          :readOnly="false"
+          :readOnly="false"  
+          :rating="3.5"
+
         ></star-rating>
       </div>
       <div style="margin-top: 10px; font-weight: bold">
@@ -22,7 +25,6 @@
     </div>
   </section>
 </template>
-
 <script>
 import StarRating from "vue-star-rating";
 

@@ -51,7 +51,7 @@ public class ResImg {
 	@Column(name="SIZE")
 	private Long size;
 	
-	@Column(name="EXTENSION")
+	@Column(name="EXTENTION")
 	private String extension;
 	
 	@Column(name="ORIGIN_NAME")
