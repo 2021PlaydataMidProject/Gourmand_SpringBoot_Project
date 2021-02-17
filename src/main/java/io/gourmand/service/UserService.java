@@ -21,11 +21,14 @@ import io.gourmand.dao.ReviewRepository;
 import io.gourmand.dao.UserImgRepository;
 import io.gourmand.dao.UserRepository;
 import io.gourmand.dao.UserStandardRepository;
+import io.gourmand.domain.Review;
 import io.gourmand.domain.User;
 import io.gourmand.domain.UserImg;
+import io.gourmand.domain.UserResList;
 import io.gourmand.domain.UserStandard;
 import io.gourmand.dto.RevDTO;
 import io.gourmand.dto.UserDTO.SigninRequest;
+import io.gourmand.dto.UserDTO.UserCountsInfo;
 import io.gourmand.dto.UserDTO.UserInfo;
 import io.gourmand.dto.UserDTO.UserRegister;
 import io.gourmand.dto.UserDTO.UserThumbnail;
@@ -58,18 +61,22 @@ public class UserService {
 	}
 
 	// 회원 정보 조회
-	public Optional<User> getUser(String userId) {
-		return userDAO.findById(userId);
+	public Optional<User> getUser(Long userNum) {
+		return userDAO.findById(userNum);
 	}
 	
 	// 회원 1인 관련 정보페이지에 필요한 DTO를 생성해서 controller에 보낸다.
-	public UserInfo getUserInfo(String userId) {
-		return UserInfo.of(userDAO.findById(userId).get());
-	}
+//	public UserInfo getUserInfo(Long userNum) {
+//		Optional<User> user = userDAO.findById(userNum);
+//		user.ifPresent(selectUser -> {
+//			System.out.println(selectUser.getUserNum());
+//		});
+////		return UserInfo.of(userDAO.findById(userNum).get());
+//	}
 
 	// 팔로우, 팔로잉, 추천 계정 등에 들어갈 간략한 유저 정보 및 Thumbnail을 불러와 controller에 보낸다.
 	public UserThumbnail getUserThumbnail(User user) {
-		return UserThumbnail.of(userDAO.findById(user.getUserId()).get());
+		return UserThumbnail.of(userDAO.findById(user.getUserNum()).get());
 	}
 	
 	// 회원 1인 탈퇴 - 얽혀있는 테이블이 많아서 null point exception이 많이 뜬다.0
@@ -90,11 +97,6 @@ public class UserService {
 		return userDAO.save(UserRegister.toEntity(user, userStandard));
 	};
 	
-	
-//	
-//	public UserStandard insertUserStandardNo(UserStandard userStandard, User user){
-//		return userStandardDAO.save(UserStandard.of(id, user));
-//	}
 	//MultipartFile -> entity -> SQL저장
 		public UserImg insertUserImg(MultipartFile userImg, User user){
 			return userImgDAO.save(UserImg.of(userImg, user));
@@ -122,9 +124,20 @@ public class UserService {
 			file.transferTo(targetPath);
 		}
 
+			//해당 아이디의유저가 매긴 리뷰개수를 반환한다. 
+			public UserCountsInfo getUserReviewCounts(Review reviewNum) {
+			   userDAO.findcountbyReviewNum(reviewNum);
+			   return getUserReviewCounts(reviewNum);
+			}
+			
+			//해당아이디가 작성한 리스트의 개수를 반환한다. 
+			public UserCountsInfo getUserListCounts(UserResList listNum){
+			   userDAO.findcountByUserList(listNum);
+			   return getUserListCounts(listNum);
+			}
 }
-	
-	
+
+
 //	/**
 //	    * 수정할 수 있는 유저정보를 수집한다.
 //	    * 파라미터 값이 비어 있으면 그 항목은 수정에서 제외한다.

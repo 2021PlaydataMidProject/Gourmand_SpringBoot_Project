@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -45,42 +46,17 @@ public class UserController {
 		return new User();
 	}
 	
-//	@ModelAttribute("userStandard") //왜 있나?
-//	public UserStandard setUserStandard() {
-//		return new UserStandard();
-//	}
-//
-////	/* 회원 가입을 위한 User 정보 저장(with image) - /user/regi와 /user/regiUserStandard는 @Transactional로 처리해야 할듯
-////	아니면 두개 한번에 합치는 법 고민*/
-//	@PostMapping("/user/regi")
-//	public void createUser(@RequestParam("userImg") List<MultipartFile> userImg, @RequestParam("user") String userRegi) {
-//		System.out.println(userRegi);
-//		ObjectMapper mapper = new ObjectMapper();
-//	//	mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);  //과연 해결해줄것인가!!!!!!!!!!!
-//	try {
-//		User user = userService.insertUser(mapper.readValue(userRegi, UserRegister.class));
-//		userImg.forEach(img->{
-//		UserImg uimg = userService.insertUserImg(img, user);
-//	try {
-//		userService.saveImg(img, uimg);
-//			} catch (IOException e) {
-//				e.printStackTrace();
-//			}
-//			});
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//			}
-//	}
-//	
-//	
-	/* 회원 가입 한번에 구현 -
-		아니면 두개 한번에 합치는 법 고민*/
+	@ModelAttribute("userStandard") //왜 있나?
+	public UserStandard setUserStandard() {
+		return new UserStandard();
+	}
+
+	/* 회원 가입 */
 	@PostMapping("/user/regi")
 	public void createUser(@RequestParam("userImg") List<MultipartFile> userImg, @RequestParam("user") String userRegi, @RequestParam("userStandard") String userStandardregi) {
 		System.out.println(userRegi);
 		System.out.println(userStandardregi);
 		ObjectMapper mapper = new ObjectMapper();
-////		mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);  
 	try {
 		UserStandard userStandard = userService.insertUserStandard(mapper.readValue(userStandardregi, UserStandardRegister.class));
 		User user = userService.insertUser(mapper.readValue(userRegi, UserRegister.class), (userStandard));
@@ -97,27 +73,33 @@ public class UserController {
 			}
 	}
 	
+
 	
-//	@PostMapping("/user/regi")
-//	public void createUser(@RequestBody UserRegister user) {
-//	System.out.println( "신규 회원 기준 저장" + user.getUserId() );
-//	userService.insertUser(user);
+	// 회원 1인의 전체 정보 가져오기 - 작업중
+//	@GetMapping("/user/{id}/info")
+//	public UserInfo getUserInfo(@PathVariable Long userNum) {
+//	return userService.getUserInfo(userNum);
 //	}
-	
-	//	 회원 기준 저장 
-	@PostMapping("/user/regiNewStandard")
-	public void createUserStandard(@RequestBody UserStandardRegister userStandard) {
-//	System.out.println( "신규 회원 기준 저장" + userStandard.get());
-		System.out.println(userStandard);
-		userService.insertUserStandard(userStandard);
-	}
-	
-	// 회원 1인의 전체 정보 가져오기
-	@GetMapping("/user/{id}/info")
-	public UserInfo getUserInfo(@PathVariable String userId) {
-	System.out.println("회원 정보 조회" + userId);
-	return userService.getUserInfo(userId);
-	}
+//	
+//	/* 회원 정보 수정 */
+//	@PutMapping("/user/{id}/update")
+//	public void updateUser(@RequestParam("userImg") List<MultipartFile> userImg, @RequestParam("user") String userRegi, @RequestParam("userStandard") String userStandardregi) {
+//		ObjectMapper mapper = new ObjectMapper();
+//	try {
+//		UserStandard userStandard = userService.insertUserStandard(mapper.readValue(userStandardregi, UserStandardRegister.class));
+//		User user = userService.insertUser(mapper.readValue(userRegi, UserRegister.class), (userStandard));
+//		userImg.forEach(img->{
+//		UserImg uimg = userService.insertUserImg(img, user);
+//	try {
+//		userService.saveImg(img, uimg);
+//			} catch (IOException e) {
+//				e.printStackTrace();
+//			}
+//			});
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//			}
+//	}
 	
 	
 //	@DeleteMapping("/user/{id}") //(User 테이블 외에 다른 테이블 삭제할 거 고민해야 )

@@ -141,13 +141,15 @@ export default {
           .then(user => {
                alert(this.newUser.userId + "회원 등록완료");
                //location.href="/home"
-             });
+             }).catch(
+               console.error()
+             );
       },
   },
   components: { BaseButton },
 };
 
-var date = new Date();
+
 </script>
 <style>
 </style>
