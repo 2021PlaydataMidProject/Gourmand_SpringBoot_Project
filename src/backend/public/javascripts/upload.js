@@ -120,10 +120,10 @@ function displayInfowindow(marker, title, address, lat, lng) {
         infowindow.open(map, marker);
 }
 
-function onDelete() {
+function onDelete(title) {
     $.ajax({
         url: "/location",
-        // data: {title},
+        data: {title},
         type: "DELETE", 
     })
     .done((response) => {
