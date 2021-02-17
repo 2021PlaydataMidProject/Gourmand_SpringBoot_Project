@@ -15,7 +15,7 @@ import ResPage from "./views/ResPage.vue";
 import UserEdit from "./views/UserEdit.vue";
 import MyPage from "./views/MyPage.vue";
 
-// Vue.use(Router);
+Vue.use(Router);
 
 export default new Router({
   linkExactActiveClass: "active",
