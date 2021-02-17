@@ -58,6 +58,7 @@ public class Res {
 	private List<ResImg> resImg;
 
 	@OneToMany(mappedBy = "res")
+
 	private List<Review> review;
 	
 	@OneToMany(mappedBy = "res")
