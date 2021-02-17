@@ -127,7 +127,8 @@ export default {
     },
     mymap: function(){
         if (sessionStorage.getItem("user")!=null){
-            location.href="/resregi";
+            location.href="http://localhost:3000/mymap";
+        //  resregi
         } else{
             location.href="/login";
         }
