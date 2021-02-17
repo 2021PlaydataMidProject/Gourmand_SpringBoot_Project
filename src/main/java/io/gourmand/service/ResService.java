@@ -78,7 +78,6 @@ public class ResService {
 		Res newres = resDAO.findById(id).get();
 		Res res = ResRegister.toEntity(resRegi);
 		
-		newres.setResHour(res.getResHour());
 		newres.setResAddress(res.getResAddress());
 		newres.setResName(res.getResName());
 		newres.setTel(res.getTel());
