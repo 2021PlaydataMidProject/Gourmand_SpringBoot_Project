@@ -31,11 +31,3 @@ build/
 
 ### VS Code ###
 .vscode/
-<<<<<<< Updated upstream
-=======
-
-### LOGs ###
-logs/logback.log
-src/main/resources/logs/spring.log
-*.log
->>>>>>> Stashed changes

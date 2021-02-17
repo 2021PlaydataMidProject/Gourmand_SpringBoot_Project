@@ -90,7 +90,6 @@ export default {
     return {
       id: "",
       pw: "",
-      user : "",
     };
   },
   methods: {
@@ -100,10 +99,9 @@ export default {
           user_id: this.id,
           pw: this.pw,
         })
-        .then((user) => {
-          if (user.data) {
-            sessionStorage.setItem("user", user.data);
-            sessionStorage.setItem("userId", this.id);
+        .then((res) => {
+          if (res.data) {
+            sessionStorage.setItem("user", res.data);
             location.href = "/";
           } else {
             alert("없는 아이디거나 비밀번호가 맞지 않습니다.");
