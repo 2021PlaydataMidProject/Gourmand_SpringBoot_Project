@@ -22,7 +22,7 @@
           <h2 class="display-2 mb-1">★★★★☆ {{ resInfo.avg_star }}</h2>
 
           <div class="col-lg-8 col-sm-8">
-            <chart :data="data"></chart>
+            <chart v-if="data.length>0" :data="data" name="mainchart"></chart>
           </div>
           <hr />
 
@@ -81,20 +81,52 @@
 
       <div class="mt-5">
         <h3 class="h4 font-weight-bold">평가 (평가수)</h3>
+        <div>
+          <div v-for="(rev, key) in revs" v-bind:key="key">
+            <img
+              v-if="rev.review_img != null"
+              v-lazy="'img/rev/' + value.review_img.name"
+              alt="Rounded image"
+              class="img-fluid rounded shadow"
+              style="width: 100px"
+            />
+            <img
+              v-else
+              v-lazy="'img/theme/team-4-800x800.jpg'"
+              alt="Rounded image"
+              class="img-fluid rounded shadow"
+              style="width: 100px"
+            />
+          <div>
+            {{rev.food_type}}
+          </div>
+          <div>
+            {{rev.review}}
+          </div>
+          <div>
+            {{rev.write_date}}
+          </div>
+          <div>
+            <!-- "맛", "가성비", "친절함", "분위기", "접근성", "청결도" -->
+            <chart :name="key.toString()" :data="[rev.review_standard.rflavor, rev.review_standard.rcost_value, rev.review_standard.rkindness, rev.review_standard.rmood, rev.review_standard.raccess, rev.review_standard.rclean]"></chart>
+          </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 </template>
 <script>
 import myMap from "./Map";
-import Chart from './components/Chart.vue';
+import Chart from "./components/Chart.vue";
 
 export default {
   data() {
     return {
       resInfo: "",
       resUser: "",
-      data:[1,1,1,1,1,1]
+      revs: [],
+      data: [],
     };
   },
   components: {
@@ -123,6 +155,30 @@ export default {
       .get("/res/" + str + "/user", {})
       .then((us) => {
         this.resUser = us.data;
+      })
+      .catch((error) => {
+        alert("서버 오류");
+      });
+
+    this.axios
+      .get(`/rev/res/${str}`, {})
+      .then((rs) => {
+        this.revs = rs.data;
+      })
+      .catch((error) => {
+        alert("서버 오류");
+      });
+
+    this.axios
+      .get(`/rev/res/${str}/standard`, {})
+      .then((rs) => {
+        var standard = rs.data.split(',')
+        this.data = [parseFloat(standard[0])
+        ,parseFloat(standard[2])
+        ,parseFloat(standard[4])
+        ,parseFloat(standard[3])
+        ,parseFloat(standard[5])
+        ,parseFloat(standard[1])]
       })
       .catch((error) => {
         alert("서버 오류");

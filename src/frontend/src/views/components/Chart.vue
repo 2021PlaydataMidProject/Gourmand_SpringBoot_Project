@@ -1,5 +1,5 @@
 <template>
-  <canvas id="myChart" :width="this.$props.width" :height="this.$props.height"></canvas>
+  <canvas :id="name" :width="this.$props.width" :height="this.$props.height"></canvas>
 </template>
 
 <script>
@@ -14,12 +14,15 @@ export default {
       default: "300px",
     },
     data:{
-        type: Array
+      type: Array
+    },
+    name:{
+      type: String
     }
   },
   mounted() {
     var Chart = require("chart.js");
-    var ctx = document.getElementById("myChart");
+    var ctx = document.getElementById(this.name);
     new Chart(ctx, {
       type: "radar",
       data: {

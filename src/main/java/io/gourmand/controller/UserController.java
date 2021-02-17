@@ -24,7 +24,6 @@ import io.gourmand.dto.ResDTO.ResRegister;
 import io.gourmand.dto.UserDTO.UserInfo;
 import io.gourmand.dto.UserDTO.UserRegister;
 import io.gourmand.dto.UserStandardDTO.UserStandardRegister;
-import io.gourmand.dto.UserStandardDTO.UserStandardRegistertest;
 
 @RestController
 public class UserController {
