@@ -37,15 +37,6 @@
             <td>회원정보 공개(0,1,2)</td>
             <td align="left">
               <input type="text" v-model="newUser.pageStatus" size="10" />
-  
-              <!--
-                 <input type="radio" id="male" name="gender" value="male">
-                <label for="male">Male</label><br>
-                <input type="radio" id="female" name="gender" value="female">
-                <label for="female">Female</label><br>
-                <input type="radio" id="other" name="gender" value="other">
-                <label for="other">Other</label>
-               -->
             </td>
           </tr>
           <tr>
@@ -93,7 +84,7 @@
         </tr>
         <tr>
             <td colspan="2" align="center">
-              <base-button type="primary" v-on:click="addUserStandard()">회원 기준 등록</base-button>
+              <base-button type="primary" v-on:click="addUser()">회원 가입</base-button>
             </td>
           </tr>
         </table>
@@ -128,11 +119,19 @@ export default {
   },
   methods:{
       addUser: function(){
-          const formData = new FormData();
-
+          const formData = new FormData(); 
+          this.userStandard.uflavor = parseFloat(this.userStandard.uflavor);
+          this.userStandard.uclean = parseFloat(this.userStandard.uclean);
+          this.userStandard.ucost = parseFloat(this.userStandard.ucost);
+          this.userStandard.umood = parseFloat(this.userStandard.umood);
+          this.userStandard.ukindness = parseFloat(this.userStandard.ukindness);
+          this.userStandard.uaccess = parseFloat(this.userStandard.uaccess);  
+          console.log(this.userStandard);
+          formData.append("userStandard", JSON.stringify(this.userStandard));
           formData.append("user", JSON.stringify(this.newUser));
           for (let i=0; i<this.$refs.imgdata.files.length; i++){
             formData.append('userImg', this.$refs.imgdata.files[i])
+
           }
           return this.axios.post('/user/regi', formData, {
             headers: {
@@ -144,22 +143,6 @@ export default {
                //location.href="/home"
              });
       },
-      addUserStandard: function(){
-         
-          this.userStandard.uflavor = parseFloat(this.userStandard.uflavor);
-          this.userStandard.uclean = parseFloat(this.userStandard.uclean);
-          this.userStandard.ucost = parseFloat(this.userStandard.ucost);
-          this.userStandard.umood = parseFloat(this.userStandard.umood);
-          this.userStandard.ukindness = parseFloat(this.userStandard.ukindness);
-          this.userStandard.uaccess = parseFloat(this.userStandard.uaccess);  
-          console.log(this.userStandard);
-          this.axios.post('/user/regiNewStandard', this.userStandard)         
-          .then(res => {
-              alert( this.newUser.userId + "회원 기준 등록완료");
-              this.addUser();
-
-            });
-      }   
   },
   components: { BaseButton },
 };

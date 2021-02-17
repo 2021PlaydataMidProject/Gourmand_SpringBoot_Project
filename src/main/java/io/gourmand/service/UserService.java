@@ -86,11 +86,15 @@ public class UserService {
 	}
 
 	//	회원가입
-	public User insertUser(UserRegister user) {
-		return userDAO.save(UserRegister.toEntity(user));
+	public User insertUser(UserRegister user, UserStandard userStandard) {
+		return userDAO.save(UserRegister.toEntity(user, userStandard));
 	};
 	
 	
+//	
+//	public UserStandard insertUserStandardNo(UserStandard userStandard, User user){
+//		return userStandardDAO.save(UserStandard.of(id, user));
+//	}
 	//MultipartFile -> entity -> SQL저장
 		public UserImg insertUserImg(MultipartFile userImg, User user){
 			return userImgDAO.save(UserImg.of(userImg, user));
