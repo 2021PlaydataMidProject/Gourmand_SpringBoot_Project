@@ -14,7 +14,9 @@ import MapForAll from "./views/MapForAll.vue";
 import ResPage from "./views/ResPage.vue";
 import UserEdit from "./views/UserEdit.vue";
 import MyPage from "./views/MyPage.vue";
+import StarRating from "./views/StarRating.vue";
 import MapForAllSearch from "./views/MapForAllSearch.vue"
+
 
 Vue.use(Router);
 
@@ -136,6 +138,15 @@ export default new Router({
         components: {
           header: AppHeader,
           default: MyPage,
+          footer: AppFooter
+        }  
+    },
+      {
+        path: "/starrating",
+        name: "starRating",
+        components: {
+          header: AppHeader,
+          default: StarRating,
           footer: AppFooter
         }  
     }

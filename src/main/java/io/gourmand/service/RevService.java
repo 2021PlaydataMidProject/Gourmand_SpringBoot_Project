@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import io.gourmand.dao.ReviewRepository;
 import io.gourmand.dao.ReviewStandardRepository;
 import io.gourmand.domain.Review;
-import io.gourmand.dto.RevDTO.AvgRatingStandard;
 import io.gourmand.dto.RevDTO.RevInfo;
 import io.gourmand.dto.RevDTO.RevRegister;
 import io.gourmand.dto.RevDTO.ReviewThumbnail;

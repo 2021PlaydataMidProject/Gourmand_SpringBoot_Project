@@ -7,7 +7,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import io.gourmand.domain.User;
-import io.gourmand.dto.UserDTO.UserInfo;
 
 public interface UserRepository extends JpaRepository<User, String> {
 	User findUserByUserId(String userId);

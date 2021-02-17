@@ -10,6 +10,7 @@
           />
         </div>
         <div class="row justify-content-center">
+
           <div class="row col-lg-10">
             <b-dropdown :text="dropDownText" class="my-3 col-lg-2 col-sm-2" variant="primary">
               <b-dropdown-item @click="drop('음식점')">음식점</b-dropdown-item>
@@ -56,6 +57,7 @@ import { BCarouselSlide } from "bootstrap-vue/esm/components/carousel/carousel-s
 import { BDropdown } from "bootstrap-vue";
 import { BDropdownItem } from "bootstrap-vue";
 import myMap from "./Map";
+import chart from "./components/Chart"
 
 export default {
   name: "home",

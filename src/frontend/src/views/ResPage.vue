@@ -59,6 +59,7 @@
         <hr />
         <h3 class="h5 font-weight-bold">이 가게를 맛집으로 등록한 구르망들</h3>
         <div class="mt-4 row">
+
           <div v-for="(value, key) in resUser" v-bind:key="key">
             <img
               v-if="value.user_img != null"

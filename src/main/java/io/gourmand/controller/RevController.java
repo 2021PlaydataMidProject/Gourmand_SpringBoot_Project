@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.gourmand.domain.Review;
 import io.gourmand.domain.User;
-import io.gourmand.dto.RevDTO.AvgRatingStandard;
 import io.gourmand.dto.RevDTO.RevRegister;
 import io.gourmand.dto.RevDTO.ReviewThumbnail;
 import io.gourmand.service.RevService;

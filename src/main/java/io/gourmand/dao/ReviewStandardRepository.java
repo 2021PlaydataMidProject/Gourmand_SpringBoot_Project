@@ -5,7 +5,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import io.gourmand.domain.ReviewStandard;
-import io.gourmand.dto.RevDTO.AvgRatingStandard;
 
 public interface ReviewStandardRepository extends JpaRepository<ReviewStandard, Long> {
 	

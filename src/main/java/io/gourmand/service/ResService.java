@@ -44,7 +44,6 @@ public class ResService {
 		return ResThumbnail.of(resDAO.findById(id).get());
 	}
 
-	// 전체 가게 -> 거리순
 	public List<ResThumbnail> getAllRes(BigDecimal xValue, BigDecimal yValue, Double limit) {
 		List<ResThumbnail> resThumbList = new ArrayList<>();
 		resDAO.findAllOrderByAxis(xValue, yValue, BigDecimal.valueOf(limit/103.585)).forEach(r -> resThumbList.add(ResThumbnail.of(r)));
