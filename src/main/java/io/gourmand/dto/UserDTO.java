@@ -12,11 +12,9 @@ import io.gourmand.domain.Followers;
 import io.gourmand.domain.ListLikes;
 import io.gourmand.domain.Reply;
 import io.gourmand.domain.Res;
-import io.gourmand.domain.Review;
 import io.gourmand.domain.ReviewLikes;
 import io.gourmand.domain.User;
 import io.gourmand.domain.UserImg;
-import io.gourmand.domain.UserResList;
 import io.gourmand.domain.UserStandard;
 import io.gourmand.dto.UserDTO.UserThumbnail;
 import lombok.AllArgsConstructor;
@@ -172,20 +170,5 @@ public class UserDTO {
 		private boolean isExist;
 	}
 	
-	@Getter
-	   @Setter
-	   @NoArgsConstructor
-	   @AllArgsConstructor
-	   @Builder
-	   public static class UserCountsInfo{
-	         private User userId;
-	         private Review reviewNum;
-	         private UserResList listNum;
-	      
-	         
-	      }
-	   }
 
-	
-
-
+}
