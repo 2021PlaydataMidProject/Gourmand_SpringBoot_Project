@@ -66,13 +66,14 @@ public class UserService {
 	}
 	
 	// 회원 1인 관련 정보페이지에 필요한 DTO를 생성해서 controller에 보낸다.
-//	public UserInfo getUserInfo(Long userNum) {
-//		Optional<User> user = userDAO.findById(userNum);
-//		user.ifPresent(selectUser -> {
-//			System.out.println(selectUser.getUserNum());
-//		});
-////		return UserInfo.of(userDAO.findById(userNum).get());
-//	}
+	public UserInfo getUserInfo(Long userNum) {
+		Optional<User> user = userDAO.findById(userNum);
+		
+		user.ifPresent(selectUser -> {
+			System.out.println(selectUser.getUserNum());
+		});
+		return UserInfo.of(userDAO.findById(userNum).get());
+	}
 
 	// 팔로우, 팔로잉, 추천 계정 등에 들어갈 간략한 유저 정보 및 Thumbnail을 불러와 controller에 보낸다.
 	public UserThumbnail getUserThumbnail(User user) {
