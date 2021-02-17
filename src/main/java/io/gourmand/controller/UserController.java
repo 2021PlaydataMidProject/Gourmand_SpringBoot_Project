@@ -44,46 +44,16 @@ public class UserController {
 	public User setUser() {
 		return new User();
 	}
-	
-//	@ModelAttribute("userStandard") //왜 있나?
-//	public UserStandard setUserStandard() {
-//		return new UserStandard();
-//	}
-//
-////	/* 회원 가입을 위한 User 정보 저장(with image) - /user/regi와 /user/regiUserStandard는 @Transactional로 처리해야 할듯
-////	아니면 두개 한번에 합치는 법 고민*/
-//	@PostMapping("/user/regi")
-//	public void createUser(@RequestParam("userImg") List<MultipartFile> userImg, @RequestParam("user") String userRegi) {
-//		System.out.println(userRegi);
-//		ObjectMapper mapper = new ObjectMapper();
-//	//	mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);  //과연 해결해줄것인가!!!!!!!!!!!
-//	try {
-//		User user = userService.insertUser(mapper.readValue(userRegi, UserRegister.class));
-//		userImg.forEach(img->{
-//		UserImg uimg = userService.insertUserImg(img, user);
-//	try {
-//		userService.saveImg(img, uimg);
-//			} catch (IOException e) {
-//				e.printStackTrace();
-//			}
-//			});
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//			}
-//	}
-//	
-//	
-	/* 회원 가입 한번에 구현 -
+
+	/* 회원 가입을 위한 User 정보 저장(with image) - /user/regi와 /user/regiUserStandard는 @Transactional로 처리해야 할듯
 		아니면 두개 한번에 합치는 법 고민*/
 	@PostMapping("/user/regi")
-	public void createUser(@RequestParam("userImg") List<MultipartFile> userImg, @RequestParam("user") String userRegi, @RequestParam("userStandard") String userStandardregi) {
+	public void createUser(@RequestParam("userImg") List<MultipartFile> userImg, @RequestParam("user") String userRegi) {
 		System.out.println(userRegi);
-		System.out.println(userStandardregi);
 		ObjectMapper mapper = new ObjectMapper();
-////		mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);  
+//		mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);  //과연 해결해줄것인가!!!!!!!!!!!
 	try {
-		UserStandard userStandard = userService.insertUserStandard(mapper.readValue(userStandardregi, UserStandardRegister.class));
-		User user = userService.insertUser(mapper.readValue(userRegi, UserRegister.class), (userStandard));
+		User user = userService.insertUser(mapper.readValue(userRegi, UserRegister.class));
 		userImg.forEach(img->{
 		UserImg uimg = userService.insertUserImg(img, user);
 	try {

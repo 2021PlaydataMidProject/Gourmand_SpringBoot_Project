@@ -78,7 +78,7 @@ public class UserDTO {
 		private int pageStatus;
 		private LocalDate suDate;
 
-		public static User toEntity(UserRegister user, UserStandard userStandard) {
+		public static User toEntity(UserRegister user) {
 			return User.builder()
 					.userId(user.getUserId())
 					.pw(user.getPw())
@@ -87,7 +87,6 @@ public class UserDTO {
 					.job(user.getJob())
 					.suDate(LocalDate.now())
 					.pageStatus(user.getPageStatus())
-					.userStandard(userStandard)
 					.build();
 		}
 	}
