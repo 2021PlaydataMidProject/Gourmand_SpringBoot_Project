@@ -24,6 +24,9 @@
   <li style="float: right;">
     <a class="active" href="/upload">맛집 등록하기</a>
   </li>
+  <li style="float: right;">
+  <a class="activedelete" href="/mymap" onclick="onDelete()">모든 맛집 삭제하기</a>
+  </li>
 </ul>
 <div id ="infoBox">
   <div id="infoTitle">현재날짜</div>
@@ -35,5 +38,23 @@
 <!-- <script type="text/javascript" src="/data/data.js"></script> -->
 <script type="text/javascript" src="/javascripts/MarkerClustering.js"></script>
 <script type="text/javascript" src="/javascripts/main.js"></script>
+<script>
+// DB에 등록된 맛집 모두 삭제
+function onDelete() {
+  $.ajax({
+      url: "/location/delete/all",
+      // data: {title},
+      type: "DELETE", 
+  })
+  .done((response) => {
+      console.log("데이터 요청 성공");
+      alert("모든 맛집이 삭제되었습니다.");
+  })
+  .fail((error) => {
+      console.log("데이터 요청 실패");
+      alert("모든 맛집 삭제 실패.");
+  });
+}
+</script>
 </body>
 </html>

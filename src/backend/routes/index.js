@@ -45,8 +45,6 @@ router.post('/location', function (req, res) {
   var keyword = req.body.title;
   var keyword = encodeURI(keyword);
 
-
-
   request.get({
 
     uri: `https://openapi.naver.com/v1/search/local.json?query=${keyword}&display=20&start=1&sort=random`,
@@ -93,27 +91,31 @@ router.get('/location', function (req, res) {
 
 
 // DB에 등록된 하나의 특정 맛집 삭제
-// router.delete('/location', function (req, res) {
-//   let res_keyword = {
-//     'res_name':'진대감 서초점',
-//   };
-//   // var sql = 'DELETE FROM res WHERE res_name="?"';
-//   // var params = [6]; // 숫자는 없앨 id 값을 넣으면 된다.
-//   connection.query('DELETE FROM res WHERE res_name="?"',res_keyword, function(err, rows, fields){
-//     if(err) console.log(err);
-//     throw err;
-//   });
-//   res.status(200).send('success');
-// });
+router.delete('/location', function (req, res) {
+
+  let sql = 'DELETE FROM res WHERE ?';
+  let res_keyword = {
+    'res_name':req.body.title,
+  };
+  
+  connection.query(sql, res_keyword, function(err){
+    if(err) {
+      console.log("Error delete: " + err);
+      throw err
+    }
+  });
+  res.status(200).send('success');
+});
 
 // DB에 등록된 맛집 모두 삭제
-router.delete('/location', function (req, res) {
+router.delete('/location/delete/all', function (req, res) {
   var sql = 'DELETE FROM res';
-  // var sql = 'DELETE FROM res WHERE res_name="?"';
-  // var params = [6]; // 숫자는 없앨 id 값을 넣으면 된다.
-  connection.query(sql, function(err, rows, fields){
-    if(err) console.log(err);
-    throw err;
+
+  connection.query(sql, function(err){
+    if(err) {
+      console.log("Error all delete: " + err);
+      throw err
+    }
   });
   res.status(200).send('success');
 });

@@ -120,10 +120,10 @@ function displayInfowindow(marker, title, address, lat, lng) {
         infowindow.open(map, marker);
 }
 
-function onDelete(title) {
+function onDelete() {
     $.ajax({
         url: "/location",
-        data: {title},
+        // data: {title},
         type: "DELETE", 
     })
     .done((response) => {
@@ -134,7 +134,8 @@ function onDelete(title) {
         console.log("데이터 요청 실패");
         alert("맛집 삭제 실패.");
     });
-}
+  }
+
 
 function onSubmit(title, address, lat, lng) {
     $.ajax({
