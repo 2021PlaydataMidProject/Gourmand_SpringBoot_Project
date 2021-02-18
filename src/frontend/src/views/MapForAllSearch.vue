@@ -35,6 +35,9 @@
               <base-radio name="9" class="mb-3 mr-1" v-model="radio.radio1">
                 <small> 9km 이내 </small>
               </base-radio>
+              <base-radio name="9999999" class="mb-3 mr-1" v-model="radio.radio1">
+                <small> 전체 </small>
+              </base-radio>
             </div>
             <div class="mt-4 mt-md-0">
               <div class="mb-3">
@@ -198,9 +201,9 @@ export default {
       }
       this.str = this.$route.query.name;
       this.axios
-        // default 반경 3km
+        // default 전체
         .get(
-          `/res/thumbnail/search/${this.str}/${this.xValue},${this.yValue}/3`,{}
+          `/res/thumbnail/search/${this.str}/${this.xValue},${this.yValue}/500`,{}
         )
         .then((res) => {
           this.resThumbnails = res.data;

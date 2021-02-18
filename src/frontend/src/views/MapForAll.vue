@@ -35,6 +35,9 @@
               <base-radio name="9" class="mb-3 mr-1" v-model="radio.radio1">
                 <small> 9km 이내 </small>
               </base-radio>
+              <base-radio name="9999999" class="mb-3 mr-1" v-model="radio.radio1">
+                <small> 전체 </small>
+              </base-radio>
             </div>
             <div class="mt-4 mt-md-0">
               <div class="mb-3">

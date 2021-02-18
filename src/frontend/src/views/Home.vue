@@ -81,7 +81,7 @@
                 </p>
                 <hr class="col-sm-10 mt-0">
               </div>
-              <div class="col-lg-6 col-sm-6">
+              <div class="col-md-6">
                 <img
                   v-if="rev.review_img != null"
                   v-lazy="'img/rev/' + value.review_img.name"
@@ -181,6 +181,7 @@ export default {
     },
   },
   mounted() {
+    console.log(sessionStorage.getItem("user"))
     this.axios
       .get("/rev/main/nologin", {})
       .then((rev) => {
