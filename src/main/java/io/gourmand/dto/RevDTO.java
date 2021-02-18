@@ -9,6 +9,7 @@ import io.gourmand.domain.Review;
 import io.gourmand.domain.ReviewImg;
 import io.gourmand.domain.ReviewStandard;
 import io.gourmand.domain.User;
+import io.gourmand.dto.UserDTO.UserThumbnail;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -73,8 +74,9 @@ public class RevDTO {
 	@Builder
 	public static class ReviewThumbnail {
 		private Long reviewNum;
-		private Long userNum;
+		private UserThumbnail user;
 		private Long resNum;
+		private String resName;
 		private String foodType;
 		private String review;
 		private LocalDate writeDate;
@@ -86,23 +88,9 @@ public class RevDTO {
 			if (rev.getReviewImg().size() > 0) {
 				revImg = rev.getReviewImg().get(0);
 			}
-			return ReviewThumbnail.builder().reviewNum(rev.getReviewNum()).userNum(rev.getUser().getUserNum())
-					.resNum(rev.getRes().getResNum()).foodType(rev.getFoodType()).review(rev.getReview())
+			return ReviewThumbnail.builder().reviewNum(rev.getReviewNum()).user(UserThumbnail.of(rev.getUser()))
+					.resNum(rev.getRes().getResNum()).resName(rev.getRes().getResName()).foodType(rev.getFoodType()).review(rev.getReview())
 					.writeDate(rev.getWriteDate()).reviewImg(revImg).reviewStandard(rev.getReviewStandard()).build();
 		}
-	}
-	
-	// standard들의 평균 별점
-	@NoArgsConstructor
-	@AllArgsConstructor
-	@Setter
-	@Getter
-	public static class AvgRatingStandard {
-		private BigDecimal rFlavor;		
-		private BigDecimal rClean;
-		private BigDecimal rCostValue;
-		private BigDecimal rMood;
-		private BigDecimal rKindness;
-		private BigDecimal rAccess;
 	}
 }

@@ -30,7 +30,7 @@ export default {
         datasets: [
           {
             label: "박민영",
-            fontSize: 20,
+            fontSize: 10,
             data: [this.$props.data[0], this.$props.data[1], this.$props.data[2], this.$props.data[3], this.$props.data[4], this.$props.data[5]],
             backgroundColor: ["rgba(255, 181, 60, 0.7)"],
             borderColor: [
@@ -56,7 +56,7 @@ export default {
             stepSize: 1,
           },
           pointLabels: {
-            fontSize: 20,
+            fontSize: 12,
           },
         },
         legend: {

@@ -61,4 +61,12 @@ public class RevService {
 	public String getResAvgRatingStandard(Long id) {
 		return rsDAO.getResAvgStandard(id);
 	}
+	
+	// 리뷰 역시간순으로 조회
+	public List<ReviewThumbnail> getRevOrderByTime(){
+		List<ReviewThumbnail> rt = new ArrayList<>();
+		revDAO.findAllOrderByDate().forEach(rev -> rt.add(ReviewThumbnail.of(rev)));
+		return rt;
+	}
+	
 }

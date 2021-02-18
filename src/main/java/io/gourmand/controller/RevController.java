@@ -84,4 +84,10 @@ public class RevController {
 	public String returnResStandard(@PathVariable Long id) {
 		return revService.getResAvgRatingStandard(id);
 	}
+	
+	// 시간순으로 12개의 revThumbnail
+	@GetMapping("/rev/main/nologin")
+	public List<ReviewThumbnail> returnAllOrderByTime(){
+		return revService.getRevOrderByTime();
+	}
 }
