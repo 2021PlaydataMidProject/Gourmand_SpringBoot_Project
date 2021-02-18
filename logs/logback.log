@@ -1659,3 +1659,115 @@ java.lang.IllegalStateException: Cannot call sendError() after the response has 
 [2021-02-18 17:23:40:28769719][http-nio-80-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
 [2021-02-18 17:23:55:28784535][http-nio-80-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - GET "/rev/main/nologin", parameters={}
 [2021-02-18 17:23:55:28784536][http-nio-80-exec-6] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to io.gourmand.controller.RevController#returnAllOrderByTime()
+[2021-02-18 17:23:55:28784568][http-nio-80-exec-6] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json, application/json, application/*+json]
+[2021-02-18 17:23:55:28784568][http-nio-80-exec-6] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [[io.gourmand.dto.RevDTO$ReviewThumbnail@2a28422a, io.gourmand.dto.RevDTO$ReviewThumbnail@55b40e74, i (truncated)...]
+[2021-02-18 17:23:55:28784574][http-nio-80-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+[2021-02-18 17:47:46:30215095][http-nio-80-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - GET "/rev/main/nologin", parameters={}
+[2021-02-18 17:47:46:30215096][http-nio-80-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to io.gourmand.controller.RevController#returnAllOrderByTime()
+[2021-02-18 17:47:46:30215197][http-nio-80-exec-7] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json, application/json, application/*+json]
+[2021-02-18 17:47:46:30215197][http-nio-80-exec-7] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [[io.gourmand.dto.RevDTO$ReviewThumbnail@2110a52, io.gourmand.dto.RevDTO$ReviewThumbnail@1f308208, io (truncated)...]
+[2021-02-18 17:47:46:30215198][http-nio-80-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+[2021-02-18 17:55:24:30673153][http-nio-80-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - GET "/rev/main/nologin", parameters={}
+[2021-02-18 17:55:24:30673154][http-nio-80-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to io.gourmand.controller.RevController#returnAllOrderByTime()
+[2021-02-18 17:55:24:30673196][http-nio-80-exec-8] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json, application/json, application/*+json]
+[2021-02-18 17:55:24:30673196][http-nio-80-exec-8] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [[io.gourmand.dto.RevDTO$ReviewThumbnail@5c6ee19b, io.gourmand.dto.RevDTO$ReviewThumbnail@372d4d52, i (truncated)...]
+[2021-02-18 17:55:24:30673202][http-nio-80-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+[2021-02-18 17:55:26:30675393][http-nio-80-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - GET "/res/thumbnail/37.2822,126.9994/3", parameters={}
+[2021-02-18 17:55:26:30675394][http-nio-80-exec-9] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to io.gourmand.controller.ResController#getAllResThumbnail(BigDecimal, BigDecimal, Double)
+[2021-02-18 17:55:26:30675412][http-nio-80-exec-9] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json, application/json, application/*+json]
+[2021-02-18 17:55:26:30675412][http-nio-80-exec-9] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [[io.gourmand.dto.ResDTO$ResThumbnail@77443ed1, io.gourmand.dto.ResDTO$ResThumbnail@2e2a61da]]
+[2021-02-18 17:55:26:30675415][http-nio-80-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+[2021-02-18 17:55:28:30677458][http-nio-80-exec-10] DEBUG o.s.web.servlet.DispatcherServlet - GET "/res/1/resinfo", parameters={}
+[2021-02-18 17:55:28:30677459][http-nio-80-exec-10] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to io.gourmand.controller.ResController#getResInfo(Long)
+[2021-02-18 17:55:28:30677459][http-nio-80-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - GET "/res/1/user", parameters={}
+[2021-02-18 17:55:28:30677460][http-nio-80-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to io.gourmand.controller.ResController#getUserByRes(Long)
+[2021-02-18 17:55:28:30677470][http-nio-80-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - GET "/rev/res/1", parameters={}
+[2021-02-18 17:55:28:30677470][http-nio-80-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to io.gourmand.controller.RevController#returnAllRevOfRes(Long)
+[2021-02-18 17:55:28:30677476][http-nio-80-exec-10] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json, application/json, application/*+json]
+[2021-02-18 17:55:28:30677476][http-nio-80-exec-10] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [io.gourmand.dto.ResDTO$ResInfo@4198d427]
+[2021-02-18 17:55:28:30677477][http-nio-80-exec-10] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+[2021-02-18 17:55:28:30677483][http-nio-80-exec-1] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json, application/json, application/*+json]
+[2021-02-18 17:55:28:30677518][http-nio-80-exec-1] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [[io.gourmand.dto.UserDTO$UserThumbnail@42750a32, io.gourmand.dto.UserDTO$UserThumbnail@43f775af]]
+[2021-02-18 17:55:28:30677518][http-nio-80-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+[2021-02-18 17:55:28:30677534][http-nio-80-exec-2] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json, application/json, application/*+json]
+[2021-02-18 17:55:28:30677534][http-nio-80-exec-2] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [[io.gourmand.dto.RevDTO$ReviewThumbnail@6ff8fd5d, io.gourmand.dto.RevDTO$ReviewThumbnail@19a0f9fb]]
+[2021-02-18 17:55:28:30677535][http-nio-80-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+[2021-02-18 17:55:29:30677797][http-nio-80-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - GET "/rev/res/1/standard", parameters={}
+[2021-02-18 17:55:29:30677797][http-nio-80-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to io.gourmand.controller.RevController#returnResStandard(Long)
+[2021-02-18 17:55:29:30677800][http-nio-80-exec-3] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [application/json, text/plain, */*] and supported [text/plain, */*, text/plain, */*, application/json, application/*+json, application/json, application/*+json]
+[2021-02-18 17:55:29:30677800][http-nio-80-exec-3] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing ["3.500000,3.500000,3.500000,3.500000,3.500000,3.500000"]
+[2021-02-18 17:55:29:30677801][http-nio-80-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+[2021-02-18 18:29:36:32725183][http-nio-80-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - GET "/res/thumbnail/37.2822,126.9994/3", parameters={}
+[2021-02-18 18:29:36:32725184][http-nio-80-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to io.gourmand.controller.ResController#getAllResThumbnail(BigDecimal, BigDecimal, Double)
+[2021-02-18 18:29:36:32725197][http-nio-80-exec-4] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json, application/json, application/*+json]
+[2021-02-18 18:29:36:32725198][http-nio-80-exec-4] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [[io.gourmand.dto.ResDTO$ResThumbnail@46761bdd, io.gourmand.dto.ResDTO$ResThumbnail@5bf2a7a0]]
+[2021-02-18 18:29:36:32725199][http-nio-80-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+[2021-02-18 18:30:13:32762474][http-nio-80-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - GET "/res/user/1/list", parameters={}
+[2021-02-18 18:30:13:32762474][http-nio-80-exec-5] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to io.gourmand.controller.ResController#getResOfList(Long)
+[2021-02-18 18:30:13:32762493][http-nio-80-exec-5] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json, application/json, application/*+json]
+[2021-02-18 18:30:13:32762493][http-nio-80-exec-5] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [{수원맛집=[io.gourmand.dto.ResDTO$ResThumbnail@2d8cd957, io.gourmand.dto.ResDTO$ResThumbnail@5ae1615e],  (truncated)...]
+[2021-02-18 18:30:13:32762494][http-nio-80-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+[2021-02-18 18:30:16:32765113][http-nio-80-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - GET "/res/user/2/list", parameters={}
+[2021-02-18 18:30:16:32765113][http-nio-80-exec-6] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to io.gourmand.controller.ResController#getResOfList(Long)
+[2021-02-18 18:30:16:32765118][http-nio-80-exec-6] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json, application/json, application/*+json]
+[2021-02-18 18:30:16:32765118][http-nio-80-exec-6] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [{맛집수원=[io.gourmand.dto.ResDTO$ResThumbnail@21e52172, io.gourmand.dto.ResDTO$ResThumbnail@53ee9dfd]}]
+[2021-02-18 18:30:16:32765118][http-nio-80-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+[2021-02-18 18:30:18:32767334][http-nio-80-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - GET "/res/user/0/list", parameters={}
+[2021-02-18 18:30:18:32767335][http-nio-80-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to io.gourmand.controller.ResController#getResOfList(Long)
+[2021-02-18 18:30:18:32767337][http-nio-80-exec-7] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json, application/json, application/*+json]
+[2021-02-18 18:30:18:32767337][http-nio-80-exec-7] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [{}]
+[2021-02-18 18:30:18:32767337][http-nio-80-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+[2021-02-18 18:30:19:32768599][http-nio-80-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - GET "/res/user/3/list", parameters={}
+[2021-02-18 18:30:19:32768599][http-nio-80-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to io.gourmand.controller.ResController#getResOfList(Long)
+[2021-02-18 18:30:19:32768601][http-nio-80-exec-8] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json, application/json, application/*+json]
+[2021-02-18 18:30:19:32768601][http-nio-80-exec-8] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [{}]
+[2021-02-18 18:30:19:32768602][http-nio-80-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+[2021-02-18 18:30:20:32769448][http-nio-80-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - GET "/res/user/4/list", parameters={}
+[2021-02-18 18:30:20:32769448][http-nio-80-exec-9] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to io.gourmand.controller.ResController#getResOfList(Long)
+[2021-02-18 18:30:20:32769450][http-nio-80-exec-9] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json, application/json, application/*+json]
+[2021-02-18 18:30:20:32769450][http-nio-80-exec-9] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [{}]
+[2021-02-18 18:30:20:32769451][http-nio-80-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+[2021-02-18 18:30:21:32770046][http-nio-80-exec-10] DEBUG o.s.web.servlet.DispatcherServlet - GET "/res/user/5/list", parameters={}
+[2021-02-18 18:30:21:32770046][http-nio-80-exec-10] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to io.gourmand.controller.ResController#getResOfList(Long)
+[2021-02-18 18:30:21:32770048][http-nio-80-exec-10] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json, application/json, application/*+json]
+[2021-02-18 18:30:21:32770048][http-nio-80-exec-10] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [{}]
+[2021-02-18 18:30:21:32770048][http-nio-80-exec-10] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+[2021-02-18 18:30:22:32771092][http-nio-80-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - GET "/res/user/6/list", parameters={}
+[2021-02-18 18:30:22:32771092][http-nio-80-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to io.gourmand.controller.ResController#getResOfList(Long)
+[2021-02-18 18:30:22:32771094][http-nio-80-exec-1] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json, application/json, application/*+json]
+[2021-02-18 18:30:22:32771094][http-nio-80-exec-1] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [{}]
+[2021-02-18 18:30:22:32771095][http-nio-80-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+[2021-02-18 18:30:25:32773989][http-nio-80-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - GET "/res/user/6/list", parameters={}
+[2021-02-18 18:30:25:32773989][http-nio-80-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to io.gourmand.controller.ResController#getResOfList(Long)
+[2021-02-18 18:30:25:32773991][http-nio-80-exec-2] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json, application/json, application/*+json]
+[2021-02-18 18:30:25:32773991][http-nio-80-exec-2] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [{}]
+[2021-02-18 18:30:25:32773991][http-nio-80-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+[2021-02-18 18:30:27:32775860][http-nio-80-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - GET "/res/user/4/list", parameters={}
+[2021-02-18 18:30:27:32775861][http-nio-80-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to io.gourmand.controller.ResController#getResOfList(Long)
+[2021-02-18 18:30:27:32775864][http-nio-80-exec-3] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json, application/json, application/*+json]
+[2021-02-18 18:30:27:32775864][http-nio-80-exec-3] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [{}]
+[2021-02-18 18:30:27:32775864][http-nio-80-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+[2021-02-18 18:30:27:32776725][http-nio-80-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - GET "/res/user/3/list", parameters={}
+[2021-02-18 18:30:27:32776726][http-nio-80-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to io.gourmand.controller.ResController#getResOfList(Long)
+[2021-02-18 18:30:27:32776727][http-nio-80-exec-4] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json, application/json, application/*+json]
+[2021-02-18 18:30:27:32776727][http-nio-80-exec-4] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [{}]
+[2021-02-18 18:30:27:32776728][http-nio-80-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+[2021-02-18 18:35:16:33064915][http-nio-80-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - GET "/res/user/1/list", parameters={}
+[2021-02-18 18:35:16:33064916][http-nio-80-exec-5] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to io.gourmand.controller.ResController#getResOfList(Long)
+[2021-02-18 18:35:16:33064932][http-nio-80-exec-5] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json, application/json, application/*+json]
+[2021-02-18 18:35:16:33064932][http-nio-80-exec-5] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [{수원맛집=[io.gourmand.dto.ResDTO$ResThumbnail@4c829af6, io.gourmand.dto.ResDTO$ResThumbnail@2d78365f],  (truncated)...]
+[2021-02-18 18:35:16:33064933][http-nio-80-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+[2021-02-18 18:35:18:33067244][http-nio-80-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - GET "/res/user/2/list", parameters={}
+[2021-02-18 18:35:18:33067244][http-nio-80-exec-6] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to io.gourmand.controller.ResController#getResOfList(Long)
+[2021-02-18 18:35:18:33067249][http-nio-80-exec-6] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json, application/json, application/*+json]
+[2021-02-18 18:35:18:33067249][http-nio-80-exec-6] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [{맛집수원=[io.gourmand.dto.ResDTO$ResThumbnail@281a6761, io.gourmand.dto.ResDTO$ResThumbnail@4d739809]}]
+[2021-02-18 18:35:18:33067250][http-nio-80-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+[2021-02-18 18:35:19:33068600][http-nio-80-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - GET "/res/user/1/list", parameters={}
+[2021-02-18 18:35:19:33068601][http-nio-80-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to io.gourmand.controller.ResController#getResOfList(Long)
+[2021-02-18 18:35:19:33068611][http-nio-80-exec-7] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json, application/json, application/*+json]
+[2021-02-18 18:35:19:33068611][http-nio-80-exec-7] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [{수원맛집=[io.gourmand.dto.ResDTO$ResThumbnail@6aeb499c, io.gourmand.dto.ResDTO$ResThumbnail@43914325],  (truncated)...]
+[2021-02-18 18:35:19:33068611][http-nio-80-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+[2021-02-18 18:35:20:33069581][http-nio-80-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - GET "/res/user/3/list", parameters={}
+[2021-02-18 18:35:20:33069581][http-nio-80-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to io.gourmand.controller.ResController#getResOfList(Long)
+[2021-02-18 18:35:20:33069583][http-nio-80-exec-8] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json, application/json, application/*+json]
+[2021-02-18 18:35:20:33069583][http-nio-80-exec-8] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [{}]

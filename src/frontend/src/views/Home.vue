@@ -51,7 +51,7 @@
       <div class="text-center pt-lg">
         <div class="mt-5">
           <hr />
-          <h3 class="h4 font-weight-bold mb-5">Latest Review</h3>
+          <h3 class="h4 font-weight-bold mb-5">Recent Activities</h3>
           <div class="row">
             <div
               v-for="(rev, key) in revs"
