@@ -13,6 +13,8 @@ import javax.persistence.ManyToOne;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -35,6 +37,7 @@ public class UserImg {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long userImgId; 
 	
+	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="USER_NUM")
 	private User user;

@@ -19,10 +19,10 @@ import io.gourmand.dao.ResRepository;
 import io.gourmand.dao.UserRepository;
 import io.gourmand.domain.Res;
 import io.gourmand.domain.ResImg;
-import io.gourmand.domain.User;
 import io.gourmand.dto.ResDTO.ResInfo;
 import io.gourmand.dto.ResDTO.ResRegister;
 import io.gourmand.dto.ResDTO.ResThumbnail;
+import io.gourmand.dto.UserDTO.UserThumbnail;
 
 @Service
 public class ResService {
@@ -44,10 +44,9 @@ public class ResService {
 		return ResThumbnail.of(resDAO.findById(id).get());
 	}
 
-	// 전체 가게 -> 거리순
-	public List<ResThumbnail> getAllRes(BigDecimal xValue, BigDecimal yValue) {
+	public List<ResThumbnail> getAllRes(BigDecimal xValue, BigDecimal yValue, Double limit) {
 		List<ResThumbnail> resThumbList = new ArrayList<>();
-		resDAO.findAllOrderByAxis(xValue, yValue).forEach(r -> resThumbList.add(ResThumbnail.of(r)));
+		resDAO.findAllOrderByAxis(xValue, yValue, BigDecimal.valueOf(limit/103.585)).forEach(r -> resThumbList.add(ResThumbnail.of(r)));
 		return resThumbList;
 	}
 
@@ -65,10 +64,19 @@ public class ResService {
 		return resThumbList;
 	}
 
+	// 가게 검색
+	public List<ResThumbnail> returnAllResByName(BigDecimal xValue, BigDecimal yValue, Double limit, String name){
+		List<ResThumbnail> resThumbList = new ArrayList<>();
+		resDAO.findAllbyResName(xValue, yValue, BigDecimal.valueOf(limit/103.585), name).forEach(r -> resThumbList.add(ResThumbnail.of(r)));
+		return resThumbList;
+	}
+	
 	// 해당 가게를 리스트에 넣은 유저 반환 - res 팀 작업 중
-//	public List<User> getUserByRes(Long id) {
-//		return userDAO.findUsersOfRes(id);
-//	}
+	public List<UserThumbnail> getUserByRes(Long id) {
+		List<UserThumbnail> userThumbList = new ArrayList<>();
+		userDAO.findUsersOfRes(id).forEach(user -> userThumbList.add(UserThumbnail.of(user)));
+		return userThumbList;
+	}
 
 	// 가게 등록 페이지에서 저장
 	public Res insertRes(ResRegister res) {

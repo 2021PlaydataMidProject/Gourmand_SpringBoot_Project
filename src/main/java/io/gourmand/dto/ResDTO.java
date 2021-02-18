@@ -33,9 +33,13 @@ public class ResDTO {
 		private List<ResImg> resImg;
 
 		public static ResInfo of(Res res) {
+			List<ResImg> rmg = null;
+			if (res.getResImg().size()>0) {
+				rmg=res.getResImg();
+			}
 			return ResInfo.builder().resNum(res.getResNum()).resName(res.getResName()).xValue(res.getXValue())
-					.yValue(res.getYValue()).resAddress(res.getResAddress()).tel(res.getTel())
-					.avgStar(res.getAvgStar()).category(res.getCategory()).resImg(res.getResImg()).build();
+					.yValue(res.getYValue()).resAddress(res.getResAddress()).resHour(res.getResHour()).tel(res.getTel())
+					.avgStar(res.getAvgStar()).category(res.getCategory()).resImg(rmg).build();
 		}
 	}
 
@@ -92,6 +96,7 @@ public class ResDTO {
 					.resAddress(res.getResAddress())
 					.tel(res.getTel())
 					.category(res.getCategory())
+					.avgStar(BigDecimal.valueOf(0.0))
 					.build();
 		}
 	}

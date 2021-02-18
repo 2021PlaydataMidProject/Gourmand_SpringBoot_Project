@@ -24,6 +24,7 @@ public class UserStandardDTO {
 	@Setter
 	@AllArgsConstructor
 	@NoArgsConstructor
+	@ToString
 	@Builder
 	@ToString
 	public static class UserStandardRegister {
@@ -49,10 +50,7 @@ public class UserStandardDTO {
 		}
 
 	}
-
 	
-		
 
-		
 }
 
