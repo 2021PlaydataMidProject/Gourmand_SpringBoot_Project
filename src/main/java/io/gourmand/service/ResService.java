@@ -19,7 +19,6 @@ import io.gourmand.dao.ResRepository;
 import io.gourmand.dao.UserRepository;
 import io.gourmand.domain.Res;
 import io.gourmand.domain.ResImg;
-import io.gourmand.domain.User;
 import io.gourmand.dto.ResDTO.ResInfo;
 import io.gourmand.dto.ResDTO.ResRegister;
 import io.gourmand.dto.ResDTO.ResThumbnail;
@@ -79,7 +78,6 @@ public class ResService {
 		Res newres = resDAO.findById(id).get();
 		Res res = ResRegister.toEntity(resRegi);
 		
-		newres.setResHour(res.getResHour());
 		newres.setResAddress(res.getResAddress());
 		newres.setResName(res.getResName());
 		newres.setTel(res.getTel());

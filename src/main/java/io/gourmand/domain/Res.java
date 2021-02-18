@@ -42,9 +42,6 @@ public class Res {
 	@Column(name = "RES_ADDRESS")
 	private String resAddress;
 
-	@Column(name = "RES_HOUR")
-	private String resHour;
-
 	@Column(name = "TEL")
 	private String tel;
 
@@ -58,6 +55,7 @@ public class Res {
 	private List<ResImg> resImg;
 
 	@OneToMany(mappedBy = "res")
+
 	private List<Review> review;
 	
 	@OneToMany(mappedBy = "res")

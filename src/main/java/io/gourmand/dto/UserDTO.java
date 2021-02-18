@@ -1,15 +1,22 @@
 package io.gourmand.dto;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import io.gourmand.domain.Followers;
 import io.gourmand.domain.ListLikes;
 import io.gourmand.domain.Reply;
 import io.gourmand.domain.Res;
+import io.gourmand.domain.Review;
 import io.gourmand.domain.ReviewLikes;
 import io.gourmand.domain.User;
 import io.gourmand.domain.UserImg;
+import io.gourmand.domain.UserResList;
 import io.gourmand.domain.UserStandard;
 import io.gourmand.dto.UserDTO.UserThumbnail;
 import lombok.AllArgsConstructor;
@@ -71,15 +78,18 @@ public class UserDTO {
 		private String dob;
 		private String job;
 		private int pageStatus;
+		private LocalDate suDate;
 
-		public static User toEntity(UserRegister user) {
+		public static User toEntity(UserRegister user, UserStandard userStandard) {
 			return User.builder()
 					.userId(user.getUserId())
 					.pw(user.getPw())
 					.name(user.getName())
 					.dob(user.getDob())
 					.job(user.getJob())
+					.suDate(LocalDate.now())
 					.pageStatus(user.getPageStatus())
+					.userStandard(userStandard)
 					.build();
 		}
 	}
@@ -162,5 +172,20 @@ public class UserDTO {
 		private boolean isExist;
 	}
 	
+	@Getter
+	   @Setter
+	   @NoArgsConstructor
+	   @AllArgsConstructor
+	   @Builder
+	   public static class UserCountsInfo{
+	         private User userId;
+	         private Review reviewNum;
+	         private UserResList listNum;
+	      
+	         
+	      }
+	   }
 
-}
+	
+
+

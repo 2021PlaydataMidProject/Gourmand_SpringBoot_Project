@@ -27,7 +27,6 @@ public class ResDTO {
 		private BigDecimal xValue;
 		private BigDecimal yValue;
 		private String resAddress;
-		private String resHour;
 		private String tel;
 		private BigDecimal avgStar;
 		private String category;
@@ -35,7 +34,7 @@ public class ResDTO {
 
 		public static ResInfo of(Res res) {
 			return ResInfo.builder().resNum(res.getResNum()).resName(res.getResName()).xValue(res.getXValue())
-					.yValue(res.getYValue()).resAddress(res.getResAddress()).resHour(res.getResHour()).tel(res.getTel())
+					.yValue(res.getYValue()).resAddress(res.getResAddress()).tel(res.getTel())
 					.avgStar(res.getAvgStar()).category(res.getCategory()).resImg(res.getResImg()).build();
 		}
 	}
@@ -49,7 +48,6 @@ public class ResDTO {
 	public static class ResThumbnail {
 		private Long resNum;
 		private String resName;
-		private String resHour;
 		private String tel;
 		private BigDecimal avgStar;
 		private String category;
@@ -63,7 +61,6 @@ public class ResDTO {
 			return ResThumbnail.builder()
 					.resNum(res.getResNum())
 					.resName(res.getResName())
-					.resHour(res.getResHour())
 					.tel(res.getTel())
 					.avgStar(res.getAvgStar())
 					.resAddress(res.getResAddress())
@@ -83,7 +80,6 @@ public class ResDTO {
 	public static class ResRegister {
 		private String resName;
 		private String resAddress;
-		private String resHour;
 		private String tel;
 		private String category;
 
@@ -94,7 +90,6 @@ public class ResDTO {
 					.xValue(axis[1])
 					.yValue(axis[0])
 					.resAddress(res.getResAddress())
-					.resHour(res.getResHour())
 					.tel(res.getTel())
 					.category(res.getCategory())
 					.build();

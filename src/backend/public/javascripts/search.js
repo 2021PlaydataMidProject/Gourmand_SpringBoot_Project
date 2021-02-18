@@ -169,6 +169,4 @@ function placeSearchCB(data, status, pagination) {
   }
 }
 
-
-
 // 지도1 end

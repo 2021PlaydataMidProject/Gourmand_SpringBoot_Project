@@ -57,6 +57,7 @@ function displayPlaces(data) {
         let address_name = data[i]["address_name"];
         let place_name = data[i]["place_name"];
 
+
         const placePosition = new daum.maps.LatLng(lat, lng);
         bounds.extend(placePosition);
 
@@ -75,7 +76,6 @@ function displayPlaces(data) {
                     ${place_name}
                 </div>
                 <span>${address_name}</span>
-                <button></button>
             </div>
             `;
 
@@ -109,6 +109,8 @@ function displayInfowindow(marker, title, address, lat, lng) {
             ${title}<br>
             ${address}<br>
             <button onclick="onSubmit('${title}','${address}',${lat},${lng});">등록</button>
+            <button onclick="onDelete('${title}');">삭제</button>
+            <button onclick="removeMarker();">마커 숨기기</button>
         </div>
         `;
         //인포윈도우를 보여줄 때 그 위치로 이동 
@@ -118,6 +120,23 @@ function displayInfowindow(marker, title, address, lat, lng) {
         infowindow.open(map, marker);
 }
 
+function onDelete(title) {
+    $.ajax({
+        url: "/location",
+        data: {title},
+        type: "DELETE", 
+    })
+    .done((response) => {
+        console.log("데이터 요청 성공");
+        alert("맛집이 삭제되었습니다.");
+    })
+    .fail((error) => {
+        console.log("데이터 요청 실패");
+        alert("맛집 삭제 실패.");
+    });
+  }
+
+
 function onSubmit(title, address, lat, lng) {
     $.ajax({
         url: "/location",
@@ -126,13 +145,15 @@ function onSubmit(title, address, lat, lng) {
     })
     .done((response) => {
         console.log("데이터 요청 성공");
-        alert("성공");
+        alert("맛집이 추가되었습니다.");
     })
     .fail((error) => {
         console.log("데이터 요청 실패");
-        alert("실패");
+        alert("맛집 추가 실패.");
     });
 }
+
+
 
 // placesList 안에 있는 노드, 태그들을 제거함
 function removeAllChildNodes(el) {
@@ -147,6 +168,7 @@ function removeMarker() {
     for (let i = 0; i < markerList.length; i++) {
         markerList[i].setMap(null);
     }
+    
     markerList = [];
 }
 
