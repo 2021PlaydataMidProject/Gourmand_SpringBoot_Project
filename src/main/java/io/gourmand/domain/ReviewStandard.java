@@ -3,9 +3,13 @@ package io.gourmand.domain;
 import java.math.BigDecimal;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -21,7 +25,7 @@ import lombok.ToString;
 @ToString
 @Builder
 
-@Entity(name="REVIEW_STANDARD")
+@Entity(name="RATING_STANDARD")
 public class ReviewStandard {
 	
 	@Id
@@ -46,5 +50,9 @@ public class ReviewStandard {
 	
 	@Column(name= "R_ACCESS")
 	private BigDecimal rAccess;
+	
+	@JsonIgnore
+	@OneToOne(mappedBy = "reviewStandard",fetch=FetchType.LAZY)
+	private Review review;
 	
 }

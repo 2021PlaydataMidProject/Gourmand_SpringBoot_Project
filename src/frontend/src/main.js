@@ -17,7 +17,6 @@
 */
 import Vue from "vue";
 import App from "./App.vue";
-// import router from "./router/index";
 import router from "./router.js";
 import Argon from "./plugins/argon-kit";
 import axios from 'axios'

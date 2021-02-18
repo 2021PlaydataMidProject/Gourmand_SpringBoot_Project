@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import io.gourmand.domain.Review;
 import io.gourmand.domain.User;
 import io.gourmand.dto.RevDTO.RevRegister;
+import io.gourmand.dto.RevDTO.ReviewThumbnail;
 import io.gourmand.service.RevService;
 
 @RestController
@@ -71,5 +73,21 @@ public class RevController {
 		return "forward:getReview";
 	}
 
-
+	// 가게에 대한 댓글 Thumbnail
+	@GetMapping("/rev/res/{id}")
+	public List<ReviewThumbnail> returnAllRevOfRes(@PathVariable Long id){
+		return revService.getRevThumbnailByResNum(id);
+	}
+	
+	// 가게에 대한 standard 정보
+	@GetMapping("/rev/res/{id}/standard")
+	public String returnResStandard(@PathVariable Long id) {
+		return revService.getResAvgRatingStandard(id);
+	}
+	
+	// 시간순으로 12개의 revThumbnail
+	@GetMapping("/rev/main/nologin")
+	public List<ReviewThumbnail> returnAllOrderByTime(){
+		return revService.getRevOrderByTime();
+	}
 }

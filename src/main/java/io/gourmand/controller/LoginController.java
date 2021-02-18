@@ -19,7 +19,7 @@ public class LoginController {
 	private UserService userService;
 
 	@PostMapping("/auth/login")
-	public User signin(@RequestBody @Validated UserDTO.SigninRequest request) {
+	public User signin(@RequestBody @Validated UserDTO.SigninRequest request){
 		User user;
 		try {
 			user = userService.getMatchedUser(request);

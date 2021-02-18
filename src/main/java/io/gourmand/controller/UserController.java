@@ -23,8 +23,6 @@ import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import io.gourmand.service.UserService;
-import io.gourmand.domain.Res;
-import io.gourmand.domain.ResImg;
 import io.gourmand.domain.User;
 import io.gourmand.domain.UserImg;
 import io.gourmand.domain.UserStandard;
@@ -73,7 +71,14 @@ public class UserController {
 			}
 	}
 	
-
+	//	 회원 기준 저장 
+	@PostMapping("/user/regiNewStandard")
+	public UserStandardRegister createUserStandard(@RequestBody UserStandardRegister userStandard) {
+		System.out.println(userStandard);
+		return userStandard;
+	//System.out.println( "신규 회원 기준 저장" + userStandard.getId() );
+	//userService.insertUserStandard(userStandard);
+	}
 	
 	// 회원 1인의 전체 정보 가져오기 - 작업중
 //	@GetMapping("/user/{id}/info")
