@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import io.gourmand.domain.Review;
+import io.gourmand.dto.RevDTO.RevRegister;
 
 public interface ReviewRepository extends JpaRepository<Review, Long> {
 	void save(RevRegister entity);
@@ -30,4 +31,3 @@ public interface ReviewRepository extends JpaRepository<Review, Long> {
 //  	// 역시간순 반환 
 //  	@Query(value = "select * from review order by review.writeDate = :writeDate desc", nativeQuery = true)
 //  	List<ReviewThumbnail> findAllOrderByWriteDateReverse(@Param("writeDate") LocalDate writeDate);
-}

@@ -96,38 +96,4 @@ public class RevDTO {
 	}
 	
 	 
-	   //대표 이미지와 간단 설명
-	      @NoArgsConstructor
-	      @AllArgsConstructor
-	      @Setter
-	      @Getter
-	      @Builder
-	      public static class ReviewThumbnail {
-	         private Long reviewNum;
-	         private User user;
-	         private Res res;
-	         private String foodType;
-	         private String review;
-	         private LocalDate writeDate;
-	         private List<ReviewImg> reviewImg;
-	         private ReviewStandard reviewStandard;
-	         
-	         
-	         public static ReviewThumbnail of(ReviewThumbnail rev) {
-	            ReviewImg revImg = null;
-	            if (rev.getReviewImg().size()>0) {
-	               revImg = rev.getReviewImg().get(0);
-	            }
-	            return ReviewThumbnail.builder()
-	            .reviewNum(rev.getReviewNum())
-	            .user(rev.getUser())
-	            .res (rev.getRes())
-	            .foodType ( rev.getFoodType())
-	            .review (rev.getReview())
-	            .writeDate (rev.getWriteDate())
-	            .reviewImg (rev.getReviewImg())
-	            .reviewStandard (rev.getReviewStandard())
-	            .build();
-	         }
-	      }
 }

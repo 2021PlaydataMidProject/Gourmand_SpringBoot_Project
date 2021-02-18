@@ -1,5 +1,9 @@
 package io.gourmand.controller;
 
+import java.io.IOException;
+import java.math.BigDecimal;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.ui.Model;
@@ -8,12 +12,24 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.MapperFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import io.gourmand.service.UserService;
+import io.gourmand.domain.Res;
+import io.gourmand.domain.ResImg;
 import io.gourmand.domain.User;
+import io.gourmand.domain.UserImg;
+import io.gourmand.domain.UserStandard;
+import io.gourmand.dto.ResDTO.ResRegister;
+import io.gourmand.dto.RevDTO;
 import io.gourmand.dto.UserDTO.UserInfo;
 import io.gourmand.dto.UserDTO.UserRegister;
 import io.gourmand.dto.UserStandardDTO.UserStandardRegister;
@@ -29,16 +45,21 @@ public class UserController {
 	public User setUser() {
 		return new User();
 	}
+	
+	@ModelAttribute("userStandard") //왜 있나?
+	public UserStandard setUserStandard() {
+		return new UserStandard();
+	}
 
-	/* 회원 가입을 위한 User 정보 저장(with image) - /user/regi와 /user/regiUserStandard는 @Transactional로 처리해야 할듯
-		아니면 두개 한번에 합치는 법 고민*/
+	/* 회원 가입 */
 	@PostMapping("/user/regi")
-	public void createUser(@RequestParam("userImg") List<MultipartFile> userImg, @RequestParam("user") String userRegi) {
+	public void createUser(@RequestParam("userImg") List<MultipartFile> userImg, @RequestParam("user") String userRegi, @RequestParam("userStandard") String userStandardregi) {
 		System.out.println(userRegi);
+		System.out.println(userStandardregi);
 		ObjectMapper mapper = new ObjectMapper();
-//		mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);  //과연 해결해줄것인가!!!!!!!!!!!
 	try {
-		User user = userService.insertUser(mapper.readValue(userRegi, UserRegister.class));
+		UserStandard userStandard = userService.insertUserStandard(mapper.readValue(userStandardregi, UserStandardRegister.class));
+		User user = userService.insertUser(mapper.readValue(userRegi, UserRegister.class), (userStandard));
 		userImg.forEach(img->{
 		UserImg uimg = userService.insertUserImg(img, user);
 	try {
@@ -52,27 +73,34 @@ public class UserController {
 			}
 	}
 	
+
+
 	
-//	@PostMapping("/user/regi")
-//	public void createUser(@RequestBody UserRegister user) {
-//	System.out.println( "신규 회원 기준 저장" + user.getUserId() );
-//	userService.insertUser(user);
+	// 회원 1인의 전체 정보 가져오기 - 작업중
+//	@GetMapping("/user/{userNum}/info")
+//	public UserInfo getUserInfo(@PathVariable Long userNum) {
+//	return userService.getUserInfo(userNum);
 //	}
-	
-	//	 회원 기준 저장 
-	@PostMapping("/user/regiNewStandard")
-	public void createUserStandard(@RequestBody UserStandardRegister userStandard) {
-//	System.out.println( "신규 회원 기준 저장" + userStandard.get());
-		System.out.println(userStandard);
-		userService.insertUserStandard(userStandard);
-	}
-	
-	// 회원 1인의 전체 정보 가져오기
-	@GetMapping("/user/{id}/info")
-	public UserInfo getUserInfo(@PathVariable String userId) {
-	System.out.println("회원 정보 조회" + userId);
-	return userService.getUserInfo(userId);
-	}
+//	
+//	/* 회원 정보 수정 */
+//	@PutMapping("/user/{id}/update")
+//	public void updateUser(@RequestParam("userImg") List<MultipartFile> userImg, @RequestParam("user") String userRegi, @RequestParam("userStandard") String userStandardregi) {
+//		ObjectMapper mapper = new ObjectMapper();
+//	try {
+//		UserStandard userStandard = userService.insertUserStandard(mapper.readValue(userStandardregi, UserStandardRegister.class));
+//		User user = userService.insertUser(mapper.readValue(userRegi, UserRegister.class), (userStandard));
+//		userImg.forEach(img->{
+//		UserImg uimg = userService.insertUserImg(img, user);
+//	try {
+//		userService.saveImg(img, uimg);
+//			} catch (IOException e) {
+//				e.printStackTrace();
+//			}
+//			});
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//			}
+//	}
 	
 	
 //	@DeleteMapping("/user/{id}") //(User 테이블 외에 다른 테이블 삭제할 거 고민해야 )

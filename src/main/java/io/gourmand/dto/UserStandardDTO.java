@@ -26,7 +26,6 @@ public class UserStandardDTO {
 	@NoArgsConstructor
 	@ToString
 	@Builder
-	@ToString
 	public static class UserStandardRegister {
 		private Long id;
 		private BigDecimal uaccess;

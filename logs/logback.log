@@ -2602,3 +2602,34 @@
 [2021-02-16 23:54:55:5654885][restartedMain] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - 22 mappings in 'requestMappingHandlerMapping'
 [2021-02-16 23:54:55:5654901][restartedMain] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
 [2021-02-16 23:54:55:5654932][restartedMain] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+[2021-02-18 15:13:37:9770890][restartedMain] DEBUG o.s.w.c.s.StandardServletEnvironment - Activating profiles []
+[2021-02-18 15:13:37:9770957][restartedMain] DEBUG o.s.w.c.s.StandardServletEnvironment - Activating profiles []
+[2021-02-18 15:13:56:9790452][restartedMain] DEBUG o.s.w.c.s.StandardServletEnvironment - Activating profiles []
+[2021-02-18 15:13:56:9790521][restartedMain] DEBUG o.s.w.c.s.StandardServletEnvironment - Activating profiles []
+[2021-02-18 15:14:10:9803637][restartedMain] DEBUG o.s.w.c.s.StandardServletEnvironment - Activating profiles []
+[2021-02-18 15:14:10:9803657][restartedMain] DEBUG o.s.w.c.s.StandardServletEnvironment - Activating profiles []
+[2021-02-18 15:16:40:9954537][restartedMain] DEBUG o.s.w.c.s.StandardServletEnvironment - Activating profiles []
+[2021-02-18 15:16:41:9954694][restartedMain] DEBUG o.s.w.c.s.StandardServletEnvironment - Activating profiles []
+[2021-02-18 15:17:03:9976700][restartedMain] DEBUG o.s.w.c.s.StandardServletEnvironment - Activating profiles []
+[2021-02-18 15:17:03:9976802][restartedMain] DEBUG o.s.w.c.s.StandardServletEnvironment - Activating profiles []
+[2021-02-18 15:29:36:12212][restartedMain] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerAdapter - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+[2021-02-18 15:29:36:12332][restartedMain] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - 26 mappings in 'requestMappingHandlerMapping'
+[2021-02-18 15:29:36:12346][restartedMain] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+[2021-02-18 15:29:36:12404][restartedMain] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+[2021-02-18 15:29:57:33130][restartedMain] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerAdapter - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+[2021-02-18 15:29:57:33159][restartedMain] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - 26 mappings in 'requestMappingHandlerMapping'
+[2021-02-18 15:29:57:33200][restartedMain] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+[2021-02-18 15:29:57:33250][restartedMain] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+[2021-02-18 15:36:23:418976][http-nio-80-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+[2021-02-18 15:36:23:418978][http-nio-80-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected StandardServletMultipartResolver
+[2021-02-18 15:36:23:418991][http-nio-80-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+[2021-02-18 15:36:23:418992][http-nio-80-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 14 ms
+[2021-02-18 15:36:23:419016][http-nio-80-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - POST "/user/regiNewStandard", parameters={}
+[2021-02-18 15:36:23:419046][http-nio-80-exec-1] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler ["classpath:/META-INF/resources/", "classpath:/resources/", "classpath:/static/", "classpath:/public/"]
+[2021-02-18 15:36:23:419075][http-nio-80-exec-1] DEBUG o.s.w.s.r.ResourceHttpRequestHandler - Resource not found
+[2021-02-18 15:36:23:419082][http-nio-80-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Completed 404 NOT_FOUND
+[2021-02-18 15:36:23:419099][http-nio-80-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - "ERROR" dispatch for POST "/error", parameters={}
+[2021-02-18 15:36:23:419103][http-nio-80-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+[2021-02-18 15:36:23:419226][http-nio-80-exec-1] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json, application/json, application/*+json]
+[2021-02-18 15:36:23:419230][http-nio-80-exec-1] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [{timestamp=Thu Feb 18 15:36:23 KST 2021, status=404, error=Not Found, message=No message available,  (truncated)...]
+[2021-02-18 15:36:23:419404][http-nio-80-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Exiting from "ERROR" dispatch, status 404

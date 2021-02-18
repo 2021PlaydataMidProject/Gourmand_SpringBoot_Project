@@ -38,7 +38,7 @@ public class ResDTO {
 				rmg=res.getResImg();
 			}
 			return ResInfo.builder().resNum(res.getResNum()).resName(res.getResName()).xValue(res.getXValue())
-					.yValue(res.getYValue()).resAddress(res.getResAddress()).resHour(res.getResHour()).tel(res.getTel())
+					.yValue(res.getYValue()).resAddress(res.getResAddress()).tel(res.getTel())
 					.avgStar(res.getAvgStar()).category(res.getCategory()).resImg(rmg).build();
 		}
 	}

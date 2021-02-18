@@ -55,7 +55,4 @@ public class UserStandard {
 	@Column(name = "U_ACCESS", precision = 2, scale = 1)
 	private BigDecimal uAccess;
 
-	@OneToOne(mappedBy = "id")
-	@JoinColumn(name="US_ID")
-	private User user;
 }
