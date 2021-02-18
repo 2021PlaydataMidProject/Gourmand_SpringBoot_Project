@@ -104,6 +104,7 @@
 import BaseNav from "@/components/BaseNav";
 import BaseDropdown from "@/components/BaseDropdown";
 import CloseButton from "@/components/CloseButton";
+import axios from 'axios'
 
 export default {
   components: {
@@ -127,6 +128,10 @@ export default {
     },
     mymap: function(){
         if (sessionStorage.getItem("user")!=null){
+            alert(sessionStorage.getItem("user"))
+            axios.post('/api/data', {user: "vue.js는 조으다."}) 
+                  .then(res => { console.log(res.data) })
+
             location.href="http://localhost:3000/mymap";
         //  resregi
         } else{

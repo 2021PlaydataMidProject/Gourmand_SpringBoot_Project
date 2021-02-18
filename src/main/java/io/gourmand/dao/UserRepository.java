@@ -28,7 +28,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
   @Query(value = "select food_type from user,review where user.user_num = review.user_num order by food_type desc", nativeQuery = true)
   List<User> findListByfoodType(@Param("foodType") Review foodType);
 
-  
+  public User findByName(String name);
 
 
 }

@@ -52,7 +52,7 @@ public class UserController {
 	}
 
 	/* 회원 가입 */
-	@PostMapping("/user/regi")
+	@PostMapping("/auth/regi")
 	public void createUser(@RequestParam("userImg") List<MultipartFile> userImg, @RequestParam("user") String userRegi, @RequestParam("userStandard") String userStandardregi) {
 		System.out.println(userRegi);
 		System.out.println(userStandardregi);
