@@ -3303,3 +3303,20 @@ Caused by: java.sql.SQLSyntaxErrorException: Can't DROP 'FKkrv5k6bxiuva8ynfliqsg
 2021-02-18 19:01:12.917  INFO 13204 --- [http-nio-80-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
 2021-02-18 19:01:12.917  INFO 13204 --- [http-nio-80-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
 2021-02-18 19:01:12.928  INFO 13204 --- [http-nio-80-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 10 ms
+2021-02-18 19:03:14.394  INFO 13204 --- [Thread-5] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-02-18 19:03:14.397  INFO 13204 --- [Thread-5] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-02-18 19:03:14.402  INFO 13204 --- [Thread-5] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2021-02-18 19:03:14.409  INFO 13204 --- [Thread-5] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2021-02-18 19:03:14.640  INFO 13204 --- [restartedMain] io.gourmand.GourmandApplication          : Starting GourmandApplication on DESKTOP-RCD3Q83 with PID 13204 (C:\MyGit\midProject\Gourmand_SpringBoot_Project\target\classes started by Playdata in C:\MyGit\midProject\Gourmand_SpringBoot_Project)
+2021-02-18 19:03:14.641  INFO 13204 --- [restartedMain] io.gourmand.GourmandApplication          : No active profile set, falling back to default profiles: default
+2021-02-18 19:03:14.905  INFO 13204 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-02-18 19:03:14.956  INFO 13204 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 50ms. Found 12 JPA repository interfaces.
+2021-02-18 19:03:15.117  INFO 13204 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 80 (http)
+2021-02-18 19:03:15.118  INFO 13204 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-02-18 19:03:15.119  INFO 13204 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.41]
+2021-02-18 19:03:15.147  INFO 13204 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-02-18 19:03:15.147  INFO 13204 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 503 ms
+2021-02-18 19:03:15.207  INFO 13204 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-02-18 19:03:15.213  INFO 13204 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2021-02-18 19:03:15.217  INFO 13204 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2021-02-18 19:03:15.218  INFO 13204 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
