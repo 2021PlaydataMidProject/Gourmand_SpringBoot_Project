@@ -1771,3 +1771,9 @@ java.lang.IllegalStateException: Cannot call sendError() after the response has 
 [2021-02-18 18:35:20:33069581][http-nio-80-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to io.gourmand.controller.ResController#getResOfList(Long)
 [2021-02-18 18:35:20:33069583][http-nio-80-exec-8] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json, application/json, application/*+json]
 [2021-02-18 18:35:20:33069583][http-nio-80-exec-8] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [{}]
+[2021-02-18 18:35:20:33069583][http-nio-80-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+[2021-02-18 18:35:21:33070185][http-nio-80-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - GET "/res/user/4/list", parameters={}
+[2021-02-18 18:35:21:33070185][http-nio-80-exec-9] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to io.gourmand.controller.ResController#getResOfList(Long)
+[2021-02-18 18:35:21:33070187][http-nio-80-exec-9] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json, application/json, application/*+json]
+[2021-02-18 18:35:21:33070187][http-nio-80-exec-9] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [{}]
+[2021-02-18 18:35:21:33070187][http-nio-80-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
