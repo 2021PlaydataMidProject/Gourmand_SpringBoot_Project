@@ -128,8 +128,9 @@ export default {
     },
     mymap: function(){
         if (sessionStorage.getItem("user")!=null){
-            alert(sessionStorage.getItem("user"))
-            axios.post('/api/data', {user: "vue.js는 조으다."}) 
+            alert(JSON.stringify(sessionStorage.getItem("user").getItem()))
+            console.log(JSON.stringify(sessionStorage.getItem("user")))
+            axios.post('http://localhost:3000/mymap', sessionStorage.getItem("user") ) 
                   .then(res => { console.log(res.data) })
 
             location.href="http://localhost:3000/mymap";
@@ -143,3 +144,4 @@ export default {
 </script>
 <style>
 </style>
+// { withCredentials: true }

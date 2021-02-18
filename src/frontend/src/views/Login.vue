@@ -64,6 +64,7 @@
                   >
                 </div>
               </form>
+              <p class="log">{{ logMessage }}</p>
             </template>
           </card>
           <div class="row mt-3">
@@ -85,31 +86,48 @@
 </template>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
+import { loginUser } from '../api/auth';
 export default {
   data: function () {
     return {
       id: "",
       pw: "",
+      //log
+      logMessage: "",
     };
   },
   methods: {
-    login: function () {
-      return this.axios
-        .post("/auth/login", {
+    async login() {
+      try {
+        const userData = {
           user_id: this.id,
           pw: this.pw,
-        })
-        .then((res) => {
-          if (res.data) {
-            sessionStorage.setItem("user", res.data);
-            location.href = "/";
-          } else {
-            alert("없는 아이디거나 비밀번호가 맞지 않습니다.");
-          }
-        })
-        .catch((error) => {
-          alert("서버 오류입니다. 다시 시도해주세요.");
-        });
+        };
+        response.data = await loginUser(userData);
+        console.log(response.data)
+        //await this.$store.dispatch('LOGIN', userData);
+      }catch(error) {
+        console.log(error.response.data);
+        this.logMessage = error.response.data;
+      }
+      // }finally{
+      //   return this.axios
+      //   .post("/auth/login", {
+      //     user_id: this.id,
+      //     pw: this.pw,
+      //   })
+      //   .then((res) => {
+      //     if (res.data) {
+      //       sessionStorage.setItem("user", res.data);
+      //       location.href = "/";
+      //     } else {
+      //       alert("없는 아이디거나 비밀번호가 맞지 않습니다.");
+      //     }
+      //   })
+      //   .catch((error) => {
+      //     alert("서버 오류입니다. 다시 시도해주세요.");
+      //   });
+      // }
     },
   },
 };
