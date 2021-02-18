@@ -1851,3 +1851,35 @@ Unconditional classes:
 2021-02-18 15:11:00.768  INFO 16464 --- [http-nio-80-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
 2021-02-18 15:11:00.772  INFO 16464 --- [http-nio-80-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
 2021-02-18 15:11:00.778  INFO 16464 --- [http-nio-80-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 5 ms
+2021-02-18 15:41:41.819  INFO 16464 --- [RMI TCP Connection(2)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2021-02-18 15:41:42.208  INFO 16464 --- [Thread-29] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-02-18 15:41:42.210  INFO 16464 --- [Thread-29] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-02-18 15:41:42.235  INFO 16464 --- [Thread-29] com.zaxxer.hikari.HikariDataSource       : HikariPool-6 - Shutdown initiated...
+2021-02-18 15:41:42.243  INFO 16464 --- [Thread-29] com.zaxxer.hikari.HikariDataSource       : HikariPool-6 - Shutdown completed.
+2021-02-18 15:41:42.673  INFO 16464 --- [restartedMain] io.gourmand.GourmandApplication          : Starting GourmandApplication on DESKTOP-IDON15V with PID 16464 (C:\ITStudy\02.git\2021_Gourmand_SpringBoot_Project\2021_Gourmand_SpringBoot_Project\target\classes started by Playdata in C:\ITStudy\02.git\2021_Gourmand_SpringBoot_Project\2021_Gourmand_SpringBoot_Project)
+2021-02-18 15:41:42.674  INFO 16464 --- [restartedMain] io.gourmand.GourmandApplication          : No active profile set, falling back to default profiles: default
+2021-02-18 15:41:43.268  INFO 16464 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-02-18 15:41:43.423  INFO 16464 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 154ms. Found 11 JPA repository interfaces.
+2021-02-18 15:41:43.751  INFO 16464 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 80 (http)
+2021-02-18 15:41:43.753  INFO 16464 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-02-18 15:41:43.753  INFO 16464 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.41]
+2021-02-18 15:41:43.785  INFO 16464 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-02-18 15:41:43.785  INFO 16464 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1107 ms
+2021-02-18 15:41:43.955  INFO 16464 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-02-18 15:41:43.966  INFO 16464 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-7 - Starting...
+2021-02-18 15:41:43.978  INFO 16464 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-7 - Start completed.
+2021-02-18 15:41:43.979  INFO 16464 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+2021-02-18 15:41:44.316  INFO 16464 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-02-18 15:41:44.316  INFO 16464 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-02-18 15:41:44.766  WARN 16464 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-02-18 15:41:44.842  INFO 16464 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@49f1fa44, org.springframework.security.web.context.SecurityContextPersistenceFilter@161da7c1, org.springframework.security.web.header.HeaderWriterFilter@dda5922, org.springframework.web.filter.CorsFilter@4270de05, org.springframework.security.web.authentication.logout.LogoutFilter@293a3a2, io.gourmand.jwt.JwtAuthenticationFilter@4dc7a1d5, io.gourmand.jwt.JwtAuthorizationFilter@7f0d4f87, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3ce792ad, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@632bdf5a, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1844dd73, org.springframework.security.web.session.SessionManagementFilter@1af01153, org.springframework.security.web.access.ExceptionTranslationFilter@5b6e27c8, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@5b379336]
+2021-02-18 15:41:44.962  INFO 16464 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-02-18 15:41:45.244  INFO 16464 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2021-02-18 15:41:45.265  INFO 16464 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 80 (http) with context path ''
+2021-02-18 15:41:45.274  INFO 16464 --- [restartedMain] io.gourmand.GourmandApplication          : Started GourmandApplication in 2.659 seconds (JVM running for 2163.842)
+2021-02-18 15:41:45.279  INFO 16464 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2021-02-18 15:41:48.950  INFO 16464 --- [RMI TCP Connection(2)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2021-02-18 15:41:49.313  INFO 16464 --- [RMI TCP Connection(2)-127.0.0.1] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-02-18 15:41:49.315  INFO 16464 --- [RMI TCP Connection(2)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-02-18 15:41:49.316  INFO 16464 --- [RMI TCP Connection(2)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-7 - Shutdown initiated...
+2021-02-18 15:41:49.322  INFO 16464 --- [RMI TCP Connection(2)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-7 - Shutdown completed.
