@@ -49,7 +49,7 @@
 import StarRating from "vue-star-rating";
 import { BTabs } from "bootstrap-vue";
 import { BTab } from "bootstrap-vue";
-import Chart from "./components/Chart.vue";
+
 
 
 export default {
@@ -70,6 +70,7 @@ export default {
    mounted() {
     var str = this.$route.query.res;
     if (str==null){
+    sessionStorage.setItem("user_num", res.data.user_num);
       location.href="/";
     }
     this.axios
