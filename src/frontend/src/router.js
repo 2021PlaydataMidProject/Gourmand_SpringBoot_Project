@@ -1,6 +1,7 @@
 import Vue from "vue";
 import Router from "vue-router";
 import AppHeader from "./layout/AppHeader";
+import AppHeaderOther from "./layout/AppHeaderOther";
 import AppFooter from "./layout/AppFooter";
 import Components from "./views/Components.vue";
 import Landing from "./views/Landing.vue";
@@ -29,7 +30,7 @@ export default new Router({
       path: "/",
       name: "mainpage",
       components: {
-        header: AppHeader,
+        header: AppHeaderOther,
         default: Home,
         footer: AppFooter
       }
@@ -38,7 +39,7 @@ export default new Router({
       path: "/components",
       name: "components",
       components: {
-        header: AppHeader,
+        header: AppHeaderOther,
         default: Components,
         footer: AppFooter
       }
@@ -47,7 +48,7 @@ export default new Router({
       path: "/landing",
       name: "landing",
       components: {
-        header: AppHeader,
+        header: AppHeaderOther,
         default: Landing,
         footer: AppFooter
       }
@@ -92,7 +93,7 @@ export default new Router({
       path: "/userregi",
       name: "userregi",
       components: {
-        header: AppHeader,
+        header: AppHeaderOther,
         default: UserSignUp,
         footer: AppFooter
       }
@@ -101,7 +102,7 @@ export default new Router({
       path: "/mapforall",
       name: "MapForAll",
       components: {
-        header: AppHeader,
+        header: AppHeaderOther,
         default: MapForAll,
         footer: AppFooter
       }
@@ -110,7 +111,7 @@ export default new Router({
       path: "/search",
       name: "Serch",
       components: {
-        header: AppHeader,
+        header: AppHeaderOther,
         default: MapForAllSearch,
         footer: AppFooter
       }
@@ -119,7 +120,7 @@ export default new Router({
       path: "/respage",
       name: "ResPage",
       components: {
-        header: AppHeader,
+        header: AppHeaderOther,
         default: ResPage,
         footer: AppFooter
       }
@@ -128,7 +129,7 @@ export default new Router({
       path: "/respage/review/write",
       name: "RevRegi",
       components: {
-        header: AppHeader,
+        header: AppHeaderOther,
         default: RevRegi,
         footer: AppFooter
       }
@@ -137,7 +138,7 @@ export default new Router({
       path: "/useredit",
       name: "userEdit",
       components: {
-        header: AppHeader,
+        header: AppHeaderOther,
         default: UserEdit,
         footer: AppFooter
       }
@@ -155,7 +156,7 @@ export default new Router({
       path: "/starrating",
       name: "starRating",
       components: {
-        header: AppHeader,
+        header: AppHeaderOther,
         default: StarRating,
         footer: AppFooter
       }
