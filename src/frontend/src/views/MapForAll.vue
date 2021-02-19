@@ -140,7 +140,7 @@
           </h3>
           {{ value.avg_star.toFixed(1) }}/5.0
 
-          <a :href="'/respage?' + value.res_num"
+          <a href="#" @click="move(value.res_num)"
             ><h3 class="heading-title mb-0">{{ value.res_name }}</h3></a
           >
           <h3 class="heading">{{ value.category }}</h3>
@@ -242,6 +242,9 @@ export default {
           });
       }
       this.modals.modal1 = false;
+    },
+    move(resnum){
+      this.$router.push({ path: "/respage", query: { res: resnum }});
     },
     check(category) {
       return (
