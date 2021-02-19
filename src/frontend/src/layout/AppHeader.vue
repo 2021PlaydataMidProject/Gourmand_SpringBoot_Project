@@ -80,7 +80,7 @@
           <a
             v-if="logincheck()"
             slot="title"
-            href="#"
+            href="/mypage"
             class="nav-link"
           >
             <i class="ni ni-ui-04 d-lg-none"></i>
