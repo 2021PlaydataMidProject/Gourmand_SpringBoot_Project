@@ -18,6 +18,7 @@ import StarRating from "./views/StarRating.vue";
 import MapForAllSearch from "./views/MapForAllSearch.vue"
 import GourmandGuide from "./views/GourmandGuide.vue"
 import RevRegi from "./views/RevRegi.vue"
+import RevUpdate from "./views/RevUpdate.vue"
 
 Vue.use(Router);
 
@@ -130,6 +131,15 @@ export default new Router({
       components: {
         header: AppHeader,
         default: RevRegi,
+        footer: AppFooter
+      }
+    },
+    {
+      path: "/review/update",
+      name: "RevUpdate",
+      components: {
+        header: AppHeader,
+        default: RevUpdate,
         footer: AppFooter
       }
     },

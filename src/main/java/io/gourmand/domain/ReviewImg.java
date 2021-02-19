@@ -62,7 +62,7 @@ public class ReviewImg {
         String originFileName = file.getOriginalFilename();
         String ext = originFileName.substring(originFileName.lastIndexOf(".") + 1);
         String fileName = String.format("%s.%s", UUID.randomUUID().toString(), ext);
-        String filePath = "C:\\MyGit\\midProject\\Gourmand_SpringBoot_Project\\src\\frontend\\public\\img\\rev\\";
+        String filePath = "src\\frontend\\public\\img\\rev\\";
         
         return ReviewImg.builder()
                 .originName(originFileName)

@@ -25,19 +25,17 @@ public class RevDTO {
 	@Builder
 	public static class RevInfo {
 		private Long reviewNum;
-		private User user;
-		private Res res;
+		private UserThumbnail user;
 		private String foodType;
 		private String review;
 		private LocalDate writeDate;
-		private String imgLink;
 		private ReviewStandard reviewStandard;
 		private List<ReviewImg> reviewImg;
 
 		public static RevInfo of(Review rev) {
-			return RevInfo.builder().reviewNum(rev.getReviewNum()).user(rev.getUser()).res(rev.getRes())
+			return RevInfo.builder().reviewNum(rev.getReviewNum())
 					.foodType(rev.getFoodType()).review(rev.getReview()).writeDate(rev.getWriteDate())
-					.imgLink(rev.getImgLink()).reviewStandard(rev.getReviewStandard()).reviewImg(rev.getReviewImg())
+					.reviewStandard(rev.getReviewStandard()).reviewImg(rev.getReviewImg())
 					.build();
 		}
 	}
