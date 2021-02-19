@@ -1,18 +1,27 @@
-
-
 <template>
   <section class="section section-shaped section-lg my-0">
+    <div class="shape shape-style-1 bg-gradient-default">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
     <div>
       <h1>StarRating</h1>
-
       <h2>0.5씩 커지는 StarRating</h2>
       <div @mouseleave="mouseOverRating = null" style="display: inline-block">
         <star-rating
+          :defaultValue="3"
           :show-rating="false"
           @hover:rating="mouseOverRating = $event"
           :increment="0.5"
           :starSize="50"
           :readOnly="false"
+          :rating="3.5"
         ></star-rating>
       </div>
       <div style="margin-top: 10px; font-weight: bold">
@@ -76,7 +85,5 @@ body {
   border-radius: 2px;
   color: #999;
   background: #fff;
-  
 }
-
 </style>

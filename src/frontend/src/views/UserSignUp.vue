@@ -113,7 +113,7 @@ export default {
             ucost :  "",
             umood : "",
             ukindness : "",
-            uaccess : "",  
+            uaccess : "",
         }
       }
   },

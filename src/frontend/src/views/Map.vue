@@ -13,12 +13,10 @@ export default {
             default: "300px",
         },
         Xaxis: {
-            type: String,
-            default : "37.28220476035405"
+            type: Number,
         },
         Yaxis: {
-            type: String,
-            default : "126.99949253503598"
+            type: Number,
         }
     },
     mounted() {
@@ -36,7 +34,7 @@ export default {
         initMap() {
             var container = document.getElementById('map');
             var options = {
-              center: new kakao.maps.LatLng(parseFloat(this.$props.Xaxis), parseFloat(this.$props.Yaxis)),
+              center: new kakao.maps.LatLng(this.$props.Xaxis, this.$props.Yaxis),
               level: 3
             };
             var map = new kakao.maps.Map(container, options);

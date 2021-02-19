@@ -116,7 +116,9 @@ export default {
         })
         .then((res) => {
           if (res.data) {
-            sessionStorage.setItem("user", res.data);
+            console.log(res);
+            sessionStorage.setItem("user", res.data.user_num);
+            console.log(sessionStorage.getItem("user"))
             location.href = "/";
           } else {
             alert("없는 아이디거나 비밀번호가 맞지 않습니다.");

@@ -12,6 +12,8 @@ import com.google.gson.JsonObject;
 
 import io.gourmand.domain.User;
 import io.gourmand.dto.UserDTO;
+import io.gourmand.dto.UserDTO.SigninRequest;
+import io.gourmand.dto.UserDTO.SigninResponse;
 import io.gourmand.service.UserService;
 
 @RestController
@@ -21,12 +23,9 @@ public class LoginController {
 	private UserService userService;
 
 	@PostMapping("/auth/login")
-	public User signin(@RequestBody @Validated UserDTO.SigninRequest request) {
-		User user;
+	public SigninResponse signin(@RequestBody @Validated UserDTO.SigninRequest request){
 		try {
-			user = userService.getMatchedUser(request);
-			signinMap(request);
-			return user;
+			return userService.getMatchedUser(request);
 		} catch (Exception e) {
 			return null;
 		}

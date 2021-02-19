@@ -35,21 +35,27 @@ module.exports = {
         ws: true,
         changeOrigin: true,
       },
-      '/auth' :{
+      '/auth': {
         target: 'http://localhost:80',
         ws: true,
         changeOrigin: true,
       },
-      '/#/auth' :{
+      '/#/auth': {
         target: 'http://localhost:80',
         ws: true,
         changeOrigin: true,
-      }, 
-      '/user/' :{
-          target: 'http://localhost:80',
-          ws: true,
-          changeOrigin: true,
-        }
+      },
+      '/user/': {
+        target: 'http://localhost:80',
+        ws: true,
+        changeOrigin: true,
+      },
+      '/rev/': {
+        target: 'http://localhost:80',
+        ws: true,
+        changeOrigin: true,
+      }
+
     }
   }
 };

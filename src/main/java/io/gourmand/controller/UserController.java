@@ -17,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import io.gourmand.service.UserService;
 import io.gourmand.domain.User;
 import io.gourmand.domain.UserImg;
 import io.gourmand.domain.UserStandard;
@@ -63,25 +64,14 @@ public class UserController {
 			}
 	}
 	
-	@PostMapping("/users")
-	public ResponseEntity<?> create(@RequestBody User resource) throws URISyntaxException {
-		
-		String dob = resource.getDob();
-		String job = resource.getJob();
-		int pageStatus = resource.getPageStatus();
-		String roles = resource.getRoles();
-		LocalDate suDate = resource.getSuDate();
-		UserStandard userStandard = resource.getUserStandard();
-		String userId = resource.getUserId();
-		String name = resource.getName();
-		String pw = resource.getPw();
-		
-		User user = userService.registerUser(dob, job, pageStatus, roles, suDate, userStandard, userId, name, pw);
-		String url = "/users/" + user.getUserId();
-		
-		return ResponseEntity.created(new URI(url)).body("{}");
+	//	 회원 기준 저장 
+	@PostMapping("/user/regiNewStandard")
+	public UserStandardRegister createUserStandard(@RequestBody UserStandardRegister userStandard) {
+		System.out.println(userStandard);
+		return userStandard;
+	//System.out.println( "신규 회원 기준 저장" + userStandard.getId() );
+	//userService.insertUserStandard(userStandard);
 	}
-
 	
 	// 회원 1인의 전체 정보 가져오기 - 작업중
 //	@GetMapping("/user/{id}/info")

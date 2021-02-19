@@ -19,13 +19,13 @@ public class UserStandardDTO {
 //	private BigDecimal uMood;
 //	private BigDecimal uKindness;
 //	private BigDecimal uAccess;
-	
-	@Getter	
+
+	@Getter
 	@Setter
 	@AllArgsConstructor
 	@NoArgsConstructor
-	@Builder
 	@ToString
+	@Builder
 	public static class UserStandardRegister {
 		private Long id;
 		private BigDecimal uaccess;
@@ -35,24 +35,11 @@ public class UserStandardDTO {
 		private BigDecimal ukindness;
 		private BigDecimal umood;
 
-		
-		
 		public static UserStandard toEntity(UserStandardRegister userStandard) {
-			return UserStandard.builder()
-					.uAccess(userStandard.getUaccess())
-					.uClean(userStandard.getUclean())
-					.uCost(userStandard.getUcost())
-					.uFlavor(userStandard.getUflavor())
-					.uKindness(userStandard.getUkindness())
-					.uMood(userStandard.getUmood())
-					.build();
+			return UserStandard.builder().uAccess(userStandard.getUaccess()).uClean(userStandard.getUclean())
+					.uCost(userStandard.getUcost()).uFlavor(userStandard.getUflavor())
+					.uKindness(userStandard.getUkindness()).uMood(userStandard.getUmood()).build();
 		}
 
 	}
-
-	
-		
-
-		
 }
-

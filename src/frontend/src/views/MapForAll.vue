@@ -35,6 +35,9 @@
               <base-radio name="9" class="mb-3 mr-1" v-model="radio.radio1">
                 <small> 9km 이내 </small>
               </base-radio>
+              <base-radio name="9999999" class="mb-3 mr-1" v-model="radio.radio1">
+                <small> 전체 </small>
+              </base-radio>
             </div>
             <div class="mt-4 mt-md-0">
               <div class="mb-3">
@@ -109,7 +112,7 @@
       </h2>
       <div class="row">
         <!--eslint-disable-next-line vue/no-use-v-if-with-v-for-->
-        <div v-for="(value, key) in resThumbnails" v-if="check(value.category)" v-bind:key="key" class="col-sm-4">
+        <div v-for="(value, key) in resThumbnails" v-if="check(value.category)" v-bind:key="key" class="col-lg-3 col-sm-4">
           <img
             v-if="value.res_img != null"
             :src="'img/res/' + value.res_img.name"
@@ -124,8 +127,20 @@
             class="img-fluid rounded shadow"
             style="width: 150px"
           />
-          <h3 class="heading mb-0">★★★★☆ {{ value.avg_star }}/5.0</h3>
-          <a :href="'/respage?' + value.res_num"
+          <h3 class="heading mb-1">
+            <star-rating
+              :value="3"
+              :show-rating="false"
+              @hover:rating="mouseOverRating = $event"
+              :increment="0.5"
+              :starSize="20"
+              :readOnly="true"
+              :rating="value.avg_star"
+            ></star-rating>
+          </h3>
+          {{ value.avg_star.toFixed(1) }}/5.0
+
+          <a href="#" @click="move(value.res_num)"
             ><h3 class="heading-title mb-0">{{ value.res_name }}</h3></a
           >
           <h3 class="heading">{{ value.category }}</h3>
@@ -141,11 +156,27 @@
 import BaseNav from "@/components/BaseNav";
 import CloseButton from "@/components/CloseButton";
 import Modal from "@/components/Modal.vue";
+import StarRating from "vue-star-rating";
+
 export default {
   components: {
     BaseNav,
     CloseButton,
     Modal,
+    StarRating,
+  },
+  //star rating 별점
+  computed: {
+    currentRatingText() {
+      return this.rating
+        ? "You have selected " + this.rating + " stars"
+        : "No rating selected";
+    },
+    mouseOverRatingText() {
+      return this.mouseOverRating
+        ? "Click to select " + this.mouseOverRating + " stars"
+        : "No rating selected";
+    },
   },
   data() {
     return {
@@ -169,6 +200,11 @@ export default {
       },
       xValue: 37.2822,
       yValue: 126.9994,
+      //별점
+      rating: null,
+      resetableRating: 2,
+      currentRating: "No Rating",
+      mouseOverRating: null,
     };
   },
   mounted() {
@@ -207,14 +243,48 @@ export default {
       }
       this.modals.modal1 = false;
     },
+    move(resnum){
+      this.$router.push({ path: "/respage", query: { res: resnum }});
+    },
     check(category) {
       return (
         (!(category in this.checkboxes) && this.checkboxes["기타"] == true) ||
         this.checkboxes[category] == true
       );
     },
+    showCurrentRating(rating) {
+      this.currentSelectedRating =
+        rating === 0
+          ? this.currentSelectedRating
+          : "Click to select " + rating + " stars";
+    },
+    setCurrentSelectedRating(rating) {
+      this.currentSelectedRating = "You have Selected: " + rating + " stars";
+    },
   },
 };
 </script>
+
 <style>
+body {
+  font-family: "Raleway", sans-serif;
+}
+
+.custom-text {
+  font-weight: bold;
+  font-size: 1.9em;
+  border: 1px solid #cfcfcf;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-radius: 2px;
+  color: #999;
+  background: #fff;
+}
 </style>
+
+
+
+
+
+
+>>>>>>> mainpage
