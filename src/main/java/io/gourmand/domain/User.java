@@ -72,16 +72,16 @@ public class User  {
 	@JoinColumn(name = "US_ID")
 	private UserStandard userStandard;
 	
-	@OneToMany(mappedBy = "replyNum")
+	@OneToMany(mappedBy = "replyNum", fetch=FetchType.LAZY)
 	private List<Reply> reply;
 	
-	@OneToMany(mappedBy = "user")
+	@OneToMany(mappedBy = "user", fetch=FetchType.LAZY)
 	private List<UserImg> userImg;
 	
-	@OneToMany(mappedBy = "user")
+	@OneToMany(mappedBy = "user", fetch=FetchType.LAZY)
 	private List<ReviewLikes> reviewLikes;
 	
-	@OneToMany(mappedBy = "user")
+	@OneToMany(mappedBy = "user", fetch=FetchType.LAZY)
 	private List<ListLikes> listLikes;
 	
 	public User(String name) {
