@@ -45,11 +45,7 @@ public class ResController {
 	
 	// 거리별(default)
 	@GetMapping("/res/thumbnail/{xValue},{yValue}/{limit}")
-<<<<<<< HEAD
-	public List<ResThumbnail> getAllResThumbnail(@PathVariable BigDecimal xValue, @PathVariable BigDecimal yValue, @PathVariable BigDecimal limit){
-=======
 	public List<ResThumbnail> getAllResThumbnail(@PathVariable BigDecimal xValue, @PathVariable BigDecimal yValue, @PathVariable Double limit){
->>>>>>> 00fdd0bf3b8cda7e556b4d6ec446853e6b47a624
 		return resService.getAllRes(xValue, yValue, limit);
 	}
 	

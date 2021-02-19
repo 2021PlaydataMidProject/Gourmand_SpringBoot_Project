@@ -339,3 +339,17 @@
 [2021-02-17 17:15:35:93742265][http-nio-80-exec-3] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json;q=0.8', given [image/avif, image/webp, image/apng, image/svg+xml, image/*, */*;q=0.8] and supported [application/json, application/*+json, application/json, application/*+json]
 [2021-02-17 17:15:35:93742265][http-nio-80-exec-3] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [{timestamp=Wed Feb 17 17:15:35 KST 2021, status=404, error=Not Found, message=No message available,  (truncated)...]
 [2021-02-17 17:15:35:93742266][http-nio-80-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - Exiting from "ERROR" dispatch, status 404
+[2021-02-17 17:18:01:93888074][http-nio-80-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - GET "/img/res/e1f01bb9-7a6a-4912-8422-ca2065adc0f1.png", parameters={}
+[2021-02-17 17:18:01:93888075][http-nio-80-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler ["classpath:/META-INF/resources/", "classpath:/resources/", "classpath:/static/", "classpath:/public/"]
+[2021-02-17 17:18:01:93888077][http-nio-80-exec-5] DEBUG o.s.w.s.r.ResourceHttpRequestHandler - Resource not found
+[2021-02-17 17:18:01:93888078][http-nio-80-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - Completed 404 NOT_FOUND
+[2021-02-17 17:18:01:93888078][http-nio-80-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - "ERROR" dispatch for GET "/error", parameters={}
+[2021-02-17 17:18:01:93888078][http-nio-80-exec-5] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+[2021-02-17 17:18:01:93888079][http-nio-80-exec-5] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json;q=0.8', given [image/avif, image/webp, image/apng, image/svg+xml, image/*, */*;q=0.8] and supported [application/json, application/*+json, application/json, application/*+json]
+[2021-02-17 17:18:01:93888079][http-nio-80-exec-5] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [{timestamp=Wed Feb 17 17:18:01 KST 2021, status=404, error=Not Found, message=No message available,  (truncated)...]
+[2021-02-17 17:18:01:93888080][http-nio-80-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - Exiting from "ERROR" dispatch, status 404
+[2021-02-17 17:18:03:93889430][http-nio-80-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - GET "/res/thumbnail/37.3456896,127.05792000000001/3", parameters={}
+[2021-02-17 17:18:03:93889433][http-nio-80-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to io.gourmand.controller.ResController#getAllResThumbnail(BigDecimal, BigDecimal, BigDecimal)
+[2021-02-17 17:18:03:93889439][http-nio-80-exec-4] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json, application/json, application/*+json]
+[2021-02-17 17:18:03:93889439][http-nio-80-exec-4] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [[io.gourmand.dto.ResDTO$ResThumbnail@3a4259d1]]
+[2021-02-17 17:18:03:93889441][http-nio-80-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK

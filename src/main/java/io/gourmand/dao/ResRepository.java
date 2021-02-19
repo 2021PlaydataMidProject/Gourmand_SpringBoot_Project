@@ -16,11 +16,7 @@ public interface ResRepository extends JpaRepository<Res, Long> {
 	List<Res> findAllbyCategory(@Param("category") String category, @Param("xValue") BigDecimal xValue, @Param("yValue") BigDecimal yValue);
 
 	// 거리순 반환
-<<<<<<< HEAD
-	@Query(value = "select * from res where pow(:limit,2) >= pow(res.x_value - :xValue,2) + pow(res.y_value - :yValue,2) order by res.x_value + res.y_value - :xValue - :yValue asc", nativeQuery = true)
-=======
 	@Query(value = "select * from res where pow(:limit,2) >= pow(res.x_value - :xValue,2) + pow(res.y_value - :yValue,2) order by pow(res.x_value - :xValue,2) + pow(res.y_value - :yValue,2) asc", nativeQuery = true)
->>>>>>> 00fdd0bf3b8cda7e556b4d6ec446853e6b47a624
 	List<Res> findAllOrderByAxis(@Param("xValue") BigDecimal xValue, @Param("yValue") BigDecimal yValue, @Param("limit") BigDecimal limit);
 		
 	// 평균 평점별 반환

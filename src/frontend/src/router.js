@@ -1,6 +1,7 @@
 import Vue from "vue";
 import Router from "vue-router";
 import AppHeader from "./layout/AppHeader";
+import AppHeaderOther from "./layout/AppHeaderOther";
 import AppFooter from "./layout/AppFooter";
 import Components from "./views/Components.vue";
 import Landing from "./views/Landing.vue";
@@ -16,6 +17,7 @@ import UserEdit from "./views/UserEdit.vue";
 import MyPage from "./views/MyPage.vue";
 import StarRating from "./views/StarRating.vue";
 import MapForAllSearch from "./views/MapForAllSearch.vue"
+
 
 
 Vue.use(Router);
@@ -37,7 +39,7 @@ export default new Router({
       path: "/components",
       name: "components",
       components: {
-        header: AppHeader,
+        header: AppHeaderOther,
         default: Components,
         footer: AppFooter
       }
@@ -46,7 +48,7 @@ export default new Router({
       path: "/landing",
       name: "landing",
       components: {
-        header: AppHeader,
+        header: AppHeaderOther,
         default: Landing,
         footer: AppFooter
       }
@@ -55,7 +57,7 @@ export default new Router({
       path: "/login",
       name: "login",
       components: {
-        header: AppHeader,
+        header: AppHeaderOther,
         default: Login,
         footer: AppFooter
       }
@@ -64,7 +66,7 @@ export default new Router({
       path: "/register",
       name: "register",
       components: {
-        header: AppHeader,
+        header: AppHeaderOther,
         default: Register,
         footer: AppFooter
       }
@@ -73,7 +75,7 @@ export default new Router({
       path: "/profile",
       name: "profile",
       components: {
-        header: AppHeader,
+        header: AppHeaderOther,
         default: Profile,
         footer: AppFooter
       }
@@ -82,7 +84,7 @@ export default new Router({
       path: "/resregi",
       name: "resregi",
       components: {
-        header: AppHeader,
+        header: AppHeaderOther,
         default: ResTest,
         footer: AppFooter
       }
@@ -91,7 +93,7 @@ export default new Router({
       path: "/userregi",
       name: "userregi",
       components: {
-        header: AppHeader,
+        header: AppHeaderOther,
         default: UserSignUp,
         footer: AppFooter
       }
@@ -100,7 +102,7 @@ export default new Router({
       path: "/mapforall",
       name: "MapForAll",
       components: {
-        header: AppHeader,
+        header: AppHeaderOther,
         default: MapForAll,
         footer: AppFooter
       }
@@ -109,7 +111,7 @@ export default new Router({
       path: "/search",
       name: "Serch",
       components: {
-        header: AppHeader,
+        header: AppHeaderOther,
         default: MapForAllSearch,
         footer: AppFooter
       }
@@ -118,7 +120,7 @@ export default new Router({
       path: "/respage",
       name: "ResPage",
       components: {
-        header: AppHeader,
+        header: AppHeaderOther,
         default: ResPage,
         footer: AppFooter
       }
@@ -127,7 +129,7 @@ export default new Router({
       path: "/useredit",
       name: "userEdit",
       components: {
-        header: AppHeader,
+        header: AppHeaderOther,
         default: UserEdit,
         footer: AppFooter
       }
@@ -136,7 +138,7 @@ export default new Router({
         path: "/mypage",
         name: "myPage",
         components: {
-          header: AppHeader,
+          header: AppHeaderOther,
           default: MyPage,
           footer: AppFooter
         }  
@@ -145,13 +147,11 @@ export default new Router({
         path: "/starrating",
         name: "starRating",
         components: {
-          header: AppHeader,
+          header: AppHeaderOther,
           default: StarRating,
           footer: AppFooter
         }  
-    }
-
-
+    },
   ],
   scrollBehavior: to => {
     if (to.hash) {
@@ -159,5 +159,5 @@ export default new Router({
     } else {
       return { x: 0, y: 0 };
     }
-  }
+  },
 })

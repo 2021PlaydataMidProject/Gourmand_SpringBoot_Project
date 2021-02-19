@@ -13,9 +13,9 @@
           :show-rating="false"
           @hover:rating="mouseOverRating = $event"
           :increment="0.5"
-          :starSize="50"
+          :starSize="20"
           :readOnly="false"  
-          :rating="3.5"
+          :rating="3"
 
         ></star-rating>
       </div>

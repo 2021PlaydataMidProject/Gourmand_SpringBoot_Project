@@ -1,14 +1,10 @@
 <template>
     <div>
-        
         Hello World
     </div>
 </template>
 <script>
-export default {
-
-};
+export default {};
 </script>
 <style>
-
 </style>

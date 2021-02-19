@@ -57,7 +57,6 @@ import { BCarouselSlide } from "bootstrap-vue/esm/components/carousel/carousel-s
 import { BDropdown } from "bootstrap-vue";
 import { BDropdownItem } from "bootstrap-vue";
 import myMap from "./Map";
-import chart from "./components/Chart"
 
 export default {
   name: "home",
