@@ -28,7 +28,11 @@ li a {
 }
 
 .active {
-  background-color: orange;
+  background-color: #FFB53C;
+}
+
+.activedelete {
+  background-color: #F3553C;
 }
 
 li a:hover:not(.active) {
