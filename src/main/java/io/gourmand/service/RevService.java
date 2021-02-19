@@ -1,55 +1,4 @@
-//package io.gourmand.service;
-//
-//import java.time.LocalDate;
-//import java.util.List;
-//
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.stereotype.Service;
-//
-//import io.gourmand.dao.ReviewRepository;
-//import io.gourmand.domain.Res;
-//import io.gourmand.domain.Review;
-//import io.gourmand.domain.ReviewImg;
-//import io.gourmand.domain.ReviewStandard;
-//import io.gourmand.domain.User;
-//import io.gourmand.dto.RevDTO;
-//import io.gourmand.dto.RevDTO.RevInfo;
-//import io.gourmand.dto.RevDTO.RevRegister;
-//
-//
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.stereotype.Service;
-//
-//@Service
-//public class RevService {
-//
-//    private ReviewRepository reviewRepository;
-//
-//    @Autowired
-//    public RevService(ReviewRepository reviewRepository) {
-//        this.reviewRepository = reviewRepository;
-//    }
-//
-//    // 파라미터 review1 -> descripion으로 변경?
-//    public Review addReview(Long reviewNum, String username,String resname,String foodType,
-//    						Review review2,LocalDate writeDate,String imgLink,
-//    						Class<? extends ReviewStandard> reviewStandard,Class<? extends List> reviewImg
-//    						) {
-//        Review review = Review.builder()
-//        		.reviewNum(reviewNum)
-//        		.user(username)
-//        		.res(resname)
-//        		.foodType(foodType)
-//        		//.review(review) //descripion으로 변경?
-//        		.writeDate(writeDate)
-//        		.imgLink(imgLink)
-//        		.reviewStandard(reviewStandard)
-//        		.reviewImg(reviewImg)
-//        		.build();
-//
-//        return reviewRepository.save(review);
-//    }
-//}
+package io.gourmand.service;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -170,3 +119,25 @@ public class RevService {
 	}
 
 }
+
+// 댓글 등록 
+//public Review addReview(Long reviewNum, String username,String resname,String foodType,
+//						Review description,LocalDate writeDate,String imgLink,
+//						ReviewStandard reviewStandard,ReviewImg reviewImg,
+//						@RequestBody Review rev) {
+//	
+//	Review review = Review.builder()
+//  		.reviewNum(reviewNum)
+//  		.user(userDAO.findUserByName(username))
+//  		.res(resDAO.findResByName(resname))
+//  		.foodType(foodType)
+//  		.review(rev.getReview())
+//  		.writeDate(writeDate)
+//  		.imgLink(imgLink)
+//  		.reviewStandard(rev.getReviewStandard())
+//  		.reviewImg(rev.getReviewImg())
+//  		.build();
+//
+//  return revDAO.save(review);
+//}
+

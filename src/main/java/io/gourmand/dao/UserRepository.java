@@ -12,7 +12,12 @@ import io.gourmand.domain.User;
 import io.gourmand.domain.UserResList;
 
 public interface UserRepository extends JpaRepository<User, Long> {
+	
 	User findUserByUserId(String userId);
+	
+	Optional<User> findByUserId(String userId);
+	
+	User findUserByName(String username);
 
 //  List<User> findUsersOfRes(Long id);
 

@@ -4,13 +4,18 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDate;
 import java.util.Optional;
 
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
 import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import io.gourmand.dao.ReviewRepository;
@@ -35,16 +40,20 @@ import io.gourmand.exception.UserIdNotExistedException;
 @Service
 @Transactional
 public class UserService {
+	
 	@Autowired
 	UserRepository userDAO;
+	
 	@Autowired
 	UserImgRepository userImgDAO;
+	
 	@Autowired
 	UserStandardRepository userStandardDAO;
+	
 	@Autowired
 	ReviewRepository revDAO;
 	
-	UserRepository userRepository;
+	
 	PasswordEncoder passwordEncoder;
 	
 	/**
@@ -54,14 +63,27 @@ public class UserService {
 	 * @param pw  비밀번호
 	 * @return 아이디 비밀번호가 일치하는 유저
 	 */
-	public SigninResponse getMatchedUser(SigninRequest sign) {
-		User signin = userDAO.findUserByUserId(sign.getUserId());
+	public User getMatchedUser(SigninRequest sign) {
+		User user = userDAO.findUserByUserId(sign.getUserId());
 		// 없는 유저
-		if (signin == null || !signin.getPw().equals(sign.getPw())) {
+		if (user == null || !user.getPw().equals(user.getPw())) {
 			return null;
 		}
-		return SigninResponse.of(signin);
+		
+		
+		return user;
 	}
+	
+//	public SigninResponse getMatchedUser(SigninRequest sign) {
+//		User signin = userDAO.findUserByUserId(sign.getUserId());
+//		// 없는 유저
+//		if (signin == null || !signin.getPw().equals(sign.getPw())) {
+//			return null;
+//		}
+//		
+//		
+//		return SigninResponse.of(signin);
+//	}
 
 	
 	// 회원 정보 조회
@@ -70,7 +92,7 @@ public class UserService {
 	}
 	
 	public User registerUser(String dob,String job,int pageStatus,String roles,LocalDate suDate,UserStandard userStandard, String userId, String name, String pw) {
-		Optional<User> existed = userRepository.findByUserId(userId);
+		Optional<User> existed = userDAO.findByUserId(userId);
 		if (existed.isPresent()) {
 			throw new UserExistedException(userId);
 		}
@@ -78,14 +100,14 @@ public class UserService {
 		String encodedPassword = passwordEncoder.encode(pw);
 		User user = User.builder().userNum(1004L).dob(dob).job(job).pageStatus(pageStatus).roles(roles).suDate(suDate).userStandard(userStandard).userId(userId).name(name).pw(encodedPassword).build();
 		
-		return userRepository.save(user);
+		return userDAO.save(user);
 	}
 	
 	
 	
 	@Autowired
 	public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
-		this.userRepository = userRepository;
+		this.userDAO = userRepository;
 		this.passwordEncoder = passwordEncoder;
 	}
 	
@@ -161,17 +183,17 @@ public class UserService {
 			}
 			
 
-			public User authenticate(String userId, String pw) {
-				//System.out.println(userId);
-				User user = userRepository.findByUserId(userId)
-						.orElseThrow(() -> new UserIdNotExistedException(userId));
-				
-				
-				if(!passwordEncoder.matches(pw, user.getPw())) {
-					throw new PasswordWrongException();
-				};
-				return user;
-			}
+			
+			public User authenticate(String userId, String password) {
+				User user = ((Optional<User>) userDAO.findByUserId(userId)).orElseThrow(() -> new UserIdNotExistedException(userId));
+
+		        if (!passwordEncoder.matches(password, user.getPw())) {
+		            throw new PasswordWrongException();
+		        }
+
+		        return user;
+		    }
+		
 			
 			
 }

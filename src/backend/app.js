@@ -14,6 +14,11 @@ const expressSession = require('express-session');
 
 var app = express();
 
+app.use(cookieParser());
+app.get('/mymap', function(req, resp) {
+   console.log(req.cookies['userName']);
+})
+
 
 
 

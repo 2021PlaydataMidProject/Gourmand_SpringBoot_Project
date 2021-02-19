@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -87,7 +88,7 @@ public class User  {
 	    this.name = name;
 	}
 	
-	 //USER,ADMIN
+	//USER,ADMIN
 	public List<String> getRoleList() {
 		if(this.roles.length() > 0) {
 			return Arrays.asList(this.roles.split(","));
@@ -95,14 +96,6 @@ public class User  {
 		return new ArrayList<>();
 	}
 
-//	@JsonIgnore
-//	public String getAccessToken() {
-//		if (pw == null) {
-//			return "";
-//		}
-//		return pw.substring(0,10);
-//	}
-	
 
 }
 

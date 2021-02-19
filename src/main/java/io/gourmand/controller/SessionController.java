@@ -23,6 +23,7 @@ public class SessionController {
 	@Autowired
 	private UserService userService;
 	
+	// 로그인
 	@PostMapping("/session")
 	public ResponseEntity<SessionResponseDTO> create(@RequestBody User resource) throws URISyntaxException {
 		
@@ -43,4 +44,3 @@ public class SessionController {
 	}
 	
 }
-//"{\"accessToken\":\"ACCESSTOKEN\"}"

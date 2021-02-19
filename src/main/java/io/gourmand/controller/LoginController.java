@@ -1,5 +1,8 @@
 package io.gourmand.controller;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,52 +18,63 @@ import io.gourmand.dto.UserDTO;
 import io.gourmand.dto.UserDTO.SigninRequest;
 import io.gourmand.dto.UserDTO.SigninResponse;
 import io.gourmand.service.UserService;
+import io.gourmand.util.CookieUtil;
+import io.gourmand.util.JwtUtil;
 
 @RestController
 public class LoginController {
 
 	@Autowired
+	private JwtUtil jwtUtil;
+
+	@Autowired
 	private UserService userService;
 
+//	@PostMapping("/auth/login")
+//	public SigninResponse signin(@RequestBody @Validated UserDTO.SigninRequest request){
+//		try {
+//			return userService.getMatchedUser(request);
+//		} catch (Exception e) {
+//			return null;
+//		}
+//	}
+
 	@PostMapping("/auth/login")
-	public SigninResponse signin(@RequestBody @Validated UserDTO.SigninRequest request){
+	public Response signin(@RequestBody @Validated UserDTO.SigninRequest request, HttpServletResponse res) {
+
 		try {
-			return userService.getMatchedUser(request);
+			final User user = userService.getMatchedUser(request);
+			final String token = jwtUtil.generateToken(user);
+			Cookie accessToken = CookieUtil.createCookie(JwtUtil.ACCESS_TOKEN_NAME, token);
+			res.addCookie(accessToken);
+			return new Response("success", "로그인에 성공했습니다.", token);
 		} catch (Exception e) {
-			return null;
+			return new Response("error", "로그인에 실패했습니다.", e.getMessage());
 		}
 	}
-	
-	@PostMapping("http://localhost:3000/mymap")
-	public String signinMap(@RequestBody @Validated UserDTO.SigninRequest request) {
-		User user;
+/*
+	public Response login(@RequestBody RequestLoginUser user, HttpServletRequest req, HttpServletResponse res) {
 		try {
-			user = userService.getMatchedUser(request);
-			
-			JsonObject obj =new JsonObject();
-		    JsonObject data = new JsonObject();
-
-		    data.addProperty("user_num", user.getUserId());
-		    data.addProperty("user_id", user.getUserNum());
-
-		    obj.add("data", data);
-
-		    return obj.toString();
-			
+			final Member member = authService.loginUser(user.getUsername(), user.getPassword());
+			final String token = jwtUtil.generateToken(member);
+			final String refreshJwt = jwtUtil.generateRefreshToken(member);
+			Cookie accessToken = cookieUtil.createCookie(JwtUtil.ACCESS_TOKEN_NAME, token);
+			Cookie refreshToken = cookieUtil.createCookie(JwtUtil.REFRESH_TOKEN_NAME, refreshJwt);
+			redisUtil.setDataExpire(refreshJwt, member.getUsername(), JwtUtil.REFRESH_TOKEN_VALIDATION_SECOND);
+			res.addCookie(accessToken);
+			res.addCookie(refreshToken);
+			return new Response("success", "로그인에 성공했습니다.", token);
 		} catch (Exception e) {
-			return null;
+			return new Response("error", "로그인에 실패했습니다.", e.getMessage());
 		}
 	}
+*/
 	
-	
-	
-	
-
 	@PostMapping("/auth/check")
 	public void check(@RequestBody User user) {
 		System.out.println(user);
 	}
-	
+
 	@GetMapping("auth/signout")
 	public String logout(SessionStatus status) {
 		status.setComplete();

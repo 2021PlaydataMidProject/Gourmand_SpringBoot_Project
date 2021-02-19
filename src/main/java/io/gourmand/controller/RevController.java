@@ -1,87 +1,8 @@
-//package io.gourmand.controller;
-//
-//import java.net.URI;
-//import java.net.URISyntaxException;
-//import java.time.LocalDate;
-//import java.util.List;
-//
-//import javax.persistence.OneToMany;
-//
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.http.ResponseEntity;
-//import org.springframework.security.core.Authentication;
-//import org.springframework.web.bind.annotation.CrossOrigin;
-//import org.springframework.web.bind.annotation.PathVariable;
-//import org.springframework.web.bind.annotation.PostMapping;
-//import org.springframework.web.bind.annotation.RequestBody;
-//import org.springframework.web.bind.annotation.RestController;
-//
-//import io.gourmand.domain.Res;
-//import io.gourmand.domain.Review;
-//import io.gourmand.domain.ReviewImg;
-//import io.gourmand.domain.ReviewStandard;
-//import io.gourmand.domain.User;
-//import io.gourmand.service.RevService;
-//import io.jsonwebtoken.Claims;
-//
-//@CrossOrigin
-//@RestController
-//public class ReviewController {
-//
-//    @Autowired
-//    private RevService reviewService;
-//
-//    @PostMapping("/restaurants/{resNum}/reviews")
-//    public ResponseEntity<?> create(
-//            Authentication authentication,
-//            @PathVariable("resNum") Long resNum,
-//            @Valid @RequestBody Review resource,
-//            @RequestBody User usersource,
-//            @RequestBody Res ressource,
-//            @RequestBody ReviewStandard revssource,
-//            @RequestBody List<ReviewImg> revimagesource
-//    ) throws URISyntaxException {
-//        Claims claims = (Claims) authentication.getPrincipal();
-//
-//        String username = claims.get("name", String.class); // USER NAME을 JWT토큰으로 가져오려고 하는데 -> USER NAME 칼럼명이 없음 -> 리뷰 작성자 이름이 없음
-//        //String username = usersource.getName();
-//        String resname = ressource.getResName();
-//        String foodType = resource.getFoodType();
-//        String review = resource.getReview();
-//        LocalDate writeDate = LocalDate.now();
-//        String imgLink = resource.getImgLink();
-//        Class<? extends ReviewStandard> reviewStandard = revssource.getClass();
-//        Class<? extends List> reviewImg = revimagesource.getClass();
-//        
-//        Review review = reviewService.addReview(
-//        		resNum, username, resname, foodType, review, writeDate, imgLink, reviewStandard, reviewImg );
-//
-//        String url = "/restaurant/" + resNum +
-//                "/reviews/" + review.getReviewNum();
-//        return ResponseEntity.created(new URI(url)).body("{}");
-//    }
-//
-//}
-//
-//private Long reviewNum;
-//
-//private User user;
-//
-//private Res res;
-//
-//private String foodType;
-//
-//private String review;
-//
-//private LocalDate writeDate;
-//
-//private String imgLink;
-//
-//private ReviewStandard reviewStandard;
-//
-//@OneToMany(mappedBy = "review")
-//private List<ReviewImg> reviewImg;
-//
+package io.gourmand.controller;
+
+
+
+
 
 import java.io.IOException;
 import java.util.List;
@@ -208,3 +129,64 @@ public class RevController {
 		return revService.getRevOrderByTime();
 	}
 }
+
+//import java.net.URI;
+//import java.net.URISyntaxException;
+//import java.time.LocalDate;
+//import java.util.List;
+//
+//import javax.persistence.OneToMany;
+//
+//import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.http.ResponseEntity;
+//import org.springframework.security.core.Authentication;
+//import org.springframework.web.bind.annotation.CrossOrigin;
+//import org.springframework.web.bind.annotation.PathVariable;
+//import org.springframework.web.bind.annotation.PostMapping;
+//import org.springframework.web.bind.annotation.RequestBody;
+//import org.springframework.web.bind.annotation.RestController;
+//
+//import io.gourmand.domain.Res;
+//import io.gourmand.domain.Review;
+//import io.gourmand.domain.ReviewImg;
+//import io.gourmand.domain.ReviewStandard;
+//import io.gourmand.domain.User;
+//import io.gourmand.service.RevService;
+//import io.jsonwebtoken.Claims;
+//
+//@CrossOrigin
+//@RestController
+//public class ReviewController {
+//
+//  @Autowired
+//  private RevService reviewService;
+//
+//  @PostMapping("/restaurants/{resNum}/reviews")
+//  public ResponseEntity<?> create(
+//          Authentication authentication,
+//          @PathVariable("resNum") Long resNum,
+//          @Valid @RequestBody Review resource,
+//          @RequestBody User usersource,
+//          @RequestBody Res ressource,
+//          @RequestBody ReviewStandard revssource,
+//          @RequestBody List<ReviewImg> revimagesource
+//  ) throws URISyntaxException {
+//      Claims claims = (Claims) authentication.getPrincipal();
+//
+//      String username = claims.get("name", String.class); // 토큰에 넣은 이름 적용
+//      //String username = usersource.getName();
+//      String resname = ressource.getResName();
+//      String foodType = resource.getFoodType();
+//      String review = resource.getReview();
+//      LocalDate writeDate = LocalDate.now();
+//      String imgLink = resource.getImgLink();
+//      Class<? extends ReviewStandard> reviewStandard = revssource.getClass();
+//      Class<? extends List> reviewImg = revimagesource.getClass();
+//      
+//      Review review = reviewService.addReview(
+//      		resNum, username, resname, foodType, review, writeDate, imgLink, reviewStandard, reviewImg );
+//
+//      String url = "/restaurant/" + resNum +
+//              "/reviews/" + review.getReviewNum();
+//      return ResponseEntity.created(new URI(url)).body("{}");
+//  }

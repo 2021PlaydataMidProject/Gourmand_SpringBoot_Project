@@ -28,7 +28,6 @@ import lombok.ToString;
 @Setter
 @ToString
 @Builder
-
 @Entity(name = "REVIEW")
 public class Review {
 	@Id
@@ -63,27 +62,9 @@ public class Review {
 	@OneToMany(mappedBy = "review")
 	private List<ReviewImg> reviewImg;
 	
+
+	
 }
 
-//@Entity
-//@Getter
-//@Builder
-//@NoArgsConstructor
-//@AllArgsConstructor
-//public class Review {
-//
-//    @Id
-//    @GeneratedValue
-//    private Long id;
-//
-//    @Setter
-//    private Long restaurantId;
-//
-//    private String name;
-//
-//    @NotNull
-//    private Integer score;
-//
-//    @NotEmpty
-//    private String description;
-//}
+
+

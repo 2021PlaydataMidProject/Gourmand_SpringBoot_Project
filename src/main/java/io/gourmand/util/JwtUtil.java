@@ -4,6 +4,7 @@ import java.security.Key;
 
 import org.springframework.stereotype.Component;
 
+import io.gourmand.domain.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -11,6 +12,10 @@ import io.jsonwebtoken.security.Keys;
 
 public class JwtUtil {
 
+	final static public String ACCESS_TOKEN_NAME = "accessToken";
+	 
+	public final static long TOKEN_VALIDATION_SECOND = 1000L * 10;
+	 
 	private Key key;
 
 	public JwtUtil(String secret) {
@@ -33,6 +38,16 @@ public class JwtUtil {
 				.setSigningKey(key)
 				.parseClaimsJws(token)
 				.getBody();
+	}
+
+	public String generateToken(User user) {
+		
+		return Jwts.builder()
+				.claim("user_num", user.getUserNum())
+				.claim("user_id", user.getUserId())
+				.claim("name", user.getName())
+				.signWith(key , SignatureAlgorithm.HS256)
+				.compact();//"header.payload.signature"
 	}
 	
 }
