@@ -18,6 +18,8 @@ import StarRating from "./views/StarRating.vue";
 import MapForAllSearch from "./views/MapForAllSearch.vue"
 import GourmandGuide from "./views/GourmandGuide.vue"
 import RevRegi from "./views/RevRegi.vue"
+import MyReview from "./views/MyReview.vue"
+import MyAnalysis from "./views/MyAnalysis.vue"
 
 Vue.use(Router);
 
@@ -168,7 +170,25 @@ export default new Router({
         default: GourmandGuide,
         footer: AppFooter
       }
-    }
+    },
+    {
+      path: "/myreview",
+      name: "myReview",
+      components: {
+        header: AppHeader,
+        default: MyReview,
+        footer: AppFooter
+      }
+    },
+    {
+      path: "/myanalysis",
+      name: "myAnalysis",
+      components: {
+        header: AppHeader,
+        default: MyAnalysis,
+        footer: AppFooter
+      }
+    },
   ],
   scrollBehavior: to => {
     if (to.hash) {
