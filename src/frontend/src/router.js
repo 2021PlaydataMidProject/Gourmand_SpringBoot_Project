@@ -17,7 +17,7 @@ import UserEdit from "./views/UserEdit.vue";
 import MyPage from "./views/MyPage.vue";
 import StarRating from "./views/StarRating.vue";
 import MapForAllSearch from "./views/MapForAllSearch.vue"
-
+import GourmandGuide from "./views/GourmandGuide.vue"
 
 
 Vue.use(Router);
@@ -134,24 +134,33 @@ export default new Router({
         footer: AppFooter
       }
     },
-      {
-        path: "/mypage",
-        name: "myPage",
-        components: {
-          header: AppHeaderOther,
-          default: MyPage,
-          footer: AppFooter
-        }  
+    {
+      path: "/mypage",
+      name: "myPage",
+      components: {
+        header: AppHeader,
+        default: MyPage,
+        footer: AppFooter
+      }
     },
-      {
-        path: "/starrating",
-        name: "starRating",
-        components: {
-          header: AppHeaderOther,
-          default: StarRating,
-          footer: AppFooter
-        }  
+    {
+      path: "/starrating",
+      name: "starRating",
+      components: {
+        header: AppHeader,
+        default: StarRating,
+        footer: AppFooter
+      }
     },
+    {
+      path: "/guide",
+      name: "guide",
+      components: {
+        header: AppHeader,
+        default: GourmandGuide,
+        footer: AppFooter
+      }
+    }
   ],
   scrollBehavior: to => {
     if (to.hash) {

@@ -35,6 +35,9 @@
               <base-radio name="9" class="mb-3 mr-1" v-model="radio.radio1">
                 <small> 9km 이내 </small>
               </base-radio>
+              <base-radio name="9999999" class="mb-3 mr-1" v-model="radio.radio1">
+                <small> 전체 </small>
+              </base-radio>
             </div>
             <div class="mt-4 mt-md-0">
               <div class="mb-3">
@@ -127,10 +130,21 @@
             class="img-fluid rounded shadow"
             style="width: 150px"
           />
-          <h3 class="heading mb-0">★★★★☆ {{ value.avg_star }}/5.0</h3>
-          <a :href="'/respage?' + value.res_num"
-            ><h3 class="heading-title mb-0">{{ value.res_name }}</h3></a
-          >
+          <h3 class="heading mb-1">
+            <star-rating
+              :value="3"
+              :show-rating="false"
+              @hover:rating="mouseOverRating = $event"
+              :increment="0.5"
+              :starSize="20"
+              :readOnly="true"
+              :rating="value.avg_star"
+            ></star-rating>
+          </h3>
+          {{ value.avg_star.toFixed(1) }}/5.0
+          <a :href="'/respage?' + value.res_num">
+            <h3 class="heading-title mb-0">{{ value.res_name }}</h3>
+          </a>
           <h3 class="heading">{{ value.category }}</h3>
           <h6 class="mb-0">{{ value.res_address }}</h6>
           <hr />
@@ -144,12 +158,14 @@
 import BaseNav from "@/components/BaseNav";
 import CloseButton from "@/components/CloseButton";
 import Modal from "@/components/Modal.vue";
+import StarRating from "vue-star-rating";
 
 export default {
   components: {
     BaseNav,
     CloseButton,
     Modal,
+    StarRating
   },
   data() {
     return {
@@ -185,9 +201,9 @@ export default {
       }
       this.str = this.$route.query.name;
       this.axios
-        // default 반경 3km
+        // default 전체
         .get(
-          `/res/thumbnail/search/${this.str}/${this.xValue},${this.yValue}/3`,{}
+          `/res/thumbnail/search/${this.str}/${this.xValue},${this.yValue}/500`,{}
         )
         .then((res) => {
           this.resThumbnails = res.data;

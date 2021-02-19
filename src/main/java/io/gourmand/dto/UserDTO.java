@@ -6,18 +6,16 @@ import java.util.List;
 import io.gourmand.domain.Followers;
 import io.gourmand.domain.ListLikes;
 import io.gourmand.domain.Reply;
-import io.gourmand.domain.Res;
-import io.gourmand.domain.ResImg;
 import io.gourmand.domain.ReviewLikes;
 import io.gourmand.domain.User;
 import io.gourmand.domain.UserImg;
 import io.gourmand.domain.UserStandard;
-import io.gourmand.dto.UserDTO.UserThumbnail;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 
 public class UserDTO {
@@ -45,6 +43,7 @@ public class UserDTO {
 	@Setter
 	@AllArgsConstructor
 	@NoArgsConstructor
+	@ToString
 	@Builder
 	public static class SigninRequest {
 		private String userId;

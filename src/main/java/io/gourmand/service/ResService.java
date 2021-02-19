@@ -17,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import io.gourmand.dao.ResImgRepository;
 import io.gourmand.dao.ResRepository;
 import io.gourmand.dao.UserRepository;
+import io.gourmand.dao.UserResListRepository;
 import io.gourmand.domain.Res;
 import io.gourmand.domain.ResImg;
 import io.gourmand.dto.ResDTO.ResInfo;
@@ -33,6 +34,8 @@ public class ResService {
 	ResImgRepository resImgDAO;
 	@Autowired
 	UserRepository userDAO;
+	@Autowired
+	UserResListRepository urlDAO;
 
 	// 가게 정보페이지에 필요한 DTO를 생성해서 controller에 보낸다.
 	public ResInfo getResInfo(Long id) {
@@ -72,13 +75,25 @@ public class ResService {
 		return resThumbList;
 	}
 	
-	// 해당 가게를 리스트에 넣은 유저 반환 - res 팀 작업 중
+	// 해당 가게를 리스트에 넣은 유저 반환
 	public List<UserThumbnail> getUserByRes(Long id) {
 		List<UserThumbnail> userThumbList = new ArrayList<>();
 		userDAO.findUsersOfRes(id).forEach(user -> userThumbList.add(UserThumbnail.of(user)));
 		return userThumbList;
 	}
-
+	
+	// 유저에 대한 리스트 이름들 반환
+	public List<String> getResListName(Long id){
+		return urlDAO.findListNamebyUser(id);
+	}
+	
+	// 특정 리스트에 대한 가게 정보 반환
+	public List<ResThumbnail> getAllResOfList(Long id, String name){
+		List<ResThumbnail> resThumbList = new ArrayList<>();
+		urlDAO.findAllbyUserAndListName(id, name).forEach(r -> resThumbList.add(ResThumbnail.of(r.getRes())));
+		return resThumbList;
+	}
+	
 	// 가게 등록 페이지에서 저장
 	public Res insertRes(ResRegister res) {
 		return resDAO.save(ResRegister.toEntity(res));

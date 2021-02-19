@@ -2,10 +2,12 @@ package io.gourmand.controller;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -82,6 +84,14 @@ public class ResController {
 	@GetMapping("/res/{id}/user")
 	public List<UserThumbnail> getUserByRes(@PathVariable Long id){
 		return resService.getUserByRes(id);
+	}
+	
+	//해당 유저의 모든 리스트 맵으로 반환
+	@GetMapping("/res/user/{id}/list")
+	public Map<String, List<ResThumbnail>> getResOfList(@PathVariable Long id){
+		Map<String, List<ResThumbnail>> resList = new HashMap<>();
+		resService.getResListName(id).forEach(name -> resList.put(name, resService.getAllResOfList(id, name)));
+		return resList;
 	}
 	
 	// 가게 정보 저장

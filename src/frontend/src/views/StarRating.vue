@@ -1,11 +1,17 @@
-/* eslint-disable vue/no-parsing-error */
-
-
 <template>
   <section class="section section-shaped section-lg my-0">
+    <div class="shape shape-style-1 bg-gradient-default">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
     <div>
       <h1>StarRating</h1>
-
       <h2>0.5씩 커지는 StarRating</h2>
       <div @mouseleave="mouseOverRating = null" style="display: inline-block">
         <star-rating
@@ -80,7 +86,5 @@ body {
   border-radius: 2px;
   color: #999;
   background: #fff;
-  
 }
-
 </style>

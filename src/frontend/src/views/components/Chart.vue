@@ -1,5 +1,5 @@
 <template>
-  <canvas id="myChart" :width="this.$props.width" :height="this.$props.height"></canvas>
+  <canvas :id="name" :width="this.$props.width" :height="this.$props.height"></canvas>
 </template>
 
 <script>
@@ -14,12 +14,15 @@ export default {
       default: "300px",
     },
     data:{
-        type: Array
+      type: Array
+    },
+    name:{
+      type: String
     }
   },
   mounted() {
     var Chart = require("chart.js");
-    var ctx = document.getElementById("myChart");
+    var ctx = document.getElementById(this.name);
     new Chart(ctx, {
       type: "radar",
       data: {
@@ -27,7 +30,7 @@ export default {
         datasets: [
           {
             label: "박민영",
-            fontSize: 20,
+            fontSize: 10,
             data: [this.$props.data[0], this.$props.data[1], this.$props.data[2], this.$props.data[3], this.$props.data[4], this.$props.data[5]],
             backgroundColor: ["rgba(255, 181, 60, 0.7)"],
             borderColor: [
@@ -53,7 +56,7 @@ export default {
             stepSize: 1,
           },
           pointLabels: {
-            fontSize: 20,
+            fontSize: 12,
           },
         },
         legend: {

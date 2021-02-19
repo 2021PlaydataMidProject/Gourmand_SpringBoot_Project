@@ -35,6 +35,9 @@
               <base-radio name="9" class="mb-3 mr-1" v-model="radio.radio1">
                 <small> 9km 이내 </small>
               </base-radio>
+              <base-radio name="9999999" class="mb-3 mr-1" v-model="radio.radio1">
+                <small> 전체 </small>
+              </base-radio>
             </div>
             <div class="mt-4 mt-md-0">
               <div class="mb-3">
@@ -124,17 +127,18 @@
             class="img-fluid rounded shadow"
             style="width: 150px"
           />
-          <h3 class="heading mb-0">  <star-rating
-          :value="3"
-          :show-rating="true"
-          @hover:rating="mouseOverRating = $event"
-          :increment="0.5"
-          :starSize="20"
-          :readOnly="true"
-          :rating="3.5"
-          
-        ></star-rating> {{ value.avg_star }}/5.0</h3>
-          <h3> {{ value.avg_star }}/5.0</h3>
+          <h3 class="heading mb-1">
+            <star-rating
+              :value="3"
+              :show-rating="false"
+              @hover:rating="mouseOverRating = $event"
+              :increment="0.5"
+              :starSize="20"
+              :readOnly="true"
+              :rating="value.avg_star"
+            ></star-rating>
+          </h3>
+          {{ value.avg_star.toFixed(1) }}/5.0
 
           <a :href="'/respage?' + value.res_num"
             ><h3 class="heading-title mb-0">{{ value.res_name }}</h3></a
@@ -162,7 +166,7 @@ export default {
     StarRating,
   },
   //star rating 별점
-   computed: {
+  computed: {
     currentRatingText() {
       return this.rating
         ? "You have selected " + this.rating + " stars"
@@ -272,7 +276,6 @@ body {
   border-radius: 2px;
   color: #999;
   background: #fff;
-  
 }
 </style>
 
