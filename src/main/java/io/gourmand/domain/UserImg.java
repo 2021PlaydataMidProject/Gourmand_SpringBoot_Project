@@ -13,6 +13,8 @@ import javax.persistence.ManyToOne;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -35,6 +37,7 @@ public class UserImg {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long userImgId; 
 	
+	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="USER_NUM")
 	private User user;
@@ -58,7 +61,7 @@ public class UserImg {
         String originFileName = file.getOriginalFilename();
         String ext = originFileName.substring(originFileName.lastIndexOf(".") + 1);
         String fileName = String.format("%s.%s", UUID.randomUUID().toString(), ext);
-        String filePath = "C:\\MyGit\\midProject\\Gourmand_SpringBoot_Project\\user\\" + user.getUserId() + "\\";
+        String filePath = "C:\\MyGit\\midProject\\Gourmand_SpringBoot_Project\\src\\frontend\\public\\img\\user\\";
         
         return UserImg.builder()
                 .originName(originFileName)

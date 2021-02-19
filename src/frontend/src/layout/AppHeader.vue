@@ -62,7 +62,7 @@
         </base-dropdown>
           <a
             slot="title"
-            href="#"
+            href="/guide"
             class="nav-link"
           >
             <i class="ni ni-ui-04 d-lg-none"></i>
@@ -127,7 +127,8 @@ export default {
     },
     mymap: function(){
         if (sessionStorage.getItem("user")!=null){
-            location.href="/resregi";
+            location.href="http://localhost:3000/mymap";
+        //  resregi
         } else{
             location.href="/login";
         }

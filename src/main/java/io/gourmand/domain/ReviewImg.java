@@ -13,6 +13,8 @@ import javax.persistence.ManyToOne;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -36,6 +38,7 @@ public class ReviewImg {
 	private Long reviewImgId; 
 	
 	@ManyToOne(fetch = FetchType.LAZY)
+	@JsonIgnore
 	@JoinColumn(name="REVIEW_NUM")
 	private Review review;
 	
@@ -59,7 +62,7 @@ public class ReviewImg {
         String originFileName = file.getOriginalFilename();
         String ext = originFileName.substring(originFileName.lastIndexOf(".") + 1);
         String fileName = String.format("%s.%s", UUID.randomUUID().toString(), ext);
-        String filePath = "C:\\MyGit\\midProject\\Gourmand_SpringBoot_Project\\review\\" + review.getReviewNum() + "\\";
+        String filePath = "C:\\MyGit\\midProject\\Gourmand_SpringBoot_Project\\src\\frontend\\public\\img\\rev\\";
         
         return ReviewImg.builder()
                 .originName(originFileName)

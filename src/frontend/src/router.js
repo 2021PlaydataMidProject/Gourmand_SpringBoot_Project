@@ -14,8 +14,12 @@ import MapForAll from "./views/MapForAll.vue";
 import ResPage from "./views/ResPage.vue";
 import UserEdit from "./views/UserEdit.vue";
 import MyPage from "./views/MyPage.vue";
+import StarRating from "./views/StarRating.vue";
+import MapForAllSearch from "./views/MapForAllSearch.vue"
+import GourmandGuide from "./views/GourmandGuide.vue"
+import RevRegi from "./views/RevRegi.vue"
 
-// Vue.use(Router);
+Vue.use(Router);
 
 export default new Router({
   linkExactActiveClass: "active",
@@ -103,11 +107,29 @@ export default new Router({
       }
     },
     {
+      path: "/search",
+      name: "Serch",
+      components: {
+        header: AppHeader,
+        default: MapForAllSearch,
+        footer: AppFooter
+      }
+    },
+    {
       path: "/respage",
       name: "ResPage",
       components: {
         header: AppHeader,
         default: ResPage,
+        footer: AppFooter
+      }
+    },
+    {
+      path: "/respage/review/write",
+      name: "RevRegi",
+      components: {
+        header: AppHeader,
+        default: RevRegi,
         footer: AppFooter
       }
     },
@@ -120,23 +142,39 @@ export default new Router({
         footer: AppFooter
       }
     },
-      {
-        path: "/mypage",
-        name: "myPage",
-        components: {
-          header: AppHeader,
-          default: MyPage,
-          footer: AppFooter
-        }  
+    {
+      path: "/mypage",
+      name: "myPage",
+      components: {
+        header: AppHeader,
+        default: MyPage,
+        footer: AppFooter
+      }
+    },
+    {
+      path: "/starrating",
+      name: "starRating",
+      components: {
+        header: AppHeader,
+        default: StarRating,
+        footer: AppFooter
+      }
+    },
+    {
+      path: "/guide",
+      name: "guide",
+      components: {
+        header: AppHeader,
+        default: GourmandGuide,
+        footer: AppFooter
+      }
     }
-
-
-//   ],
-//   scrollBehavior: to => {
-//     if (to.hash) {
-//       return { selector: to.hash };
-//     } else {
-//       return { x: 0, y: 0 };
-//     }
-//   }
-// })
+  ],
+  scrollBehavior: to => {
+    if (to.hash) {
+      return { selector: to.hash };
+    } else {
+      return { x: 0, y: 0 };
+    }
+  }
+})
