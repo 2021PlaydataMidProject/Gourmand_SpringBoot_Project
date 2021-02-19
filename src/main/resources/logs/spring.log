@@ -262,3 +262,78 @@ Caused by: java.sql.SQLSyntaxErrorException: Can't DROP 'FK1rj9t0d9eywkaqbe3dtn0
 2021-02-19 09:56:28.713  INFO 14828 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 80 (http) with context path ''
 2021-02-19 09:56:28.726  INFO 14828 --- [restartedMain] io.gourmand.GourmandApplication          : Started GourmandApplication in 1.427 seconds (JVM running for 65776.682)
 2021-02-19 09:56:28.728  INFO 14828 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2021-02-19 10:01:59.858  INFO 14828 --- [Thread-65] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-02-19 10:01:59.860  INFO 14828 --- [Thread-65] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-02-19 10:01:59.861  INFO 14828 --- [Thread-65] com.zaxxer.hikari.HikariDataSource       : HikariPool-9 - Shutdown initiated...
+2021-02-19 10:01:59.866  INFO 14828 --- [Thread-65] com.zaxxer.hikari.HikariDataSource       : HikariPool-9 - Shutdown completed.
+2021-02-19 10:02:00.164  INFO 14828 --- [restartedMain] io.gourmand.GourmandApplication          : Starting GourmandApplication on DESKTOP-17JPC4P with PID 14828 (C:\ITStudy\GitHub\Gourmand_SpringBoot_Project\target\classes started by Playdata in C:\ITStudy\GitHub\Gourmand_SpringBoot_Project)
+2021-02-19 10:02:00.165  INFO 14828 --- [restartedMain] io.gourmand.GourmandApplication          : No active profile set, falling back to default profiles: default
+2021-02-19 10:02:00.717  INFO 14828 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-02-19 10:02:00.878  INFO 14828 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 161ms. Found 13 JPA repository interfaces.
+2021-02-19 10:02:01.212  INFO 14828 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 80 (http)
+2021-02-19 10:02:01.215  INFO 14828 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-02-19 10:02:01.216  INFO 14828 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.41]
+2021-02-19 10:02:01.246  INFO 14828 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-02-19 10:02:01.246  INFO 14828 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1076 ms
+2021-02-19 10:02:01.408  INFO 14828 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-02-19 10:02:01.416  INFO 14828 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-10 - Starting...
+2021-02-19 10:02:01.421  INFO 14828 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-10 - Start completed.
+2021-02-19 10:02:01.421  INFO 14828 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+2021-02-19 10:02:01.703  INFO 14828 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-02-19 10:02:01.705  INFO 14828 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-02-19 10:02:02.362  WARN 14828 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-02-19 10:02:02.428  INFO 14828 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-02-19 10:02:02.675  INFO 14828 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2021-02-19 10:02:02.695  INFO 14828 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 80 (http) with context path ''
+2021-02-19 10:02:02.705  INFO 14828 --- [restartedMain] io.gourmand.GourmandApplication          : Started GourmandApplication in 2.624 seconds (JVM running for 66110.662)
+2021-02-19 10:02:02.708  INFO 14828 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2021-02-19 10:02:04.517  INFO 14828 --- [Thread-72] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-02-19 10:02:04.520  INFO 14828 --- [Thread-72] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-02-19 10:02:04.521  INFO 14828 --- [Thread-72] com.zaxxer.hikari.HikariDataSource       : HikariPool-10 - Shutdown initiated...
+2021-02-19 10:02:04.529  INFO 14828 --- [Thread-72] com.zaxxer.hikari.HikariDataSource       : HikariPool-10 - Shutdown completed.
+2021-02-19 10:02:04.867  INFO 14828 --- [restartedMain] io.gourmand.GourmandApplication          : Starting GourmandApplication on DESKTOP-17JPC4P with PID 14828 (C:\ITStudy\GitHub\Gourmand_SpringBoot_Project\target\classes started by Playdata in C:\ITStudy\GitHub\Gourmand_SpringBoot_Project)
+2021-02-19 10:02:04.867  INFO 14828 --- [restartedMain] io.gourmand.GourmandApplication          : No active profile set, falling back to default profiles: default
+2021-02-19 10:02:05.352  INFO 14828 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-02-19 10:02:05.447  INFO 14828 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 94ms. Found 13 JPA repository interfaces.
+2021-02-19 10:02:05.610  INFO 14828 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 80 (http)
+2021-02-19 10:02:05.611  INFO 14828 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-02-19 10:02:05.611  INFO 14828 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.41]
+2021-02-19 10:02:05.627  INFO 14828 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-02-19 10:02:05.627  INFO 14828 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 754 ms
+2021-02-19 10:02:05.680  INFO 14828 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-02-19 10:02:05.687  INFO 14828 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-11 - Starting...
+2021-02-19 10:02:05.690  INFO 14828 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-11 - Start completed.
+2021-02-19 10:02:05.691  INFO 14828 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+2021-02-19 10:02:05.842  INFO 14828 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-02-19 10:02:05.843  INFO 14828 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-02-19 10:02:06.199  WARN 14828 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-02-19 10:02:06.385  INFO 14828 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-02-19 10:02:06.511  INFO 14828 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2021-02-19 10:02:06.535  INFO 14828 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 80 (http) with context path ''
+2021-02-19 10:02:06.547  INFO 14828 --- [restartedMain] io.gourmand.GourmandApplication          : Started GourmandApplication in 1.753 seconds (JVM running for 66114.504)
+2021-02-19 10:02:06.549  INFO 14828 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2021-02-19 10:02:09.190  INFO 14828 --- [Thread-79] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-02-19 10:02:09.192  INFO 14828 --- [Thread-79] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-02-19 10:02:09.192  INFO 14828 --- [Thread-79] com.zaxxer.hikari.HikariDataSource       : HikariPool-11 - Shutdown initiated...
+2021-02-19 10:02:09.194  INFO 14828 --- [Thread-79] com.zaxxer.hikari.HikariDataSource       : HikariPool-11 - Shutdown completed.
+2021-02-19 10:02:09.408  INFO 14828 --- [restartedMain] io.gourmand.GourmandApplication          : Starting GourmandApplication on DESKTOP-17JPC4P with PID 14828 (C:\ITStudy\GitHub\Gourmand_SpringBoot_Project\target\classes started by Playdata in C:\ITStudy\GitHub\Gourmand_SpringBoot_Project)
+2021-02-19 10:02:09.408  INFO 14828 --- [restartedMain] io.gourmand.GourmandApplication          : No active profile set, falling back to default profiles: default
+2021-02-19 10:02:09.653  INFO 14828 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-02-19 10:02:09.721  INFO 14828 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 67ms. Found 13 JPA repository interfaces.
+2021-02-19 10:02:09.853  INFO 14828 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 80 (http)
+2021-02-19 10:02:09.854  INFO 14828 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-02-19 10:02:09.855  INFO 14828 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.41]
+2021-02-19 10:02:09.870  INFO 14828 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-02-19 10:02:09.870  INFO 14828 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 459 ms
+2021-02-19 10:02:09.939  INFO 14828 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-02-19 10:02:09.944  INFO 14828 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-12 - Starting...
+2021-02-19 10:02:09.948  INFO 14828 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-12 - Start completed.
+2021-02-19 10:02:09.948  INFO 14828 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+2021-02-19 10:02:10.092  INFO 14828 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-02-19 10:02:10.092  INFO 14828 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-02-19 10:02:10.385  WARN 14828 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-02-19 10:02:10.433  INFO 14828 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-02-19 10:02:10.556  INFO 14828 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2021-02-19 10:02:10.566  INFO 14828 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 80 (http) with context path ''
+2021-02-19 10:02:10.577  INFO 14828 --- [restartedMain] io.gourmand.GourmandApplication          : Started GourmandApplication in 1.213 seconds (JVM running for 66118.534)
+2021-02-19 10:02:10.579  INFO 14828 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
