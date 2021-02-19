@@ -86,7 +86,7 @@
             <i class="ni ni-ui-04 d-lg-none"></i>
             <span class="nav-link-inner--text">마이페이지</span>
           </a>
-          <a
+        <a
             v-if="logincheck()"
             slot="title"
             href="#"
@@ -104,6 +104,7 @@
 import BaseNav from "@/components/BaseNav";
 import BaseDropdown from "@/components/BaseDropdown";
 import CloseButton from "@/components/CloseButton";
+import {deleteCookie} from '../utils/cookies.js';
 
 export default {
   components: {
@@ -122,6 +123,7 @@ export default {
     logout: function(){
         if (sessionStorage.getItem("user")!=null){
             sessionStorage.removeItem("user");
+            deleteCookie();
             location.href="/"
         }
     },

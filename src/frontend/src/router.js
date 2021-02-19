@@ -21,7 +21,6 @@ import RevRegi from "./views/RevRegi.vue"
 import MyReview from "./views/MyReview.vue"
 import MyAnalysis from "./views/MyAnalysis.vue"
 
-
 Vue.use(Router);
 
 export default new Router({
