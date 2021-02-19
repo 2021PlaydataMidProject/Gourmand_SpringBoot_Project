@@ -1,1 +1,12 @@
-<!-- 내 선호 분석  페이지-->
+<template>
+    <section>
+    </section>
+</template>
+<script>
+export default {
+    
+}
+</script>
+<style>
+
+</style>

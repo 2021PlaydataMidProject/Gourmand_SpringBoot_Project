@@ -17,9 +17,8 @@
             </div>
           </div>
           <div class="col-md-6">
-            <div class="profile-head">
-              <h5>우넹</h5>
-              <h6>hi</h6>
+            <div v-for="(user, key) in user" v-bind:key="key" class="profile-head">
+              <h5>유넹</h5>
               <p class="proile-rating">
                 평가 <span>10</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               </p>
@@ -48,7 +47,9 @@
               <a href="/userEdit">개인정보 수정</a><br />
             </div>
           </div>
+          <!--여기에 my review ,myalanysis둘다 들어와야함 -->
           <my-review></my-review>
+         
         </div>
         
          
@@ -58,11 +59,31 @@
   </section>
 </template>
 <script>
-
 import MyReview from "@/views/MyReview";
+import MyAnalysis from "@/views/MyAnalysis";
+import UserEdit from "@/views/UserEdit";
+
 export default {
+   data() {
+    return {
+      resInfo: "",
+      resUser: "",
+      revs: [],
+      data: [],
+      resnum: 0,
+    };
+  },
   components: {
     MyReview,
+    MyAnalysis,
+    UserEdit
+  },
+   mounted() {
+    if (sessionStorage.getItem("user") == null) {
+      location.href = "/register";
+    }
+    
+    
   },
 };
 </script>
