@@ -5,13 +5,12 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
-import java.util.List;
 import java.util.Optional;
 
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
@@ -26,15 +25,17 @@ import io.gourmand.domain.User;
 import io.gourmand.domain.UserImg;
 import io.gourmand.domain.UserResList;
 import io.gourmand.domain.UserStandard;
-import io.gourmand.dto.RevDTO;
 import io.gourmand.dto.UserDTO.SigninRequest;
 import io.gourmand.dto.UserDTO.UserCountsInfo;
-import io.gourmand.dto.UserDTO.UserInfo;
 import io.gourmand.dto.UserDTO.UserRegister;
 import io.gourmand.dto.UserDTO.UserThumbnail;
 import io.gourmand.dto.UserStandardDTO.UserStandardRegister;
+import io.gourmand.exception.PasswordWrongException;
+import io.gourmand.exception.UserExistedException;
+import io.gourmand.exception.UserIdNotExistedException;
 
 @Service
+@Transactional
 public class UserService {
 	@Autowired
 	UserRepository userDAO;
@@ -44,6 +45,10 @@ public class UserService {
 	UserStandardRepository userStandardDAO;
 	@Autowired
 	ReviewRepository revDAO;
+	
+	UserRepository userRepository;
+	PasswordEncoder passwordEncoder;
+	
 	/**
 	 * 아이디과 비밀번호가 일치하는 유저를 조회한다. 해당 아이디 유저가 존재하지 않거나 비밀번호가 일치하지 않으면 Exception
 	 * 
@@ -60,9 +65,30 @@ public class UserService {
 		return signin;
 	}
 
+	
 	// 회원 정보 조회
 	public Optional<User> getUser(Long userNum) {
 		return userDAO.findById(userNum);
+	}
+	
+	public User registerUser(String dob,String job,int pageStatus,String roles,LocalDate suDate,UserStandard userStandard, String userId, String name, String pw) {
+		Optional<User> existed = userRepository.findByUserId(userId);
+		if (existed.isPresent()) {
+			throw new UserExistedException(userId);
+		}
+		
+		String encodedPassword = passwordEncoder.encode(pw);
+		User user = User.builder().userNum(1004L).dob(dob).job(job).pageStatus(pageStatus).roles(roles).suDate(suDate).userStandard(userStandard).userId(userId).name(name).pw(encodedPassword).build();
+		
+		return userRepository.save(user);
+	}
+	
+	
+	
+	@Autowired
+	public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+		this.userRepository = userRepository;
+		this.passwordEncoder = passwordEncoder;
 	}
 	
 	// 회원 1인 관련 정보페이지에 필요한 DTO를 생성해서 controller에 보낸다.
@@ -135,7 +161,24 @@ public class UserService {
 			   userDAO.findcountByUserList(listNum);
 			   return getUserListCounts(listNum);
 			}
+			
+
+			public User authenticate(String userId, String pw) {
+				//System.out.println(userId);
+				User user = userRepository.findByUserId(userId)
+						.orElseThrow(() -> new UserIdNotExistedException(userId));
+				
+				
+				if(!passwordEncoder.matches(pw, user.getPw())) {
+					throw new PasswordWrongException();
+				};
+				return user;
+			}
+			
+			
 }
+
+	
 
 
 //	/**

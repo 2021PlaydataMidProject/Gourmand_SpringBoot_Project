@@ -1,53 +1,90 @@
-package io.gourmand.service;
+//package io.gourmand.service;
+//
+//import java.time.LocalDate;
+//import java.util.List;
+//
+//import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.stereotype.Service;
+//
+//import io.gourmand.dao.ReviewRepository;
+//import io.gourmand.domain.Res;
+//import io.gourmand.domain.Review;
+//import io.gourmand.domain.ReviewImg;
+//import io.gourmand.domain.ReviewStandard;
+//import io.gourmand.domain.User;
+//import io.gourmand.dto.RevDTO;
+//import io.gourmand.dto.RevDTO.RevInfo;
+//import io.gourmand.dto.RevDTO.RevRegister;
+//
+//
+//import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.stereotype.Service;
+//
+//@Service
+//public class RevService {
+//
+//    private ReviewRepository reviewRepository;
+//
+//    @Autowired
+//    public RevService(ReviewRepository reviewRepository) {
+//        this.reviewRepository = reviewRepository;
+//    }
+//
+//    // 파라미터 review1 -> descripion으로 변경?
+//    public Review addReview(Long reviewNum, String username,String resname,String foodType,
+//    						Review review2,LocalDate writeDate,String imgLink,
+//    						Class<? extends ReviewStandard> reviewStandard,Class<? extends List> reviewImg
+//    						) {
+//        Review review = Review.builder()
+//        		.reviewNum(reviewNum)
+//        		.user(username)
+//        		.res(resname)
+//        		.foodType(foodType)
+//        		//.review(review) //descripion으로 변경?
+//        		.writeDate(writeDate)
+//        		.imgLink(imgLink)
+//        		.reviewStandard(reviewStandard)
+//        		.reviewImg(reviewImg)
+//        		.build();
+//
+//        return reviewRepository.save(review);
+//    }
+//}
 
-import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import io.gourmand.dao.ReviewRepository;
-import io.gourmand.domain.Review;
-import io.gourmand.dto.RevDTO;
-import io.gourmand.dto.RevDTO.RevInfo;
-import io.gourmand.dto.RevDTO.RevRegister;
-
-@Service
-public class RevService {
-	
-	@Autowired
-	private ReviewRepository revDAO;
-	
-	// 모든 댓글 조회 
-	public List<Review> getReviewList(Review review) {
-		return (List<Review>) revDAO.findAll();
-	}
-	
-	// 하나의 댓글 조회 
-	public RevInfo getReview(Review review) {
-		return RevInfo.of(revDAO.findById(review.getReviewNum()).get());
-	}
-	
-	// 댓글 삭제
-	public void deleteReview(Review review) {
-		revDAO.deleteById(review.getReviewNum());
-	}
-	
-	// 댓글 등록
-	public void insertRev(RevRegister rev) {
-		revDAO.save(RevRegister.toEntity(rev));
-	}
-	
-	// 댓글 수정
-	public void updateReview(Review review) {
-		Review findReview = revDAO.findById(review.getReviewNum()).get();
-		
-		findReview.setReview(review.getReview());
-		findReview.setReviewImg(review.getReviewImg());
-		revDAO.save(findReview);
-	}
-	
-	
-	
-	
-
-}
+//@Service
+//public class RevService {
+//	
+//	@Autowired
+//	private ReviewRepository revDAO;
+//	
+//	// 모든 댓글 조회 
+//	public List<Review> getReviewList(Review review) {
+//		return (List<Review>) revDAO.findAll();
+//	}
+//	
+//	// 하나의 댓글 조회 
+//	public RevInfo getReview(Review review) {
+//		return RevInfo.of(revDAO.findById(review.getReviewNum()).get());
+//	}
+//	
+//	// 댓글 삭제
+//	public void deleteReview(Review review) {
+//		revDAO.deleteById(review.getReviewNum());
+//	}
+//	
+//	// 댓글 등록
+//	public void insertRev(RevRegister rev) {
+//		revDAO.save(RevRegister.toEntity(rev));
+//	}
+//	
+//	// 댓글 수정
+//	public void updateReview(Review review) {
+//		Review findReview = revDAO.findById(review.getReviewNum()).get();
+//		
+//		findReview.setReview(review.getReview());
+//		findReview.setReviewImg(review.getReviewImg());
+//		revDAO.save(findReview);
+//	}
+//
+//}

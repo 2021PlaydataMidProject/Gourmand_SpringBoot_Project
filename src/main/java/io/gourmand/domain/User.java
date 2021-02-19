@@ -14,6 +14,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -92,6 +94,14 @@ public class User  {
 		}
 		return new ArrayList<>();
 	}
+
+//	@JsonIgnore
+//	public String getAccessToken() {
+//		if (pw == null) {
+//			return "";
+//		}
+//		return pw.substring(0,10);
+//	}
 	
 
 }

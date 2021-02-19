@@ -1,6 +1,7 @@
 package io.gourmand.dao;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -9,7 +10,6 @@ import org.springframework.data.repository.query.Param;
 import io.gourmand.domain.Review;
 import io.gourmand.domain.User;
 import io.gourmand.domain.UserResList;
-import io.gourmand.dto.UserDTO.UserInfo;
 
 public interface UserRepository extends JpaRepository<User, Long> {
 	User findUserByUserId(String userId);
@@ -30,6 +30,16 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
   public User findByName(String name);
 
+  List<User> findAll();
+  
+  Optional<User> findByUserId(String user_id);
+  
+  Optional<User> findByUserNum(Long user_num);
+  
+  
+  
+  
+  
 
 }
 
