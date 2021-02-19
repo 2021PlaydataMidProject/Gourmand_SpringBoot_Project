@@ -62,6 +62,9 @@
             :Xaxis="resInfo.xvalue"
             :Yaxis="resInfo.yvalue"
           ></my-map>
+          <div v-if="getUser()!=null">
+            <res-list :user="getUser()"></res-list>
+          </div>
         </div>
       </div>
       <div class="mt-5">
@@ -110,6 +113,10 @@
                 style="width: 100px"
               />
               <p class="mt-2 front-weight-bold">{{ rev.user.name }}</p>
+              <div v-if="userCheck(rev.user.user_num)">
+                <a href="#" class="font-weight-bold mb-3" @click="updateReview(rev.review_num)">수정하기</a><br>
+                <a href="#" class="font-weight-bold" @click="deleteReview(rev.review_num)">삭제하기</a>
+              </div>
             </div>
             <div class="col-lg-6 col-sm-6">
               <small>{{ rev.write_date }}</small
@@ -156,6 +163,7 @@
 import myMap from "./Map";
 import Chart from "./components/Chart.vue";
 import StarRating from "vue-star-rating";
+import ResList from "./UserResListSmall";
 
 export default {
   data() {
@@ -171,6 +179,7 @@ export default {
     myMap,
     Chart,
     StarRating,
+    ResList
   },
   mounted() {
     var str = this.$route.query.res;
@@ -229,6 +238,20 @@ export default {
             path: "/respage/review/write",
             query: { name: this.resnum },
           });
+    },
+    updateReview(num){
+      this.$router.push({
+            path: "/review/update",
+            query: { name: this.resnum, rev: num},
+          });
+    },
+    deleteReview(){
+    },
+    userCheck(user_num){
+      return user_num == sessionStorage.getItem("user");
+    },
+    getUser(){
+      return sessionStorage.getItem("user");
     }
   }
 };

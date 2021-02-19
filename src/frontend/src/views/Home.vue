@@ -98,7 +98,7 @@
                 />
               </div>
               <div class="text-left">
-                <small><a :href="'/respage?'+rev.res_num">{{ rev.res_name }}</a></small
+                <small><a :href="'/respage?res='+rev.res_num">{{ rev.res_name }}</a></small
                 ><br />
                 <small>{{ rev.write_date }}</small
                 ><br />
@@ -181,7 +181,6 @@ export default {
     },
   },
   mounted() {
-    console.log(sessionStorage.getItem("user"))
     this.axios
       .get("/rev/main/nologin", {})
       .then((rev) => {

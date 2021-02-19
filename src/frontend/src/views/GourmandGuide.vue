@@ -173,7 +173,7 @@ export default {
       numChange(value){
         this.num=value;
 
-        this.axios.get(`/res/user/${value}/list`)
+        this.axios.get(`/res/user/${value+1}/list`)
             .then( req => {
                 this.resList = req.data;
                 let names=[];
