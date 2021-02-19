@@ -7,6 +7,8 @@ import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.Optional;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,8 @@ import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.multipart.MultipartFile;
+
+import com.google.gson.JsonObject;
 
 import io.gourmand.dao.ReviewRepository;
 import io.gourmand.dao.UserImgRepository;
@@ -36,6 +40,8 @@ import io.gourmand.dto.UserStandardDTO.UserStandardRegister;
 import io.gourmand.exception.PasswordWrongException;
 import io.gourmand.exception.UserExistedException;
 import io.gourmand.exception.UserIdNotExistedException;
+import io.gourmand.util.CookieUtil;
+import io.gourmand.util.JwtUtil;
 
 @Service
 @Transactional
@@ -53,6 +59,8 @@ public class UserService {
 	@Autowired
 	ReviewRepository revDAO;
 	
+	@Autowired
+	JwtUtil jwtUtil;
 	
 	PasswordEncoder passwordEncoder;
 	
@@ -63,27 +71,41 @@ public class UserService {
 	 * @param pw  비밀번호
 	 * @return 아이디 비밀번호가 일치하는 유저
 	 */
-	public User getMatchedUser(SigninRequest sign) {
-		User user = userDAO.findUserByUserId(sign.getUserId());
+//	public User getMatchedUser(SigninRequest sign) {
+//		User user = userDAO.findUserByUserId(sign.getUserId());
+//		// 없는 유저
+//		if (user == null || !user.getPw().equals(user.getPw())) {
+//			return null;
+//		}
+//
+//		return user;
+//	}
+	
+	public SigninResponse getMatchedUser(SigninRequest sign, HttpServletResponse res) {
+		User signin = userDAO.findUserByUserId(sign.getUserId());
 		// 없는 유저
-		if (user == null || !user.getPw().equals(user.getPw())) {
+		if (signin == null || !signin.getPw().equals(sign.getPw())) {
 			return null;
 		}
 		
+		final String token = jwtUtil.generateToken(signin);
+		Cookie accessToken = CookieUtil.createCookie(JwtUtil.ACCESS_TOKEN_NAME, token);
+		res.addCookie(accessToken);
 		
-		return user;
+		JsonObject obj =new JsonObject();
+	    JsonObject data = new JsonObject();
+
+	    data.addProperty("status", "success");
+	    data.addProperty("message", "로그인에 성공했습니다.");
+	    data.addProperty("token", token);
+	    
+	    obj.add("data", data);
+		
+	    System.out.println(obj.toString());
+	    
+		
+		return SigninResponse.of(signin);
 	}
-	
-//	public SigninResponse getMatchedUser(SigninRequest sign) {
-//		User signin = userDAO.findUserByUserId(sign.getUserId());
-//		// 없는 유저
-//		if (signin == null || !signin.getPw().equals(sign.getPw())) {
-//			return null;
-//		}
-//		
-//		
-//		return SigninResponse.of(signin);
-//	}
 
 	
 	// 회원 정보 조회

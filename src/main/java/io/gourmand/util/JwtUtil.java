@@ -14,7 +14,7 @@ public class JwtUtil {
 
 	final static public String ACCESS_TOKEN_NAME = "accessToken";
 	 
-	public final static long TOKEN_VALIDATION_SECOND = 1000L * 10;
+	public final static long TOKEN_VALIDATION_SECOND = 86400000;
 	 
 	private Key key;
 

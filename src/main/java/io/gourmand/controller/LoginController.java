@@ -1,6 +1,5 @@
 package io.gourmand.controller;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,47 +10,43 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.support.SessionStatus;
 
-import com.google.gson.JsonObject;
-
 import io.gourmand.domain.User;
 import io.gourmand.dto.UserDTO;
-import io.gourmand.dto.UserDTO.SigninRequest;
 import io.gourmand.dto.UserDTO.SigninResponse;
 import io.gourmand.service.UserService;
-import io.gourmand.util.CookieUtil;
-import io.gourmand.util.JwtUtil;
 
 @RestController
 public class LoginController {
 
-	@Autowired
-	private JwtUtil jwtUtil;
+	
 
 	@Autowired
 	private UserService userService;
 
-//	@PostMapping("/auth/login")
-//	public SigninResponse signin(@RequestBody @Validated UserDTO.SigninRequest request){
-//		try {
-//			return userService.getMatchedUser(request);
-//		} catch (Exception e) {
-//			return null;
-//		}
-//	}
-
 	@PostMapping("/auth/login")
-	public Response signin(@RequestBody @Validated UserDTO.SigninRequest request, HttpServletResponse res) {
-
+	public SigninResponse signin(@RequestBody @Validated UserDTO.SigninRequest request, HttpServletResponse res){
 		try {
-			final User user = userService.getMatchedUser(request);
-			final String token = jwtUtil.generateToken(user);
-			Cookie accessToken = CookieUtil.createCookie(JwtUtil.ACCESS_TOKEN_NAME, token);
-			res.addCookie(accessToken);
-			return new Response("success", "로그인에 성공했습니다.", token);
+			return userService.getMatchedUser(request, res);
 		} catch (Exception e) {
-			return new Response("error", "로그인에 실패했습니다.", e.getMessage());
+			return null;
 		}
 	}
+
+	
+//	@PostMapping("/auth/login")
+//	public LoginResponse signin(@RequestBody @Validated UserDTO.SigninRequest request, HttpServletResponse res) {
+//
+//		try {
+//			final User user = userService.getMatchedUser(request);
+//			final String token = jwtUtil.generateToken(user);
+//			Cookie accessToken = CookieUtil.createCookie(JwtUtil.ACCESS_TOKEN_NAME, token);
+//			res.addCookie(accessToken);
+//			return new LoginResponse("success", "로그인에 성공했습니다.", token);
+//		} catch (Exception e) {
+//			return new LoginResponse("error", "로그인에 실패했습니다.", e.getMessage());
+//		}
+//	}
+	
 /*
 	public Response login(@RequestBody RequestLoginUser user, HttpServletRequest req, HttpServletResponse res) {
 		try {
