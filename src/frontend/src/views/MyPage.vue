@@ -33,167 +33,36 @@
                     <div class="col-md-4">
                         <div class="profile-work">
                            <p>보관함</p>
-                            <a href="mypage">내 리뷰 확인</a><br/>
-                            <a href="/userAnalysis">취향 분석</a><br/>
-                            <a href="/userLike">좋아요 </a>
+                            <a href="/myreview">내 리뷰 확인</a><br/>
+                            <a href="/myanalysis">취향 분석</a><br/>
+                            <a href="/mylike">좋아요 </a>
                             <p>개인정보</p>
                             <a href="/userEdit">개인정보 수정</a><br/>
                         </div>
+
                     </div>
-                    <div class="col-md-8">
-                        <b-tabs content-class="mt-3">
-                            <b-tab title="별점순" active>
-                                           <div class="row">
-                                            <div class="col-md-6">
-                                                <label>5.0</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>img</p>
-                                                <p>img</p>
-                                                <p>img</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>4.5</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>img</p>
-                                                <p>img</p>
-                                                <p>img</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>4.0</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>img</p>
-                                                <p>img</p>
-                                                <p>img</p>
-                                            </div>
-                                        </div>
-                                       <div class="row">
-                                            <div class="col-md-6">
-                                                <label>3.5</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>img</p>
-                                                <p>img</p>
-                                                <p>img</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>3.0</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>img</p>
-                                                <p>img</p>
-                                                <p>img</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>2.5</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>img</p>
-                                                <p>img</p>
-                                                <p>img</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>2.0</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>img</p>
-                                                <p>img</p>
-                                                <p>img</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>1.0</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>img</p>
-                                                <p>img</p>
-                                                <p>img</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>0.5</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>img</p>
-                                                <p>img</p>
-                                                <p>img</p>
-                                            </div>
-                                        </div>
-                            </b-tab>
-                            <b-tab title="작성순">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>2021.2</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>img</p>
-                                                <p>img</p>
-                                                <p>img</p>
-                                            </div>
-                                        </div>
-                                           <div class="row">
-                                            <div class="col-md-6">
-                                                <label>2021.1</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>img</p>
-                                                <p>img</p>
-                                                <p>img</p>
-                                            </div>
-                                        </div>
-                                           <div class="row">
-                                            <div class="col-md-6">
-                                                <label>2020.12</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>img</p>
-                                                <p>img</p>
-                                                <p>img</p>
-                                            </div>
-                                        </div>
-                                           <div class="row">
-                                            <div class="col-md-6">
-                                                <label>2020.11</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>img</p>
-                                                <p>img</p>
-                                                <p>img</p>
-                                            </div>
-                                        </div>
-                            </b-tab>
-                          </b-tabs>
-                      </div>
+                    
                 </div>
+               <div class="row">
+        <!--eslint-disable-next-line vue/no-use-v-if-with-v-for-->
+        <div class="col-md-8">
+         
+          
+            <my-review>
+             
+            </my-review>
+  
+        </div>
+      </div> 
             </form>           
         </div>
   </section>
 </template>
 <script>
-import myMap from "./Map";
-import { BTabs } from "bootstrap-vue";
-import { BTab } from "bootstrap-vue";
-export default {
-  components: {
-    myMap,
-    BTabs,
-    BTab
-  },
-};
+ Vue.component('my-review', {
+        template:  '#MyReview'
+    });
+
 </script>
 <style>
 body{
@@ -290,5 +159,15 @@ body{
 .profile-tab p{
     font-weight: 600;
     color: #0062cc;
+}
+.custom-text {
+  font-weight: bold;
+  font-size: 1.9em;
+  border: 1px solid #cfcfcf;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-radius: 2px;
+  color: #999;
+  background: #fff;
 }
 </style>

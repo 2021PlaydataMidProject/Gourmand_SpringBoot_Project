@@ -30,4 +30,8 @@
         <appender-ref ref="STDOUT" />
         <appender-ref ref="FILE" />
     </logger>
+<<<<<<< Updated upstream:src/main/resources/logback-spring.xml
 </configuration> -->
+=======
+</configuration>-->
+>>>>>>> Stashed changes:src/main/resources/logs/logback-spring.xml

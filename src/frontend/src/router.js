@@ -17,6 +17,9 @@ import MyPage from "./views/MyPage.vue";
 import StarRating from "./views/StarRating.vue";
 import MapForAllSearch from "./views/MapForAllSearch.vue"
 import GourmandGuide from "./views/GourmandGuide.vue"
+import MyAnalysis from "./views/MyAnalysis.vue"
+import MyLike from "./views/MyLike.vue"
+import MyReview from "./views/MyReview.vue"
 
 Vue.use(Router);
 
@@ -141,6 +144,34 @@ export default new Router({
         footer: AppFooter
       }
     },
+    {
+      path: "/myanalysis",
+      name: "myAnalysis",
+      components: {
+        header: AppHeader,
+        default: MyAnalysis,
+        footer: AppFooter
+      }
+    },
+    {
+      path: "/mylike",
+      name: "myLike",
+      components: {
+        header: AppHeader,
+        default: MyLike,
+        footer: AppFooter
+      }
+    },
+    {
+      path: "/myreview",
+      name: "myReview",
+      components: {
+        header: AppHeader,
+        default: MyReview,
+        footer: AppFooter
+      }
+    },
+
     {
       path: "/starrating",
       name: "starRating",
