@@ -84,7 +84,7 @@
               <div class="col-md-6">
                 <img
                   v-if="rev.review_img != null"
-                  v-lazy="'img/rev/' + value.review_img.name"
+                  v-lazy="'img/rev/' + rev.review_img.name"
                   alt="Rounded image"
                   class="img-fluid rounded shadow"
                   style="width: 150px"

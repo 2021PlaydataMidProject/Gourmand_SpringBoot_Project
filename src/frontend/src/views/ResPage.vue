@@ -89,7 +89,8 @@
       </div>
 
       <div class="mt-5">
-        <h3 class="h4 font-weight-bold mb-5">평가 ({{ revs.length }})</h3>
+        <h3 class="h4 font-weight-bold mb-2">평가 ({{ revs.length }})</h3>
+        <a class="font-weight-bold mb-5" href="#" @click="reviewWrite()">나도 평가하기</a>
         <div>
           <div v-for="(rev, key) in revs" v-bind:key="key" class="row">
             <hr class="col-lg-11 col-sm-11" />
@@ -119,7 +120,7 @@
             <div class="col-lg-4 col-sm-4">
               <img
                 v-if="rev.review_img != null"
-                v-lazy="'img/rev/' + value.review_img.name"
+                v-lazy="'img/rev/' + rev.review_img.name"
                 alt="Rounded image"
                 class="img-fluid rounded shadow"
                 style="width: 150px"
@@ -163,6 +164,7 @@ export default {
       resUser: "",
       revs: [],
       data: [],
+      resnum: 0,
     };
   },
   components: {
@@ -178,7 +180,6 @@ export default {
       location.href = "/";
     }
     str = str.substring(index, lastIndex);
-
     this.axios
       .get("/res/" + str + "/resinfo", {})
       .then((req) => {
@@ -222,7 +223,17 @@ export default {
       .catch((error) => {
         alert("서버 오류");
       });
+
+      this.resnum = str;
   },
+  methods: {
+    reviewWrite(){
+      this.$router.push({
+            path: "/respage/review/write",
+            query: { name: this.resnum },
+          });
+    }
+  }
 };
 </script>
 <style>

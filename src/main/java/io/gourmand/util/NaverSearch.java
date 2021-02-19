@@ -14,7 +14,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class NaverSearch {
-	public static void searchPlace(String keyword) {
+	public static String searchPlace(String keyword) {
 		try {
 			keyword = URLEncoder.encode(keyword, "UTF-8");
 		} catch (UnsupportedEncodingException e) {
@@ -28,9 +28,8 @@ public class NaverSearch {
 		requestHeaders.put("X-Naver-Client-Id", "UFNeM5RiLEVXqUj4oPAn");
 		requestHeaders.put("X-Naver-Client-Secret", "W3OmDM8CIX");
 		String responseBody = get(apiURL, requestHeaders);
-
-		System.out.println("네이버에서 받은 결과 = " + responseBody);
-		System.out.println("-----------------------------------------");
+		String[] body = responseBody.split("\"");
+		return body[39];
 	}
 
 	private static String get(String apiUrl, Map<String, String> requestHeaders) {

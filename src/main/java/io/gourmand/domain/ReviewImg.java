@@ -13,6 +13,8 @@ import javax.persistence.ManyToOne;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -36,6 +38,7 @@ public class ReviewImg {
 	private Long reviewImgId; 
 	
 	@ManyToOne(fetch = FetchType.LAZY)
+	@JsonIgnore
 	@JoinColumn(name="REVIEW_NUM")
 	private Review review;
 	
