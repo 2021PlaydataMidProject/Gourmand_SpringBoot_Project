@@ -9,18 +9,6 @@
           </td>
         </tr>
         <tr>
-          <td width="70">주소</td>
-          <td align="left">
-            <input type="text" v-model="newRes.resAddress" />
-          </td>
-        </tr>
-        <tr>
-          <td>운영시간</td>
-          <td align="left">
-            <input type="text" v-model="newRes.resHour" size="10" />
-          </td>
-        </tr>
-        <tr>
           <td>전화번호</td>
           <td align="left">
             <input type="text" v-model="newRes.tel" size="10" />
@@ -60,8 +48,6 @@ export default {
         newRes:
         {
             resName:"",
-            resAddress:"",
-            resHour:"",
             tel:"",
             category:"",
         }

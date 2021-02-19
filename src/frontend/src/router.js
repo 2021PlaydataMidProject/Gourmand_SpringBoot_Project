@@ -17,6 +17,7 @@ import MyPage from "./views/MyPage.vue";
 import StarRating from "./views/StarRating.vue";
 import MapForAllSearch from "./views/MapForAllSearch.vue"
 import GourmandGuide from "./views/GourmandGuide.vue"
+import RevRegi from "./views/RevRegi.vue"
 
 Vue.use(Router);
 
@@ -120,6 +121,15 @@ export default new Router({
       components: {
         header: AppHeader,
         default: ResPage,
+        footer: AppFooter
+      }
+    },
+    {
+      path: "/respage/review/write",
+      name: "RevRegi",
+      components: {
+        header: AppHeader,
+        default: RevRegi,
         footer: AppFooter
       }
     },

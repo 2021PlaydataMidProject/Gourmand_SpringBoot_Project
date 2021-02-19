@@ -62,7 +62,7 @@
         </base-dropdown>
           <a
             slot="title"
-            href="#"
+            href="/guide"
             class="nav-link"
           >
             <i class="ni ni-ui-04 d-lg-none"></i>

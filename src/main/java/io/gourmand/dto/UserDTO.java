@@ -54,7 +54,21 @@ public class UserDTO {
 			return SigninRequest.builder().userId(user.getUserId()).pw(user.getPw()).build();
 		}
 	}
+	
+	@Getter
+	@Setter
+	@AllArgsConstructor
+	@NoArgsConstructor
+	@ToString
+	@Builder
+	public static class SigninResponse {
+		private Long userNum;
 
+		public static SigninResponse of(User user) {
+			return SigninResponse.builder().userNum(user.getUserNum()).build();
+		}
+	}
+	
 	// 회원가입을 위한 DTO - 이미지 관련 추가, 날짜/드롭다운 등 변경 필요
 	@AllArgsConstructor
 	@NoArgsConstructor

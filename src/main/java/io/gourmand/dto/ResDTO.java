@@ -6,6 +6,7 @@ import java.util.List;
 import io.gourmand.domain.Res;
 import io.gourmand.domain.ResImg;
 import io.gourmand.util.NaverGeoCoding;
+import io.gourmand.util.NaverSearch;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -79,14 +80,14 @@ public class ResDTO {
 	@Builder
 	public static class ResRegister {
 		private String resName;
-		private String resAddress;
 		private String tel;
 		private String category;
 
 		public static Res toEntity(ResRegister res) {
-			BigDecimal[] axis = NaverGeoCoding.returnAxis(res.getResAddress());
+			String resAddress = NaverSearch.searchPlace(res.getResName());
+			BigDecimal[] axis = NaverGeoCoding.returnAxis(resAddress);
 			return Res.builder().resName(res.getResName()).xValue(axis[1]).yValue(axis[0])
-					.resAddress(res.getResAddress()).tel(res.getTel()).category(res.getCategory())
+					.resAddress(resAddress).tel(res.getTel()).category(res.getCategory())
 					.avgStar(BigDecimal.valueOf(0.0)).build();
 		}
 	}

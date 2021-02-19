@@ -4,14 +4,10 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.time.LocalDate;
-import java.util.List;
 import java.util.Optional;
 
-import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
@@ -26,10 +22,9 @@ import io.gourmand.domain.User;
 import io.gourmand.domain.UserImg;
 import io.gourmand.domain.UserResList;
 import io.gourmand.domain.UserStandard;
-import io.gourmand.dto.RevDTO;
 import io.gourmand.dto.UserDTO.SigninRequest;
+import io.gourmand.dto.UserDTO.SigninResponse;
 import io.gourmand.dto.UserDTO.UserCountsInfo;
-import io.gourmand.dto.UserDTO.UserInfo;
 import io.gourmand.dto.UserDTO.UserRegister;
 import io.gourmand.dto.UserDTO.UserThumbnail;
 import io.gourmand.dto.UserStandardDTO.UserStandardRegister;
@@ -51,13 +46,13 @@ public class UserService {
 	 * @param pw  비밀번호
 	 * @return 아이디 비밀번호가 일치하는 유저
 	 */
-	public User getMatchedUser(SigninRequest sign) {
+	public SigninResponse getMatchedUser(SigninRequest sign) {
 		User signin = userDAO.findUserByUserId(sign.getUserId());
 		// 없는 유저
 		if (signin == null || !signin.getPw().equals(sign.getPw())) {
 			return null;
 		}
-		return signin;
+		return SigninResponse.of(signin);
 	}
 
 	// 회원 정보 조회
