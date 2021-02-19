@@ -2,8 +2,16 @@ function saveAuthToCookie(value) {
   document.cookie = `til_auth=${value}`;
 }
 
-function saveUserToCookie(value) {
-  document.cookie = `til_user=${value}`;
+function saveUserIdToCookie(value) {
+  document.cookie = `userId=${value}`;
+}
+
+function saveUserNumToCookie(value) {
+  document.cookie = `userNum=${value}`;
+}
+
+function saveUserNameToCookie(value) {
+  document.cookie = `userName=${value}`;
 }
 
 function getAuthFromCookie() {
@@ -13,21 +21,41 @@ function getAuthFromCookie() {
   );
 }
 
-function getUserFromCookie() {
+function getUserIdFromCookie() {
   return document.cookie.replace(
-    /(?:(?:^|.*;\s*)til_user\s*=\s*([^;]*).*$)|^.*$/,
+    /(?:(?:^|.*;\s*)userId\s*=\s*([^;]*).*$)|^.*$/,
+    '$1',
+  );
+}
+function getUserNumFromCookie() {
+  return document.cookie.replace(
+    /(?:(?:^|.*;\s*)userNum\s*=\s*([^;]*).*$)|^.*$/,
+    '$1',
+  );
+}
+function getUserNameFromCookie() {
+  return document.cookie.replace(
+    /(?:(?:^|.*;\s*)userName\s*=\s*([^;]*).*$)|^.*$/,
     '$1',
   );
 }
 
 function deleteCookie(value) {
-  document.cookie = `${value}=; expires=Thu, 01 Jan 1970 00:00:01 GMT;`;
+  document.cookie = `userId=; expires=Thu, 01 Jan 1970 00:00:01 GMT;`;
+  document.cookie = `userNum=; expires=Thu, 01 Jan 1970 00:00:01 GMT;`;
+  document.cookie = `userName=; expires=Thu, 01 Jan 1970 00:00:01 GMT;`;
 }
 
 export {
   saveAuthToCookie,
-  saveUserToCookie,
+  saveUserIdToCookie,
+  saveUserNumToCookie,
+  saveUserNameToCookie,
+
   getAuthFromCookie,
-  getUserFromCookie,
+  getUserIdFromCookie,
+  getUserNumFromCookie,
+  getUserNameFromCookie,
   deleteCookie,
+
 };
