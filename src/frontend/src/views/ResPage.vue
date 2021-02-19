@@ -173,13 +173,10 @@ export default {
     StarRating,
   },
   mounted() {
-    var str = location.href;
-    var index = str.indexOf("?") + 1;
-    var lastIndex = str.indexOf("#") > -1 ? str.indexOf("#") + 1 : str.length;
-    if (index == 0) {
-      location.href = "/";
+    var str = this.$route.query.res;
+    if (str==null){
+      location.href="/";
     }
-    str = str.substring(index, lastIndex);
     this.axios
       .get("/res/" + str + "/resinfo", {})
       .then((req) => {
