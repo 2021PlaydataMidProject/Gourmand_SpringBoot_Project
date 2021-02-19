@@ -147,7 +147,7 @@ export default new Router({
       path: "/mypage",
       name: "myPage",
       components: {
-        header: AppHeader,
+        header: AppHeaderOther,
         default: MyPage,
         footer: AppFooter
       }
@@ -165,7 +165,7 @@ export default new Router({
       path: "/guide",
       name: "guide",
       components: {
-        header: AppHeader,
+        header: AppHeaderOther,
         default: GourmandGuide,
         footer: AppFooter
       }
