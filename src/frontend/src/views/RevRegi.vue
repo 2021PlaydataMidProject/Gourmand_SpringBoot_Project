@@ -140,7 +140,6 @@ export default {
   },
   methods: {
     addRev() {
-        console.log("ddd")
       const formData = new FormData();
       formData.append("reviewStandard", JSON.stringify(this.reviewStandard));
       formData.append("reviewRegi", JSON.stringify({ foodType: this.foodType, review: this.review }));
