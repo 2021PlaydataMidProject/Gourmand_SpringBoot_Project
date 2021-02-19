@@ -1065,3 +1065,5 @@ com.fasterxml.jackson.databind.exc.InvalidDefinitionException: No serializer fou
 2021-02-19 09:17:45.488  INFO 12276 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 80 (http) with context path ''
 2021-02-19 09:17:45.501  INFO 12276 --- [restartedMain] io.gourmand.GourmandApplication          : Started GourmandApplication in 6.049 seconds (JVM running for 7.366)
 2021-02-19 09:18:46.040  INFO 12276 --- [http-nio-80-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-02-19 09:18:46.040  INFO 12276 --- [http-nio-80-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-02-19 09:18:46.053  INFO 12276 --- [http-nio-80-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 12 ms
