@@ -16,16 +16,19 @@ public interface UserRepository extends JpaRepository<User, Long> {
 //  List<User> findUsersOfRes(Long id);
 
 	// 내가 작성한 리뷰개수 카운트
-	@Query(value = "select user_id, count(review_num) from user,review where user.user_id = review.user_id", nativeQuery = true)
-	Integer findcountbyReviewNum(@Param("reviewNum") Review reviewNum);
+	   @Query(value = "select count(*) from review where review.user_num  = :userNum", nativeQuery = true)
+	   Long findcountOrderByUserNum(@Param("userNum") Long userNum);
+
 
 	// 내가 만든 리스트 카운트
-	@Query(value = "select user_id, count(list_num) from user,user_res_list where user.user_num = review.user_num", nativeQuery = true)
-	Integer findcountByUserList(@Param("listNum") UserResList listNum);
+	@Query(value = "select count(distinct url.list_name) from user_res_list url, user ur where ur.user_num  = "
+			+ ":user and url.user_num = ur.user_num", nativeQuery = true)
+	Long findcountListByUserNum(@Param("user")  Long userNum);
 
-	// 선호입맛 리스트
-	@Query(value = "select food_type from user,review where user.user_num = review.user_num order by food_type desc", nativeQuery = true)
-	List<User> findListByfoodType(@Param("foodType") Review foodType);
+	//food_type 갯수로 내림차순
+	   @Query(value = "select rev.f_type_type from ( select review.food_type f_type from review where review.user_num = :userNum) rev group by rev.f_type order by count(rev) desc", nativeQuery = true)
+	   List<String> findListByUserNumNFoodType(@Param("userNum")  Long userNum);
+
 
 	// 해당 가게를 리스트에 등록한 유저 반환
 	@Query(value = "select user.* from user, res, user_res_list where res.res_num = :resNum and res.res_num = user_res_list.res_num and user_res_list.user_num = user.user_num", nativeQuery = true)
