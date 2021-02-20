@@ -1,8 +1,5 @@
 package io.gourmand.controller;
 
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,41 +10,33 @@ import org.springframework.web.bind.support.SessionStatus;
 
 import io.gourmand.domain.User;
 import io.gourmand.dto.UserDTO;
+import io.gourmand.dto.UserDTO.SigninRequest;
 import io.gourmand.dto.UserDTO.SigninResponse;
 import io.gourmand.service.UserService;
 
 @RestController
 public class LoginController {
 
-	
-
 	@Autowired
 	private UserService userService;
 
 	@PostMapping("/auth/login")
-	public SigninResponse signin(@RequestBody @Validated UserDTO.SigninRequest request, HttpServletResponse res){
+	public SigninResponse signin(@RequestBody @Validated UserDTO.SigninRequest request){
 		try {
-			return userService.getMatchedUser(request, res);
+			return userService.getMatchedUser(request);
 		} catch (Exception e) {
 			return null;
 		}
 	}
 
-	
 	@PostMapping("/auth/check")
 	public void check(@RequestBody User user) {
 		System.out.println(user);
 	}
-
-	//작동안함
-	@GetMapping("/auth/signout")
-	public String logout(SessionStatus status, HttpServletResponse res) {
-
-		
+	
+	@GetMapping("auth/signout")
+	public String logout(SessionStatus status) {
 		status.setComplete();
-		
-		
-		
 		return "redirect:index.html";
 	}
 }

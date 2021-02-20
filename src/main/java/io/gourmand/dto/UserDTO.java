@@ -58,6 +58,7 @@ public class UserDTO {
 	public static class SigninRequest {
 		private String userId;
 		private String pw;
+		private Long userNum;
 
 		public static SigninRequest of(User user) {
 			return SigninRequest.builder().userId(user.getUserId()).pw(user.getPw()).build();
@@ -73,13 +74,11 @@ public class UserDTO {
 	public static class SigninResponse {
 		
 		private Long userNum;
-		
-		@Autowired
-		private static JwtUtil jwtUtil;
-		
+		private String userId;
+		private String name;
+
 		public static SigninResponse of(User user) {
-		
-			return SigninResponse.builder().userNum(user.getUserNum()).build();
+			return SigninResponse.builder().userNum(user.getUserNum()).userId(user.getUserId()).name(user.getName()).build();
 		}
 	}
 	

@@ -93,6 +93,10 @@ public class ResService {
 		return resThumbList;
 	}
 	
+	public void updateResAvgStar(Long res) {
+		resDAO.updateResAvgStar(res);
+	}
+	
 	// 가게 등록 페이지에서 저장
 	public Res insertRes(ResRegister res) {
 		return resDAO.save(ResRegister.toEntity(res));

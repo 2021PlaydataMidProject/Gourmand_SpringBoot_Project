@@ -15,13 +15,13 @@ import org.springframework.web.multipart.MultipartFile;
 
 import io.gourmand.dao.ResRepository;
 import io.gourmand.dao.ReviewImgRepository;
+import io.gourmand.dao.ReviewLikesRepository;
 import io.gourmand.dao.ReviewRepository;
 import io.gourmand.dao.ReviewStandardRepository;
 import io.gourmand.dao.UserRepository;
 import io.gourmand.domain.Review;
 import io.gourmand.domain.ReviewImg;
 import io.gourmand.domain.ReviewStandard;
-import io.gourmand.dto.RevDTO.RevInfo;
 import io.gourmand.dto.RevDTO.RevRegister;
 import io.gourmand.dto.RevDTO.ReviewThumbnail;
 import io.gourmand.dto.ReviewStandardDTO.ReviewStandardRegister;
@@ -39,6 +39,8 @@ public class RevService {
 	private ResRepository resDAO;
 	@Autowired
 	private ReviewImgRepository revImgDAO;
+	@Autowired
+	private ReviewLikesRepository revLikeDAO;
 
 	// 모든 댓글 조회
 	public List<Review> getReviewList(Review review) {
@@ -46,31 +48,47 @@ public class RevService {
 	}
 
 	// 하나의 댓글 조회
-	public RevInfo getReview(Review review) {
-		return RevInfo.of(revDAO.findById(review.getReviewNum()).get());
+	public Review getReview(Long revNum) {
+		return revDAO.findById(revNum).get();
 	}
 
 	// 댓글 삭제
-	public void deleteReview(Review review) {
-		revDAO.deleteById(review.getReviewNum());
+	public void deleteReview(Long revNum) {
+		Review rev = revDAO.findById(revNum).get();
+		rev.getReviewImg().forEach(img -> revImgDAO.delete(img));
+		rev.getReviewlikes().forEach(likes -> revLikeDAO.delete(likes));
+		revDAO.delete(rev);
+		rsDAO.delete(rev.getReviewStandard());
+		resDAO.updateResAvgStar(rev.getRes().getResNum());
 	}
 
 	// 댓글 등록
 	public Review insertRev(RevRegister rev, Long user, Long res, ReviewStandard rs) {
-		return revDAO.save(RevRegister.toEntity(rev, userDAO.findById(user).get(), resDAO.findById(res).get(), rs));
-	}
-	
-	public ReviewStandard insertRevSt(ReviewStandardRegister rev) {
-		return rsDAO.save(ReviewStandardRegister.toEntity(rev));
+		Review review = revDAO
+				.save(RevRegister.toEntity(rev, userDAO.findById(user).get(), resDAO.findById(res).get(), rs));
+		return review;
 	}
 
 	// 댓글 수정
-	public void updateReview(Review review) {
-		Review findReview = revDAO.findById(review.getReviewNum()).get();
-
-		findReview.setReview(review.getReview());
-		findReview.setReviewImg(review.getReviewImg());
-		revDAO.save(findReview);
+	public Review updateRev(RevRegister rev, ReviewStandardRegister regi, Long revNum) {
+		Review review = revDAO.findById(revNum).get();
+		review.setFoodType(rev.getFoodType());
+		review.setReview(rev.getReview());
+		
+		ReviewStandard revst = review.getReviewStandard();
+		revst.setRAccess(regi.getRaccess());
+		revst.setRClean(regi.getRclean());
+		revst.setRCostValue(regi.getRcost());
+		revst.setRFlavor(regi.getRflavor());
+		revst.setRKindness(regi.getRkindness());
+		revst.setRMood(regi.getRmood());
+		
+		return review;
+	}
+	
+	// standard 등록
+	public ReviewStandard insertRevSt(ReviewStandardRegister rev) {
+		return rsDAO.save(ReviewStandardRegister.toEntity(rev));
 	}
 
 	// 가게에 대한 댓글Thumbnail 반환
@@ -91,7 +109,12 @@ public class RevService {
 		revDAO.findAllOrderByDate().forEach(rev -> rt.add(ReviewThumbnail.of(rev)));
 		return rt;
 	}
-
+	
+	// 리뷰 이미지 삭제
+	public void deleteRevImg(Long id) {
+		revImgDAO.deleteById(id);
+	}
+	
 	// MultipartFile -> entity -> SQL저장
 	public ReviewImg insertRevImg(MultipartFile revImg, Review rev) {
 		return revImgDAO.save(ReviewImg.of(revImg, rev));

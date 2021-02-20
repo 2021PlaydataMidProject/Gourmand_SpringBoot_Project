@@ -62,6 +62,9 @@ public class Review {
 	@OneToMany(mappedBy = "review")
 	private List<ReviewImg> reviewImg;
 	
+	@OneToMany(mappedBy = "review")
+	private List<ReviewLikes> reviewlikes; 
+	
 
 	
 }

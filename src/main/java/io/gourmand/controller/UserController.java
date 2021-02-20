@@ -17,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import io.gourmand.service.ResService;
 import io.gourmand.service.UserService;
 import io.gourmand.domain.User;
 import io.gourmand.domain.UserImg;
@@ -30,7 +31,9 @@ public class UserController {
 
 	@Autowired
 	private UserService userService;
-	//private final UserService userService; //final은 왜 안됨?
+	@Autowired
+	private ResService resService;
+	
 		
 	@ModelAttribute("user") //왜 있나?
 	public User setUser() {
@@ -72,6 +75,15 @@ public class UserController {
 	//System.out.println( "신규 회원 기준 저장" + userStandard.getId() );
 	//userService.insertUserStandard(userStandard);
 	}
+	
+	
+	// 회원의 list 이름들 반환 (list에 저장용)
+	@GetMapping("/user/reslist/{user}")
+	public List<String> returnUserResList(@PathVariable("user") Long userid){
+		return resService.getResListName(userid);
+	}
+	
+	
 	
 	// 회원 1인의 전체 정보 가져오기 - 작업중
 //	@GetMapping("/user/{id}/info")

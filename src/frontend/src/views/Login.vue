@@ -86,7 +86,22 @@
 </template>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
-import { loginUser } from '../api/auth';
+
+import 
+  {
+  saveAuthToCookie,
+  saveUserIdToCookie,
+  saveUserNumToCookie,
+  saveUserNameToCookie,
+
+  getAuthFromCookie,
+  getUserIdFromCookie,
+  getUserNumFromCookie,
+  getUserNameFromCookie,
+  
+  deleteCookie,
+} from '../utils/cookies';
+
 export default {
   data: function () {
     return {
@@ -119,6 +134,10 @@ export default {
             console.log(res);
             sessionStorage.setItem("user", res.data.user_num);
             console.log(sessionStorage.getItem("user"))
+            saveUserNumToCookie(res.data.user_num);
+            saveUserIdToCookie(res.data.user_id);
+            saveUserNameToCookie(res.data.name);
+
             location.href = "/";
           } else {
             alert("없는 아이디거나 비밀번호가 맞지 않습니다.");
