@@ -88,14 +88,6 @@ public class User  {
 	    this.name = name;
 	}
 	
-//	//USER,ADMIN
-//	public List<String> getRoleList() {
-//		if(this.roles.length() > 0) {
-//			return Arrays.asList(this.roles.split(","));
-//		}
-//		return new ArrayList<>();
-//	}
-
 
 }
 
