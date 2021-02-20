@@ -23,9 +23,7 @@ public class LoginController {
 	private UserService userService;
 
 	@PostMapping("/auth/login")
-	public SigninResponse signin(
-			@RequestBody @Validated UserDTO.SigninRequest request, 
-			HttpServletResponse res){
+	public SigninResponse signin(@RequestBody @Validated UserDTO.SigninRequest request, HttpServletResponse res){
 		try {
 			return userService.getMatchedUser(request, res);
 		} catch (Exception e) {
