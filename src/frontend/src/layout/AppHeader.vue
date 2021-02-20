@@ -106,6 +106,7 @@ import BaseDropdown from "@/components/BaseDropdown";
 import CloseButton from "@/components/CloseButton";
 import axios from 'axios'
 
+
 export default {
   components: {
     BaseNav,
@@ -123,8 +124,12 @@ export default {
     logout: function(){
         if (sessionStorage.getItem("user")!=null){
             sessionStorage.removeItem("user");
+
             location.href="/"
         }
+    },
+    setcookie: function() {
+      
     },
     mymap: function(){
         if (sessionStorage.getItem("user")!=null){
