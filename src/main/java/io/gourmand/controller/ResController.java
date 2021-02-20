@@ -6,7 +6,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,13 +27,19 @@ import io.gourmand.dto.ResDTO.ResRegister;
 import io.gourmand.dto.ResDTO.ResThumbnail;
 import io.gourmand.dto.UserDTO.UserThumbnail;
 import io.gourmand.service.ResService;
+import io.gourmand.util.CookieUtil;
+import io.gourmand.util.JwtUtil;
 import io.gourmand.util.NaverGeoCoding;
+import io.jsonwebtoken.Claims;
 
 @RestController
 public class ResController {
 
 	@Autowired
 	private ResService resService;
+	
+	@Value("${jwt.secret}")
+	private String secret;
 
 	// 가게 정보를 담은 페이지
 	@GetMapping("/res/{id}/resinfo")
@@ -95,8 +104,10 @@ public class ResController {
 	
 	// reslist 추가
 	@PostMapping("/res/user/insert")
-	public void insetResToUser(@RequestParam("user") String user, @RequestParam("res") String resNum, @RequestParam("listName") String listName ) {
-		resService.insertResList(listName, Long.valueOf(resNum), Long.valueOf(user));
+	public void insetResToUser(@RequestParam("res") String resNum, @RequestParam("listName") String listName, HttpServletRequest hsp) {
+		Claims claim = new JwtUtil(secret).getClaims(CookieUtil.getCookie(hsp, "accessToken").getValue());
+		Long userNum = claim.get("user_num", Long.class);
+		resService.insertResList(listName, Long.valueOf(resNum), userNum);
 	}
 	
 	// 가게 정보 저장

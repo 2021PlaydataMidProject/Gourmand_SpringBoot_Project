@@ -182,4 +182,14 @@ public class UserDTO {
 
 	}
 
+	@Getter
+	@Setter
+	@NoArgsConstructor
+	@AllArgsConstructor
+	@Builder
+	public static class	UserSimple {
+		private Long userNum;
+		private String userName;
+
+	}
 }

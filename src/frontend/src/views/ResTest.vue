@@ -68,7 +68,7 @@ export default {
           })
           .then(res => {
                alert(this.newRes.res_name + "가게 등록완료");
-               //location.href="/home"
+               location.href="/home"
              });
       }
   },

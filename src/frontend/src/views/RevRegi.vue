@@ -143,17 +143,17 @@ export default {
       const formData = new FormData();
       formData.append("reviewStandard", JSON.stringify(this.reviewStandard));
       formData.append("reviewRegi", JSON.stringify({ foodType: this.foodType, review: this.review }));
-      formData.append("userNum", sessionStorage.getItem("user"));
       formData.append("resNum", this.$route.query.name);
-      
+
+      console.log(sessionStorage)
       for (let i = 0; i < this.$refs.imgdata.files.length; i++) {
         formData.append("revImg", this.$refs.imgdata.files[i]);
       }
       return this.axios
         .post("/rev/regi", formData, {
           headers: {
-            "Content-Type": `multipart/form-data`,
-          },
+            "Content-Type": `multipart/form-data`
+          }
         })
         .then((res) => {
           alert("등록 완료");

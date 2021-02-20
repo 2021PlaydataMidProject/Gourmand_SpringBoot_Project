@@ -37,4 +37,7 @@ public interface ReviewRepository extends JpaRepository<Review, Long> {
 	@Query(value = "select review.* from review, ( select count(*) as c from review ) cnt where review.review_num > cnt.c-12 order by review.review_num desc", nativeQuery=true)
 	List<Review> findAllOrderByDate();
 	
+	// 해당 유저의 모든 리뷰 아이디 반환
+	@Query(value = "select review.review_num from review where review.user_num = :userNum", nativeQuery=true)
+	List<Long> findAllReviewNumOfUser(@Param("userNum") Long userNum);
 }

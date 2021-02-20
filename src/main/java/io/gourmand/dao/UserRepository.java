@@ -36,5 +36,9 @@ public interface UserRepository extends JpaRepository<User, Long> {
 	// 해당 가게를 리스트에 등록한 유저 반환
 	@Query(value = "select user.* from user, res, user_res_list where res.res_num = :resNum and res.res_num = user_res_list.res_num and user_res_list.user_num = user.user_num", nativeQuery = true)
 	List<User> findUsersOfRes(@Param("resNum") Long resNum);
-
+	
+	
+	// 팔로워 많은 유저 순으로 반환
+	@Query(value = "select user.* from user, (select followers.to_user_fk k from followers group by followers.to_user_fk order by count(*)) f where f.k = user.user_num", nativeQuery=true)
+	List<User> findUsersByFollwerCount();
 }

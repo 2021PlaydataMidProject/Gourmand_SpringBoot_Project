@@ -42,8 +42,6 @@ public class JwtAuthenticationFilter extends BasicAuthenticationFilter{
 			context.setAuthentication(authentication);
 		}
 		
-		
-		
 		//JWT
 		chain.doFilter(request, response); //authentication있는지 없는지 상관없이 doFilter 함수 호출
 	}
@@ -64,7 +62,6 @@ public class JwtAuthenticationFilter extends BasicAuthenticationFilter{
 		
 		Authentication authentication = new UsernamePasswordAuthenticationToken(claims, null);
 		return authentication;
-		
 	}
 }
 	

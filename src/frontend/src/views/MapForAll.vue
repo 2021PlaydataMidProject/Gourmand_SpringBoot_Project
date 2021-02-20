@@ -138,7 +138,7 @@
               :rating="value.avg_star"
             ></star-rating>
           </h3>
-          {{ value.avg_star.toFixed(1) }}/5.0
+          {{ getStar(value.avg_star) }}/5.0
 
           <a href="#" @click="move(value.res_num)"
             ><h3 class="heading-title mb-0">{{ value.res_name }}</h3></a
@@ -177,10 +177,13 @@ export default {
         ? "Click to select " + this.mouseOverRating + " stars"
         : "No rating selected";
     },
+    row() {
+      return this.resThumbnails.length;
+    }
   },
   data() {
     return {
-      resThumbnails: null,
+      resThumbnails: [],
       modals: {
         modal1: false,
         modal2: false,
@@ -205,6 +208,9 @@ export default {
       resetableRating: 2,
       currentRating: "No Rating",
       mouseOverRating: null,
+
+      perPage: 1,
+      currentPage: 1,
     };
   },
   mounted() {
@@ -261,6 +267,9 @@ export default {
     setCurrentSelectedRating(rating) {
       this.currentSelectedRating = "You have Selected: " + rating + " stars";
     },
+    getStar(star){
+      return star.toFixed(1)
+    }
   },
 };
 </script>
@@ -281,10 +290,3 @@ body {
   background: #fff;
 }
 </style>
-
-
-
-
-
-
->>>>>>> mainpage

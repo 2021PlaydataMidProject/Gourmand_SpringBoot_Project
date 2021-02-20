@@ -124,11 +124,9 @@ export default {
         if (sessionStorage.getItem("user")!=null){
             sessionStorage.removeItem("user");
             deleteCookie();
+            this.axios.post("/auth/logout",{})
             location.href="/"
         }
-    },
-    setcookie: function() {
-      
     },
     mymap: function(){
         if (sessionStorage.getItem("user")!=null){

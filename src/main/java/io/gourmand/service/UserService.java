@@ -5,6 +5,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.Cookie;
@@ -35,6 +37,7 @@ import io.gourmand.dto.UserDTO.SigninRequest;
 import io.gourmand.dto.UserDTO.SigninResponse;
 import io.gourmand.dto.UserDTO.UserCountsInfo;
 import io.gourmand.dto.UserDTO.UserRegister;
+import io.gourmand.dto.UserDTO.UserSimple;
 import io.gourmand.dto.UserDTO.UserThumbnail;
 import io.gourmand.dto.UserStandardDTO.UserStandardRegister;
 import io.gourmand.exception.PasswordWrongException;
@@ -46,24 +49,24 @@ import io.gourmand.util.JwtUtil;
 @Service
 @Transactional
 public class UserService {
-	
+
 	@Autowired
 	UserRepository userDAO;
-	
+
 	@Autowired
 	UserImgRepository userImgDAO;
-	
+
 	@Autowired
 	UserStandardRepository userStandardDAO;
-	
+
 	@Autowired
 	ReviewRepository revDAO;
-	
+
 	@Autowired
 	JwtUtil jwtUtil;
-	
+
 	PasswordEncoder passwordEncoder;
-	
+
 	/**
 	 * 아이디과 비밀번호가 일치하는 유저를 조회한다. 해당 아이디 유저가 존재하지 않거나 비밀번호가 일치하지 않으면 Exception
 	 * 
@@ -80,59 +83,63 @@ public class UserService {
 //
 //		return user;
 //	}
-	
+
 	public SigninResponse getMatchedUser(SigninRequest sign, HttpServletResponse res) {
 		User signin = userDAO.findUserByUserId(sign.getUserId());
 		// 없는 유저
 		if (signin == null || !signin.getPw().equals(sign.getPw())) {
 			return null;
 		}
-		
+
 		final String token = jwtUtil.generateToken(signin);
 		Cookie accessToken = CookieUtil.createCookie(JwtUtil.ACCESS_TOKEN_NAME, token);
 		res.addCookie(accessToken);
-		
-		JsonObject obj =new JsonObject();
-	    JsonObject data = new JsonObject();
 
-	    data.addProperty("status", "success");
-	    data.addProperty("message", "로그인에 성공했습니다.");
-	    data.addProperty("token", token);
-	    
-	    obj.add("data", data);
-		
-	    System.out.println(obj.toString());
-	    
-		
+		JsonObject obj = new JsonObject();
+		JsonObject data = new JsonObject();
+
+		data.addProperty("status", "success");
+		data.addProperty("message", "로그인에 성공했습니다.");
+		data.addProperty("token", token);
+
+		obj.add("data", data);
+
+		System.out.println(obj.toString());
+
 		return SigninResponse.of(signin);
 	}
-
 	
+	public void logout(HttpServletResponse res) {
+		Cookie deleteToken = CookieUtil.createCookie(JwtUtil.ACCESS_TOKEN_NAME, null);
+		deleteToken.setMaxAge(0);
+		res.addCookie(deleteToken);
+	}
+
 	// 회원 정보 조회
 	public Optional<User> getUser(Long userNum) {
 		return userDAO.findById(userNum);
 	}
-	
-	public User registerUser(String dob,String job,int pageStatus,LocalDate suDate,UserStandard userStandard, String userId, String name, String pw) {
+
+	public User registerUser(String dob, String job, int pageStatus, LocalDate suDate, UserStandard userStandard,
+			String userId, String name, String pw) {
 		Optional<User> existed = userDAO.findByUserId(userId);
 		if (existed.isPresent()) {
 			throw new UserExistedException(userId);
 		}
-		
+
 		String encodedPassword = passwordEncoder.encode(pw);
-		User user = User.builder().userNum(1004L).dob(dob).job(job).pageStatus(pageStatus).suDate(suDate).userStandard(userStandard).userId(userId).name(name).pw(encodedPassword).build();
-		
+		User user = User.builder().userNum(1004L).dob(dob).job(job).pageStatus(pageStatus).suDate(suDate)
+				.userStandard(userStandard).userId(userId).name(name).pw(encodedPassword).build();
+
 		return userDAO.save(user);
 	}
-	
-	
-	
+
 	@Autowired
 	public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
 		this.userDAO = userRepository;
 		this.passwordEncoder = passwordEncoder;
 	}
-	
+
 	// 회원 1인 관련 정보페이지에 필요한 DTO를 생성해서 controller에 보낸다.
 //	public UserInfo getUserInfo(Long userNum) {
 //		Optional<User> user = userDAO.findById(userNum);
@@ -146,7 +153,7 @@ public class UserService {
 	public UserThumbnail getUserThumbnail(User user) {
 		return UserThumbnail.of(userDAO.findById(user.getUserNum()).get());
 	}
-	
+
 	// 회원 1인 탈퇴 - 얽혀있는 테이블이 많아서 null point exception이 많이 뜬다.0
 //	public void deleteUser(User user) {
 //		userStandardDAO.deleteById(user.getUserStandard().getId());
@@ -154,74 +161,78 @@ public class UserService {
 //		userImgDAO.deleteById(user.getUserNum());
 //	}
 
+	// 팔로워 많은 유저 3명 반환 (0 아닐시)
+	public List<UserSimple> getFamousUsers() {
+		int cnt = 0;
+		List<UserSimple> users = new ArrayList<>();
+		for (User user : userDAO.findUsersByFollwerCount()) {
+			if (++cnt <= 2 || user.getFollowers().size() > 0) {
+				users.add(UserSimple.builder().userNum(user.getUserNum()).userName(user.getName()).build());
+			}
+		}
+		return users;
+	}
 
 	// 회원 가입시 회원 기준 저장
 	public UserStandard insertUserStandard(UserStandardRegister userStandard) {
 		return userStandardDAO.save(UserStandardRegister.toEntity(userStandard));
 	}
 
-	//	회원가입
+	// 회원가입
 	public User insertUser(UserRegister user, UserStandard userStandard) {
 		return userDAO.save(UserRegister.toEntity(user, userStandard));
 	};
-	
-	//MultipartFile -> entity -> SQL저장
-		public UserImg insertUserImg(MultipartFile userImg, User user){
-			return userImgDAO.save(UserImg.of(userImg, user));
+
+	// MultipartFile -> entity -> SQL저장
+	public UserImg insertUserImg(MultipartFile userImg, User user) {
+		return userImgDAO.save(UserImg.of(userImg, user));
+	}
+
+	// MultipartFile -> 저장
+	public void saveImg(MultipartFile file, UserImg user) throws IOException {
+		// parent directory를 찾는다.
+		Path directory = Paths.get(user.getPath()).toAbsolutePath().normalize();
+
+		// directory 해당 경로까지 디렉토리를 모두 만든다.
+		Files.createDirectories(directory);
+
+		// 파일명을 바르게 수정한다.
+		String fileName = StringUtils.cleanPath(user.getName());
+
+		// 파일명에 '..' 문자가 들어 있다면 오류를 발생하고 아니라면 진행(해킹및 오류방지)
+		Assert.state(!fileName.contains(".."), "Name of file cannot contain '..'");
+		// 파일을 저장할 경로를 Path 객체로 받는다.
+		Path targetPath = directory.resolve(fileName).normalize();
+
+		// 파일이 이미 존재하는지 확인하여 존재한다면 오류를 발생하고 없다면 저장한다.
+		Assert.state(!Files.exists(targetPath), fileName + " File alerdy exists.");
+		file.transferTo(targetPath);
+	}
+
+	// 해당 아이디의유저가 매긴 리뷰개수를 반환한다.
+	public UserCountsInfo getUserReviewCounts(Review reviewNum) {
+		userDAO.findcountbyReviewNum(reviewNum);
+		return getUserReviewCounts(reviewNum);
+	}
+
+	// 해당아이디가 작성한 리스트의 개수를 반환한다.
+	public UserCountsInfo getUserListCounts(UserResList listNum) {
+		userDAO.findcountByUserList(listNum);
+		return getUserListCounts(listNum);
+	}
+
+	public User authenticate(String userId, String password) {
+		User user = ((Optional<User>) userDAO.findByUserId(userId))
+				.orElseThrow(() -> new UserIdNotExistedException(userId));
+
+		if (!passwordEncoder.matches(password, user.getPw())) {
+			throw new PasswordWrongException();
 		}
-		
-		
-		//MultipartFile -> 저장
-		public void saveImg(MultipartFile file, UserImg user) throws IOException {
-			// parent directory를 찾는다.
-			Path directory = Paths.get(user.getPath()).toAbsolutePath().normalize();
 
-			// directory 해당 경로까지 디렉토리를 모두 만든다.
-			Files.createDirectories(directory);
+		return user;
+	}
 
-			// 파일명을 바르게 수정한다.
-			String fileName = StringUtils.cleanPath(user.getName());
-
-			// 파일명에 '..' 문자가 들어 있다면 오류를 발생하고 아니라면 진행(해킹및 오류방지)
-			Assert.state(!fileName.contains(".."), "Name of file cannot contain '..'");
-			// 파일을 저장할 경로를 Path 객체로 받는다.
-			Path targetPath = directory.resolve(fileName).normalize();
-
-			// 파일이 이미 존재하는지 확인하여 존재한다면 오류를 발생하고 없다면 저장한다.
-			Assert.state(!Files.exists(targetPath), fileName + " File alerdy exists.");
-			file.transferTo(targetPath);
-		}
-
-			//해당 아이디의유저가 매긴 리뷰개수를 반환한다. 
-			public UserCountsInfo getUserReviewCounts(Review reviewNum) {
-			   userDAO.findcountbyReviewNum(reviewNum);
-			   return getUserReviewCounts(reviewNum);
-			}
-			
-			//해당아이디가 작성한 리스트의 개수를 반환한다. 
-			public UserCountsInfo getUserListCounts(UserResList listNum){
-			   userDAO.findcountByUserList(listNum);
-			   return getUserListCounts(listNum);
-			}
-			
-
-			
-			public User authenticate(String userId, String password) {
-				User user = ((Optional<User>) userDAO.findByUserId(userId)).orElseThrow(() -> new UserIdNotExistedException(userId));
-
-		        if (!passwordEncoder.matches(password, user.getPw())) {
-		            throw new PasswordWrongException();
-		        }
-
-		        return user;
-		    }
-		
-			
-			
 }
-
-	
-
 
 //	/**
 //	    * 수정할 수 있는 유저정보를 수집한다.
@@ -243,9 +254,9 @@ public class UserService {
 //	      //USERSTANDARD를 변경할 수 있는지? 
 ////	      if (userInfo.getUserStandard != null) user.setUserStandard(userInfo.getUserStandard());
 //	   }
-		
-		//마이페이지 - 내 리뷰 확인 - 더보기 - 시간순 정렬  - 자바스트림... 모름
-	      //시간순으로 리뷰 리스트를 반환한다.
+
+// 마이페이지 - 내 리뷰 확인 - 더보기 - 시간순 정렬 - 자바스트림... 모름
+// 시간순으로 리뷰 리스트를 반환한다.
 //	      @Transactional
 //	       public List<RevDTO> findByPageRequest(PageRequest pageRequest) {
 //	           return reviewDAO.findAll(pageRequest).stream()

@@ -43,7 +43,6 @@ export default {
     BaseButton,
   },
   props: {
-    user: null,
     res: null,
   },
   data() {
@@ -58,7 +57,7 @@ export default {
   methods: {
     read() {
       this.axios
-        .get("/user/reslist/" + this.$props.user, {})
+        .get("/user/reslist/", {})
         .then((res) => {
           this.reslist = res.data;
         })
@@ -69,7 +68,6 @@ export default {
     },
     add(value) {
       const formdata = new FormData();
-      formdata.append("user", this.$props.user);
       formdata.append("res", this.$props.res);
       formdata.append("listName", value);
       this.axios.post("res/user/insert", formdata)

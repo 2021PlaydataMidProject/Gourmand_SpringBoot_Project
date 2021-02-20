@@ -88,7 +88,7 @@ public class ResDTO {
 			BigDecimal[] axis = NaverGeoCoding.returnAxis(resAddress);
 			return Res.builder().resName(res.getResName()).xValue(axis[1]).yValue(axis[0])
 					.resAddress(resAddress).tel(res.getTel()).category(res.getCategory())
-					.avgStar(BigDecimal.valueOf(0.0)).build();
+					.avgStar(BigDecimal.valueOf(0.00)).build();
 		}
 	}
 }
