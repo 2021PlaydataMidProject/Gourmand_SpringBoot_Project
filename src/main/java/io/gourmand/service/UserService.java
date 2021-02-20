@@ -31,6 +31,7 @@ import io.gourmand.dto.UserDTO.UserCountsInfo;
 import io.gourmand.dto.UserDTO.UserRegister;
 import io.gourmand.dto.UserDTO.UserThumbnail;
 import io.gourmand.dto.UserStandardDTO.UserStandardRegister;
+import io.gourmand.util.CookieUtil;
 import io.gourmand.util.JwtUtil;
 
 @Service

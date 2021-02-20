@@ -44,6 +44,7 @@ function deleteCookie(value) {
   document.cookie = `userId=; expires=Thu, 01 Jan 1970 00:00:01 GMT;`;
   document.cookie = `userNum=; expires=Thu, 01 Jan 1970 00:00:01 GMT;`;
   document.cookie = `userName=; expires=Thu, 01 Jan 1970 00:00:01 GMT;`;
+  document.cookie = `accessToken=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT;`;
 }
 
 export {
