@@ -63,6 +63,14 @@
               <input type="file" ref="imgdata" name="imgdata[]" accept="image/*" multiple="multiple" />
                     <div class="row">
    
+            <!-- <img
+              v-lazy="'../img/user/'"
+              alt="Rounded image"
+              class="img-fluid rounded shadow"
+              style="width: 150px"
+              @click="editImg(key)"
+            />
+            {{ value.origin_name }} -->
           </div>
          </div>
           </td>
@@ -224,7 +232,7 @@ export default {
             formData.append('userImg', this.$refs.imgdata.files[i])
 
           }
-          return this.axios.put('/user/regi', formData, {
+          return this.axios.post('/user/regi', formData, {
             headers: {
               "Content-Type": 'multipart/form-data'
             }
