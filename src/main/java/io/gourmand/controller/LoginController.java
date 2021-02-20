@@ -31,6 +31,11 @@ public class LoginController {
 		}
 	}
 
+	@PostMapping("/auth/logout")
+	public void signout(HttpServletResponse res){
+		userService.logout(res);
+	}
+	
 	@PostMapping("/auth/check")
 	public void check(@RequestBody User user) {
 		System.out.println(user);

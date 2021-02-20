@@ -40,7 +40,6 @@ import io.gourmand.util.JwtUtil;
 
 @Service
 public class UserService {
-<<<<<<< HEAD
    @Autowired
    UserRepository userDAO;
    @Autowired
@@ -168,7 +167,6 @@ public class UserService {
        revDAO.findAllOrderByUserNumNStar(userNum).forEach(rev ->  revStarThumbnailList.add(ReviewThumbnail.of(rev)));
        return revStarThumbnailList;
     }
-=======
 	@Autowired
 	UserRepository userDAO;
 	@Autowired
@@ -283,6 +281,11 @@ public class UserService {
 		userDAO.findcountByUserList(listNum);
 		return getUserListCounts(listNum);
 	}
->>>>>>> parent of db83eb6 (로그아웃 구현)
+	
+	public void logout(HttpServletResponse res) {
+		Cookie deleteToken = CookieUtil.createCookie(JwtUtil.ACCESS_TOKEN_NAME, null);// 쿠키 이름에 대한 값을 null로 지정
+		deleteToken.setMaxAge(0); // 유효시간을 0으로 설정
+		res.addCookie(deleteToken); // 응답 헤더에 추가해서 없어지도록 함
+	}
 }
 
