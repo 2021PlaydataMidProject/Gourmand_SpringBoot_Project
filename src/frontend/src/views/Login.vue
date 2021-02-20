@@ -92,8 +92,9 @@ import
   saveUserIdToCookie,
   saveUserNumToCookie,
   saveUserNameToCookie,
+  saveTokenToCookie,
 
-  getAuthFromCookie,
+  getAccessTokenFromCookie,
   getUserIdFromCookie,
   getUserNumFromCookie,
   getUserNameFromCookie,
@@ -118,11 +119,15 @@ export default {
         .then((res) => {
           if (res.data) {
             console.log(res);
+            console.log(res.data.access_token);
+
             sessionStorage.setItem("user", res.data.user_num);
             console.log(sessionStorage.getItem("user"))
             saveUserNumToCookie(res.data.user_num);
             saveUserIdToCookie(res.data.user_id);
             saveUserNameToCookie(res.data.name);
+
+            // axios.get('');
 
             location.href = "/";
           } else {
