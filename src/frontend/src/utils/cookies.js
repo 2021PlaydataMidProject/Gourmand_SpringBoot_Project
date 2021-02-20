@@ -45,6 +45,10 @@ function deleteCookie(value) {
   document.cookie = `userNum=; expires=Thu, 01 Jan 1970 00:00:01 GMT;`;
   document.cookie = `userName=; expires=Thu, 01 Jan 1970 00:00:01 GMT;`;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+  document.cookie = `accessToken=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT;`;
+>>>>>>> parent of db83eb6 (로그아웃 구현)
 =======
   document.cookie = `accessToken=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT;`;
 >>>>>>> parent of db83eb6 (로그아웃 구현)
