@@ -120,7 +120,7 @@ public class UserService {
 		}
 		
 		String encodedPassword = passwordEncoder.encode(pw);
-		User user = User.builder().userNum(1004L).dob(dob).job(job).pageStatus(pageStatus).roles(roles).suDate(suDate).userStandard(userStandard).userId(userId).name(name).pw(encodedPassword).build();
+		User user = User.builder().userNum(1004L).dob(dob).job(job).pageStatus(pageStatus).suDate(suDate).userStandard(userStandard).userId(userId).name(name).pw(encodedPassword).build();
 		
 		return userDAO.save(user);
 	}
