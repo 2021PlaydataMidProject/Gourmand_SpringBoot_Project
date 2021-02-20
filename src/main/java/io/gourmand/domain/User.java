@@ -53,9 +53,6 @@ public class User  {
 	@Column(name = "NAME")
 	private String name;
 	
-	@Column(name = "ROLES")
-	private String roles; //USER,ADMIN
-	
 	@Column(name = "DOB")
 	private String dob;
 	
