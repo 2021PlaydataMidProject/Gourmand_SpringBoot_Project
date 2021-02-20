@@ -34,7 +34,7 @@ public interface ReviewRepository extends JpaRepository<Review, Long> {
 	List<Review> findAllByResNum(@Param("resNum") Long resNum);
 	
 	// 리뷰 시간순으로 12개까지 가져오기
-	@Query(value = "select review.* from review, ( select count(*) as c from review ) cnt where review.review_num >= cnt.c-12 order by review.review_num desc", nativeQuery=true)
+	@Query(value = "select review.* from review, ( select count(*) as c from review ) cnt where review.review_num > cnt.c-12 order by review.review_num desc", nativeQuery=true)
 	List<Review> findAllOrderByDate();
 	
 }

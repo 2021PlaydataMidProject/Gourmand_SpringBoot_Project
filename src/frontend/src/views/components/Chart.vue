@@ -29,7 +29,7 @@ export default {
         labels: ["맛", "가성비", "친절함", "분위기", "접근성", "청결도"],
         datasets: [
           {
-            label: "박민영",
+            label: "",
             fontSize: 10,
             data: [this.$props.data[0], this.$props.data[1], this.$props.data[2], this.$props.data[3], this.$props.data[4], this.$props.data[5]],
             backgroundColor: ["rgba(255, 181, 60, 0.7)"],

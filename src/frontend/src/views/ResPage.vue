@@ -63,7 +63,7 @@
             :Yaxis="resInfo.yvalue"
           ></my-map>
           <div v-if="getUser()!=null">
-            <res-list :user="getUser()"></res-list>
+            <res-list :user="getUser()" :res="getRes()"></res-list>
           </div>
         </div>
       </div>
@@ -252,6 +252,9 @@ export default {
     },
     getUser(){
       return sessionStorage.getItem("user");
+    },
+    getRes(){
+      return this.$route.query.res;
     }
   }
 };

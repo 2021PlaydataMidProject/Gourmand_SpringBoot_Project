@@ -20,6 +20,7 @@ import io.gourmand.dao.UserRepository;
 import io.gourmand.dao.UserResListRepository;
 import io.gourmand.domain.Res;
 import io.gourmand.domain.ResImg;
+import io.gourmand.domain.UserResList;
 import io.gourmand.dto.ResDTO.ResInfo;
 import io.gourmand.dto.ResDTO.ResRegister;
 import io.gourmand.dto.ResDTO.ResThumbnail;
@@ -92,6 +93,12 @@ public class ResService {
 		urlDAO.findAllbyUserAndListName(id, name).forEach(r -> resThumbList.add(ResThumbnail.of(r.getRes())));
 		return resThumbList;
 	}
+	
+	// UserResList 추가
+	public void insertResList(String listName, Long resNum, Long userNum) {
+		urlDAO.save(UserResList.builder().listName(listName).res(resDAO.findById(resNum).get()).user(userDAO.findById(userNum).get()).build());
+	}
+	
 	
 	public void updateResAvgStar(Long res) {
 		resDAO.updateResAvgStar(res);
