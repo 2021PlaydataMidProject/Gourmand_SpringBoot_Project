@@ -189,7 +189,13 @@ public class RevController {
 //  ) throws URISyntaxException {
 //      Claims claims = (Claims) authentication.getPrincipal();
 //
-//      String username = claims.get("name", String.class); // 토큰에 넣은 이름 적용
+////    {
+////	  "user_num": 4,
+////	  "user_id": "test6",
+////	  "name": "jw"
+////	}
+//      String username = claims.get("name", String.class); // 토큰에 넣은 이름 적용 //user_id, user_num
+//
 //      //String username = usersource.getName();
 //      String resname = ressource.getResName();
 //      String foodType = resource.getFoodType();
