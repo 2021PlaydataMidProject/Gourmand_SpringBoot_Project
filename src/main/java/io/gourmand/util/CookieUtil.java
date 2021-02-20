@@ -1,17 +1,9 @@
 package io.gourmand.util;
 
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-
-import java.io.IOException;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 @Service
 public class CookieUtil {
@@ -33,5 +25,10 @@ public class CookieUtil {
         }
         return null;
     }
+<<<<<<< HEAD
+=======
+    
+    
+>>>>>>> parent of db83eb6 (로그아웃 구현)
 
 }

@@ -105,7 +105,6 @@ import BaseNav from "@/components/BaseNav";
 import BaseDropdown from "@/components/BaseDropdown";
 import CloseButton from "@/components/CloseButton";
 import {deleteCookie} from '../utils/cookies.js';
-import axios from 'axios';
 
 export default {
   components: {
@@ -125,15 +124,7 @@ export default {
         if (sessionStorage.getItem("user")!=null){
             sessionStorage.removeItem("user");
             deleteCookie();
-            return this.axios.post("/auth/logout").then((res)=> {
-              console.log("로그아웃 완료");
-            })
-            .catch((error) => {
-              console.log(error);
-            })
-            .finally(
-              location.href="/"
-            )
+            location.href="/"
         }
     },
     mymap: function(){
@@ -144,7 +135,7 @@ export default {
             location.href="/login";
         }
     }
-  } 
+  },
 };
 </script>
 <style>

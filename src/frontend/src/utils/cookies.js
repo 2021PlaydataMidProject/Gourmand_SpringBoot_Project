@@ -14,13 +14,9 @@ function saveUserNameToCookie(value) {
   document.cookie = `userName=${value}`;
 }
 
-function saveTokenToCookie(value) {
-  document.cookie = `accessToken=${value}`;
-}
-
-function getAccessTokenFromCookie() {
+function getAuthFromCookie() {
   return document.cookie.replace(
-    /(?:(?:^|.*;\s*)accessToken\s*=\s*([^;]*).*$)|^.*$/,
+    /(?:(?:^|.*;\s*)til_auth\s*=\s*([^;]*).*$)|^.*$/,
     '$1',
   );
 }
@@ -48,6 +44,10 @@ function deleteCookie(value) {
   document.cookie = `userId=; expires=Thu, 01 Jan 1970 00:00:01 GMT;`;
   document.cookie = `userNum=; expires=Thu, 01 Jan 1970 00:00:01 GMT;`;
   document.cookie = `userName=; expires=Thu, 01 Jan 1970 00:00:01 GMT;`;
+<<<<<<< HEAD
+=======
+  document.cookie = `accessToken=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT;`;
+>>>>>>> parent of db83eb6 (로그아웃 구현)
 }
 
 export {
@@ -55,9 +55,8 @@ export {
   saveUserIdToCookie,
   saveUserNumToCookie,
   saveUserNameToCookie,
-  saveTokenToCookie,
 
-  getAccessTokenFromCookie,
+  getAuthFromCookie,
   getUserIdFromCookie,
   getUserNumFromCookie,
   getUserNameFromCookie,
