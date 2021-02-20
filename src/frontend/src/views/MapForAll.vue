@@ -35,7 +35,11 @@
               <base-radio name="9" class="mb-3 mr-1" v-model="radio.radio1">
                 <small> 9km 이내 </small>
               </base-radio>
-              <base-radio name="9999999" class="mb-3 mr-1" v-model="radio.radio1">
+              <base-radio
+                name="9999999"
+                class="mb-3 mr-1"
+                v-model="radio.radio1"
+              >
                 <small> 전체 </small>
               </base-radio>
             </div>
@@ -110,9 +114,13 @@
         <span>맛집 지도</span>
         <hr />
       </h2>
-      <div class="row">
+
+      <div class="row" id="pag">
         <!--eslint-disable-next-line vue/no-use-v-if-with-v-for-->
-        <div v-for="(value, key) in resThumbnails" v-if="check(value.category)" v-bind:key="key" class="col-lg-3 col-sm-4">
+        <div v-for="(value, key) in itemsForList" v-if="check(value.category)"
+          v-bind:key="key"
+          class="col-lg-3 col-sm-4"
+        >
           <img
             v-if="value.res_img != null"
             :src="'img/res/' + value.res_img.name"
@@ -148,6 +156,16 @@
           <hr />
         </div>
       </div>
+      <div class="row">
+      <div class="col-md-5"/>
+      <b-pagination
+        v-model="currentPage"
+        :total-rows="row"
+        :per-page="perPage"
+        aria-controls="pag"
+        class=""
+      ></b-pagination>
+      </div>
     </div>
   </section>
 </template>
@@ -157,6 +175,7 @@ import BaseNav from "@/components/BaseNav";
 import CloseButton from "@/components/CloseButton";
 import Modal from "@/components/Modal.vue";
 import StarRating from "vue-star-rating";
+import { BPagination } from "bootstrap-vue";
 
 export default {
   components: {
@@ -164,6 +183,7 @@ export default {
     CloseButton,
     Modal,
     StarRating,
+    BPagination,
   },
   //star rating 별점
   computed: {
@@ -179,7 +199,13 @@ export default {
     },
     row() {
       return this.resThumbnails.length;
-    }
+    },
+    itemsForList() {
+      return this.resThumbnails.slice(
+        (this.currentPage - 1) * this.perPage,
+        this.currentPage * this.perPage
+      );
+    },
   },
   data() {
     return {
@@ -209,7 +235,7 @@ export default {
       currentRating: "No Rating",
       mouseOverRating: null,
 
-      perPage: 1,
+      perPage: 20,
       currentPage: 1,
     };
   },
@@ -249,8 +275,8 @@ export default {
       }
       this.modals.modal1 = false;
     },
-    move(resnum){
-      this.$router.push({ path: "/respage", query: { res: resnum }});
+    move(resnum) {
+      this.$router.push({ path: "/respage", query: { res: resnum } });
     },
     check(category) {
       return (
@@ -267,9 +293,9 @@ export default {
     setCurrentSelectedRating(rating) {
       this.currentSelectedRating = "You have Selected: " + rating + " stars";
     },
-    getStar(star){
-      return star.toFixed(1)
-    }
+    getStar(star) {
+      return star.toFixed(1);
+    },
   },
 };
 </script>
