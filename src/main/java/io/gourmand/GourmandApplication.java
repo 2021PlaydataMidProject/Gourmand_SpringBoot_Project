@@ -2,6 +2,9 @@ package io.gourmand;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @SpringBootApplication
 public class GourmandApplication {
@@ -10,4 +13,5 @@ public class GourmandApplication {
 		SpringApplication.run(GourmandApplication.class, args);
 	}
 
+	
 }

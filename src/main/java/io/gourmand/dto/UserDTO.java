@@ -3,16 +3,25 @@ package io.gourmand.dto;
 import java.time.LocalDate;
 import java.util.List;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
+
+import com.google.gson.JsonObject;
+
 import io.gourmand.domain.Followers;
 import io.gourmand.domain.ListLikes;
 import io.gourmand.domain.Reply;
 import io.gourmand.domain.Review;
-
 import io.gourmand.domain.ReviewLikes;
 import io.gourmand.domain.User;
 import io.gourmand.domain.UserImg;
 import io.gourmand.domain.UserResList;
 import io.gourmand.domain.UserStandard;
+import io.gourmand.util.CookieUtil;
+import io.gourmand.util.JwtUtil;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -63,6 +72,7 @@ public class UserDTO {
 	@ToString
 	@Builder
 	public static class SigninResponse {
+		
 		private Long userNum;
 		private String userId;
 		private String name;
@@ -171,4 +181,5 @@ public class UserDTO {
 		private UserResList listNum;
 
 	}
+
 }

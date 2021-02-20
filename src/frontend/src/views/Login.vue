@@ -64,6 +64,7 @@
                   >
                 </div>
               </form>
+              <p class="log">{{ logMessage }}</p>
             </template>
           </card>
           <div class="row mt-3">
@@ -106,11 +107,24 @@ export default {
     return {
       id: "",
       pw: "",
+      //log
+      logMessage: "",
     };
   },
   methods: {
-    login: function () {
-      return this.axios
+    async login() {
+      try {
+        const userData = {
+          user_id: this.id,
+          pw: this.pw,
+        };
+        // response.data = await loginUser(userData);
+        // console.log(response.data) 
+        //await this.$store.dispatch('LOGIN', userData);
+      }catch(error) {
+        console.log(error.response.data);
+      }finally{
+        return this.axios
         .post("/auth/login", {
           user_id: this.id,
           pw: this.pw,
@@ -132,6 +146,7 @@ export default {
         .catch((error) => {
           alert("서버 오류입니다. 다시 시도해주세요.");
         });
+      }
     },
   },
 };

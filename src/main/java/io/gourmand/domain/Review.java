@@ -21,13 +21,13 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
 @ToString
 @Builder
-
 @Entity(name = "REVIEW")
 public class Review {
 	@Id
@@ -66,4 +66,8 @@ public class Review {
 	private List<ReviewLikes> reviewlikes; 
 	
 
+	
 }
+
+
+

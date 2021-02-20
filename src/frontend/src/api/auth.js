@@ -12,8 +12,14 @@ function registerUser(userData) {
 // }
 
 // 로그인 API
+// function loginUser(userData) {
+//   return instance.post('login', userData);
+// }
+
+// 로그인 API
 function loginUser(userData) {
-  return instance.post('login', userData);
+  const url = 'http://localhost:80/auth/login';
+  return axios.post(url, userData);
 }
 
 export { registerUser, loginUser };

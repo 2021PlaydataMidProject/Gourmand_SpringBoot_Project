@@ -4,6 +4,7 @@ var router = express.Router();
 // const locationModel = require("../model/location");
 
 
+
 // 맛집 등록 확인
 router.get("/mymap", (req, res, next) => {
   res.render("index", { title: "Express" });
@@ -17,7 +18,7 @@ router.get('/search', function(req, res, next) {
   res.render('search', { title: 'Express' });
 });
 
-
+// <----------------------------- MYSQL DB CONNECTION ----------------------------->
 var mysql = require('mysql');
 // Connection 객체 생성 
 var connection = mysql.createConnection({
@@ -37,6 +38,7 @@ connection.connect(function (err) {
 });
 
 
+// <----------------------------- 네이버 지도 api ----------------------------->
 router.post('/location', function (req, res) {
   // 네이버 지역 검색 API - 음식점명으로 category 받아오기
   const NAVER_CLIENT_ID     = 'jEsRY2tOdjqA0tAZRJcO'
@@ -120,12 +122,5 @@ router.delete('/location/delete/all', function (req, res) {
   res.status(200).send('success');
 });
 
-
-// var sql = 'DELETE FROM topic WHERE res_num="?"';
-// var params = [6]; // 숫자는 없앨 id 값을 넣으면 된다.
-// connection.query(sql, params, function(err, rows, fields){
-//     if(err) console.log(err);
-//     console.log(rows);
-// });
 
 module.exports = router;

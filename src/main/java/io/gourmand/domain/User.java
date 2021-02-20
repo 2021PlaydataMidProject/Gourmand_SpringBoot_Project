@@ -1,12 +1,11 @@
 package io.gourmand.domain;
 
-import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -15,10 +14,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
 
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.format.annotation.DateTimeFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -56,6 +53,9 @@ public class User  {
 	@Column(name = "NAME")
 	private String name;
 	
+	@Column(name = "ROLES")
+	private String roles; //USER,ADMIN
+	
 	@Column(name = "DOB")
 	private String dob;
 	
@@ -88,6 +88,14 @@ public class User  {
 	    this.name = name;
 	}
 	
+	//USER,ADMIN
+	public List<String> getRoleList() {
+		if(this.roles.length() > 0) {
+			return Arrays.asList(this.roles.split(","));
+		}
+		return new ArrayList<>();
+	}
+
 
 }
 
