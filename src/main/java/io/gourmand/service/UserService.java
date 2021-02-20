@@ -29,6 +29,7 @@ import io.gourmand.dto.UserDTO.UserCountsInfo;
 import io.gourmand.dto.UserDTO.UserRegister;
 import io.gourmand.dto.UserDTO.UserThumbnail;
 import io.gourmand.dto.UserStandardDTO.UserStandardRegister;
+import io.gourmand.exception.UserExistedException;
 
 @Service
 public class UserService {
@@ -62,25 +63,7 @@ public class UserService {
 		return userDAO.findById(userNum);
 	}
 
-	public User registerUser(String dob, String job, int pageStatus, LocalDate suDate, UserStandard userStandard,
-			String userId, String name, String pw) {
-		Optional<User> existed = userDAO.findUserByUserId(userId);
-		if (existed.isPresent()) {
-			throw new UserExistedException(userId);
-		}
 
-		String encodedPassword = passwordEncoder.encode(pw);
-		User user = User.builder().userNum(1004L).dob(dob).job(job).pageStatus(pageStatus).suDate(suDate)
-				.userStandard(userStandard).userId(userId).name(name).pw(encodedPassword).build();
-
-		return userDAO.save(user);
-	}
-
-	@Autowired
-	public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
-		this.userDAO = userRepository;
-		this.passwordEncoder = passwordEncoder;
-	}
 
 	// 회원 1인 관련 정보페이지에 필요한 DTO를 생성해서 controller에 보낸다.
 //	public UserInfo getUserInfo(Long userNum) {
