@@ -1,7 +1,5 @@
 package io.gourmand.controller;
 
-import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,9 +21,7 @@ public class LoginController {
 	private UserService userService;
 
 	@PostMapping("/auth/login")
-	public SigninResponse signin(
-			@RequestBody @Validated UserDTO.SigninRequest request, 
-			HttpServletResponse res){
+	public SigninResponse signin(@RequestBody @Validated UserDTO.SigninRequest request, HttpServletResponse res){
 		try {
 			return userService.getMatchedUser(request, res);
 		} catch (Exception e) {
