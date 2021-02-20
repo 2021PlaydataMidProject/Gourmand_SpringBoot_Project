@@ -113,14 +113,14 @@ public class UserService {
 		return userDAO.findById(userNum);
 	}
 	
-	public User registerUser(String dob,String job,int pageStatus,String roles,LocalDate suDate,UserStandard userStandard, String userId, String name, String pw) {
+	public User registerUser(String dob,String job,int pageStatus,LocalDate suDate,UserStandard userStandard, String userId, String name, String pw) {
 		Optional<User> existed = userDAO.findByUserId(userId);
 		if (existed.isPresent()) {
 			throw new UserExistedException(userId);
 		}
 		
 		String encodedPassword = passwordEncoder.encode(pw);
-		User user = User.builder().userNum(1004L).dob(dob).job(job).pageStatus(pageStatus).roles(roles).suDate(suDate).userStandard(userStandard).userId(userId).name(name).pw(encodedPassword).build();
+		User user = User.builder().userNum(1004L).dob(dob).job(job).pageStatus(pageStatus).suDate(suDate).userStandard(userStandard).userId(userId).name(name).pw(encodedPassword).build();
 		
 		return userDAO.save(user);
 	}
