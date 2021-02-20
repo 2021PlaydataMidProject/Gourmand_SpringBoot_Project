@@ -42,7 +42,6 @@
               <p>보관함</p>
               <a href="/myreview">내 리뷰 확인</a><br />
               <a href="/myanalysis">취향 분석</a><br />
-              <a href="/mylike">좋아요 </a>
               <p>개인정보</p>
               <a href="/userEdit">개인정보 수정</a><br />
             </div>

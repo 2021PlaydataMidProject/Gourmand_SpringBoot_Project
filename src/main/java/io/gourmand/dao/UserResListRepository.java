@@ -10,7 +10,8 @@ import io.gourmand.domain.UserResList;
 
 public interface UserResListRepository extends JpaRepository<UserResList, Long> {
 	// 특정 유저의 ListName들 반환
-	@Query(value = "select distinct(url.list_name) from user_res_list url, user ur where ur.user_num  = :user and url.user_num = ur.user_num", nativeQuery = true)
+	@Query(value = "select distinct(url.list_name) from user_res_list url, user ur where ur.user_num  = :user "
+			+ "and url.user_num = ur.user_num", nativeQuery = true)
 	List<String> findListNamebyUser(@Param("user") Long userNum);
 
 	// 특정 유저의 특정 리스트 반환
