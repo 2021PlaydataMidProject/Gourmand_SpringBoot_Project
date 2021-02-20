@@ -1,13 +1,9 @@
 package io.gourmand.controller;
 
 import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,7 +22,6 @@ import io.gourmand.domain.UserImg;
 import io.gourmand.domain.UserStandard;
 import io.gourmand.dto.UserDTO.UserRegister;
 import io.gourmand.dto.UserStandardDTO.UserStandardRegister;
-import io.gourmand.service.UserService;
 
 @RestController
 public class UserController {
@@ -48,7 +43,7 @@ public class UserController {
 	}
 
 	/* 회원 가입 */
-	@PostMapping("/user/regi")//"/auth/regi"
+	@PostMapping("/user/regi")
 	public void createUser(@RequestParam("userImg") List<MultipartFile> userImg, @RequestParam("user") String userRegi, @RequestParam("userStandard") String userStandardregi) {
 		System.out.println(userRegi);
 		System.out.println(userStandardregi);
