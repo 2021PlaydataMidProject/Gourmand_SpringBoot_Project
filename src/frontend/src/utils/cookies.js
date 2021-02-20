@@ -14,9 +14,13 @@ function saveUserNameToCookie(value) {
   document.cookie = `userName=${value}`;
 }
 
-function getAuthFromCookie() {
+function saveTokenToCookie(value) {
+  document.cookie = `accessToken=${value}`;
+}
+
+function getAccessTokenFromCookie() {
   return document.cookie.replace(
-    /(?:(?:^|.*;\s*)til_auth\s*=\s*([^;]*).*$)|^.*$/,
+    /(?:(?:^|.*;\s*)accessToken\s*=\s*([^;]*).*$)|^.*$/,
     '$1',
   );
 }
@@ -40,11 +44,11 @@ function getUserNameFromCookie() {
   );
 }
 
-function deleteCookie(value) {
-  document.cookie = `userId=; expires=Thu, 01 Jan 1970 00:00:01 GMT;`;
-  document.cookie = `userNum=; expires=Thu, 01 Jan 1970 00:00:01 GMT;`;
-  document.cookie = `userName=; expires=Thu, 01 Jan 1970 00:00:01 GMT;`;
-  document.cookie = `accessToken=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT;`;
+function deleteCookie() {
+  // document.cookie = `userId=; expires=Thu, 01 Jan 1970 00:00:01 GMT;`;
+  // document.cookie = `userNum=; expires=Thu, 01 Jan 1970 00:00:01 GMT;`;
+  // document.cookie = `userName=; expires=Thu, 01 Jan 1970 00:00:01 GMT;`;
+  document.cookie = `accessToken=; expires=Thu, 01 Jan 1970 00:00:01 GMT;`;
 }
 
 export {
@@ -52,8 +56,9 @@ export {
   saveUserIdToCookie,
   saveUserNumToCookie,
   saveUserNameToCookie,
+  saveTokenToCookie,
 
-  getAuthFromCookie,
+  getAccessTokenFromCookie,
   getUserIdFromCookie,
   getUserNumFromCookie,
   getUserNameFromCookie,

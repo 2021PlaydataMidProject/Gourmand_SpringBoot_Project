@@ -58,6 +58,7 @@ public class UserService {
 		User signin = userDAO.findUserByUserId(sign.getUserId());
 		// 없는 유저
 		if (signin == null || !signin.getPw().equals(sign.getPw())) {
+			logout(res);
 			return null;
 		}
 		
@@ -77,10 +78,14 @@ public class UserService {
 	    System.out.println(obj.toString());
 	    
 		
-		return SigninResponse.of(signin);
+		return SigninResponse.of(signin, token);
 	}
 
-
+	public void logout(HttpServletResponse res) {
+		Cookie deleteToken = CookieUtil.createCookie(JwtUtil.ACCESS_TOKEN_NAME, null);// 쿠키 이름에 대한 값을 null로 지정
+		deleteToken.setMaxAge(0); // 유효시간을 0으로 설정
+		res.addCookie(deleteToken); // 응답 헤더에 추가해서 없어지도록 함
+	}
 
 	// 회원 1인 관련 정보페이지에 필요한 DTO를 생성해서 controller에 보낸다.
 //	public UserInfo getUserInfo(Long userNum) {

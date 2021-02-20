@@ -66,9 +66,10 @@ public class UserDTO {
 		private Long userNum;
 		private String userId;
 		private String name;
+		private String accessToken;
 
-		public static SigninResponse of(User user) {
-			return SigninResponse.builder().userNum(user.getUserNum()).userId(user.getUserId()).name(user.getName()).build();
+		public static SigninResponse of(User user, String accessToken) {
+			return SigninResponse.builder().userNum(user.getUserNum()).userId(user.getUserId()).name(user.getName()).accessToken(accessToken).build();
 		}
 	}
 	
