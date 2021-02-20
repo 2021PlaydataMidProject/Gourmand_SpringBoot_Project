@@ -93,12 +93,6 @@ public class ResController {
 		return resList;
 	}
 	
-	// reslist 추가
-	@PostMapping("/res/user/insert")
-	public void insetResToUser(@RequestParam("user") String user, @RequestParam("res") String resNum, @RequestParam("listName") String listName ) {
-		resService.insertResList(listName, Long.valueOf(resNum), Long.valueOf(user));
-	}
-	
 	// 가게 정보 저장
 	@PostMapping("/res/regi")
 	public void createRes(@RequestParam("resImg") List<MultipartFile> resImg, @RequestParam("res") String resRegi) {

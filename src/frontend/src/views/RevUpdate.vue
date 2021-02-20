@@ -107,7 +107,6 @@
               style="width: 150px"
               @click="delImg(key)"
             />
-            <br>
             {{ value.origin_name }}
           </div>
         </div>

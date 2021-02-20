@@ -97,7 +97,7 @@
             <base-button
               type="link"
               class="ml-auto"
-              @click="modals.modal1 = false"
+              @click="modal.modal1 = false"
               >Close
             </base-button>
           </template>

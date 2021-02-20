@@ -106,4 +106,8 @@ public class ResSearchService {
             throw new RuntimeException("API 응답을 읽는데 실패했습니다.", e);
         }
     }
+    
+    public static void main(String[] args) {
+    	searchPlace("족회관");
+    }
 }
