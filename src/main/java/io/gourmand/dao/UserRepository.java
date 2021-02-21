@@ -9,6 +9,7 @@ import org.springframework.data.repository.query.Param;
 
 import io.gourmand.domain.Review;
 import io.gourmand.domain.User;
+import io.gourmand.dto.UserDTO.UserRegister;
 
 public interface UserRepository extends JpaRepository<User, Long> {
 

@@ -13,6 +13,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
@@ -39,6 +40,9 @@ import io.gourmand.dto.UserDTO.UserRegister;
 import io.gourmand.dto.UserDTO.UserSimple;
 import io.gourmand.dto.UserDTO.UserThumbnail;
 import io.gourmand.dto.UserStandardDTO.UserStandardRegister;
+import io.gourmand.exception.PasswordWrongException;
+import io.gourmand.exception.UserExistedException;
+import io.gourmand.exception.UserIdNotExistedException;
 import io.gourmand.util.CookieUtil;
 import io.gourmand.util.JwtUtil;
 

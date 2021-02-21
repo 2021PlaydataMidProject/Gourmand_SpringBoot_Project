@@ -10,7 +10,6 @@ import Register from "./views/Register.vue";
 import Profile from "./views/Profile.vue";
 import Home from "./views/Home.vue";
 import ResTest from "./views/ResTest.vue";
-import UserSignUp from "./views/UserSignUp.vue";
 import MapForAll from "./views/MapForAll.vue";
 import ResPage from "./views/ResPage.vue";
 import UserEdit from "./views/UserEdit.vue";
@@ -88,15 +87,6 @@ export default new Router({
       components: {
         header: AppHeaderOther,
         default: ResTest,
-        footer: AppFooter
-      }
-    },
-    {
-      path: "/userregi",
-      name: "userregi",
-      components: {
-        header: AppHeaderOther,
-        default: UserSignUp,
         footer: AppFooter
       }
     },

@@ -57,7 +57,7 @@
                                 </base-input>
                                  <hr>
                              
-                                이름
+                               이름
                                 <base-input alternative
                                             class="mb-3"
                                             placeholder="이름" 
@@ -167,8 +167,7 @@
                           
                                 <div class="text-center">
                                   
-                                    <base-button type="primary" v-on:click="editUser()">회원 정보 변경하기</base-button>
-                                    <base-button type="primary" v-on:click="deleteUser()">구르망 탈퇴하기</base-button>
+                                    <base-button type="primary" v-on:click="editUser()">회원 정보 변경하기</base-button> <br><br><base-button type="primary" v-on:click="deleteUser()">구르망 탈퇴하기</base-button>
                                 </div>
                             </form>
                         </template>
@@ -218,7 +217,7 @@ export default {
       location.href = "/register";
     }
 
-      this.axios.get(`/user/${ sessionStorage.getItem("user") }/info`, {}).then((req) => {
+      this.axios.get(`/user/info`, {}).then((req) => {
       this.user.userId =  req.data.user_id;  
       this.user.name =  req.data.name;
       this.user.pw =  req.data.pw;
@@ -254,7 +253,7 @@ export default {
             formData.append('userImg', this.$refs.imgdata.files[i])
 
           }
-          return this.axios.put(`/user/${ sessionStorage.getItem("user") }/update`, formData, {
+          return this.axios.put(`/user/update`, formData, {
             headers: {
               "Content-Type": 'multipart/form-data'
             }
@@ -272,10 +271,16 @@ export default {
       this.imgs.splice(value, 1);
     },
     deleteUser() {
-      
+      this.axios.delete(`/user/`, {})
+        .then(req =>{
+          window.location.reload();
+        })
+        .catch(error =>{
+          alert("에러");
+        });
+    },
     }
-  },
-   }
+}
 </script>
 <style>
 </style>
