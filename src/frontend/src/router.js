@@ -20,8 +20,7 @@ import MapForAllSearch from "./views/MapForAllSearch.vue"
 import GourmandGuide from "./views/GourmandGuide.vue"
 import RevRegi from "./views/RevRegi.vue"
 import RevUpdate from "./views/RevUpdate.vue"
-import MyReview from "./views/MyReview.vue"
-import MyAnalysis from "./views/MyAnalysis.vue"
+import ResAddImg from "./views/ResAddImg.vue"
 
 Vue.use(Router);
 
@@ -183,20 +182,11 @@ export default new Router({
       }
     },
     {
-      path: "/myreview",
-      name: "myReview",
+      path: "/resaddimg",
+      name: "resaddimg",
       components: {
         header: AppHeaderOther,
-        default: MyReview,
-        footer: AppFooter
-      }
-    },
-    {
-      path: "/myanalysis",
-      name: "myAnalysis",
-      components: {
-        header: AppHeaderOther,
-        default: MyAnalysis,
+        default: ResAddImg,
         footer: AppFooter
       }
     },

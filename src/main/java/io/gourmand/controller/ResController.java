@@ -128,6 +128,19 @@ public class ResController {
 			e.printStackTrace();
 		}
 	}
+	
+	// 가게 이미지만 추가
+	@PostMapping("/res/{id}/update/img")
+	public void insertImgOfRes(@PathVariable("id") Long id, @RequestParam("resImg") List<MultipartFile> resImg) {
+		resImg.forEach(img -> {
+			ResImg ri = resService.insertResImg(img, id);
+			try {
+				resService.saveImg(img, ri);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		});
+	}
 
 	// 가게 정보 수정
 	@PostMapping("res/{id}/update")

@@ -13,7 +13,7 @@
               />
               <img
                 v-else
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog"
+                src="img/theme/dish.png"
                 alt=""
               />
             </div>

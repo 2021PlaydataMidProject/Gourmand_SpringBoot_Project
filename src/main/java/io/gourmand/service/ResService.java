@@ -129,6 +129,11 @@ public class ResService {
 	public ResImg insertResImg(MultipartFile resImg, Res res) {
 		return resImgDAO.save(ResImg.of(resImg, res));
 	}
+	
+	// MultipartFile -> entity -> SQL저장
+		public ResImg insertResImg(MultipartFile resImg, Long res) {
+			return resImgDAO.save(ResImg.of(resImg, resDAO.findById(res).get()));
+		}
 
 	// MultipartFile -> 저장
 	public void saveImg(MultipartFile file, ResImg res) throws IOException {

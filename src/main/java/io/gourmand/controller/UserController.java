@@ -113,7 +113,7 @@ public class UserController {
 		return resList;
 	}
 	
-	// 내가 작성한 리스트 카운트 불러오는거 //안됨 - 500 ---> 해결! 근데 음식인지 확인해야함.
+	// 내가 작성한 리스트 카운트 불러오는거
 	@GetMapping("/user/count/list")
 	public Long getUserCountByList(HttpServletRequest hsp) {
 		Claims claim = new JwtUtil(secret).getClaims(CookieUtil.getCookie(hsp, "accessToken").getValue());
@@ -127,12 +127,6 @@ public class UserController {
 		Claims claim = new JwtUtil(secret).getClaims(CookieUtil.getCookie(hsp, "accessToken").getValue());
 		Long userNum = claim.get("user_num", Long.class);
 		return userService.getUserInfo(userNum);
-	}
-
-	// 내가 작성한 리뷰개수 카운트 불러오는거 //안됨 - 500 --> 해결!
-	@GetMapping("/user/{userNum}/count/review")
-	public Long getUserCountByReview(@PathVariable Long userNum) {
-		return userService.getUserReviewCounts(userNum);
 	}
 
 	// 선호 food_type 갯수로 내림 차순 //안됨 - 500

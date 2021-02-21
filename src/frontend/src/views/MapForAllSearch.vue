@@ -116,20 +116,20 @@
           v-bind:key="key"
           class="col-lg-3 col-sm-4"
         >
+          <div class="image-container col-md-12">
           <img
             v-if="value.res_img != null"
             :src="'img/res/' + value.res_img.name"
             alt="Rounded image"
             class="img-fluid rounded shadow"
-            style="height: 150px"
           />
           <img
             v-else
-            v-lazy="'img/theme/team-1-800x800.jpg'"
+            v-lazy="'img/theme/dish.png'"
             alt="Rounded image"
             class="img-fluid rounded shadow"
-            style="width: 150px"
           />
+          </div>
           <h3 class="heading mb-1">
             <star-rating
               :value="3"
@@ -296,6 +296,29 @@ export default {
 };
 </script>
 <style>
+body {
+  font-family: "Raleway", sans-serif;
+}
+
+.custom-text {
+  font-weight: bold;
+  font-size: 1.9em;
+  border: 1px solid #cfcfcf;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-radius: 2px;
+  color: #999;
+  background: #fff;
+}
+
+.image-container {
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 150px;
+  height: 150px;
+}
 </style>
 
 

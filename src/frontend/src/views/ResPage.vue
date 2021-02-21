@@ -55,6 +55,7 @@
             height="400px"
             :Xaxis="resInfo.xvalue"
             :Yaxis="resInfo.yvalue"
+            :name="resInfo.res_name"
           ></my-map>
           <div v-if="getUser()!=null">
             <res-list :res="getRes()"></res-list>
@@ -75,7 +76,7 @@
             />
             <img
               v-else
-              v-lazy="'img/theme/team-4-800x800.jpg'"
+              v-lazy="'img/theme/dish.png'"
               alt="Raised circle image"
               class="img-fluid rounded-circle shadow-lg"
               style="width: 100px"
@@ -101,7 +102,7 @@
               />
               <img
                 v-else
-                v-lazy="'img/theme/team-4-800x800.jpg'"
+                v-lazy="'img/theme/dish.png'"
                 alt="Raised circle image"
                 class="img-fluid rounded-circle shadow-lg"
                 style="width: 100px"
@@ -128,7 +129,7 @@
               />
               <img
                 v-else
-                v-lazy="'img/theme/team-4-800x800.jpg'"
+                v-lazy="'img/theme/dish.png'"
                 alt="Rounded image"
                 class="img-fluid rounded shadow"
                 style="width: 150px"
