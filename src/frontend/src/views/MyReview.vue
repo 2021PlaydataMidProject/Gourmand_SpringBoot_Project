@@ -4,10 +4,11 @@
       <b-tabs content-class="mt-3">
         <b-tab title="별점순" active>
           <div class="row">
-            <div class="col-md-12">
-              <label>5.0</label>
-            </div>
-            <div v-for="(rev, key) in revs_star" v-bind:key="key" class="row col-md-4 mb-5">
+            <div
+              v-for="(rev, key) in revs_star"
+              v-bind:key="key"
+              class="row col-md-4 mb-5"
+            >
               <!-- <hr class="col-lg-11 col-sm-11" />-->
               <div class="col-md-12 image-container">
                 <img
@@ -29,7 +30,9 @@
                     rev.res_name
                   }}</a></small
                 >
-                <p class="mb-0"><small>{{rev.write_date}}</small></p>
+                <p class="mb-0">
+                  <small>{{ rev.write_date }}</small>
+                </p>
                 <star-rating
                   :show-rating="true"
                   @hover:rating="mouseOverRating = $event"
@@ -46,38 +49,41 @@
                     6
                   "
                 ></star-rating>
-                <hr class="mb-0"/>
+                <hr class="mb-0" />
               </div>
             </div>
           </div>
         </b-tab>
         <b-tab title="작성순">
           <div class="row">
-            <div class="col-md-12">
-              <label>2021.02</label>
-            </div>
-            <div v-for="(rev, key) in revs_date" v-bind:key="key" class="row col-md-4 mb-5">
-                <div class="col-md-12 image-container">
-                  <img
-                    v-if="rev.review_img != null"
-                    v-lazy="'img/rev/' + rev.review_img.name"
-                    alt="Rounded image"
-                    class="img-fluid rounded shadow"
-                  />
-                  <img
-                    v-else
-                    v-lazy="'img/theme/team-4-800x800.jpg'"
-                    alt="Rounded image"
-                    class="img-fluid rounded shadow"
-                  />
-                </div>
+            <div
+              v-for="(rev, key) in revs_date"
+              v-bind:key="key"
+              class="row col-md-4 mb-5"
+            >
+              <div class="col-md-12 image-container">
+                <img
+                  v-if="rev.review_img != null"
+                  v-lazy="'img/rev/' + rev.review_img.name"
+                  alt="Rounded image"
+                  class="img-fluid rounded shadow"
+                />
+                <img
+                  v-else
+                  v-lazy="'img/theme/team-4-800x800.jpg'"
+                  alt="Rounded image"
+                  class="img-fluid rounded shadow"
+                />
+              </div>
               <div class="col-lg-12">
                 <small
                   ><a :href="'/respage?res=' + rev.res_num">{{
                     rev.res_name
                   }}</a></small
                 >
-                <p class="mb-0"><small>{{rev.write_date}}</small></p>
+                <p class="mb-0">
+                  <small>{{ rev.write_date }}</small>
+                </p>
                 <star-rating
                   :show-rating="true"
                   @hover:rating="mouseOverRating = $event"
@@ -94,7 +100,7 @@
                     6
                   "
                 ></star-rating>
-                <hr class="mb-0"/>
+                <hr class="mb-0" />
               </div>
             </div>
           </div>

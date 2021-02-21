@@ -16,10 +16,6 @@
                 src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog"
                 alt=""
               />
-              <!-- <div class="file btn btn-lg btn-primary">
-                Change Photo
-                <input type="file" name="file" />
-              </div> -->
             </div>
           </div>
           <div class="col-md-6">
@@ -48,6 +44,7 @@
               <p>보관함</p>
               <a href="#" @click="pagenum=0">내 리뷰 확인</a><br />
               <a href="#" @click="pagenum=1">취향 분석</a><br />
+              <a href="#" @click="pagenum=2">내 리스트보기</a><br />
               <p>개인정보</p>
               <a href="/userEdit">개인정보 수정</a><br />
             </div>
@@ -55,6 +52,7 @@
           <!--여기에 my review ,myalanysis둘다 들어와야함 -->
           <my-review v-if="pagenum==0"></my-review>
           <my-analysis v-else-if="pagenum==1"></my-analysis>
+          <my-res-list v-else-if="pagenum==2"></my-res-list>
         </div>
         
          
@@ -67,6 +65,7 @@
 import MyReview from "@/views/MyReview";
 import MyAnalysis from "@/views/MyAnalysis";
 import UserEdit from "@/views/UserEdit";
+import MyResList from './MyResList.vue';
 
 export default {
    data() {
@@ -80,6 +79,7 @@ export default {
     MyReview,
     MyAnalysis,
     UserEdit,
+    MyResList,
     MyAnalysis,
   },
    mounted() {
@@ -89,7 +89,6 @@ export default {
 
     this.axios.get("user/info",{})
     .then(res => {
-      console.log(res.data)
       this.userInfo = res.data;
     })
 
