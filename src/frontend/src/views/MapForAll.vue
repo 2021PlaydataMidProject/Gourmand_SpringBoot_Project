@@ -224,7 +224,7 @@ export default {
         기타: true,
       },
       radio: {
-        radio1: "",
+        radio1: "3",
         radio2: "",
       },
       xValue: 37.2822,

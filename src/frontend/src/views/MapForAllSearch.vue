@@ -109,8 +109,8 @@
       <h2 class="mb-5">
         <span>맛집 지도</span>
         <hr />
-      </h2>
-      <div class="row">
+      </h2> 
+      <div class="row" id="pag">
         <!--eslint-disable-next-line vue/no-use-v-if-with-v-for-->
         <div v-for="(value, key) in resThumbnails" v-if="check(value.category)"
           v-bind:key="key"
@@ -150,6 +150,16 @@
           <hr />
         </div>
       </div>
+      <div class="row">
+      <div class="col-md-5"/>
+      <b-pagination
+        v-model="currentPage"
+        :total-rows="row"
+        :per-page="perPage"
+        aria-controls="pag"
+        class=""
+      ></b-pagination>
+      </div>
     </div>
   </section>
 </template>
@@ -159,21 +169,21 @@ import BaseNav from "@/components/BaseNav";
 import CloseButton from "@/components/CloseButton";
 import Modal from "@/components/Modal.vue";
 import StarRating from "vue-star-rating";
+import { BPagination } from "bootstrap-vue";
 
 export default {
   components: {
     BaseNav,
     CloseButton,
     Modal,
-    StarRating
+    StarRating,
+    BPagination
   },
   data() {
     return {
       resThumbnails: null,
       modals: {
         modal1: false,
-        modal2: false,
-        modal3: false,
       },
       checkboxes: {
         한식: true,
@@ -184,12 +194,26 @@ export default {
         기타: true,
       },
       radio: {
-        radio1: "3",
+        radio1: "9999999",
         radio2: "",
       },
       xValue: 37.2822,
       yValue: 126.9994,
+
+      perPage: 20,
+      currentPage: 1,
     };
+  },
+  computed:{
+    row() {
+      return this.resThumbnails.length;
+    },
+    itemsForList() {
+      return this.resThumbnails.slice(
+        (this.currentPage - 1) * this.perPage,
+        this.currentPage * this.perPage
+      );
+    },
   },
   mounted() {
     if (this.$route.query.name != null) {
@@ -243,7 +267,7 @@ export default {
               alert("서버오류");
             });
         } else{
-          this.axios
+          this.axios  ``
             .get(
               `/res/thumbnail/region/${this.str}/${this.radio.radio1}`,{}
             )

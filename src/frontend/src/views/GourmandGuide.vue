@@ -6,103 +6,131 @@
         <hr />
       </h2>
       <div class="row">
-        <div class="col-sm-3 col-lg-4"></div>
-        <table border="1" class="text-center col-sm-6 col-lg-4">
-          <tr>
-            <td @click="numChange(0)">
-              <div>
-                <img
-                  src="img/guide/맛있는녀석들.png"
-                  alt="Rounded image"
-                  class="img-fluid rounded shadow"
-                  style="height: 50px"
-                />
-              </div>
-              맛있는 녀석들
-            </td>
-            <td @click="numChange(5)">
-              <div>
-                <img
-                  src="img/guide/수요미식회.png"
-                  alt="Rounded image"
-                  class="img-fluid rounded shadow"
-                  style="width: 70px"
-                />
-              </div>
-              수요미식회
-            </td>
-            <td @click="numChange(1)">
-              <div>
-                <img
-                  src="img/guide/생활의달인.png"
-                  alt="Rounded image"
-                  class="img-fluid rounded shadow"
-                  style="height: 50px"
-                />
-              </div>
-              생활의 달인
-            </td>
-          </tr>
-          <tr>
-            <td @click="numChange(2)">
-              <div>
-                <img
-                  src="img/guide/이영자.jpg"
-                  alt="Rounded image"
-                  class="img-fluid rounded shadow"
-                  style="height: 50px"
-                />
-              </div>
-              이영자
-            </td>
-            <td @click="numChange(3)">
-              <div>
-                <img
-                  src="img/guide/최자.jfif"
-                  alt="Rounded image"
-                  class="img-fluid rounded shadow"
-                  style="width: 70px"
-                />
-              </div>
-              최자
-            </td>
-            <td @click="numChange(4)">
-              <div>
-                <img
-                  src="img/guide/화사.jfif"
-                  alt="Rounded image"
-                  class="img-fluid rounded shadow"
-                  style="height: 50px"
-                />
-              </div>
-              화사
-            </td>
-          </tr>
-          <tr>
-            <!-- 전체 회원 기준 별점 베스트 -->
-            <td @click="numChange(6)">
-              <div>
-                <img
-                  v-lazy="'img/brand/logo.png'"
-                  class="Rounded image"
-                  style="width: 50px"
-                />
-              </div>
-              구르망 <br />베스트 맛집
-            </td>
-            <!-- 팔로워 가장 많은 사람 3명? -->
-            <td @click="numChange(7)">
-              <div>
-                <img
-                  v-lazy="'img/brand/logo.png'"
-                  class="Rounded image"
-                  style="width: 50px"
-                />
-              </div>
-              popular <br />Gourmand
-            </td>
-          </tr>
-        </table>
+        <base-button
+          class="col-sm-2"
+          outline
+          type="tertiary"
+          @click="numChange(0)"
+          ><div>
+            <img
+              src="img/guide/맛있는녀석들.png"
+              alt="Rounded image"
+              class="img-fluid rounded shadow"
+              style="height: 70px"
+            />
+          </div>
+          맛있는 녀석들
+        </base-button>
+        <base-button
+          class="btn-1 col-sm-2"
+          outline
+          type="tertiary"
+          @click="numChange(5)"
+        >
+          <div>
+            <img
+              src="img/guide/수요미식회.png"
+              alt="Rounded image"
+              class="img-fluid rounded shadow"
+              style="height: 70px"
+            />
+          </div>
+          수요미식회
+        </base-button>
+        <base-button
+          class="btn-1 col-sm-2"
+          outline
+          type="tertiary"
+          @click="numChange(1)"
+        >
+          <div>
+            <img
+              src="img/guide/생활의달인.png"
+              alt="Rounded image"
+              class="img-fluid rounded shadow"
+              style="height: 70px"
+            />
+          </div>
+          생활의 달인
+        </base-button>
+        <base-button
+          class="btn-1 col-sm-2"
+          outline
+          type="tertiary"
+          @click="numChange(2)"
+        >
+          <div>
+            <img
+              src="img/guide/이영자.jpg"
+              alt="Rounded image"
+              class="img-fluid rounded shadow"
+              style="height: 70px"
+            />
+          </div>
+          이영자
+        </base-button>
+        <base-button
+          class="btn-1 col-sm-2"
+          outline
+          type="tertiary"
+          @click="numChange(3)"
+        >
+          <div>
+            <img
+              src="img/guide/최자.jfif"
+              alt="Rounded image"
+              class="img-fluid rounded shadow"
+              style="height: 70px"
+            />
+          </div>
+          최자
+        </base-button>
+        <base-button
+          class="btn-1 col-sm-2 mt-2"
+          outline
+          type="tertiary"
+          @click="numChange(4)"
+        >
+          <div>
+            <img
+              src="img/guide/화사.jfif"
+              alt="Rounded image"
+              class="img-fluid rounded shadow"
+              style="height: 70px"
+            />
+          </div>
+          화사
+        </base-button>
+        <base-button
+          class="btn-1 col-sm-2 mt-2"
+          outline
+          type="tertiary"
+          @click="numChange(6)"
+        >
+          <div>
+            <img
+              v-lazy="'img/brand/logo.png'"
+              class="Rounded image"
+              style="height: 70px"
+            />
+          </div>
+          구르망 <br />베스트 맛집
+        </base-button>
+        <base-button
+          class="btn-1 col-sm-2 mt-2"
+          outline
+          type="tertiary"
+          @click="numChange(7)"
+        >
+          <div>
+            <img
+              v-lazy="'img/brand/logo.png'"
+              class="Rounded image"
+              style="height: 70px"
+            />
+          </div>
+          popular <br />Gourmand
+        </base-button>
       </div>
       <div v-if="num >= 0 && num < 6">
         <h3 class="mb-2 mt-5">
@@ -203,13 +231,22 @@
       </div>
       <div v-else-if="num == 7" class="row mt-3">
         <div class="col-sm-3 col-lg-4"></div>
-        <table border="1" class="text-center col-sm-6 col-lg-4">
-          <tr>
-            <td @click="popular(0)">1등 구르망!!</td>
-            <td @click="popular(1)">2등 구르망!!</td>
-            <td @click="popular(2)">3등 구르망!!</td>
-          </tr>
-        </table>
+        <div  class="col-sm-6 col-lg-4">
+        <tabs :fill="false" circle>
+          <tab-pane>
+            <span slot="title" class="font-weight-bold" @click="popular(0)"
+              >1st</span>
+          </tab-pane>
+          <tab-pane>
+            <span slot="title" class="font-weight-bold" @click="popular(1)"
+              >2nd</span>
+          </tab-pane>
+          <tab-pane>
+            <span slot="title" class="font-weight-bold" @click="popular(2)"
+              >3rd</span>
+          </tab-pane>
+        </tabs>
+        </div>
         <div class="col-sm-3 col-lg-4"></div>
         <div v-if="name != ''">
           <h3 class="mb-2 mt-5">
@@ -273,10 +310,14 @@
 </template>
 <script>
 import StarRating from "vue-star-rating";
+import Tabs from "@/components/Tabs/Tabs.vue";
+import TabPane from "@/components/Tabs/TabPane.vue";
 
 export default {
   components: {
     StarRating,
+    Tabs,
+    TabPane,
   },
   data() {
     return {
@@ -340,7 +381,7 @@ export default {
         this.axios
           .get(`/res/user/${this.userids[value].user_num}/list`)
           .then((req) => {
-            console.log(req)
+            console.log(req);
             this.resList = req.data;
             let names = [];
             for (let key in this.resList) {
