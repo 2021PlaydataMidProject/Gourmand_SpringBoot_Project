@@ -1,10 +1,17 @@
 package io.gourmand.controller;
 
 import java.io.IOException;
+import java.util.HashMap;
+
 import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
+
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,79 +37,42 @@ import io.gourmand.domain.UserStandard;
 import io.gourmand.dto.RevDTO.RevRegister;
 import io.gourmand.dto.RevDTO.ReviewThumbnail;
 import io.gourmand.dto.ReviewStandardDTO.ReviewStandardRegister;
+
+import io.gourmand.util.CookieUtil;
+import io.gourmand.util.JwtUtil;
+import io.jsonwebtoken.Claims;
+import io.gourmand.domain.User;
+import io.gourmand.domain.UserImg;
+import io.gourmand.domain.UserStandard;
+import io.gourmand.dto.ResDTO.ResThumbnail;
+import io.gourmand.dto.RevDTO.ReviewThumbnail;
+
 import io.gourmand.dto.UserDTO.UserInfo;
 import io.gourmand.dto.UserDTO.UserRegister;
+import io.gourmand.dto.UserDTO.UserSimple;
 import io.gourmand.dto.UserStandardDTO.UserStandardRegister;
 
 @RestController
 public class UserController {
+
 
    @Autowired
    private UserService userService;
    @Autowired
    private ResService resService;
    
-   /* 회원 가입 */
-   @PostMapping("/user/regi")
-   public void createUser(@RequestParam("userImg") List<MultipartFile> userImg, @RequestParam("user") String userRegi, @RequestParam("userStandard") String userStandardregi) {
-      ObjectMapper mapper = new ObjectMapper();
-   try {
-      UserStandard userStandard = userService.insertUserStandard(mapper.readValue(userStandardregi, UserStandardRegister.class));
-      User user = userService.insertUser(mapper.readValue(userRegi, UserRegister.class), (userStandard));
-      userImg.forEach(img->{
-      UserImg uimg = userService.insertUserImg(img, user);
-   try {
-      userService.saveImg(img, uimg);
-         } catch (IOException e) {
-            e.printStackTrace();
-         }
-         });
-         } catch (Exception e) {
-            e.printStackTrace();
-         }
-   }
-   
-   // 유저 정보 수정
-   @PutMapping("/user/{userNum}/update")
-   public void updateUser(@PathVariable("userNum") Long userNum, @RequestParam("userStandard") String userStandard, @RequestParam("userImg") List<MultipartFile> userImg, @RequestParam("user") String userRegi) {
-      ObjectMapper mapper = new ObjectMapper();
-   try {
-      User user = userService.updateUser(mapper.readValue(userRegi, UserRegister.class), mapper.readValue(userStandard, UserStandardRegister.class), userNum);
-      userImg.forEach(img->{
-      UserImg uimg = userService.insertUserImg(img, user);
-   try {
-      userService.saveImg(img, uimg);
-         } catch (IOException e) {
-            e.printStackTrace();
-         }
-         });
-         } catch (Exception e) {
-            e.printStackTrace();
-         }
-   }
-      
-   // 회원 삭제
-   @DeleteMapping("/user/{userNum}") //(User 테이블 외에 다른 테이블 삭제할 거 고민해야 )
-   public void deleteUser(@PathVariable("userNum") Long userNum) {
-      userService.deleteUser(userNum);
-   }
-   
-	// 회원 이미지 삭제
-	@DeleteMapping("/user/delete/img")
-	public void deleteUserImg(@RequestBody List<Long> id) {
-		id.forEach(i -> {
-			userService.deleteUserImg(i);
-		});
+	@Value("${jwt.secret}")
+	private String secret;
+
+	@ModelAttribute("user") // 왜 있나?
+	public User setUser() {
+		return new User();
 	}
 
-   
-   //    회원 기준 저장 
-   @PostMapping("/user/regiNewStandard")
-   public UserStandardRegister createUserStandard(@RequestBody UserStandardRegister userStandard) {
-      System.out.println(userStandard);
-      return userStandard;
-   }
-   
+	@ModelAttribute("userStandard") // 왜 있나?
+	public UserStandard setUserStandard() {
+		return new UserStandard();
+	}
    
    // 회원의 list 이름들 반환 (list에 저장용)
    @GetMapping("/user/reslist/{user}")
@@ -128,12 +98,6 @@ public class UserController {
        return userService.getUserReviewCounts(userNum);
     }
       
-    //선호 food_type 갯수로 내림 차순 //안됨 - 500
-    @GetMapping("/user/{userNum}/userAnalysis/foodType")
-    public List<String> getFoodTypeByReview(@PathVariable Long userNum){
-        return userService.getFoodTypeByReview(userNum);
-    }
-      
      //유저 당 리뷰를 시간순으로 반환 
      @GetMapping("/res/user/{userNum}/review/writeDate")
      public List<ReviewThumbnail> getAllOrderByUserNumNDate(@PathVariable Long userNum){
@@ -145,4 +109,131 @@ public class UserController {
      public List<ReviewThumbnail> getAllOrderByUserNumNStar(@PathVariable Long userNum){
         return userService.getAllOrderByUserNumNStar(userNum);
      }
+
+
+	/* 회원 가입 */
+	@PostMapping("/user/regi") // "/auth/regi"
+	public void createUser(@RequestParam("userImg") List<MultipartFile> userImg, @RequestParam("user") String userRegi,
+			@RequestParam("userStandard") String userStandardregi) {
+		System.out.println(userRegi);
+		System.out.println(userStandardregi);
+		ObjectMapper mapper = new ObjectMapper();
+		try {
+			UserStandard userStandard = userService
+					.insertUserStandard(mapper.readValue(userStandardregi, UserStandardRegister.class));
+			User user = userService.insertUser(mapper.readValue(userRegi, UserRegister.class), (userStandard));
+			userImg.forEach(img -> {
+				UserImg uimg = userService.insertUserImg(img, user);
+				try {
+					userService.saveImg(img, uimg);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			});
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	   // 유저 정보 수정
+	   @PutMapping("/user/{userNum}/update")
+	   public void updateUser(@PathVariable("userNum") Long userNum, @RequestParam("userStandard") String userStandard, @RequestParam("userImg") List<MultipartFile> userImg, @RequestParam("user") String userRegi) {
+	      ObjectMapper mapper = new ObjectMapper();
+	   try {
+	      User user = userService.updateUser(mapper.readValue(userRegi, UserRegister.class), mapper.readValue(userStandard, UserStandardRegister.class), userNum);
+	      userImg.forEach(img->{
+	      UserImg uimg = userService.insertUserImg(img, user);
+	   try {
+	      userService.saveImg(img, uimg);
+	         } catch (IOException e) {
+	            e.printStackTrace();
+	         }
+	         });
+	         } catch (Exception e) {
+	            e.printStackTrace();
+	         }
+	   }
+	      
+	   // 회원 삭제
+	   @DeleteMapping("/user/{userNum}") //(User 테이블 외에 다른 테이블 삭제할 거 고민해야 )
+	   public void deleteUser(@PathVariable("userNum") Long userNum) {
+	      userService.deleteUser(userNum);
+	   }
+	   
+		// 회원 이미지 삭제
+		@DeleteMapping("/user/delete/img")
+		public void deleteUserImg(@RequestBody List<Long> id) {
+			id.forEach(i -> {
+				userService.deleteUserImg(i);
+			});
+		}
+
+	// 회원 기준 저장
+	@PostMapping("/user/regiNewStandard")
+	public UserStandardRegister createUserStandard(@RequestBody UserStandardRegister userStandard) {
+		System.out.println(userStandard);
+		return userStandard;
+	}
+
+	// 회원의 list 이름들 반환 (list에 저장용)
+	@GetMapping("/user/reslist/")
+	public List<String> returnUserResList(HttpServletRequest hsp) {
+		Claims claim = new JwtUtil(secret).getClaims(CookieUtil.getCookie(hsp, "accessToken").getValue());
+		Long userNum = claim.get("user_num", Long.class);
+		return resService.getResListName(userNum);
+	}
+
+	// 인기 많은 유저의 아이디와 닉네임
+	@GetMapping("/user/popular")
+	public List<UserSimple> getUserIdOfFamousUser() {
+		return userService.getFamousUsers();
+	}
+	
+	@GetMapping("/user/list")
+	public Map<String, List<ResThumbnail>> getResOfList(HttpServletRequest hsp){
+		Claims claim = new JwtUtil(secret).getClaims(CookieUtil.getCookie(hsp, "accessToken").getValue());
+		Long userNum = claim.get("user_num", Long.class);
+		
+		Map<String, List<ResThumbnail>> resList = new HashMap<>();
+		resService.getResListName(userNum).forEach(name -> resList.put(name, resService.getAllResOfList(userNum, name)));
+		return resList;
+	}
+	
+	// 내가 작성한 리스트 카운트 불러오는거
+	@GetMapping("/user/count/list")
+	public Long getUserCountByList(HttpServletRequest hsp) {
+		Claims claim = new JwtUtil(secret).getClaims(CookieUtil.getCookie(hsp, "accessToken").getValue());
+		Long userNum = claim.get("user_num", Long.class);
+		return userService.getUserListCounts(userNum);
+	}
+	
+	// 회원 1인의 전체 정보 가져오기
+	@GetMapping("/user/info")
+	public UserInfo getUserInfo(HttpServletRequest hsp) {
+		Claims claim = new JwtUtil(secret).getClaims(CookieUtil.getCookie(hsp, "accessToken").getValue());
+		Long userNum = claim.get("user_num", Long.class);
+		return userService.getUserInfo(userNum);
+	}
+
+	// 선호 food_type 갯수로 내림 차순 //안됨 - 500
+	@GetMapping("/user/{userNum}/userAnalysis/foodType")
+	public List<String> getFoodTypeByReview(@PathVariable Long userNum) {
+		return userService.getFoodTypeByReview(userNum);
+	}
+
+	// 유저 당 리뷰를 시간순으로 반환
+	@GetMapping("/res/user/review/writeDate")
+	public List<ReviewThumbnail> getAllOrderByUserNumNDate(HttpServletRequest hsp) {
+		Claims claim = new JwtUtil(secret).getClaims(CookieUtil.getCookie(hsp, "accessToken").getValue());
+		Long userNum = claim.get("user_num", Long.class);
+		return userService.getAllOrderByUserNumNDate(userNum);
+	}
+
+	// 유저 당 리뷰를 별점순으로 반환
+	@GetMapping("/res/user/review/Star")
+	public List<ReviewThumbnail> getAllOrderByUserNumNStar(HttpServletRequest hsp) {
+		Claims claim = new JwtUtil(secret).getClaims(CookieUtil.getCookie(hsp, "accessToken").getValue());
+		Long userNum = claim.get("user_num", Long.class);
+		return userService.getAllOrderByUserNumNStar(userNum);
+	}
 }

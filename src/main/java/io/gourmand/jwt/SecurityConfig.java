@@ -27,7 +27,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	@Autowired
 	private UserRepository userRepository;
 	
-   
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		
@@ -45,15 +44,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 				.sessionCreationPolicy(SessionCreationPolicy.STATELESS); //세션에 대한 정책을 정함 -> 세션 관리하지 않음(STATELESS) -> 필터로 관리함
 	}
 	
-	
-	
-	
 	@Bean
     public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 		
-	 
 	@Bean
 	public JwtUtil jwtUtil() {
 		return new JwtUtil(secret);

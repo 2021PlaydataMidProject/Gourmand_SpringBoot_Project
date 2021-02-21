@@ -1,18 +1,12 @@
 <template>
   <section class="section section-shaped section-lg my-0">
-    <div class="mb-5 row">
-      <div class="col-lg-3 col-sm-4">
+    <div class="mb-5 row mt-0">
         <img
-          v-if="resInfo.res_img != null"
-          :src="'img/res/' + resInfo.res_img[0].name"
-          style="width: 100%"
+          v-for="(value, key) in [0,1,2,3]" v-bind:key="key"
+          :src="'img/res/' + resInfo.res_img[value%resInfo.res_img.length].name"
+          class="col-lg-3 col-sm-3"
+          style="padding:0"
         />
-        <img
-          v-else
-          v-lazy="'img/theme/team-1-800x800.jpg'"
-          style="width: 100%"
-        />
-      </div>
     </div>
 
     <div class="container pt-lg-md">
@@ -61,9 +55,10 @@
             height="400px"
             :Xaxis="resInfo.xvalue"
             :Yaxis="resInfo.yvalue"
+            :name="resInfo.res_name"
           ></my-map>
           <div v-if="getUser()!=null">
-            <res-list :user="getUser()"></res-list>
+            <res-list :res="getRes()"></res-list>
           </div>
         </div>
       </div>
@@ -81,7 +76,7 @@
             />
             <img
               v-else
-              v-lazy="'img/theme/team-4-800x800.jpg'"
+              v-lazy="'img/theme/dish.png'"
               alt="Raised circle image"
               class="img-fluid rounded-circle shadow-lg"
               style="width: 100px"
@@ -107,13 +102,13 @@
               />
               <img
                 v-else
-                v-lazy="'img/theme/team-4-800x800.jpg'"
+                v-lazy="'img/theme/dish.png'"
                 alt="Raised circle image"
                 class="img-fluid rounded-circle shadow-lg"
                 style="width: 100px"
               />
               <p class="mt-2 front-weight-bold">{{ rev.user.name }}</p>
-              <div v-if="userCheck(rev.user.user_num)">
+              <div v-if="userCheck(rev.review_num)!=-1">
                 <a href="#" class="font-weight-bold mb-3" @click="updateReview(rev.review_num)">수정하기</a><br>
                 <a href="#" class="font-weight-bold" @click="deleteReview(rev.review_num)">삭제하기</a>
               </div>
@@ -134,7 +129,7 @@
               />
               <img
                 v-else
-                v-lazy="'img/theme/team-4-800x800.jpg'"
+                v-lazy="'img/theme/dish.png'"
                 alt="Rounded image"
                 class="img-fluid rounded shadow"
                 style="width: 150px"
@@ -173,6 +168,7 @@ export default {
       revs: [],
       data: [],
       resnum: 0,
+      myrevs: [],
     };
   },
   components: {
@@ -185,6 +181,17 @@ export default {
     var str = this.$route.query.res;
     if (str==null){
       location.href="/";
+    }
+
+    if (sessionStorage.getItem("user")!=null){
+      this.axios
+        .get("/rev/user/cnt",{})
+        .then(req => {
+          this.myrevs = req.data;
+        })
+        .catch(error => {
+          alert("서버 오류");
+        })
     }
     this.axios
       .get("/res/" + str + "/resinfo", {})
@@ -245,13 +252,23 @@ export default {
             query: { name: this.resnum, rev: num},
           });
     },
-    deleteReview(){
+    deleteReview(num){
+      this.axios.post(`/rev/${this.resnum}/deleteReview/${num}`,{})
+        .then(req =>{
+          window.location.reload();
+        })
+        .catch(error =>{
+          alert(error);
+        });
     },
-    userCheck(user_num){
-      return user_num == sessionStorage.getItem("user");
+    userCheck(value){
+      return this.myrevs.indexOf(value);
+    },
+    getRes(){
+      return this.$route.query.res;
     },
     getUser(){
-      return sessionStorage.getItem("user");
+      return sessionStorage.getItem("user")!=null;
     }
   }
 };

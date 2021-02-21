@@ -12,7 +12,6 @@ import org.springframework.web.bind.support.SessionStatus;
 
 import io.gourmand.domain.User;
 import io.gourmand.dto.UserDTO;
-import io.gourmand.dto.UserDTO.SigninRequest;
 import io.gourmand.dto.UserDTO.SigninResponse;
 import io.gourmand.service.UserService;
 
@@ -31,19 +30,19 @@ public class LoginController {
 		}
 	}
 
-	@PostMapping("/auth/logout")
-	public void signout(HttpServletResponse res){
-		userService.logout(res);
-	}
-	
 	@PostMapping("/auth/check")
 	public void check(@RequestBody User user) {
 		System.out.println(user);
 	}
 	
-	@GetMapping("auth/signout")
+	@GetMapping("/auth/signout")
 	public String logout(SessionStatus status) {
 		status.setComplete();
 		return "redirect:index.html";
+	}
+	
+	@PostMapping("/auth/logout")
+	public void logout(HttpServletResponse res) {
+		userService.logout(res);
 	}
 }

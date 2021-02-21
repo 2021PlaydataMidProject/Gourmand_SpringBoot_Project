@@ -84,10 +84,21 @@ public class User  {
 	@OneToMany(mappedBy = "user", fetch=FetchType.LAZY)
 	private List<ListLikes> listLikes;
 	
+	@OneToMany(mappedBy = "user", fetch=FetchType.LAZY)
+	private List<Review> review;
+	
 	public User(String name) {
 	    this.name = name;
 	}
 	
+//	//USER,ADMIN
+//	public List<String> getRoleList() {
+//		if(this.roles.length() > 0) {
+//			return Arrays.asList(this.roles.split(","));
+//		}
+//		return new ArrayList<>();
+//	}
+
 
 }
 

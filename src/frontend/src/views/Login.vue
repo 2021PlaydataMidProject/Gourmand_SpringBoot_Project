@@ -109,8 +109,7 @@ export default {
         .then((res) => {
           if (res.data) {
             console.log(res);
-            sessionStorage.setItem("user", res.data.user_num);
-            console.log(sessionStorage.getItem("user"))
+            sessionStorage.setItem("user", true);
             saveUserNumToCookie(res.data.user_num);
             saveUserIdToCookie(res.data.user_id);
             saveUserNameToCookie(res.data.name);

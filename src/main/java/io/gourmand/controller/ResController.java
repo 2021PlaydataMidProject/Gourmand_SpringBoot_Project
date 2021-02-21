@@ -6,7 +6,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,13 +27,19 @@ import io.gourmand.dto.ResDTO.ResRegister;
 import io.gourmand.dto.ResDTO.ResThumbnail;
 import io.gourmand.dto.UserDTO.UserThumbnail;
 import io.gourmand.service.ResService;
+import io.gourmand.util.CookieUtil;
+import io.gourmand.util.JwtUtil;
 import io.gourmand.util.NaverGeoCoding;
+import io.jsonwebtoken.Claims;
 
 @RestController
 public class ResController {
 
 	@Autowired
 	private ResService resService;
+	
+	@Value("${jwt.secret}")
+	private String secret;
 
 	// 가게 정보를 담은 페이지
 	@GetMapping("/res/{id}/resinfo")
@@ -93,6 +102,14 @@ public class ResController {
 		return resList;
 	}
 	
+	// reslist 추가
+	@PostMapping("/res/user/insert")
+	public void insetResToUser(@RequestParam("res") String resNum, @RequestParam("listName") String listName, HttpServletRequest hsp) {
+		Claims claim = new JwtUtil(secret).getClaims(CookieUtil.getCookie(hsp, "accessToken").getValue());
+		Long userNum = claim.get("user_num", Long.class);
+		resService.insertResList(listName, Long.valueOf(resNum), userNum);
+	}
+	
 	// 가게 정보 저장
 	@PostMapping("/res/regi")
 	public void createRes(@RequestParam("resImg") List<MultipartFile> resImg, @RequestParam("res") String resRegi) {
@@ -110,6 +127,19 @@ public class ResController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	// 가게 이미지만 추가
+	@PostMapping("/res/{id}/update/img")
+	public void insertImgOfRes(@PathVariable("id") Long id, @RequestParam("resImg") List<MultipartFile> resImg) {
+		resImg.forEach(img -> {
+			ResImg ri = resService.insertResImg(img, id);
+			try {
+				resService.saveImg(img, ri);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		});
 	}
 
 	// 가게 정보 수정

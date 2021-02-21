@@ -44,7 +44,7 @@ export default {
     BaseButton,
   },
   props: {
-    user: null,
+    res: null,
   },
   data() {
     return {
@@ -54,15 +54,27 @@ export default {
       },
     };
   },
-  mounted() {
-    this.axios
-      .get("/user/reslist/" + this.$props.user, {})
-      .then((res) => {
-        this.reslist = res.data;
-      })
-      .catch((res) => {
-        alert("서버 오류");
-      });
+  methods: {
+    read() {
+      this.axios
+        .get("/user/reslist/", {})
+        .then((res) => {
+          this.reslist = res.data;
+        })
+        .catch((res) => {
+          alert("서버 오류");
+        });
+      this.modals.modal = true;
+    },
+    add(value) {
+      const formdata = new FormData();
+      formdata.append("res", this.$props.res);
+      formdata.append("listName", value);
+      this.axios.post("res/user/insert", formdata)
+      .then(res => alert("등록되었습니다."))
+      .catch(error=>alert(error));
+      this.modals.modal = false;
+    },
   },
 };
 </script>

@@ -109,27 +109,27 @@
       <h2 class="mb-5">
         <span>맛집 지도</span>
         <hr />
-      </h2>
-      <div class="row">
+      </h2> 
+      <div class="row" id="pag">
         <!--eslint-disable-next-line vue/no-use-v-if-with-v-for-->
         <div v-for="(value, key) in resThumbnails" v-if="check(value.category)"
           v-bind:key="key"
           class="col-lg-3 col-sm-4"
         >
+          <div class="image-container col-md-12">
           <img
             v-if="value.res_img != null"
             :src="'img/res/' + value.res_img.name"
             alt="Rounded image"
             class="img-fluid rounded shadow"
-            style="height: 150px"
           />
           <img
             v-else
-            v-lazy="'img/theme/team-1-800x800.jpg'"
+            v-lazy="'img/theme/dish.png'"
             alt="Rounded image"
             class="img-fluid rounded shadow"
-            style="width: 150px"
           />
+          </div>
           <h3 class="heading mb-1">
             <star-rating
               :value="3"
@@ -150,6 +150,16 @@
           <hr />
         </div>
       </div>
+      <div class="row">
+      <div class="col-md-5"/>
+      <b-pagination
+        v-model="currentPage"
+        :total-rows="row"
+        :per-page="perPage"
+        aria-controls="pag"
+        class=""
+      ></b-pagination>
+      </div>
     </div>
   </section>
 </template>
@@ -159,21 +169,21 @@ import BaseNav from "@/components/BaseNav";
 import CloseButton from "@/components/CloseButton";
 import Modal from "@/components/Modal.vue";
 import StarRating from "vue-star-rating";
+import { BPagination } from "bootstrap-vue";
 
 export default {
   components: {
     BaseNav,
     CloseButton,
     Modal,
-    StarRating
+    StarRating,
+    BPagination
   },
   data() {
     return {
       resThumbnails: null,
       modals: {
         modal1: false,
-        modal2: false,
-        modal3: false,
       },
       checkboxes: {
         한식: true,
@@ -184,12 +194,26 @@ export default {
         기타: true,
       },
       radio: {
-        radio1: "3",
+        radio1: "9999999",
         radio2: "",
       },
       xValue: 37.2822,
       yValue: 126.9994,
+
+      perPage: 20,
+      currentPage: 1,
     };
+  },
+  computed:{
+    row() {
+      return this.resThumbnails.length;
+    },
+    itemsForList() {
+      return this.resThumbnails.slice(
+        (this.currentPage - 1) * this.perPage,
+        this.currentPage * this.perPage
+      );
+    },
   },
   mounted() {
     if (this.$route.query.name != null) {
@@ -243,7 +267,7 @@ export default {
               alert("서버오류");
             });
         } else{
-          this.axios
+          this.axios  ``
             .get(
               `/res/thumbnail/region/${this.str}/${this.radio.radio1}`,{}
             )
@@ -272,6 +296,29 @@ export default {
 };
 </script>
 <style>
+body {
+  font-family: "Raleway", sans-serif;
+}
+
+.custom-text {
+  font-weight: bold;
+  font-size: 1.9em;
+  border: 1px solid #cfcfcf;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-radius: 2px;
+  color: #999;
+  background: #fff;
+}
+
+.image-container {
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 150px;
+  height: 150px;
+}
 </style>
 
 
