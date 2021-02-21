@@ -127,9 +127,12 @@ public class UserService {
 	public void deleteUser(Long userNum) {
 		User us = userDAO.findByUserNum(userNum); 
 		us.getUserImg().forEach(img -> userImgDAO.delete(img));
-		userStandardDAO.delete(us.getUserStandard());
 		userDAO.delete(us);
-
+		}	
+	
+	// 회원 정보 삭제
+	public void deleteUserStandard(Long id) {
+		userStandardDAO.deleteById(id);
 		}	
 	
 	// 회원 정보 조회

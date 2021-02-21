@@ -270,14 +270,16 @@ export default {
       this.delimgs.push(this.imgs.user_img_id);
       this.imgs.splice(value, 1);
     },
+  
     deleteUser() {
-      this.axios.delete(`/user/`, {})
-        .then(req =>{
-          window.location.reload();
+      this.axios.delete(`/user/`, {}
+        ).then(req => {this.axios.delete(`/user/userstandard/`);
+        res => alert( this.user.userId + "구르망 님의 탈퇴가 완료되었습니다.");
+              location.href = "/";
         })
         .catch(error =>{
           alert("에러");
-        });
+        })
     },
     }
 }

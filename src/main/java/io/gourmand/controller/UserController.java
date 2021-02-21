@@ -120,7 +120,15 @@ public class UserController {
 	         }
 		   }
 	   }
-	      
+	    
+	   // 회원 기준 삭제  
+	   @DeleteMapping("/user/userstandard")
+	   public void deleteUserStandardUser(HttpServletRequest hsp) {
+		  Claims claim = new JwtUtil(secret).getClaims(CookieUtil.getCookie(hsp, "accessToken").getValue());	
+		  Long id = claim.get("user_num", Long.class);
+		  userService.deleteUserStandard(id);
+	   }
+	   
 	   // 회원 삭제
 	   @DeleteMapping("/user")
 	   public void deleteUser(HttpServletRequest hsp) {
@@ -130,7 +138,7 @@ public class UserController {
 	   }
 	   
 		// 회원 이미지 삭제
-		@DeleteMapping("/user/delete/img")
+		@DeleteMapping("/user/img")
 		public void deleteUserImg(@RequestBody List<Long> id) {
 			id.forEach(i -> {
 				userService.deleteUserImg(i);
