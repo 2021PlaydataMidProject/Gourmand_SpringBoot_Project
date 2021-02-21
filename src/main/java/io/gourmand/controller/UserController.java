@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,6 +26,8 @@ import io.jsonwebtoken.Claims;
 import io.gourmand.domain.User;
 import io.gourmand.domain.UserImg;
 import io.gourmand.domain.UserStandard;
+import io.gourmand.dto.RevDTO.ReviewThumbnail;
+import io.gourmand.dto.UserDTO.UserInfo;
 import io.gourmand.dto.UserDTO.UserRegister;
 import io.gourmand.dto.UserDTO.UserSimple;
 import io.gourmand.dto.UserStandardDTO.UserStandardRegister;
@@ -94,63 +97,42 @@ public class UserController {
 	// 인기 많은 유저의 아이디와 닉네임
 	@GetMapping("/user/popular")
 	public List<UserSimple> getUserIdOfFamousUser() {
-		return userService.getFamousUsers(); 
+		return userService.getFamousUsers();
 	}
 
-	// 회원 1인의 전체 정보 가져오기 - 작업중
-//	@GetMapping("/user/{id}/info")
-//	public UserInfo getUserInfo(@PathVariable Long userNum) {
-//	return userService.getUserInfo(userNum);
-//	}
-//	
-//	/* 회원 정보 수정 */
-//	@PutMapping("/user/{id}/update")
-//	public void updateUser(@RequestParam("userImg") List<MultipartFile> userImg, @RequestParam("user") String userRegi, @RequestParam("userStandard") String userStandardregi) {
-//		ObjectMapper mapper = new ObjectMapper();
-//	try {
-//		UserStandard userStandard = userService.insertUserStandard(mapper.readValue(userStandardregi, UserStandardRegister.class));
-//		User user = userService.insertUser(mapper.readValue(userRegi, UserRegister.class), (userStandard));
-//		userImg.forEach(img->{
-//		UserImg uimg = userService.insertUserImg(img, user);
-//	try {
-//		userService.saveImg(img, uimg);
-//			} catch (IOException e) {
-//				e.printStackTrace();
-//			}
-//			});
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//			}
-//	}
+	// 내가 작성한 리스트 카운트 불러오는거 //안됨 - 500 ---> 해결! 근데 음식인지 확인해야함.
+	@GetMapping("/user/{userNum}/count/list")
+	public Long getUserCountByList(@PathVariable Long userNum) {
+		return userService.getUserListCounts(userNum);
+	}
 
-//	@DeleteMapping("/user/{id}") //(User 테이블 외에 다른 테이블 삭제할 거 고민해야 )
-//	public String deleteUser(@RequestBody User user) {
-//	userService.deleteUser(user);
-//	return "탈퇴 완료";
-//	}
+	// 회원 1인의 전체 정보 가져오기
+	@GetMapping("/user/{userNum}/info")
+	public UserInfo getUserInfo(@PathVariable Long userNum) {
+		return userService.getUserInfo(userNum);
+	}
 
-//	/*유저 정보를 변경한다. 
-//	    *name, pw, job, pageStatus, standard
-//	    * @param request 유저정보 변경
-//	    *  세션에 아이디가 담아져 있는 상태여야함 
-//	    */
-//	   @PutMapping("/user/settings")
-//	   public void editSettings(@RequestParam @Validated UserInfoEditRequest request) {
-//	      userService.editUserInfo(userId, userInfo);
-//	   }
+	// 내가 작성한 리뷰개수 카운트 불러오는거 //안됨 - 500 --> 해결!
+	@GetMapping("/user/{userNum}/count/review")
+	public Long getUserCountByReview(@PathVariable Long userNum) {
+		return userService.getUserReviewCounts(userNum);
+	}
 
-	// 시간순 정렬
-//	   @GetMapping("/user/{id}/res/myratings/{reviewNum}")
-//	   public List<ReviewDTO> getReviewByPageRequest(@PathVariable Long reviewNum,
-//	          @RequestParam(value = "reverseAll", required = false) boolean reverseAll){
-//	        PageRequest pageRequest = pageRequest.of(reviewNum, 30);
-//	        
-//	        if(pageRequest !=null) {
-//	           return userService.findByPageRequest(pageRequest);
-//	          
-//	        }
-//	        else if(reverseAll) {
-//	           return userService.findByPageRequestReverse(pageRequest);
-//	        }
-//	   }
+	// 선호 food_type 갯수로 내림 차순 //안됨 - 500
+	@GetMapping("/user/{userNum}/userAnalysis/foodType")
+	public List<String> getFoodTypeByReview(@PathVariable Long userNum) {
+		return userService.getFoodTypeByReview(userNum);
+	}
+
+	// 유저 당 리뷰를 시간순으로 반환
+	@GetMapping("/res/user/{userNum}/review/writeDate")
+	public List<ReviewThumbnail> getAllOrderByUserNumNDate(@PathVariable Long userNum) {
+		return userService.getAllOrderByUserNumNDate(userNum);
+	}
+
+	// 유저 당 리뷰를 별점순으로 반환
+	@GetMapping("/res/user/{userNum}/review/Star")
+	public List<ReviewThumbnail> getAllOrderByUserNumNStar(@PathVariable Long userNum) {
+		return userService.getAllOrderByUserNumNStar(userNum);
+	}
 }

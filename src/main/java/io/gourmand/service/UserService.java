@@ -33,9 +33,11 @@ import io.gourmand.domain.User;
 import io.gourmand.domain.UserImg;
 import io.gourmand.domain.UserResList;
 import io.gourmand.domain.UserStandard;
+import io.gourmand.dto.RevDTO.ReviewThumbnail;
 import io.gourmand.dto.UserDTO.SigninRequest;
 import io.gourmand.dto.UserDTO.SigninResponse;
 import io.gourmand.dto.UserDTO.UserCountsInfo;
+import io.gourmand.dto.UserDTO.UserInfo;
 import io.gourmand.dto.UserDTO.UserRegister;
 import io.gourmand.dto.UserDTO.UserSimple;
 import io.gourmand.dto.UserDTO.UserThumbnail;
@@ -67,23 +69,6 @@ public class UserService {
 
 	PasswordEncoder passwordEncoder;
 
-	/**
-	 * 아이디과 비밀번호가 일치하는 유저를 조회한다. 해당 아이디 유저가 존재하지 않거나 비밀번호가 일치하지 않으면 Exception
-	 * 
-	 * @param 아이디
-	 * @param pw  비밀번호
-	 * @return 아이디 비밀번호가 일치하는 유저
-	 */
-//	public User getMatchedUser(SigninRequest sign) {
-//		User user = userDAO.findUserByUserId(sign.getUserId());
-//		// 없는 유저
-//		if (user == null || !user.getPw().equals(user.getPw())) {
-//			return null;
-//		}
-//
-//		return user;
-//	}
-
 	public SigninResponse getMatchedUser(SigninRequest sign, HttpServletResponse res) {
 		User signin = userDAO.findUserByUserId(sign.getUserId());
 		// 없는 유저
@@ -108,7 +93,7 @@ public class UserService {
 
 		return SigninResponse.of(signin);
 	}
-	
+
 	public void logout(HttpServletResponse res) {
 		Cookie deleteToken = CookieUtil.createCookie(JwtUtil.ACCESS_TOKEN_NAME, null);
 		deleteToken.setMaxAge(0);
@@ -118,6 +103,11 @@ public class UserService {
 	// 회원 정보 조회
 	public Optional<User> getUser(Long userNum) {
 		return userDAO.findById(userNum);
+	}
+
+	// 회원 1인 관련 정보페이지에 필요한 DTO를 생성해서 controller에 보낸다.
+	public UserInfo getUserInfo(Long userNum) {
+		return UserInfo.of(userDAO.findById(userNum).get());
 	}
 
 	public User registerUser(String dob, String job, int pageStatus, LocalDate suDate, UserStandard userStandard,
@@ -140,26 +130,10 @@ public class UserService {
 		this.passwordEncoder = passwordEncoder;
 	}
 
-	// 회원 1인 관련 정보페이지에 필요한 DTO를 생성해서 controller에 보낸다.
-//	public UserInfo getUserInfo(Long userNum) {
-//		Optional<User> user = userDAO.findById(userNum);
-//		user.ifPresent(selectUser -> {
-//			System.out.println(selectUser.getUserNum());
-//		});
-////		return UserInfo.of(userDAO.findById(userNum).get());
-//	}
-
 	// 팔로우, 팔로잉, 추천 계정 등에 들어갈 간략한 유저 정보 및 Thumbnail을 불러와 controller에 보낸다.
 	public UserThumbnail getUserThumbnail(User user) {
 		return UserThumbnail.of(userDAO.findById(user.getUserNum()).get());
 	}
-
-	// 회원 1인 탈퇴 - 얽혀있는 테이블이 많아서 null point exception이 많이 뜬다.0
-//	public void deleteUser(User user) {
-//		userStandardDAO.deleteById(user.getUserStandard().getId());
-//		userDAO.deleteById(user.getUserId());
-//		userImgDAO.deleteById(user.getUserNum());
-//	}
 
 	// 팔로워 많은 유저 3명 반환 (0 아닐시)
 	public List<UserSimple> getFamousUsers() {
@@ -209,18 +183,6 @@ public class UserService {
 		file.transferTo(targetPath);
 	}
 
-	// 해당 아이디의유저가 매긴 리뷰개수를 반환한다.
-	public UserCountsInfo getUserReviewCounts(Review reviewNum) {
-		userDAO.findcountbyReviewNum(reviewNum);
-		return getUserReviewCounts(reviewNum);
-	}
-
-	// 해당아이디가 작성한 리스트의 개수를 반환한다.
-	public UserCountsInfo getUserListCounts(UserResList listNum) {
-		userDAO.findcountByUserList(listNum);
-		return getUserListCounts(listNum);
-	}
-
 	public User authenticate(String userId, String password) {
 		User user = ((Optional<User>) userDAO.findByUserId(userId))
 				.orElseThrow(() -> new UserIdNotExistedException(userId));
@@ -232,43 +194,35 @@ public class UserService {
 		return user;
 	}
 
+	// 해당 아이디의유저가 매긴 리뷰개수를 반환한다.
+	public Long getUserReviewCounts(Long userNum) {
+		return userDAO.findcountOrderByUserNum(userNum);
+		// return getUserReviewCounts(userNum);
+	}
+
+	// 해당아이디가 작성한 리스트의 개수를 반환한다.
+	public Long getUserListCounts(Long userNum) {
+		return userDAO.findcountListByUserNum(userNum);
+		// return getUserListCounts(userNum);
+	}
+
+	// 유저가 선호하는 음식종류 상위 3개를 반환한다.
+	public List<String> getFoodTypeByReview(Long userNum) {
+		return userDAO.findListByUserNumNFoodType(userNum);
+	}
+
+	// 특정 유저가 작성한 리뷰 역시간순으롤 조회 review
+	public List<ReviewThumbnail> getAllOrderByUserNumNDate(Long userNum) {
+		List<ReviewThumbnail> revDateThumbnailList = new ArrayList<>();
+		revDAO.findAllOrderByUserNumNDate(userNum).forEach(rev -> revDateThumbnailList.add(ReviewThumbnail.of(rev)));
+		return revDateThumbnailList;
+	}
+
+	// 특정 유저가 작성한 리뷰 별점높은 순으로 조회
+	public List<ReviewThumbnail> getAllOrderByUserNumNStar(Long userNum) {
+		List<ReviewThumbnail> revStarThumbnailList = new ArrayList<>();
+		revDAO.findAllOrderByUserNumNStar(userNum).forEach(rev -> revStarThumbnailList.add(ReviewThumbnail.of(rev)));
+		return revStarThumbnailList;
+	}
+
 }
-
-//	/**
-//	    * 수정할 수 있는 유저정보를 수집한다.
-//	    * 파라미터 값이 비어 있으면 그 항목은 수정에서 제외한다.
-//	    * user_id 존재하지 않으면 exception
-//	    * @param userId
-//	    * @param userInfo 유저 수정 정보 
-//	    * 
-//	    * 이름 수정 가능? 
-//	    */
-//	   public void editUserInfo(String userId, UserDTO.UserInfoEditRequest userInfo) {
-//	      User user;
-//	      
-//	      if (userInfo.getName() != null) user.setName(userInfo.getName());
-//	      if (userInfo.getPw() != null)    user.setPw(userInfo.getPw());
-//	      if (userInfo.getJob() != null) user.setJob(userInfo.getJob());
-//	    
-//	      if (userInfo.getPageStatus() != null) user.setPageStatus(userInfo.getPageStatus());
-//	      //USERSTANDARD를 변경할 수 있는지? 
-////	      if (userInfo.getUserStandard != null) user.setUserStandard(userInfo.getUserStandard());
-//	   }
-
-// 마이페이지 - 내 리뷰 확인 - 더보기 - 시간순 정렬 - 자바스트림... 모름
-// 시간순으로 리뷰 리스트를 반환한다.
-//	      @Transactional
-//	       public List<RevDTO> findByPageRequest(PageRequest pageRequest) {
-//	           return reviewDAO.findAll(pageRequest).stream()
-//	                   .map(RevDTO::new)
-//	                   .collect(Collectors.toList());
-//	       }
-//	      
-//	      //역시간순으로 리뷰 리스트를 반환한다. 
-//	      @Transactional
-//	       public List<RevDTO> findByPageRequestReverse(PageRequest pageRequest) {
-//	           return reviewDAO.findAllByOrderByIdDesc(pageRequest).stream()
-//	                   .map(RevDTO::new)
-//	                   .collect(Collectors.toList());
-//	       }
-//}
