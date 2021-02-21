@@ -315,4 +315,13 @@ body {
   color: #999;
   background: #fff;
 }
+
+.image-container {
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 100px;
+}
 </style>
