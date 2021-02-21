@@ -25,10 +25,6 @@ public class CookieUtil {
         }
         return null;
     }
-<<<<<<< HEAD
-=======
-    
-    
->>>>>>> parent of db83eb6 (로그아웃 구현)
+
 
 }

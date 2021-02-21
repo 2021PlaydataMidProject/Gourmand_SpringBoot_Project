@@ -23,6 +23,7 @@ import io.gourmand.service.ResService;
 import io.gourmand.service.UserService;
 import io.gourmand.domain.Review;
 import io.gourmand.domain.ReviewImg;
+import io.gourmand.domain.ReviewStandard;
 import io.gourmand.domain.User;
 import io.gourmand.domain.UserImg;
 import io.gourmand.domain.UserStandard;
@@ -41,22 +42,9 @@ public class UserController {
    @Autowired
    private ResService resService;
    
-      
-   @ModelAttribute("user") //왜 있나?
-   public User setUser() {
-      return new User();
-   }
-   
-   @ModelAttribute("userStandard") //왜 있나?
-   public UserStandard setUserStandard() {
-      return new UserStandard();
-   }
-
    /* 회원 가입 */
    @PostMapping("/user/regi")
    public void createUser(@RequestParam("userImg") List<MultipartFile> userImg, @RequestParam("user") String userRegi, @RequestParam("userStandard") String userStandardregi) {
-      System.out.println(userRegi);
-      System.out.println(userStandardregi);
       ObjectMapper mapper = new ObjectMapper();
    try {
       UserStandard userStandard = userService.insertUserStandard(mapper.readValue(userStandardregi, UserStandardRegister.class));
@@ -74,14 +62,13 @@ public class UserController {
          }
    }
    
-   @PutMapping("/user/regi")
-   public void updateUser(@RequestParam("userImg") List<MultipartFile> userImg, @RequestParam("user") String userRegi, @RequestParam("userStandard") String userStandardregi) {
-      System.out.println(userRegi);
-      System.out.println(userStandardregi);
+   // 유저 정보 수정
+   @PutMapping("/user/{userNum}/update")
+   public void updateUser(@PathVariable("userNum") Long userNum, @RequestParam("userStandard") String userStandard, @RequestParam("userImg") List<MultipartFile> userImg, @RequestParam("user") String userRegi) {
       ObjectMapper mapper = new ObjectMapper();
    try {
-      UserStandard userStandard = userService.insertUserStandard(mapper.readValue(userStandardregi, UserStandardRegister.class));
-      User user = userService.insertUser(mapper.readValue(userRegi, UserRegister.class), (userStandard));
+//      UserStandard userStandard = userService.updateUserStandard(mapper.readValue(userStandardregi, UserStandardRegister.class));
+      User user = userService.updateUser(mapper.readValue(userRegi, UserRegister.class), mapper.readValue(userStandard, UserStandardRegister.class), userNum);
       userImg.forEach(img->{
       UserImg uimg = userService.insertUserImg(img, user);
    try {
@@ -95,11 +82,20 @@ public class UserController {
          }
    }
       
-//   @DeleteMapping("/user/{id}") //(User 테이블 외에 다른 테이블 삭제할 거 고민해야 )
-//   public String deleteUser(@PathVariable("userNum") Long userNum,  @PathVariable("id") Long id) {
-//      userService.deleteUser(userNum);
-//      userService.deleteUserStandard(id);
-//   }
+   // 회원 삭제
+   @DeleteMapping("/user/{userNum}") //(User 테이블 외에 다른 테이블 삭제할 거 고민해야 )
+   public void deleteUser(@PathVariable("userNum") Long userNum) {
+      userService.deleteUser(userNum);
+   }
+   
+	// 회원 이미지 삭제
+	@DeleteMapping("/user/delete/img")
+	public void deleteUserImg(@RequestBody List<Long> id) {
+		id.forEach(i -> {
+			userService.deleteUserImg(i);
+		});
+	}
+
    
    //    회원 기준 저장 
    @PostMapping("/user/regiNewStandard")

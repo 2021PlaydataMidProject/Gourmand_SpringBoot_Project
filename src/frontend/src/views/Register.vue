@@ -21,27 +21,12 @@
                             <div class="text-muted text-center mb-3">
                                 <small>Sign in with</small>
                             </div>
-                            <div class="btn-wrapper text-center">
-                                <base-button type="neutral">
-                                    <img slot="icon" src="img/icons/common/github.svg">
-                                    Github
-                                </base-button>
-
-                                <base-button type="neutral">
-                                    <img slot="icon" src="img/icons/common/google.svg">
-                                    Google
-                                </base-button>
-                            </div>
-                        </template>
-                        <template>
-                            <div class="text-center text-muted mb-4">
-                                <small>Or sign up with credentials</small>
-                            </div>
                             <form role="form">
                                 <base-input alternative
                                             class="mb-3"
-                                            placeholder="Name"
-                                            addon-left-icon="ni ni-hat-3">
+                                            placeholder="이름" 
+                                            addon-left-icon="ni ni-hat-3"
+                                            v-model="user.name">
                                 </base-input>
                                 <base-input alternative
                                             class="mb-3"
@@ -74,8 +59,41 @@
         </div>
     </section>
 </template>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
-export default {};
+
+
+export default {
+  data: function () {
+    return {
+      id: "",
+      pw: "",
+    };
+  },
+  methods: {
+    login: function () {
+      return this.axios
+        .post("/auth/login", {
+          user_id: this.id,
+          pw: this.pw,
+        })
+        .then((res) => {
+          if (res.data) {
+            console.log(res);
+            sessionStorage.setItem("user", res.data.user_num);
+            console.log(sessionStorage.getItem("user"))
+
+            location.href = "/";
+          } else {
+            alert("없는 아이디거나 비밀번호가 맞지 않습니다.");
+          }
+        })
+        .catch((error) => {
+          alert("서버 오류입니다. 다시 시도해주세요.");
+        });
+    },
+  },
+};
 </script>
 <style>
 </style>

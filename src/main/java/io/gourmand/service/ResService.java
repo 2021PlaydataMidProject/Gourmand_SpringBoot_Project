@@ -102,6 +102,7 @@ public class ResService {
 		return resDAO.save(ResRegister.toEntity(res));
 	}
 
+	//가게 정보 수정
 	public void updateRes(Long id, ResRegister resRegi) {
 		Res newres = resDAO.findById(id).get();
 		Res res = ResRegister.toEntity(resRegi);
