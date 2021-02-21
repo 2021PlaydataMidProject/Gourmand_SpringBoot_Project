@@ -23,17 +23,17 @@
         </div>
       </div>
 
-      <div class="navbar-nav align-items-lg-center col-lg-8">
+      <div class="align-items-lg-center row">
         <b-dropdown
           :text="dropDownText"
-          class="my-3 col-lg-2 col-sm-2"
+          class="my-3 col-lg-3 col-sm-2"
           variant="primary"
         >
           <b-dropdown-item @click="drop('음식점')">음식점</b-dropdown-item>
           <b-dropdown-item @click="drop('지역')">지역</b-dropdown-item>
         </b-dropdown>
         <base-input
-          class="my-3 col-lg-8 col-sm-8"
+          class="my-3 col-lg-6 col-sm-6"
           :placeholder="dropDownText + ' 검색하기'"
           v-model="name"
         >
@@ -41,12 +41,12 @@
         <base-button
           @click="search()"
           type="primary"
-          class="my-3 col-lg-2 col-sm-2"
+          class="my-3 col-lg-3 col-sm-2"
           >Search</base-button
         >
       </div>
 
-      <ul class="navbar-nav align-items-lg-center">
+      <ul class="navbar-nav align-items-lg-center ml-lg-auto">
         <base-dropdown class="nav-item" menu-classes="dropdown-menu-xl">
           <a
             slot="title"
@@ -81,7 +81,7 @@
             </a>
           </div>
         </base-dropdown>
-        <a slot="title" href="#" class="nav-link">
+        <a slot="title" href="/guide" class="nav-link">
           <i class="ni ni-ui-04 d-lg-none"></i>
           <span class="nav-link-inner--text">구르망가이드</span>
         </a>
@@ -89,7 +89,7 @@
           <i class="ni ni-ui-04 d-lg-none"></i>
           <span class="nav-link-inner--text">로그인</span>
         </a>
-        <a v-if="logincheck()" slot="title" href="#" class="nav-link">
+        <a v-if="logincheck()" slot="title" href="/mypage" class="nav-link">
           <i class="ni ni-ui-04 d-lg-none"></i>
           <span class="nav-link-inner--text">마이페이지</span>
         </a>
@@ -124,6 +124,7 @@ export default {
   data() {
     return {
       dropDownText: "음식점",
+      name:""
     };
   },
   methods: {

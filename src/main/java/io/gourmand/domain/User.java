@@ -81,6 +81,9 @@ public class User  {
 	@OneToMany(mappedBy = "user", fetch=FetchType.LAZY)
 	private List<ListLikes> listLikes;
 	
+	@OneToMany(mappedBy = "user", fetch=FetchType.LAZY)
+	private List<Review> review;
+	
 	public User(String name) {
 	    this.name = name;
 	}

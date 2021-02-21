@@ -1,7 +1,9 @@
 package io.gourmand.controller;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -26,6 +28,7 @@ import io.jsonwebtoken.Claims;
 import io.gourmand.domain.User;
 import io.gourmand.domain.UserImg;
 import io.gourmand.domain.UserStandard;
+import io.gourmand.dto.ResDTO.ResThumbnail;
 import io.gourmand.dto.RevDTO.ReviewThumbnail;
 import io.gourmand.dto.UserDTO.UserInfo;
 import io.gourmand.dto.UserDTO.UserRegister;
@@ -99,16 +102,30 @@ public class UserController {
 	public List<UserSimple> getUserIdOfFamousUser() {
 		return userService.getFamousUsers();
 	}
-
+	
+	@GetMapping("/user/list")
+	public Map<String, List<ResThumbnail>> getResOfList(HttpServletRequest hsp){
+		Claims claim = new JwtUtil(secret).getClaims(CookieUtil.getCookie(hsp, "accessToken").getValue());
+		Long userNum = claim.get("user_num", Long.class);
+		
+		Map<String, List<ResThumbnail>> resList = new HashMap<>();
+		resService.getResListName(userNum).forEach(name -> resList.put(name, resService.getAllResOfList(userNum, name)));
+		return resList;
+	}
+	
 	// 내가 작성한 리스트 카운트 불러오는거 //안됨 - 500 ---> 해결! 근데 음식인지 확인해야함.
-	@GetMapping("/user/{userNum}/count/list")
-	public Long getUserCountByList(@PathVariable Long userNum) {
+	@GetMapping("/user/count/list")
+	public Long getUserCountByList(HttpServletRequest hsp) {
+		Claims claim = new JwtUtil(secret).getClaims(CookieUtil.getCookie(hsp, "accessToken").getValue());
+		Long userNum = claim.get("user_num", Long.class);
 		return userService.getUserListCounts(userNum);
 	}
-
+	
 	// 회원 1인의 전체 정보 가져오기
-	@GetMapping("/user/{userNum}/info")
-	public UserInfo getUserInfo(@PathVariable Long userNum) {
+	@GetMapping("/user/info")
+	public UserInfo getUserInfo(HttpServletRequest hsp) {
+		Claims claim = new JwtUtil(secret).getClaims(CookieUtil.getCookie(hsp, "accessToken").getValue());
+		Long userNum = claim.get("user_num", Long.class);
 		return userService.getUserInfo(userNum);
 	}
 
@@ -125,14 +142,18 @@ public class UserController {
 	}
 
 	// 유저 당 리뷰를 시간순으로 반환
-	@GetMapping("/res/user/{userNum}/review/writeDate")
-	public List<ReviewThumbnail> getAllOrderByUserNumNDate(@PathVariable Long userNum) {
+	@GetMapping("/res/user/review/writeDate")
+	public List<ReviewThumbnail> getAllOrderByUserNumNDate(HttpServletRequest hsp) {
+		Claims claim = new JwtUtil(secret).getClaims(CookieUtil.getCookie(hsp, "accessToken").getValue());
+		Long userNum = claim.get("user_num", Long.class);
 		return userService.getAllOrderByUserNumNDate(userNum);
 	}
 
 	// 유저 당 리뷰를 별점순으로 반환
-	@GetMapping("/res/user/{userNum}/review/Star")
-	public List<ReviewThumbnail> getAllOrderByUserNumNStar(@PathVariable Long userNum) {
+	@GetMapping("/res/user/review/Star")
+	public List<ReviewThumbnail> getAllOrderByUserNumNStar(HttpServletRequest hsp) {
+		Claims claim = new JwtUtil(secret).getClaims(CookieUtil.getCookie(hsp, "accessToken").getValue());
+		Long userNum = claim.get("user_num", Long.class);
 		return userService.getAllOrderByUserNumNStar(userNum);
 	}
 }

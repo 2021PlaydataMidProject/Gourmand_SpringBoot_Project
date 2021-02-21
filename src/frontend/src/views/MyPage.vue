@@ -7,23 +7,29 @@
           <div class="col-md-4">
             <div class="profile-img">
               <img
+                v-if="userInfo.user_img.length>0"
+                :src="'/img/user/' + userInfo.user_img[0].name"
+                alt=""
+              />
+              <img
+                v-else
                 src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog"
                 alt=""
               />
-              <div class="file btn btn-lg btn-primary">
+              <!-- <div class="file btn btn-lg btn-primary">
                 Change Photo
                 <input type="file" name="file" />
-              </div>
+              </div> -->
             </div>
           </div>
           <div class="col-md-6">
-            <div v-for="(user, key) in user" v-bind:key="key" class="profile-head">
-              <h5>유넹</h5>
+            <div class="profile-head">
+              <h5>{{userInfo.user_id}}({{userInfo.name}})</h5>
               <p class="proile-rating">
-                평가 <span>10</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                평가 <span>{{userInfo.rev_cnt}}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               </p>
 
-              <p class="proile-rating">나의 리스트 <span>10</span></p>
+              <p class="proile-rating">나의 리스트 <span>{{Object.keys(listInfo).length}}</span></p>
              
             </div>
           </div>
@@ -37,19 +43,18 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-md-4">
+          <div class="col-md-3">
             <div class="profile-work">
               <p>보관함</p>
-              <a href="/myreview">내 리뷰 확인</a><br />
-              <a href="/myanalysis">취향 분석</a><br />
-              <a href="/mylike">좋아요 </a>
+              <a href="#" @click="pagenum=0">내 리뷰 확인</a><br />
+              <a href="#" @click="pagenum=1">취향 분석</a><br />
               <p>개인정보</p>
               <a href="/userEdit">개인정보 수정</a><br />
             </div>
           </div>
           <!--여기에 my review ,myalanysis둘다 들어와야함 -->
-          <my-review></my-review>
-         
+          <my-review v-if="pagenum==0"></my-review>
+          <my-analysis v-else-if="pagenum==1"></my-analysis>
         </div>
         
          
@@ -66,24 +71,32 @@ import UserEdit from "@/views/UserEdit";
 export default {
    data() {
     return {
-      resInfo: "",
-      resUser: "",
-      revs: [],
-      data: [],
-      resnum: 0,
+      userInfo: {},
+      pagenum: 0,
+      listInfo: []
     };
   },
   components: {
     MyReview,
     MyAnalysis,
-    UserEdit
+    UserEdit,
+    MyAnalysis,
   },
    mounted() {
     if (sessionStorage.getItem("user") == null) {
-      location.href = "/register";
+      location.href = "/login";
     }
-    
-    
+
+    this.axios.get("user/info",{})
+    .then(res => {
+      console.log(res.data)
+      this.userInfo = res.data;
+    })
+
+    this.axios.get("user/list",{})
+    .then(res => {
+      this.listInfo = res.data;
+    })
   },
 };
 </script>

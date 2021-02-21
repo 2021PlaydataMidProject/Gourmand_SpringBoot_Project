@@ -111,28 +111,27 @@ public class UserDTO {
 	@AllArgsConstructor
 	@Builder
 	public static class UserInfo {
-		private Long userNum;
 		private String userId;
-		private List<Followers> followers;
-		private List<Followers> following;
-		private String pw;
 		private String name;
 		private String dob;
 		private String job;
 		private int pageStatus;
 		private LocalDate suDate;
 		private UserStandard userStandard;
-		private List<Reply> reply;
 		private List<UserImg> userImg;
-		private List<ReviewLikes> reviewLikes;
-		private List<ListLikes> listLikes;
+		private int revCnt;
 
 		public static UserInfo of(User user) {
-			return UserInfo.builder().userNum(user.getUserNum()).userId(user.getUserId()).followers(user.getFollowers())
-					.followers(user.getFollowing()).pw(user.getPw()).name(user.getName()).job(user.getJob())
-					.pageStatus(user.getPageStatus()).suDate(user.getSuDate()).userStandard(user.getUserStandard())
-					.reply(user.getReply()).userImg(user.getUserImg()).reviewLikes(user.getReviewLikes())
-					.listLikes(user.getListLikes()).build();
+			return UserInfo.builder()
+					.userId(user.getUserId())
+					.dob(user.getDob())
+					.name(user.getName())
+					.job(user.getJob())
+					.pageStatus(user.getPageStatus())
+					.suDate(user.getSuDate())
+					.userStandard(user.getUserStandard())
+					.userImg(user.getUserImg())
+					.revCnt(user.getReview().size()).build();
 		}
 	}
 

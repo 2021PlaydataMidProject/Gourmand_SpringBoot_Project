@@ -29,7 +29,7 @@ public interface ReviewRepository extends JpaRepository<Review, Long> {
     List<Review> findAllOrderByUserNumNDate(@Param("user") Long userNum);
     
     //특정 유저가 작성한 리뷰 별점높은순으로 가져오기 
-    @Query(value = "select review.* from review, user ur where ur.user_num  = :user and review.user_num = ur.user_num order by review.rs_id desc", nativeQuery = true)
+    @Query(value = "select review.* from review, rating_standard rs where review.user_num = :user and review.rs_id = rs.rs_id order by (rs.r_access+rs.r_flavor+rs.r_cost_value+rs.r_clean+rs.r_kindness+rs.r_mood) desc", nativeQuery = true)
     List<Review> findAllOrderByUserNumNStar(@Param("user") Long userNum);
 
 }
