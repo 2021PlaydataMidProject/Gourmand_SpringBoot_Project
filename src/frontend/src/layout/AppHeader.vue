@@ -124,7 +124,15 @@ export default {
         if (sessionStorage.getItem("user")!=null){
             sessionStorage.removeItem("user");
             deleteCookie();
-            location.href="/"
+             return this.axios.post("/auth/logout").then((res)=> {
+              console.log("로그아웃 완료");
+            })
+            .catch((error) => {
+              console.log(error);
+            })
+            .finally(
+              location.href="/"
+            )
         }
     },
     mymap: function(){

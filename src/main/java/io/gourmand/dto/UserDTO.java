@@ -51,8 +51,9 @@ public class UserDTO {
 		private String pw;
 		private Long userNum;
 
-		public static SigninRequest of(User user) {
-			return SigninRequest.builder().userId(user.getUserId()).pw(user.getPw()).build();
+		
+		public static SigninResponse of(User user) {
+			return SigninResponse.builder().userNum(user.getUserNum()).userId(user.getUserId()).name(user.getName()).build();
 		}
 	}
 	

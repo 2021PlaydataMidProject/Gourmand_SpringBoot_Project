@@ -12,7 +12,7 @@ public class CookieUtil {
         Cookie token = new Cookie(cookieName,value);
         token.setHttpOnly(true);
         token.setMaxAge((int)JwtUtil.TOKEN_VALIDATION_SECOND);
-//        token.setPath("/");
+        token.setPath("/");
         return token;
     }
 
@@ -25,6 +25,5 @@ public class CookieUtil {
         }
         return null;
     }
-
 
 }
