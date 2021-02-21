@@ -45,7 +45,7 @@
           <tr>
             <td>사진 업로드</td>
             <td align="left">
-  <div>
+           <div>
                <img
                 v-if=" imgs.length > 0"
                 v-lazy="'img/user/' + imgs[0].name"
@@ -63,16 +63,6 @@
               <input type="file" ref="imgdata" name="imgdata[]" accept="image/*" multiple="multiple" />
                     <div class="row">
               <base-button type="primary" v-on:click=delImg(value)>회원 사진 삭제</base-button>
-
-   
-            <!-- <img
-              v-lazy="'../img/user/'"
-              alt="Rounded image"
-              class="img-fluid rounded shadow"
-              style="width: 150px"
-              @click="editImg(key)"
-            />
-            {{ value.origin_name }} -->
           </div>
          </div>
           </td>
@@ -150,7 +140,7 @@
               ></star-rating>
           </td>
         </tr>
-        <tr>s
+        <tr>
             <td colspan="2" align="center">
               <base-button type="primary" v-on:click="editUser()">회원 정보 수정</base-button>
               <base-button type="primary" v-on:click="deleteUser()">회원 탈퇴</base-button>
@@ -164,7 +154,6 @@
 <script>
 import BaseButton from '../components/BaseButton.vue';
 import StarRating from "vue-star-rating";
-import { getUserNumFromCookie } from '../utils/cookies';
 
 export default {
   components: {

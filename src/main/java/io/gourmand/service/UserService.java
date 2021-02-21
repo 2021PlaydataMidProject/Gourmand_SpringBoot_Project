@@ -108,11 +108,6 @@ public class UserService {
    public UserStandard insertUserStandard(UserStandardRegister userStandard) {
       return userStandardDAO.save(UserStandardRegister.toEntity(userStandard));
    }
-
-   // 회원 기준 수정
-//   public UserStandard updateUserStandard(UserStandardRegister userStandard) {
-//	   return userStandardDAO.save(UserStandardRegister.toEntity(userStandard));
-//	}
    
    // 회원가입
    public User insertUser(UserRegister user, UserStandard userStandard) {

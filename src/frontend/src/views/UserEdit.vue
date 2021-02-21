@@ -1,52 +1,29 @@
 <template>
-  <section class="section section-shaped section-lg my-0">
-    <div class="container pt-lg-md">
-          <h2 class="mb-5">
-         <span>회원 정보 수정</span>
-           <hr />
-            </h2>
-        <table border="1">
-          <tr>
-            <td width="70">유저ID</td>
-            <td align="left">
-              <input type="text" v-model="user.userId" />
-            </td>
-          </tr>
-          <tr>
-            <td width="70">이름</td>
-            <td align="left">
-              <input type="text" v-model="user.name" />
-            </td>
-          </tr>
-          <tr>
-            <td width="70">비밀번호</td>
-            <td align="left">
-              <input type="text" v-model="user.pw" />
-            </td>
-          </tr>
-          <tr>
-            <td>생년월일</td>
-            <td align="left">
-              <input type="text" v-model="user.dob" size="10" />
-            </td>
-          </tr>
-          <tr>
-            <td>직업</td>
-            <td align="left">
-              <input type="text" v-model="user.job" size="10" />
-            </td>
-          </tr>
-          <tr>            
-            <td>회원정보 공개(0,1,2)</td>
-            <td align="left">
-              <input type="text" v-model="user.pageStatus" size="10" />
-            </td>
-          </tr>
-          <tr>
-            <td>사진 업로드</td>
-            <td align="left">
-  <div>
-               <img
+    <section class="section section-shaped section-lg my-0">
+        <div class="shape shape-style-1 bg-gradient-default">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="container pt-lg-md">
+            <div class="row justify-content-center">
+                <div class="col-lg-5">
+                    <card type="secondary" shadow
+                          header-classes="bg-white pb-5"
+                          body-classes="px-lg-5 py-lg-5"
+                          class="border-0">
+                        <template>
+                            <div class="text-muted text-center mb-3">
+                                  <h4>회원 정보 수정</h4>
+                                  프로필 사진
+                            </div>
+                                 <form role="form">
+              <center> <img
                 v-if=" imgs.length > 0"
                 v-lazy="'img/user/' + imgs[0].name"
                 alt="Rounded image"
@@ -59,120 +36,162 @@
                 alt="Rounded image"
                 class="img-fluid rounded shadow"
                 style="width: 150px"
-              />
-              <input type="file" ref="imgdata" name="imgdata[]" accept="image/*" multiple="multiple" />
-                    <div class="row">
-              <base-button type="primary" v-on:click=delImg(value)>회원 사진 삭제</base-button>
+              /><br><br>
+              <center><input type="file" ref="imgdata" name="imgdata[]" accept="image/*" multiple="multiple" /></center>
+              <br>&nbsp;<br><br>
+              </center>
+                                <base-input alternative
+                                            class="mb-3"
+                                            placeholder="아이디" disabled
+                                            type="text"
+                                            v-model="user.userId"
+                                            addon-left-icon="ni ni-email-83">
+                                </base-input>
 
-   
-            <!-- <img
-              v-lazy="'../img/user/'"
-              alt="Rounded image"
-              class="img-fluid rounded shadow"
-              style="width: 150px"
-              @click="editImg(key)"
-            />
-            {{ value.origin_name }} -->
-          </div>
-         </div>
-          </td>
-          </tr>
-        
-          <tr>
-          <td width="70">맛 :</td>
-          <td align="left">
-             <star-rating
-                v-model="userStandard.uflavor"
-                :show-rating="true"
-                @hover:rating="mouseOverRating = $event"
-                :increment="0.5"
-                :starSize="20"
-              ></star-rating>
-          </td>
-        </tr>
-        <tr>
-          <td width="70">위생 :</td>
-          <td align="left">
-            <star-rating
-                v-model="userStandard.uclean"
-                :show-rating="true"
-                @hover:rating="mouseOverRating = $event"
-                :increment="0.5"
-                :starSize="20"
-              ></star-rating>
-          </td>
-        </tr>
-        <tr>
-          <td width="70">가격대 :</td>
-          <td align="left">
-           <star-rating
-                v-model="userStandard.ucost"
-                :show-rating="true"
-                @hover:rating="mouseOverRating = $event"
-                :increment="0.5"
-                :starSize="20"
-              ></star-rating>
-          </td>
-        </tr>
-        <tr>
-          <td>분위기 :</td>
-          <td align="left">
-            <star-rating
-                v-model="userStandard.umood"
-                :show-rating="true"
-                @hover:rating="mouseOverRating = $event"
-                :increment="0.5"
-                :starSize="20"
-              ></star-rating>
-          </td>
-        </tr>
-        <tr>
-          <td>서비스 :</td>
-          <td align="left">
-             <star-rating
-                v-model="userStandard.ukindness"
-                :show-rating="true"
-                @hover:rating="mouseOverRating = $event"
-                :increment="0.5"
-                :starSize="20"
-              ></star-rating>
-          </td>
-        </tr>
-        <tr>
-          <td>접근성 :</td>
-          <td align="left">
-            <star-rating
-                v-model="userStandard.uaccess"
-                :show-rating="true"
-                @hover:rating="mouseOverRating = $event"
-                :increment="0.5"
-                :starSize="20"
-              ></star-rating>
-          </td>
-        </tr>
-        <tr>s
-            <td colspan="2" align="center">
-              <base-button type="primary" v-on:click="editUser()">회원 정보 수정</base-button>
-              <base-button type="primary" v-on:click="deleteUser()">회원 탈퇴</base-button>
-            </td>
-          </tr>
-        </table>
-    </div>  
-  </section>
+                                <base-input alternative
+                                            class="mb-3"
+                                            type="password"
+                                            placeholder="비밀번호"
+                                            v-model="user.pw"
+                                            addon-left-icon="ni ni-lock-circle-open">
+                                </base-input>
+                                 <hr>
+                             
+                                이름
+                                <base-input alternative
+                                            class="mb-3"
+                                            placeholder="이름" 
+                                            type="text"
+                                            v-model="user.name"
+                                            addon-left-icon="ni ni-single-02"
+                                            >
+                                </base-input>
+
+                               <base-input class="col-md-20" label="직업">
+                               <select id="inputState" class="form-control">
+                                      <option selected>직업을 선택하세요</option>
+                                      <option>학생</option>
+                                      <option>컴퓨터/인터넷</option>
+                                      <option>언론</option>
+                                      <option>공무원</option>
+                                      <option>군인</option>
+                                      <option>서비스업</option>
+                                      <option>교육</option>
+                                      <option>금융/증권/보험업</option>
+                                      <option>유통업</option>
+                                      <option>예술</option>
+                                      <option>의료</option>
+                                    </select>
+                              </base-input>
+                             <p>
+                             <hr>
+                             당신의 음식점 선택 기준을 알려주세요!<br>
+                             당신 취향에 딱 맞는 음식점을 추천해 드리는 데에만 사용됩니다!<br> 
+                             <p>
+                             <table>
+                                    <tr>
+                                      <td width="70">맛 :</td>
+                                      <td align="left">
+                                        <star-rating
+                                            v-model="userStandard.uflavor"
+                                            :show-rating="true"
+                                            @hover:rating="mouseOverRating = $event"
+                                            :increment="0.5"
+                                            :starSize="20"
+                                          ></star-rating>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <td width="70">위생 :</td>
+                                      <td align="left">
+                                        <star-rating
+                                            v-model="userStandard.uclean"
+                                            :show-rating="true"
+                                            @hover:rating="mouseOverRating = $event"
+                                            :increment="0.5"
+                                            :starSize="20"
+                                          ></star-rating>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <td width="70">가격대 :</td>
+                                      <td align="left">
+                                      <star-rating
+                                            v-model="userStandard.ucost"
+                                            :show-rating="true"
+                                            @hover:rating="mouseOverRating = $event"
+                                            :increment="0.5"
+                                            :starSize="20"
+                                          ></star-rating>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <td>분위기 :</td>
+                                      <td align="left">
+                                        <star-rating
+                                            v-model="userStandard.umood"
+                                            :show-rating="true"
+                                            @hover:rating="mouseOverRating = $event"
+                                            :increment="0.5"
+                                            :starSize="20"
+                                          ></star-rating>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <td>서비스 :</td>
+                                      <td align="left">
+                                        <star-rating
+                                            v-model="userStandard.ukindness"
+                                            :show-rating="true"
+                                            @hover:rating="mouseOverRating = $event"
+                                            :increment="0.5"
+                                            :starSize="20"
+                                          ></star-rating>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <td>접근성 :</td>
+                                      <td align="left">
+                                        <star-rating
+                                            v-model="userStandard.uaccess"
+                                            :show-rating="true"
+                                            @hover:rating="mouseOverRating = $event"
+                                            :increment="0.5"
+                                            :starSize="20"
+                                          ></star-rating>
+                                      </td>
+                                      </tr>
+                                    </table>
+                                     <p>
+                                       <hr>
+                          
+                                <div class="text-center">
+                                  
+                                    <base-button type="primary" v-on:click="editUser()">회원 정보 변경하기</base-button>
+                                    <base-button type="primary" v-on:click="deleteUser()">구르망 탈퇴하기</base-button>
+                                </div>
+                            </form>
+                        </template>
+                    </card>
+                </div>
+            </div>
+        </div>
+    </section>
+
 </template>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
 import BaseButton from '../components/BaseButton.vue';
 import StarRating from "vue-star-rating";
-import { getUserNumFromCookie } from '../utils/cookies';
 
 export default {
-  components: {
-    StarRating, BaseButton,
+  components: { 
+      StarRating, BaseButton, 
   },
+
   data(){
       return {
-        user :{
+        user:{
             userId : "",
             name : "",
             pw :  "",
@@ -187,13 +206,14 @@ export default {
             ucost :  0,
             umood : 0,
             ukindness : 0,
-            uaccess : 0,  
+            uaccess : 0,
         },
-          imgs: [],
-          delimgs: [],
+         imgs: [],
+         delimgs: [],
       };
   },
-  mounted() {
+
+    mounted() {
     if (sessionStorage.getItem("user") == null) {
       location.href = "/register";
     }
@@ -214,11 +234,12 @@ export default {
       this.userStandard.uaccess =  req.data.user_standard.uaccess;         
 
       this.imgs = req.data.user_img;
+
     });
   },
 
   methods:{
-      editUser() {
+       editUser() {
           const formData = new FormData(); 
           this.userStandard.uflavor = parseFloat(this.userStandard.uflavor);
           this.userStandard.uclean = parseFloat(this.userStandard.uclean);
@@ -239,8 +260,8 @@ export default {
             }
           })
           .then(user => {
-               alert(this.user.userId + "회원 정보 수정 완료");
-               //location.href="/home"
+               alert(this.user.userId + "구르망 님의 정보가 수정되었습니다!");
+
              }).catch((error) => {
                console.error();
               alert("에러");
@@ -254,8 +275,7 @@ export default {
       
     }
   },
-};
-
+   }
 </script>
 <style>
 </style>

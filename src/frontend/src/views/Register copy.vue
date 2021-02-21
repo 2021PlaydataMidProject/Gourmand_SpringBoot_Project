@@ -46,12 +46,34 @@
                                     </small>
                                 </div>
                                  <hr>
-                                
+                                프로필 사진
                               <div>
-                               프로필 사진
+               <img
+                v-if="imgUrl" :src="imgUrl"
+                alt="Rounded image"
+                class="img-fluid rounded shadow"
+                style="width: 150px"
+              />
+              <img
+                v-else
+                v-lazy="'img/theme/team-4-800x800.jpg'"
+                alt="Rounded image"
+                class="img-fluid rounded shadow"
+                style="width: 150px"
+              />
               <input type="file" ref="imgdata" name="imgdata[]" accept="image/*" multiple="multiple" />
-         </div>  <br>              
-          
+         </div>                  
+                                <!-- <base-input 
+                                            class="mb-3"
+                                            type="file" ref="imgdata" 
+                                            name="imgdata[]" 
+                                            accept="image/*" multiple="multiple" /> -->
+ <!-- <input type="file" ref="imgdata" name="imgdata[]" accept="image/*" multiple="multiple" /> -->
+                                   <!-- <image-upload
+                                  type="avatar"
+                                  select-text="사진 첨부하기"
+                                  @change="onAvatarChange">
+                                </image-upload> -->
                                 이름
                                 <base-input alternative
                                             class="mb-3"
@@ -216,7 +238,6 @@ export default {
             uaccess : 0,
         },
         imgUrl: null,
-        
       }
   },
    

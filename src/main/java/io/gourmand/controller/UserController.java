@@ -67,7 +67,6 @@ public class UserController {
    public void updateUser(@PathVariable("userNum") Long userNum, @RequestParam("userStandard") String userStandard, @RequestParam("userImg") List<MultipartFile> userImg, @RequestParam("user") String userRegi) {
       ObjectMapper mapper = new ObjectMapper();
    try {
-//      UserStandard userStandard = userService.updateUserStandard(mapper.readValue(userStandardregi, UserStandardRegister.class));
       User user = userService.updateUser(mapper.readValue(userRegi, UserRegister.class), mapper.readValue(userStandard, UserStandardRegister.class), userNum);
       userImg.forEach(img->{
       UserImg uimg = userService.insertUserImg(img, user);
