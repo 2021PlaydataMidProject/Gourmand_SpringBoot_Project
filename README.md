@@ -200,7 +200,7 @@ npm run serve
 ~~~
 
 <br>
-2. 환경 설치 
+2. 환경 설치 <br>
 
 ~~~cmd
  npm install -g nodemon
