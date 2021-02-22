@@ -1648,3 +1648,4 @@ Using generated security password: f398a0bf-ec36-4cdc-9bbb-3ea5c1c3bdc0
 2021-02-22 18:56:33.469  INFO 11816 --- [http-nio-80-exec-10] io.gourmand.controller.UserController    : 회원가입 : gourmand1111
 2021-02-22 18:56:41.689  INFO 11816 --- [http-nio-80-exec-1] io.gourmand.controller.LoginController   : 로그인 시도 : gourmand1111
 2021-02-22 18:57:22.717  INFO 11816 --- [http-nio-80-exec-10] io.gourmand.controller.RevController     : 댓글 저장 : 가게,316,회원,14
+2021-02-22 18:57:36.151  INFO 11816 --- [http-nio-80-exec-6] io.gourmand.controller.RevController     : 댓글 수정 : 가게,316,회원,14
