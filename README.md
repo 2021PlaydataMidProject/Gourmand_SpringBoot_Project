@@ -164,7 +164,7 @@ Entity 클래스와 DTO 클래스를 분리하는 이유<br>
 ### :croissant: SpringBoot 실행 <br>
 
 먼저 eclispe의 해당 파일을 열어 import 하신 후, <br>
-파일의 java resources -> src/main/java -> io.gourmand -> Gourmand application을 spring boot app으로 실행시켜 줍니다.<br>
+파일의 java resources -> src/main/java -> io.gourmand ->Gourmand application을 spring boot app으로 실행시켜 줍니다.<br>
 <br>
 
 
@@ -176,7 +176,8 @@ Entity 클래스와 DTO 클래스를 분리하는 이유<br>
 ~~~cmd
  cd C:\Users\Playdata\Documents\GitHub\Gourmand_SpringBoot_Project\src\frontend
  npm install
- npm install –save chart.js vue-star-rating npm install -s cookie npm install cookie-parser
+ npm install –save chart.js vue-star-rating
+
 ~~~
 
 <br>
@@ -209,7 +210,10 @@ npm run serve
  npm install cores –save
  npm install express-session –save
  npm install axios –save 
- 
+ npm install -s cookie
+ npm install cookie-parser
+ npm install jsonwebtoken
+ npm install jwt-decode
 ~~~
 
 <br>
@@ -309,7 +313,7 @@ console.log(decoded);
 	getReviewList     	 // 모든 리뷰 정보 조회
 	getReview     		 // 하나의 리뷰 정보 조회
 	createRev     		 // 리뷰 정보 저장
-	updateRev     		// 리뷰 수정
+	updateRev     		 // 리뷰 수정
 	deleteReview      	// 리뷰 삭제
 	deleteRevImg     	// 리뷰 이미지 삭제
 	returnAllRevOfRes       // 가게에 대한 리뷰 Thumbnail
@@ -322,22 +326,22 @@ console.log(decoded);
 <summary>user controller</summary>
 	
 	createUser      	// 회원 가입 
-	updateUser     		// 유저 정보 수정
-	deleteUserStandardUser  // 회원 기준 삭제
-	deleteUser      	// 회원 삭제
-	deleteUserImg     	// 회원 이미지 삭제
-	createUserStandard	// 회원 기준 저장
-	returnUserResList       // 회원의 list 이름들 반환 (list에 저장용)
+	updateUser      // 유저 정보 수정
+	deleteUserStandardUser   // 회원 기준 삭제
+	deleteUser      // 회원 삭제
+	deleteUserImg      // 회원 이미지 삭제
+	createUserStandard   // 회원 기준 저장
+	returnUserResList      // 회원의 list 이름들 반환 (list에 저장용)
 	getUserIdOfFamousUser   // 인기 많은 유저의 아이디와 닉네임
-	getResOfList            // 내 리스트 불러오기
-	getUserCountByList      // 내가 작성한 리스트 카운트 불러오는거
-	getUserInfo             // 내 전체 정보 가져오기
-	getResOfList            // 회원 리스트 불러오기
-	getUserCountByList      // 리스트 카운트 불러오는거
+	getResOfList      // 내 리스트 불러오기
+	getUserCountByList   // 내가 작성한 리스트 카운트 불러오는거
+	getUserInfo      // 내 전체 정보 가져오기
+	getResOfList      // 회원 리스트 불러오기
+	getUserCountByList   // 리스트 카운트 불러오는거
 	getAllOrderByUserNumNStar   // 유저 당 리뷰를 별점순으로 반환("/res/user/review/writeDate")나의 페이지
-	getAllOrderByUserNumNDate   // 유저 당 리뷰를 시간순으로 반환("/res/user/review/Star")나의 페이지
+	getAllOrderByUserNumNDate// 유저 당 리뷰를 시간순으로 반환("/res/user/review/Star")나의 페이지
 	getAllOrderByUserNumNStar   // 유저 당 리뷰를 별점순으로 반환("/res/user/review/writeDate/{id}")타인의 페이지
-	getAllOrderByUserNumNDate  // 유저 당 리뷰를 시간순으로 반환("/res/user/review/Star/{id}")타인의 페이지
+	getAllOrderByUserNumNDate// 유저 당 리뷰를 시간순으로 반환("/res/user/review/Star/{id}")타인의 페이지
 </details>
 
 
