@@ -99,11 +99,12 @@
 
 ![techimage](https://user-images.githubusercontent.com/61037197/108664047-49ed8d00-7515-11eb-88d9-f530edb43261.jpg)
 
-## Issue <br>
+## Issue <br><br>
 
-### backend  <br>
+### backend  <br><br>
 
-   1)지도 백엔드 서버에서 오류발생 <br>
+   1) 지도 백엔드 서버에서 오류발생 <br>
+   
    > ErrorCode <br>
    
   ```
@@ -111,7 +112,7 @@
   ```
    <br> 
    
-   해결방법 <br> 
+   >해결방법 <br> 
    ```
    mysql installer > server 옆에 reconfigure > Auth 설정가서 legacy 선택 > 완료
    <br>
@@ -120,7 +121,7 @@
    
    2) Entity & Table 1:1 매핑 관련<br>
 
-Entity 클래스와 DTO 클래스를 분리하는 이유<br>
+>Entity 클래스와 DTO 클래스를 분리하는 이유<br>
 
   ```
 -View Layer와 DB Layer의 역할을 철저하게 분리하기 위해 사용합니다. 
@@ -128,7 +129,7 @@ Entity 클래스와 DTO 클래스를 분리하는 이유<br>
 -테이블과 매핑되는 Entity 클래스가 변경되면 여러 클래스에 영향을 끼치게 되는 반면, View와 통신하는 DTO 클래스(Request / Response 클래스)는 자주 변경되므로 분리해야 합니다.
 ```
 
-:rotating_light:분리하지 않을시 문제점 <br>
+>:rotating_light:분리하지 않을시 문제점 <br>
 ```
 1) 각 View 내에서 Domain Model의 getter만을 이용할때는 Domain Model 내에 Presentation을 위한 필드나 로직을 추가하게 되는데, 
 이러한 방식이 모델링의 순수성을 깨고 Domain Model 객체를 망가뜨리게 됩니다.
