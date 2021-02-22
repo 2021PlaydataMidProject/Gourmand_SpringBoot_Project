@@ -113,6 +113,8 @@ import BaseDropdown from "@/components/BaseDropdown";
 import CloseButton from "@/components/CloseButton";
 import { BDropdown } from "bootstrap-vue";
 import { BDropdownItem } from "bootstrap-vue";
+import {deleteCookie} from '../utils/cookies.js';
+
 export default {
   components: {
     BaseNav,

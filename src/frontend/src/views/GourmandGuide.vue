@@ -361,7 +361,7 @@ export default {
         this.axios
           .get(`/res/thumbnail/avgstar/500/37.2822,126.9994`, {})
           .then((res) => {
-            this.resList = res.data;
+            this.resList = res.data.slice(0,12);
           })
           .catch((error) => {
             alert("서버오류");

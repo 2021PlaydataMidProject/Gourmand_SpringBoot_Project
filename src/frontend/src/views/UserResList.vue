@@ -70,7 +70,7 @@ export default {
   },
   mounted() {
     this.axios
-      .get("/user/list")
+      .get(`/user/list/${this.$route.query.id}`)
       .then((req) => {
         this.resList = req.data;
         let names = [];

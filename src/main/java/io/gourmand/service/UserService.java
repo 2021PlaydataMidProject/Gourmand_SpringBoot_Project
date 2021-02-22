@@ -68,7 +68,13 @@ public class UserService {
 	JwtUtil jwtUtil;
 
 	PasswordEncoder passwordEncoder;
-
+	
+	@Autowired
+	public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+		this.userDAO = userRepository;
+		this.passwordEncoder = passwordEncoder;
+	}
+	
 	public SigninResponse getMatchedUser(SigninRequest sign, HttpServletResponse res) {
 		User signin = userDAO.findUserByUserId(sign.getUserId());
 		// 없는 유저
@@ -124,11 +130,6 @@ public class UserService {
 		return userDAO.save(user);
 	}
 
-	@Autowired
-	public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
-		this.userDAO = userRepository;
-		this.passwordEncoder = passwordEncoder;
-	}
 
 	// 팔로우, 팔로잉, 추천 계정 등에 들어갈 간략한 유저 정보 및 Thumbnail을 불러와 controller에 보낸다.
 	public UserThumbnail getUserThumbnail(User user) {

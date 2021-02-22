@@ -60,8 +60,6 @@ public class UserController {
 	@PostMapping("/user/regi") // "/auth/regi"
 	public void createUser(@RequestParam("userImg") List<MultipartFile> userImg, @RequestParam("user") String userRegi,
 			@RequestParam("userStandard") String userStandardregi) {
-		System.out.println(userRegi);
-		System.out.println(userStandardregi);
 		ObjectMapper mapper = new ObjectMapper();
 		try {
 			UserStandard userStandard = userService
@@ -102,17 +100,19 @@ public class UserController {
 	public List<UserSimple> getUserIdOfFamousUser() {
 		return userService.getFamousUsers();
 	}
-	
+
+	// 내 리스트 불러오기
 	@GetMapping("/user/list")
-	public Map<String, List<ResThumbnail>> getResOfList(HttpServletRequest hsp){
+	public Map<String, List<ResThumbnail>> getResOfList(HttpServletRequest hsp) {
 		Claims claim = new JwtUtil(secret).getClaims(CookieUtil.getCookie(hsp, "accessToken").getValue());
 		Long userNum = claim.get("user_num", Long.class);
-		
+
 		Map<String, List<ResThumbnail>> resList = new HashMap<>();
-		resService.getResListName(userNum).forEach(name -> resList.put(name, resService.getAllResOfList(userNum, name)));
+		resService.getResListName(userNum)
+				.forEach(name -> resList.put(name, resService.getAllResOfList(userNum, name)));
 		return resList;
 	}
-	
+
 	// 내가 작성한 리스트 카운트 불러오는거
 	@GetMapping("/user/count/list")
 	public Long getUserCountByList(HttpServletRequest hsp) {
@@ -120,13 +120,34 @@ public class UserController {
 		Long userNum = claim.get("user_num", Long.class);
 		return userService.getUserListCounts(userNum);
 	}
-	
-	// 회원 1인의 전체 정보 가져오기
+
+	// 내 전체 정보 가져오기
 	@GetMapping("/user/info")
 	public UserInfo getUserInfo(HttpServletRequest hsp) {
 		Claims claim = new JwtUtil(secret).getClaims(CookieUtil.getCookie(hsp, "accessToken").getValue());
 		Long userNum = claim.get("user_num", Long.class);
 		return userService.getUserInfo(userNum);
+	}
+
+	// 회원 리스트 불러오기
+	@GetMapping("/user/list/{id}")
+	public Map<String, List<ResThumbnail>> getResOfList(@PathVariable("id") Long id) {
+		Map<String, List<ResThumbnail>> resList = new HashMap<>();
+		resService.getResListName(id)
+				.forEach(name -> resList.put(name, resService.getAllResOfList(id, name)));
+		return resList;
+	}
+
+	// 리스트 카운트 불러오는거
+	@GetMapping("/user/count/list/{id}")
+	public Long getUserCountByList(@PathVariable("id") Long id) {
+		return userService.getUserListCounts(id);
+	}
+
+	// 전체 정보 가져오기
+	@GetMapping("/user/info/{id}")
+	public UserInfo getUserInfo(@PathVariable("id") Long id) {
+		return userService.getUserInfo(id);
 	}
 
 	// 선호 food_type 갯수로 내림 차순 //안됨 - 500
@@ -149,5 +170,17 @@ public class UserController {
 		Claims claim = new JwtUtil(secret).getClaims(CookieUtil.getCookie(hsp, "accessToken").getValue());
 		Long userNum = claim.get("user_num", Long.class);
 		return userService.getAllOrderByUserNumNStar(userNum);
+	}
+	
+	// 유저 당 리뷰를 시간순으로 반환
+	@GetMapping("/res/user/review/writeDate/{id}")
+	public List<ReviewThumbnail> getAllOrderByUserNumNDate(@PathVariable("id") Long id) {
+		return userService.getAllOrderByUserNumNDate(id);
+	}
+
+	// 유저 당 리뷰를 별점순으로 반환
+	@GetMapping("/res/user/review/Star/{id}")
+	public List<ReviewThumbnail> getAllOrderByUserNumNStar(@PathVariable("id") Long id) {
+		return userService.getAllOrderByUserNumNStar(id);
 	}
 }

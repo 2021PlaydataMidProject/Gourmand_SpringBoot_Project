@@ -1,6 +1,6 @@
 <template>
   <section class="section section-shaped section-lg my-0">
-    <div class="mb-5 row mt-0">
+    <div class="mb-5 row mt-0" v-if="resInfo.res_img.length>0">
         <img
           v-for="(value, key) in [0,1,2,3]" v-bind:key="key"
           :src="'img/res/' + resInfo.res_img[value%resInfo.res_img.length].name"
@@ -66,7 +66,7 @@
         <hr />
         <h3 class="h5 font-weight-bold">이 가게를 맛집으로 등록한 구르망들</h3>
         <div class="mt-4 row">
-          <div v-for="(value, key) in resUser" v-bind:key="key">
+          <div v-for="(value, key) in resUser" v-bind:key="key" @click="move(value.user_num)">
             <img
               v-if="value.user_img != null"
               v-lazy="'img/user/' + value.user_img.name"
@@ -92,7 +92,7 @@
         <div>
           <div v-for="(rev, key) in revs" v-bind:key="key" class="row">
             <hr class="col-lg-11 col-sm-11" />
-            <div class="col-lg-2 col-sm-2">
+            <div class="col-lg-2 col-sm-2" @click="move(rev.user.user_num)" >
               <img
                 v-if="rev.user.user_img != null"
                 v-lazy="'img/user/' + rev.user.user_img.name"
@@ -269,6 +269,9 @@ export default {
     },
     getUser(){
       return sessionStorage.getItem("user")!=null;
+    },
+    move(value){
+      location.href=`/userpage?id=${value}`;
     }
   }
 };

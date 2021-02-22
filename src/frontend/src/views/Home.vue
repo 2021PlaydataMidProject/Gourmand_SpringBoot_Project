@@ -88,7 +88,7 @@
                 />
                 <img
                   v-else
-                  v-lazy="'img/theme/team-4-800x800.jpg'"
+                  v-lazy="'img/theme/dish.png'"
                   alt="Rounded image"
                   class="img-fluid rounded shadow"
                 />

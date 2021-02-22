@@ -15,6 +15,7 @@ import MapForAll from "./views/MapForAll.vue";
 import ResPage from "./views/ResPage.vue";
 import UserEdit from "./views/UserEdit.vue";
 import MyPage from "./views/MyPage.vue";
+import UserPage from "./views/UserPage.vue"
 import StarRating from "./views/StarRating.vue";
 import MapForAllSearch from "./views/MapForAllSearch.vue"
 import GourmandGuide from "./views/GourmandGuide.vue"
@@ -160,6 +161,15 @@ export default new Router({
       components: {
         header: AppHeaderOther,
         default: MyPage,
+        footer: AppFooter
+      }
+    },
+    {
+      path: "/userpage",
+      name: "userPage",
+      components: {
+        header: AppHeaderOther,
+        default: UserPage,
         footer: AppFooter
       }
     },

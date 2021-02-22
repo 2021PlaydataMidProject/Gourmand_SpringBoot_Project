@@ -144,7 +144,7 @@ export default {
   },
   mounted() {
     this.axios
-      .get("/res/user/review/Star", {})
+      .get(`/res/user/review/Star/${this.$route.query.id}`, {})
       .then((rev) => {
         this.revs_star = rev.data;
       })
@@ -152,7 +152,7 @@ export default {
         alert("서버 오류");
       });
     this.axios
-      .get("/res/user/review/writeDate", {})
+      .get(`/res/user/review/writeDate/${this.$route.query.id}`, {})
       .then((rev) => {
         this.revs_date = rev.data;
       })
