@@ -140,8 +140,4 @@ export default {
 };
 </script>
 <style>
-<<<<<<< HEAD
 </style>
-=======
-</style>
->>>>>>> origin/yeonji

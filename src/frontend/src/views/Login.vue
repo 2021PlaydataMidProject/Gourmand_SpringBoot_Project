@@ -59,13 +59,10 @@
           </card>
           <div class="row mt-3">
             <div class="col-6">
-              <a href="#" class="text-light">
-                <small>Forgot password?</small>
-              </a>
             </div>
             <div class="col-6 text-right">
-              <a href="#" class="text-light">
-                <small>Create new account</small>
+              <a href="/register" class="text-primary">
+                <small>계정생성하기</small>
               </a>
             </div>
           </div>
@@ -74,7 +71,6 @@
     </div>
   </section>
 </template>
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
 
 import 
@@ -108,7 +104,6 @@ export default {
         })
         .then((res) => {
           if (res.data) {
-            console.log(res);
             sessionStorage.setItem("user", true);
             saveUserNumToCookie(res.data.user_num);
             saveUserIdToCookie(res.data.user_id);
