@@ -120,22 +120,23 @@
    
    2) Entity & Table 1:1 매핑 관련<br>
 
->Entity 클래스와 DTO 클래스를 분리하는 이유
+Entity 클래스와 DTO 클래스를 분리하는 이유<br>
 
   ```
 -View Layer와 DB Layer의 역할을 철저하게 분리하기 위해 사용합니다. 
 
 -테이블과 매핑되는 Entity 클래스가 변경되면 여러 클래스에 영향을 끼치게 되는 반면, View와 통신하는 DTO 클래스(Request / Response 클래스)는 자주 변경되므로 분리해야 합니다.
+```
 
-:rotating_light:분리하지 않을시 문제점 
-
+:rotating_light:분리하지 않을시 문제점 <br>
+```
 1) 각 View 내에서 Domain Model의 getter만을 이용할때는 Domain Model 내에 Presentation을 위한 필드나 로직을 추가하게 되는데, 
 이러한 방식이 모델링의 순수성을 깨고 Domain Model 객체를 망가뜨리게 됩니다.
 
 2) Domain Model을 복잡하게 조합한 형태의 Presentation 요구사항들이 있기 때문에 Domain Model을 직접 사용하는 것은 어렵습니다.
 즉 DTO는 Domain Model을 복사한 형태로, 다양한 Presentation Logic을 추가한 정도로 사용하며 Domain Model 객체는 Persistent만을 위해서 사용합니다.
-- 참고 사이트 ("https://gmlwjd9405.github.io/2018/12/25/difference-dao-dto-entity.html")
 ```
+참고 사이트 https://gmlwjd9405.github.io/2018/12/25/difference-dao-dto-entity.html
 <br>
 
 
