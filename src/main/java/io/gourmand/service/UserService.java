@@ -25,11 +25,14 @@ import io.gourmand.dao.UserImgRepository;
 import io.gourmand.dao.UserRepository;
 import io.gourmand.dao.UserStandardRepository;
 import io.gourmand.domain.Review;
+import io.gourmand.domain.ReviewStandard;
 import io.gourmand.domain.User;
 import io.gourmand.domain.UserImg;
 import io.gourmand.domain.UserResList;
 import io.gourmand.domain.UserStandard;
+import io.gourmand.dto.RevDTO.RevRegister;
 import io.gourmand.dto.RevDTO.ReviewThumbnail;
+import io.gourmand.dto.ReviewStandardDTO.ReviewStandardRegister;
 import io.gourmand.dto.UserDTO.SigninRequest;
 import io.gourmand.dto.UserDTO.SigninResponse;
 import io.gourmand.dto.UserDTO.UserCountsInfo;
@@ -109,24 +112,58 @@ public class UserService {
    public UserThumbnail getUserThumbnail(User user) {
       return UserThumbnail.of(userDAO.findById(user.getUserNum()).get());
    }
-
-   // 회원 1인 탈퇴 - 얽혀있는 테이블이 많아서 null point exception이 많이 뜬다.0
-//   public void deleteUser(User user) {
-//      userStandardDAO.deleteById(user.getUserStandard().getId());
-//      userDAO.deleteById(user.getUserId());
-//      userImgDAO.deleteById(user.getUserNum());
-//   }
-
+   
+ 
    // 회원 가입시 회원 기준 저장
    public UserStandard insertUserStandard(UserStandardRegister userStandard) {
       return userStandardDAO.save(UserStandardRegister.toEntity(userStandard));
    }
 
+   // 회원 기준 수정
+//   public UserStandard updateUserStandard(UserStandardRegister userStandard) {
+//	   return userStandardDAO.save(UserStandardRegister.toEntity(userStandard));
+//	}
+   
    // 회원가입
    public User insertUser(UserRegister user, UserStandard userStandard) {
       return userDAO.save(UserRegister.toEntity(user, userStandard));
    };
 
+   // 회원 정보 수정
+ 	public User updateUser(UserRegister user, UserStandardRegister userStandard, Long userNum) {
+ 		User us = userDAO.findByUserNum(userNum); //
+ 		us.setName(user.getName());
+ 		us.setPw(user.getPw());
+ 		us.setDob(user.getDob());
+ 		us.setJob(user.getJob());
+ 		us.setPageStatus(user.getPageStatus());
+ 		
+ 		UserStandard userSt = us.getUserStandard();
+ 		userSt.setUAccess(userStandard.getUaccess());
+ 		userSt.setUClean(userStandard.getUclean());
+ 		userSt.setUCost(userStandard.getUcost());
+ 		userSt.setUFlavor(userStandard.getUflavor());
+ 		userSt.setUKindness(userStandard.getUkindness());
+ 		userSt.setUMood(userStandard.getUmood());
+ 		
+ 		return us;
+ 	}
+ 	
+ 	
+ 	// 회원 이미지 삭제
+	public void deleteUserImg(Long id) {
+		userImgDAO.deleteById(id);
+	}
+
+	// 회원 삭제
+	public void deleteUser(Long userNum) {
+		User us = userDAO.findByUserNum(userNum); // .get(); 안 되는 이유?
+		us.getUserImg().forEach(img -> userImgDAO.delete(img));
+		userStandardDAO.delete(us.getUserStandard());
+		userDAO.delete(us);
+
+		}	
+	
    // MultipartFile -> entity -> SQL저장
    public UserImg insertUserImg(MultipartFile userImg, User user) {
       return userImgDAO.save(UserImg.of(userImg, user));
