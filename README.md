@@ -139,6 +139,18 @@ Entity 클래스와 DTO 클래스를 분리하는 이유<br>
 참고 사이트 https://gmlwjd9405.github.io/2018/12/25/difference-dao-dto-entity.html
 <br>
 
+   3) 서버간의 데이터 송수신 오류발생 <br>
+
+> 이슈 내용 <br>
+```
+javasript의 formdata 로 객체를 전송시 String으로 변환되어 [Object object] 로 전송되는 문제가 발생되었다.
+```
+>해결방법<br>
+```
+json 객체를 String 으로 변환해주는 JSON.stringfy() 함수를 사용해서 프론트앤드에서 백앤드 서버로 전송했다.
+백앤드 Spring boot server에서는 해당 String을 jackson을 활용한 Object Mapping으로 객체로 변환하였다.
+```
+
 
 ## MAP API
 
@@ -153,7 +165,8 @@ Entity 클래스와 DTO 클래스를 분리하는 이유<br>
 #### :sushi: KaKao Web Dynamic Map
      1) 검색을 통한 음식점 정보 찾기에 활용
 
-
+#### :hamburger: Naver Local Search
+     1) 음식점 명을 이용해 음식점 주소 찾기에 활용
 
 ## Setting Up <br> 
 
