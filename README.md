@@ -104,7 +104,7 @@
 
 ### Backend  <br>
 
-   1)지도 백엔드 서버에서 오류발생 <br>
+   1) 지도 백엔드 서버에서 오류발생 <br>
    > ErrorCode <br>
    
   ```
@@ -193,14 +193,14 @@ npm run serve
 
 ### :rice_ball: Node Express 실행 <br>
 1. node와 npm 버전 확인 
-    <br> 
+    
 ~~~cmd
  node -version 
  npm -version
 ~~~
 
 <br>
-2. 환경 설치 <br>
+2. 환경 설치 
 
 ~~~cmd
  npm install -g nodemon
