@@ -2,7 +2,7 @@
 ###                   By Team 모도리( 빈틈없이 아주 야무진 사람 ) 
 <br><br>
 
-![logo1](https://user-images.githubusercontent.com/73862452/108665444-4a3b5780-7518-11eb-997a-f1e66e8be3d4.png)
+![logo1](https://user-images.githubusercontent.com/73862452/108666568-bd45cd80-751a-11eb-8166-d8e06e03e3ea.jpeg)
 
 <h3><b>😋 먹기 위해 산다!</b></h3><br>
 
@@ -16,7 +16,7 @@
 '아, 저거 맛있었지!'하다 잠드는,<br>
 미각으로 온 세상을 기억하는 프로 기억러(like 장문희🤗),<br><br><br>
 
-![food](https://user-images.githubusercontent.com/73862452/108665468-57f0dd00-7518-11eb-8664-d0efe0a5bff4.png)
+![resized-image-Promo](https://user-images.githubusercontent.com/73862452/108666572-c040be00-751a-11eb-8b71-063271f0bd4d.jpeg)
 <h3><b>세상은 넓고, 맛있는 음식은 많다!<b><br>
 우리 모두 맛있는 것만 먹고 살 자격이 있습니다!!!!!</b></h3><br><br>
 
@@ -61,8 +61,9 @@
 			   내가 좋아할만한 맛집을 추천한다.
       4. 방송맛집, 연예인 맛집 등을 지도 위 리스트로 보기 편하게 소개한다.
 
+## Service
 
-#### :world_map: 나만의 맛집을 지도를 통해 보여주기
+#### :world_map: 나만의 맛집들을 지도 보여주기
     - 네이버/카카오 지도 연동
     - 지도 위에 위치 표시
     - 위치 클릭 시 정보 표시
@@ -99,12 +100,11 @@
 
 ![techimage](https://user-images.githubusercontent.com/61037197/108664047-49ed8d00-7515-11eb-88d9-f530edb43261.jpg)
 
-## Issue <br><br>
+## Issue <br>
 
-### backend  <br><br>
+### Backend  <br>
 
-   1) 지도 백엔드 서버에서 오류발생 <br>
-   
+   1)지도 백엔드 서버에서 오류발생 <br>
    > ErrorCode <br>
    
   ```
@@ -112,7 +112,7 @@
   ```
    <br> 
    
-   >해결방법 <br> 
+   해결방법 <br> 
    ```
    mysql installer > server 옆에 reconfigure > Auth 설정가서 legacy 선택 > 완료
    <br>
@@ -121,7 +121,7 @@
    
    2) Entity & Table 1:1 매핑 관련<br>
 
->Entity 클래스와 DTO 클래스를 분리하는 이유<br>
+Entity 클래스와 DTO 클래스를 분리하는 이유<br>
 
   ```
 -View Layer와 DB Layer의 역할을 철저하게 분리하기 위해 사용합니다. 
@@ -129,7 +129,7 @@
 -테이블과 매핑되는 Entity 클래스가 변경되면 여러 클래스에 영향을 끼치게 되는 반면, View와 통신하는 DTO 클래스(Request / Response 클래스)는 자주 변경되므로 분리해야 합니다.
 ```
 
->:rotating_light:분리하지 않을시 문제점 <br>
+:rotating_light:분리하지 않을시 문제점 <br>
 ```
 1) 각 View 내에서 Domain Model의 getter만을 이용할때는 Domain Model 내에 Presentation을 위한 필드나 로직을 추가하게 되는데, 
 이러한 방식이 모델링의 순수성을 깨고 Domain Model 객체를 망가뜨리게 됩니다.
@@ -139,19 +139,7 @@
 ```
 참고 사이트 https://gmlwjd9405.github.io/2018/12/25/difference-dao-dto-entity.html
 <br>
-  
-   3) 서버간의 데이터 송수신 오류발생 <br>
 
-> 이슈 내용 <br>
-```
-javasript의 formdata 로 객체를 전송시 String으로 변환되어 [Object object] 로 전송되는 문제가 발생되었다.
-```
-
->해결방법<br>
-```
-json 객체를 String 으로 변환해주는 JSON.stringfy() 함수를 사용해서 프론트앤드에서 백앤드 서버로 전송했다.
-백앤드 Spring boot server에서는 해당 String을 jackson을 활용한 Object Mapping으로 객체로 변환하였다.
-```
 
 ## MAP API
 
@@ -166,8 +154,7 @@ json 객체를 String 으로 변환해주는 JSON.stringfy() 함수를 사용해
 #### :sushi: KaKao Web Dynamic Map
      1) 검색을 통한 음식점 정보 찾기에 활용
 
-#### :hamburger: Naver Local Search
-     1) 음식점 명을 이용해 음식점 주소 찾기에 활용
+
 
 ## Setting Up <br> 
 
@@ -203,7 +190,7 @@ npm run serve
  
 <br>
 
-### :rice_ball: Node express 실행 <br>
+### :rice_ball: Node Express 실행 <br>
 
 1. node와 npm 버전 확인 
     <br> 
@@ -222,6 +209,7 @@ npm run serve
  npm install cores –save
  npm install express-session –save
  npm install axios –save 
+ 
 ~~~
 
 <br>
@@ -288,62 +276,68 @@ console.log(decoded);
 ## Controller - APIs
 </details><details>
 <summary>login controller</summary>
-signin         //로그인<br>
-logout         //로그아웃
+	
+	signin         //로그인
+	logout         //로그아웃
+	 
 </details>
 
 <details>
-<summary>res controller</summary>
-getResInfo      // 가게 정보를 담은 페이지<br>
-getResThumbnail      // Thumbnail 정보를 담은 페이지<br>
-getAllResThumbnail   // 거리별(default) 모든 Thumbnail<br>
-getResThumbnailByCategory   // 카테고리별<br>
-getResThumbnailByAvgStar   // 별점순   <br>
-getResThumbnailByResName   // 이름 검색<br>
-getResThumbnailByLocation   // 지역 검색<br>
-getUserByRes      // 해당 가게를 리스트에 넣은 유저 반환<br>
-getResOfList      // 해당 유저의 모든 리스트 맵으로 반환<br>
-insetResToUser      // 가게 정보 저장<br>
-createRes      // reslist 추가<br>
-updateRes      // 가게 정보 수정<br>
-deleteRes      // 가게 정보 삭제<br>
-insetResToUser      // 가게 이미지만 추가   <br>
-insertImgOfRes      // 가게 정보 수정<br>
+<summary>res controller</summary>	
+	
+	getResInfo      	// 가게 정보를 담은 페이지
+	getResThumbnail      		// Thumbnail 정보를 담은 페이지
+	getAllResThumbnail   		// 거리별(default) 모든 Thumbnail
+	getResThumbnailByCategory   		// 카테고리별
+	getResThumbnailByAvgStar   		// 별점순   
+	getResThumbnailByResName   		// 이름 검색
+	getResThumbnailByLocation   		// 지역 검색
+	getUserByRes      		// 해당 가게를 리스트에 넣은 유저 반환
+	getResOfList      		// 해당 유저의 모든 리스트 맵으로 반환
+	insetResToUser      		// 가게 정보 저장
+	createRes      		// reslist 추가
+	updateRes      		// 가게 정보 수정
+	deleteRes      		// 가게 정보 삭제
+	insetResToUser      		// 가게 이미지만 추가   
+	insertImgOfRes      		// 가게 정보 수정 
+	
 </details>
    
 <details>
 <summary>rev controller</summary>
-getReviewList      // 모든 리뷰 정보 조회<br>
-getReview      // 하나의 리뷰 정보 조회<br>
-createRev      // 리뷰 정보 저장<br>
-updateRev      // 리뷰 수정<br>
-deleteReview      // 리뷰 삭제<br>
-deleteRevImg      // 리뷰 이미지 삭제<br>
-returnAllRevOfRes      // 가게에 대한 리뷰 Thumbnail<br>
-returnResStandard      // 가게에 대한 standard 정보<br>
-returnAllOrderByTime   // 시간순으로 12개의 revThumbnail<br>
-returnAllRevNumOfUser   // 회원의 모든리뷰 수<br>
+	
+	getReviewList     	 // 모든 리뷰 정보 조회
+	getReview     		 // 하나의 리뷰 정보 조회
+	createRev     		 // 리뷰 정보 저장
+	updateRev     		 // 리뷰 수정
+	deleteReview      	// 리뷰 삭제
+	deleteRevImg     	// 리뷰 이미지 삭제
+	returnAllRevOfRes       // 가게에 대한 리뷰 Thumbnail
+	returnResStandard       // 가게에 대한 standard 정보
+	returnAllOrderByTime    // 시간순으로 12개의 revThumbnail
+	returnAllRevNumOfUser   // 회원의 모든리뷰 수
 </details>
 
 <details>
 <summary>user controller</summary>
-createUser      // 회원 가입 <br>
-updateUser      // 유저 정보 수정<br>
-deleteUserStandardUser   // 회원 기준 삭제<br>
-deleteUser      // 회원 삭제<br>
-deleteUserImg      // 회원 이미지 삭제<br>
-createUserStandard   // 회원 기준 저장<br>
-returnUserResList      // 회원의 list 이름들 반환 (list에 저장용)<br>
-getUserIdOfFamousUser   // 인기 많은 유저의 아이디와 닉네임<br>
-getResOfList      // 내 리스트 불러오기<br>
-getUserCountByList   // 내가 작성한 리스트 카운트 불러오는거<br>
-getUserInfo      // 내 전체 정보 가져오기<br>
-getResOfList      // 회원 리스트 불러오기<br>
-getUserCountByList   // 리스트 카운트 불러오는거<br>
-getAllOrderByUserNumNStar   // 유저 당 리뷰를 별점순으로 반환("/res/user/review/writeDate")나의 페이지<br>
-getAllOrderByUserNumNDate// 유저 당 리뷰를 시간순으로 반환("/res/user/review/Star")나의 페이지<br>
-getAllOrderByUserNumNStar   // 유저 당 리뷰를 별점순으로 반환("/res/user/review/writeDate/{id}")타인의 페이지<br>
-getAllOrderByUserNumNDate// 유저 당 리뷰를 시간순으로 반환("/res/user/review/Star/{id}")타인의 페이지<br>
+	
+	createUser      	// 회원 가입 
+	updateUser      // 유저 정보 수정
+	deleteUserStandardUser   // 회원 기준 삭제
+	deleteUser      // 회원 삭제
+	deleteUserImg      // 회원 이미지 삭제
+	createUserStandard   // 회원 기준 저장
+	returnUserResList      // 회원의 list 이름들 반환 (list에 저장용)
+	getUserIdOfFamousUser   // 인기 많은 유저의 아이디와 닉네임
+	getResOfList      // 내 리스트 불러오기
+	getUserCountByList   // 내가 작성한 리스트 카운트 불러오는거
+	getUserInfo      // 내 전체 정보 가져오기
+	getResOfList      // 회원 리스트 불러오기
+	getUserCountByList   // 리스트 카운트 불러오는거
+	getAllOrderByUserNumNStar   // 유저 당 리뷰를 별점순으로 반환("/res/user/review/writeDate")나의 페이지
+	getAllOrderByUserNumNDate// 유저 당 리뷰를 시간순으로 반환("/res/user/review/Star")나의 페이지
+	getAllOrderByUserNumNStar   // 유저 당 리뷰를 별점순으로 반환("/res/user/review/writeDate/{id}")타인의 페이지
+	getAllOrderByUserNumNDate// 유저 당 리뷰를 시간순으로 반환("/res/user/review/Star/{id}")타인의 페이지
 </details>
 
 
@@ -356,9 +350,9 @@ getAllOrderByUserNumNDate// 유저 당 리뷰를 시간순으로 반환("/res/us
 #### :bento: 프로젝트 진행 과정 
 https://drive.google.com/drive/folders/1-G8_Bw57G7msK3BAfzhLRIw_ZSRumXYm
 
-#### :bagel: 프로젝트 관련 참고 내용 (팀원 장종욱 개인 기술 블로그)
+#### :bagel: 프로젝트 관련 참고 내용 1.
 https://kowo1001.github.io/project/springboot-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EC%B0%B8%EA%B3%A0%EB%82%B4%EC%9A%A9/
-#### :bagel: 프로젝트 관련 참고 내용 (팀원 최태열 개인 기술 블로그)
+#### :bagel: 프로젝트 관련 참고 내용 2.
 https://ta-ye.github.io/study/#Vue.js
 
 
