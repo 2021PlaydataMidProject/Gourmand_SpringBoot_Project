@@ -46,7 +46,20 @@
 
 ### topic : 나만의 맛집 지도 <br>
 
-<div>
+<table>
+<tr>
+<td>
+
+![graph1](https://user-images.githubusercontent.com/61037197/108643287-52ca6880-74ed-11eb-8310-9532265d8f25.PNG)
+</td>
+<td>
+
+![graph2](https://user-images.githubusercontent.com/61037197/108643291-552cc280-74ed-11eb-8621-f341e45f8125.PNG)
+</td>
+</tr>
+</table>
+
+
 
 ![graph1](https://user-images.githubusercontent.com/61037197/108643287-52ca6880-74ed-11eb-8310-9532265d8f25.PNG){: width="400"}
 #### 주제선정이유1 <br>
