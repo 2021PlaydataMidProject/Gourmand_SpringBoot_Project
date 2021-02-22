@@ -11,6 +11,8 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
@@ -59,12 +61,20 @@ public class UserService {
     * @return 아이디 비밀번호가 일치하는 유저
     */
    public SigninResponse getMatchedUser(SigninRequest sign, HttpServletResponse res) {
+
       User signin = userDAO.findUserByUserId(sign.getUserId());
+      
+      PasswordEncoder encoder = new BCryptPasswordEncoder();
+      System.out.println("DB에 있는 암호화된 PW : "+signin.getPw());
+      System.out.println("USER로부터 입력받은 PW : "+sign.getPw());
       // 없는 유저
-      if (signin == null || !signin.getPw().equals(sign.getPw())) {
+      if (signin == null || !encoder.matches(sign.getPw(),signin.getPw())) {
          return null;
       }
       
+//      if (signin == null || !signin.getPw().equals(sign.getPw())) {
+//          return null;
+//       }
       final String token = jwtUtil.generateToken(signin);
       Cookie accessToken = CookieUtil.createCookie(JwtUtil.ACCESS_TOKEN_NAME, token);
       res.addCookie(accessToken);

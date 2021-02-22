@@ -138,10 +138,11 @@ function onDelete(title) {
 
 
 function onSubmit(title, address, lat, lng) {
+    onSubmitGet(title);
     $.ajax({
         url: "/location",
         data: {title, address, lat, lng},
-        type: "POST", 
+        type: "POST"
     })
     .done((response) => {
         console.log("데이터 요청 성공");
@@ -150,6 +151,22 @@ function onSubmit(title, address, lat, lng) {
     .fail((error) => {
         console.log("데이터 요청 실패");
         alert("맛집 추가 실패.");
+    });
+}
+
+function onSubmitGet(title) {
+    $.ajax({
+        url: "/location",
+        data: {title},
+        type: "GET"
+    })
+    .done((response) => {
+        console.log("데이터 요청 성공");
+        alert("맛집 가져오기 성공.");
+    })
+    .fail((error) => {
+        console.log("데이터 요청 실패");
+        alert("맛집 가져오기 실패.");
     });
 }
 

@@ -6,6 +6,31 @@ const mapOptions = {
 
 const map = new naver.maps.Map("map", mapOptions);
 
+// 리스트이름이 같은 가게를 모두 가져오기
+// $.ajax({
+//     url: "/location/resnum",
+//     type: "GET",
+// }).done((response) => {
+//     //데이터가 없다면 리턴
+//     if (response.message !== "success") return;
+//     // 데이터가 있다면 data에 넣어줌
+//     const data = response.data;
+    
+//     let ListName = [];
+//     let res_num = [];
+
+//     const getClickHandler = (i) => () => {
+//         const marker = ListName[i];
+//         const infowindow = infowindowList[i];
+//         // 지도위에 마커가 표시되어 있으면 마커를 클릭했을 때 인포윈도우가 사라져야함
+//         if ( infowindow.getMap()) {
+//             infowindow.close();
+//         } else {
+//             // 닫혀있으면 그 마커 위에 인포윈도우 표시
+//             infowindow.open(map, marker);
+//         }
+//     };
+
 $.ajax({
     url: "/location",
     type: "GET",

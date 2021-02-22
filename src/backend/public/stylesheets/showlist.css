@@ -1,0 +1,379 @@
+
+
+  
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+
+
+::selection{
+  color: #ffff;
+  background: #FFB53C(142, 73, 232);
+}
+body{
+  width: 100%;
+  height: 100vh;
+  /* overflow: hidden; */
+  padding: 10px;
+  background: linear-gradient(to bottom, #EEB3A3 0%, #F3553C 100%);
+}
+.wrapper{
+  /* 지도위 */
+  top: 100px;
+  z-index: 10000;
+
+  background: #fff;
+  max-width: 400px;
+  width: 100%;
+  margin: 120px auto;
+  padding: 25px;
+  border-radius: 5px;
+  box-shadow: 0px 10px 15px rgba(0,0,0,0.1);
+}
+.wrapper header{
+  font-size: 30px;
+  font-weight: 600;
+}
+.wrapper .inputField{
+  margin: 20px 0;
+  width: 100%;
+  display: flex;
+  height: 45px;
+}
+.inputField input{
+  width: 85%;
+  height: 100%;
+  outline: none;
+  border-radius: 3px;
+  border: 1px solid #ccc;
+  font-size: 17px;
+  padding-left: 15px;
+  transition: all 0.3s ease;
+}
+.inputField input:focus{
+  border-color: #FFB53C;
+}
+.inputField button{
+  width: 50px;
+  height: 100%;
+  border: none;
+  color: #fff;
+  margin-left: 5px;
+  font-size: 21px;
+  outline: none;
+  background: #FFB53C;
+  cursor: pointer;
+  border-radius: 3px;
+  opacity: 0.6;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+.inputField button:hover,
+.footer button:hover{
+  background: #FFB53C;
+}
+.inputField button.active{
+  opacity: 1;
+  pointer-events: auto;
+}
+.wrapper .footer{
+  display: flex;
+  width: 100%;
+  margin-top: 20px;
+  align-items: center;
+  justify-content: space-between;
+}
+.footer button{
+  padding: 6px 10px;
+  border-radius: 3px;
+  border: none;
+  outline: none;
+  color: #fff;
+  font-weight: 400;
+  font-size: 16px;
+  margin-left: 5px;
+  background: #FFB53C;
+  cursor: pointer;
+  user-select: none;
+  opacity: 0.6;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+.footer button.active{
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* 테스트! */
+
+ul {
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+    /* background: #333;  */
+    width: 100%;
+    z-index: 1000;
+}
+
+/* 지도 padding, margin 수정 */
+
+
+li {
+    /* float: left; */
+}
+
+li a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    /* text-align: center; */
+    padding: 14px 16px;
+}
+
+
+.active {
+    background-color: #FFB53C;
+  }
+  
+  .activedelete {
+    background-color: #F3553C;
+  }
+  
+  .showlist {
+    background-color: #642A02;
+  }
+  
+  li a:hover {
+    background-color: #111;
+  }
+  
+  
+  /* 지도 위 인포박스 설정_ 지도위에 놓기  */
+  #infoBox {
+    position: absolute;
+    top: 100px;
+    z-index: 10000;
+    background: white;
+    left: 20px;
+    padding: 15px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+  
+    border-radius: 4px;
+    text-align: center;
+  }
+  
+  /* 인포박스 타이틀  */
+  #infoTitle {
+     font-size: 15px;
+     font-weight: bolder;
+  }
+  
+  .marker {
+    border: 1px solid black;
+    background: green;
+    opacity: 0.8;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+  }
+  
+  .infowindow_wrap {
+    background: white;
+    padding: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+  }
+  
+  /* infowindow 타이틀은 진하고 크게 설정 */
+  .infowindow_title{
+    font-size: 15px;
+    font-weight: bolder;
+  }
+  
+  /* infowindow 내용은 옅고 작게 설정 */
+  .infowindow_content {
+    font-size: 13px;
+    font-weight: normal;
+  }
+  
+  /* infowindow 날짜는 옅고 작게 설정 */
+  .infowindow_date {
+    font-size: 13px;
+    font-weight: normal;
+  }
+  
+  /* 현재 위치 상자 생성 */
+  #current {
+    position : absolute;
+    top : 180px;
+    z-index : 10000;
+    background : white;
+    left : 20px;
+    padding : 15px;
+    border : 1px solid rgba(0, 0, 0, 0.2);
+    border-radius : 4px;
+    text-align : center;
+    cursor : pointer;
+    font-weight: bolder;
+  }
+  
+  /* 현재 위치 애니메이션 적용 */
+  .pulse {
+    display: block;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: rgba(255, 0, 0);
+    animation: pulse 1.7s infinite;
+  }
+  
+  /* 검색창 CSS 적용 */
+  #search {
+    position: absolute;
+    top: 100px;
+    left: 140px;
+    padding: 15px;
+    z-index: 10000;
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    text-align: center;
+  }
+  
+  #search_input {
+    border: none;
+  }
+  /* 검색어를 찾기 위해 마우스 클릭을 하거나 검색어 입력을 했을 때 
+  파란 테두리가 기본적으로 생길 수 있음 
+  그런것들을 원하지 않기에 다음과 같은 설정을 함 */
+  #search_input:focus {
+    outline: none;
+  }
+  
+  /* 시간대별로 애니메이션을 어떻게 나갈지 미리 명시 */
+  /* -webkit-box-shadow에서 파이어폭스인 경우 앞에 접두어 -webkit-를 -moz-로 수정해야함
+  -webkit-은 크롬브라우저에서만 적용 */
+  @keyframes pulse {
+    0% {
+      box-shadow: 0 0 0 0 rgba(204, 49, 44, 0.4);
+      -moz-box-shadow: 0 0 0 0 rgba(204, 49, 44, 0.4);
+    }
+  
+    70% {
+      box-shadow: 0 0 0 20px rgba(204, 49, 44, 0);
+      -moz-box-shadow: 0 0 0 20px rgba(204, 49, 44, 0);
+    }
+  
+    100% {
+      box-shadow: 0 0 0 0 rgba(204, 49, 44, 0);
+      -moz-box-shadow: 0 0 0 0 rgba(204, 49, 44, 0);
+    }
+  }
+  
+  /* @-webkit-keyframes 크롬브라우저에서도 애니메이션 가능하게끔 설정 */
+  @-webkit-keyframes pulse {
+    0% {
+      box-shadow: 0 0 0 0 rgba(204, 49, 44, 0.4);
+      -moz-box-shadow: 0 0 0 0 rgba(204, 49, 44, 0.4);
+    }
+  
+    70% {
+      box-shadow: 0 0 0 20px rgba(204, 49, 44, 0);
+      -moz-box-shadow: 0 0 0 20px rgba(204, 49, 44, 0);
+    }
+  
+    100% {
+      box-shadow: 0 0 0 0 rgba(204, 49, 44, 0);
+      -moz-box-shadow: 0 0 0 0 rgba(204, 49, 44, 0);
+    }
+  }
+  
+  .cluster1 {
+    width: 25px;
+    height: 25px;
+    line-height: 26px;
+    font-size: 10px;
+    border-radius: 50%;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    background: rgba(255, 149, 79, 0.7);
+  }
+  
+  .cluster2 {
+    width: 30px;
+    height: 30px;
+    line-height: 31px;
+    font-size: 10px;
+    border-radius: 50%;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    background: rgba(255, 149, 79, 0.7);
+  }
+  
+  .cluster3 {
+    width: 35px;
+    height: 35px;
+    line-height: 26px;
+    font-size: 10px;
+    border-radius: 50%;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    background: rgba(255, 149, 79, 0.7);
+  }
+
+.wrapper .todoList{
+    max-height: 250px;
+    overflow-y: auto;
+  }
+  .todoList li{
+    position: relative;
+    list-style: none;
+    height: 45px;
+    line-height: 45px;
+    margin-bottom: 8px;
+    background: #f2f2f2;
+    border-radius: 3px;
+    padding: 0 15px;
+    cursor: default;
+    overflow: hidden;
+  }
+  .todoList li .icon{
+    position: absolute;
+    right: -45px;
+    background: #e74c3c;
+    width: 45px;
+    text-align: center;
+    color: #fff;
+    border-radius: 0 3px 3px 0;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .todoList li:hover .icon{
+    right: 0px;
+  }
+
+.listbutton {
+    opacity: 1;
+    pointer-events: auto;
+    padding: 6px 10px;
+    border-radius: 3px;
+    border: none;
+    outline: none;
+    color: #fff;
+    font-weight: 400;
+    font-size: 16px;
+    margin-left: 5px;
+    background: #FFB53C;
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.3s ease;   
+}

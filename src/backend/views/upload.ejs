@@ -15,7 +15,7 @@
 <body>
   <ul id="navbar">
       <li>
-        <a href="/mymap">구르망님 맛집지도</a>
+        <a href="/mymap" id="name"></a>
       </li>
       <li style="float: right;">
         <a class="active" href="/search">맛집 검색</a>
@@ -35,6 +35,21 @@
     <script type="text/javascript" src="/javascripts/upload.js"></script>
     <script type="text/javascript" src="/javascripts/search.js"></script>
 </body>
+<script>
+  window.onload = function () {
+  $.ajax({
+      url: "/mymap/printname",
+      type: "GET", 
+  })
+  .done((response) => {
+      document.getElementById('name').innerHTML = `${response.data}님의 맛집지도`;
+      console.log("토큰 데이터 입력 성공");
+  })
+  .fail((error) => {
+      console.log("토큰 데이터 입력 실패");
+  });
+}
+</script>
 </html>
 
 

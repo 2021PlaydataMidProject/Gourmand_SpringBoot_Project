@@ -23,7 +23,7 @@ li a {
   display: block;
   color: white;
   text-decoration: none;
-  text-align: center;
+  /* text-align: center; */
   padding: 14px 16px;
 }
 
@@ -33,6 +33,10 @@ li a {
 
 .activedelete {
   background-color: #F3553C;
+}
+
+.showlist {
+  background-color: #642A02;
 }
 
 li a:hover:not(.active) {

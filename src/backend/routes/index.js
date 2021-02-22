@@ -1,21 +1,31 @@
+
+var jwt_decode = require('jwt-decode');
 var express = require('express');
 var request = require('request'); //category 가져오기
 var router = express.Router();
 // const locationModel = require("../model/location");
 
 
+
 // 맛집 등록 확인
-router.get("/mymap", (req, res, next) => {
+router.get("/mymap", (req, res, rows) => {               
   res.render("index", { title: "Express" });
 });
+
 // 맛집 등록
 router.get("/upload", (req, res, next) => {
-  res.render("upload");
+  res.render("upload", { title: 'Express' });
 });
-// 맛집 검색
+
+// 맛집 검색 
 router.get('/search', function(req, res, next) {
   res.render('search', { title: 'Express' });
 });
+
+//맛집 리스트
+// router.get('/showlist', function(req, res, next) {
+//   res.render('showlist', { title: 'Express' });
+// });
 
 
 var mysql = require('mysql');
@@ -35,6 +45,7 @@ connection.connect(function (err) {
     throw err;   
   } 
 });
+
 
 
 router.post('/location', function (req, res) {
@@ -78,6 +89,50 @@ router.post('/location', function (req, res) {
   
 
 
+ // 가게이름으로 res_num 가져오기  ***********************************************
+//user_res_list 테이블에 list_name, usesr_num, res_num 데이터 mysql DB에 저장
+// router.post('/save/userreslist', function (req, res) {
+
+//     var keyword = req.body.title;
+//     var keyword = encodeURI(keyword);
+//     console.log(keyword);
+
+//     let token = req.cookies['accessToken'];
+//     let decoded = jwt_decode(token);  
+
+//     // 가게이름으로 res_num 가져오기  ***********************************************
+//     request.get('/save/userreslist', function (req, res) {
+//       let resname = {
+//         'res_name': req.body.title,
+//       };
+//       connection.query('SELECT res_num FROM res where res_name=?', resname, function (err, rows) {
+//         if (err) throw err;
+//         console.log(rows)
+//         res.json({
+//             message: "success",
+//             data: rows,
+//         });
+//       });
+//     });
+//     alert(rows)
+//     let userreslist = {
+//       // 'list_name': req.body.title,
+//       // 'res_num': req.body.category,
+//       'user_num': decoded.user_num,
+//     };
+//     connection.query('insert into res set ?', userreslist, function (err, result) {
+//       if (err) {
+//         console.error(err);
+//         throw err;
+//         }
+//     });
+//   res.status(200).send('success');
+// });
+ // 가게이름으로 res_num 가져오기  ***********************************************
+
+
+
+// 가게이름,주소,위도, 경도 값 가져오기
 router.get('/location', function (req, res) {
   connection.query('SELECT res_address, res_name, x_value, y_value FROM res', function (err, rows) {
     if (err) throw err;
@@ -87,6 +142,21 @@ router.get('/location', function (req, res) {
         data: rows,
     });
   });
+});
+
+// JWT 토큰에 저장되어있는 USERNAME 데이터 디코딩해서 저장
+router.get("/mymap/printname", (req, res, rows) => {
+  
+  console.log(req.cookies);
+  let token = req.cookies['accessToken'];
+  let decoded = jwt_decode(token);  
+  console.log(decoded.name);
+  console.log(decoded.user_num); 
+  console.log(decoded.user_id); 
+  res.json({
+    message: "success",
+    data: decoded.name,
+  });                   
 });
 
 
@@ -119,13 +189,5 @@ router.delete('/location/delete/all', function (req, res) {
   });
   res.status(200).send('success');
 });
-
-
-// var sql = 'DELETE FROM topic WHERE res_num="?"';
-// var params = [6]; // 숫자는 없앨 id 값을 넣으면 된다.
-// connection.query(sql, params, function(err, rows, fields){
-//     if(err) console.log(err);
-//     console.log(rows);
-// });
 
 module.exports = router;

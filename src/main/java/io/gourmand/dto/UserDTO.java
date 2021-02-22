@@ -3,6 +3,9 @@ package io.gourmand.dto;
 import java.time.LocalDate;
 import java.util.List;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
 import io.gourmand.domain.Followers;
 import io.gourmand.domain.ListLikes;
 import io.gourmand.domain.Reply;
@@ -88,8 +91,11 @@ public class UserDTO {
 		private int pageStatus;
 		private LocalDate suDate;
 
+		static PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		
+		
 		public static User toEntity(UserRegister user, UserStandard userStandard) {
-			return User.builder().userId(user.getUserId()).pw(user.getPw()).name(user.getName()).dob(user.getDob())
+			return User.builder().userId(user.getUserId()).pw(passwordEncoder.encode(user.getPw())).name(user.getName()).dob(user.getDob())
 					.job(user.getJob()).suDate(LocalDate.now()).pageStatus(user.getPageStatus())
 					.userStandard(userStandard).build();
 		}
