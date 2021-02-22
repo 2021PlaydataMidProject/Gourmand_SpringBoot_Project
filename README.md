@@ -325,6 +325,7 @@ returnAllRevOfRes    	  // 가게에 대한 리뷰 Thumbnail		<br>("/rev/res/{id
 returnResStandard     	 // 가게에 대한 standard 정보		<br>("/rev/res/{id}/standard")<br>
 returnAllOrderByTime  	 // 시간순으로 12개의 revThumbnail		<br>("/rev/main/nologin")<br>
 returnAllRevNumOfUser  	 // 회원의 모든리뷰 수			<br>("/rev/user/cnt")<br>
+</details>
 
 <details>
 <summary>user controller</summary>
