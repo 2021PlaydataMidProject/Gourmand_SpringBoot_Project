@@ -716,3 +716,14 @@ Using generated security password: 3df32740-2c8a-49a1-b0bc-4676f351a50f
 2021-02-22 10:41:08.905  INFO 10568 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
 2021-02-22 10:41:09.007  INFO 10568 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
 2021-02-22 10:41:09.008  INFO 10568 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-02-22 10:41:09.117  WARN 10568 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-02-22 10:41:09.273  INFO 10568 --- [restartedMain] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 953f46ae-acc1-4c79-856b-24c252411be9
+
+2021-02-22 10:41:09.281  INFO 10568 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@3a262c06, org.springframework.security.web.context.SecurityContextPersistenceFilter@38934da3, org.springframework.security.web.header.HeaderWriterFilter@5446e01b, org.springframework.security.web.authentication.logout.LogoutFilter@a632c32, io.gourmand.jwt.JwtAuthenticationFilter@4263c7b6, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1c55841c, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@7ff0e9b5, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@169e7ca3, org.springframework.security.web.session.SessionManagementFilter@d7b5c74, org.springframework.security.web.access.ExceptionTranslationFilter@3142a401]
+2021-02-22 10:41:09.313  INFO 10568 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-02-22 10:41:09.413  INFO 10568 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2021-02-22 10:41:09.424  INFO 10568 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 80 (http) with context path ''
+2021-02-22 10:41:09.429  INFO 10568 --- [restartedMain] io.gourmand.GourmandApplication          : Started GourmandApplication in 1.011 seconds (JVM running for 3694.192)
+2021-02-22 10:41:09.430  INFO 10568 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
