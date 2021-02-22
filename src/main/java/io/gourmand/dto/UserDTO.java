@@ -3,25 +3,11 @@ package io.gourmand.dto;
 import java.time.LocalDate;
 import java.util.List;
 
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletResponse;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-
-import com.google.gson.JsonObject;
-
-import io.gourmand.domain.Followers;
-import io.gourmand.domain.ListLikes;
-import io.gourmand.domain.Reply;
 import io.gourmand.domain.Review;
-import io.gourmand.domain.ReviewLikes;
 import io.gourmand.domain.User;
 import io.gourmand.domain.UserImg;
 import io.gourmand.domain.UserResList;
 import io.gourmand.domain.UserStandard;
-import io.gourmand.util.CookieUtil;
-import io.gourmand.util.JwtUtil;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -30,24 +16,6 @@ import lombok.Setter;
 import lombok.ToString;
 
 public class UserDTO {
-
-// 전체 User table 객체명
-
-//	private Long userNum;
-//	private String userId;
-//	private List<Followers> followers;
-//	private List<Followers> following;
-//	private String pw;
-//	private String name;
-//	private String dob;
-//	private String job;
-//	private int pageStatus;
-//	private LocalDate suDate;
-//	private UserStandard userStandard;	
-//	private List<Reply> reply; 
-//	private List<UserImg> userImg;
-//	private List<ReviewLikes> reviewLikes;
-//	private List<ListLikes> listLikes;
 
 	@Getter
 	@Setter

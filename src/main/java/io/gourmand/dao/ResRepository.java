@@ -12,7 +12,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import io.gourmand.domain.Res;
-import io.gourmand.domain.User;
 
 public interface ResRepository extends JpaRepository<Res, Long> {
 

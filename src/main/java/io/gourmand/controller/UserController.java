@@ -81,10 +81,7 @@ public class UserController {
 	// 회원 기준 저장
 	@PostMapping("/user/regiNewStandard")
 	public UserStandardRegister createUserStandard(@RequestBody UserStandardRegister userStandard) {
-		System.out.println(userStandard);
 		return userStandard;
-		// System.out.println( "신규 회원 기준 저장" + userStandard.getId() );
-		// userService.insertUserStandard(userStandard);
 	}
 
 	// 회원의 list 이름들 반환 (list에 저장용)

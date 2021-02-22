@@ -19,7 +19,6 @@ import org.springframework.stereotype.Service;
 
 import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.google.gson.JsonObject;
@@ -28,15 +27,12 @@ import io.gourmand.dao.ReviewRepository;
 import io.gourmand.dao.UserImgRepository;
 import io.gourmand.dao.UserRepository;
 import io.gourmand.dao.UserStandardRepository;
-import io.gourmand.domain.Review;
 import io.gourmand.domain.User;
 import io.gourmand.domain.UserImg;
-import io.gourmand.domain.UserResList;
 import io.gourmand.domain.UserStandard;
 import io.gourmand.dto.RevDTO.ReviewThumbnail;
 import io.gourmand.dto.UserDTO.SigninRequest;
 import io.gourmand.dto.UserDTO.SigninResponse;
-import io.gourmand.dto.UserDTO.UserCountsInfo;
 import io.gourmand.dto.UserDTO.UserInfo;
 import io.gourmand.dto.UserDTO.UserRegister;
 import io.gourmand.dto.UserDTO.UserSimple;

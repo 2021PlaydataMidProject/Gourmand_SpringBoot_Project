@@ -1,8 +1,6 @@
 package io.gourmand.domain;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -14,8 +12,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -87,16 +83,6 @@ public class User  {
 	public User(String name) {
 	    this.name = name;
 	}
-	
-//	//USER,ADMIN
-//	public List<String> getRoleList() {
-//		if(this.roles.length() > 0) {
-//			return Arrays.asList(this.roles.split(","));
-//		}
-//		return new ArrayList<>();
-//	}
-
-
 }
 
 
