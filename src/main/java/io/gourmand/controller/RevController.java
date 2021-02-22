@@ -104,8 +104,11 @@ public class RevController {
 			@RequestParam("resNum") String resNum, @RequestParam("reviewStandard") String rstandard,
 			@RequestParam("revImg") List<MultipartFile> revImg, HttpServletRequest hsp) {
 
-		Claims claim = new JwtUtil(secret).getClaims(CookieUtil.getCookie(hsp, "acessToken").getValue());
+		Claims claim = new JwtUtil(secret).getClaims(CookieUtil.getCookie(hsp, "accessToken").getValue());
 		Long userNum = claim.get("user_num", Long.class);
+		System.out.println(userNum);
+		System.out.println(rev);
+		System.out.println(rstandard);
 		log.info("댓글 수정 : 가게,"+ resNum + ",회원," + userNum);
 		ObjectMapper mapper = new ObjectMapper();
 		try {

@@ -41,6 +41,25 @@
             <b-carousel-slide
               img-src="img/theme/img-1-1200x1000.jpg"
             ></b-carousel-slide>
+            <b-carousel-slide
+              img-src="img/theme/j1.jpg"
+            ></b-carousel-slide>
+            <b-carousel-slide
+              img-src="img/theme/j2.jpg"
+            ></b-carousel-slide>
+            <b-carousel-slide
+              img-src="img/theme/j3.jpg"
+            ></b-carousel-slide>
+            <b-carousel-slide
+              img-src="img/theme/j4.jpg"
+            ></b-carousel-slide>
+            <b-carousel-slide
+              img-src="img/theme/j5.jpg"
+            ></b-carousel-slide>
+            <b-carousel-slide
+              img-src="img/theme/j6.jpg"
+            ></b-carousel-slide>
+
           </b-carousel>
         </div>
       </div>

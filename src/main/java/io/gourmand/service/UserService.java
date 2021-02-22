@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -37,9 +36,6 @@ import io.gourmand.dto.UserDTO.UserRegister;
 import io.gourmand.dto.UserDTO.UserSimple;
 import io.gourmand.dto.UserDTO.UserThumbnail;
 import io.gourmand.dto.UserStandardDTO.UserStandardRegister;
-import io.gourmand.exception.PasswordWrongException;
-import io.gourmand.exception.UserExistedException;
-import io.gourmand.exception.UserIdNotExistedException;
 import io.gourmand.util.CookieUtil;
 import io.gourmand.util.JwtUtil;
 
@@ -74,10 +70,7 @@ public class UserService {
       if (signin == null || !encoder.matches(sign.getPw(),signin.getPw())) {
          return null;
       }
-      
-//      if (signin == null || !signin.getPw().equals(sign.getPw())) {
-//          return null;
-//       }
+
       final String token = jwtUtil.generateToken(signin);
       Cookie accessToken = CookieUtil.createCookie(JwtUtil.ACCESS_TOKEN_NAME, token);
       res.addCookie(accessToken);
@@ -102,32 +95,6 @@ public class UserService {
 		deleteToken.setMaxAge(0); // 유효시간을 0으로 설정
 		res.addCookie(deleteToken); // 응답 헤더에 추가해서 없어지도록 함
 	}
-
-   // 회원 1인 관련 정보페이지에 필요한 DTO를 생성해서 controller에 보낸다.
-   public UserInfo getUserInfo(Long userNum) {
-      return UserInfo.of(userDAO.findById(userNum).get());
-   }
-
-   // 팔로우, 팔로잉, 추천 계정 등에 들어갈 간략한 유저 정보 및 Thumbnail을 불러와 controller에 보낸다.
-   public UserThumbnail getUserThumbnail(User user) {
-      return UserThumbnail.of(userDAO.findById(user.getUserNum()).get());
-   }
-   
- 
-   // 회원 가입시 회원 기준 저장
-   public UserStandard insertUserStandard(UserStandardRegister userStandard) {
-      return userStandardDAO.save(UserStandardRegister.toEntity(userStandard));
-   }
-
-   // 회원 기준 수정
-//   public UserStandard updateUserStandard(UserStandardRegister userStandard) {
-//	   return userStandardDAO.save(UserStandardRegister.toEntity(userStandard));
-//	}
-   
-   // 회원가입
-   public User insertUser(UserRegister user, UserStandard userStandard) {
-      return userDAO.save(UserRegister.toEntity(user, userStandard));
-   };
 
    // 회원 정보 수정
  	public User updateUser(UserRegister user, UserStandardRegister userStandard, Long userNum) {
@@ -176,21 +143,6 @@ public class UserService {
 	public UserInfo getUserInfo(Long userNum) {
 		return UserInfo.of(userDAO.findById(userNum).get());
 	}
-
-	public User registerUser(String dob, String job, int pageStatus, LocalDate suDate, UserStandard userStandard,
-			String userId, String name, String pw) {
-		Optional<User> existed = userDAO.findByUserId(userId);
-		if (existed.isPresent()) {
-			throw new UserExistedException(userId);
-		}
-
-		String encodedPassword = passwordEncoder.encode(pw);
-		User user = User.builder().userNum(1004L).dob(dob).job(job).pageStatus(pageStatus).suDate(suDate)
-				.userStandard(userStandard).userId(userId).name(name).pw(encodedPassword).build();
-
-		return userDAO.save(user);
-	}
-
 
 	// 팔로우, 팔로잉, 추천 계정 등에 들어갈 간략한 유저 정보 및 Thumbnail을 불러와 controller에 보낸다.
 	public UserThumbnail getUserThumbnail(User user) {
@@ -245,16 +197,6 @@ public class UserService {
 		file.transferTo(targetPath);
 	}
 
-	public User authenticate(String userId, String password) {
-		User user = ((Optional<User>) userDAO.findByUserId(userId))
-				.orElseThrow(() -> new UserIdNotExistedException(userId));
-
-		if (!passwordEncoder.matches(password, user.getPw())) {
-			throw new PasswordWrongException();
-		}
-
-		return user;
-	}
 
 	// 해당 아이디의유저가 매긴 리뷰개수를 반환한다.
 	public Long getUserReviewCounts(Long userNum) {

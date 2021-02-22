@@ -1,6 +1,6 @@
 <template>
   <div>
-    <base-button block type="primary" class="mb-3" @click="modals.modal = true">
+    <base-button block type="primary" class="mb-3" @click="read()">
       내 맛집 리스트에 등록하기
     </base-button>
     <modal :show.sync="modals.modal">
@@ -14,20 +14,23 @@
           v-bind:key="key"
           class="font-weight-bold"
         >
-          {{ value }}
+          {{ value }} 
+          <base-button type="primary" @click="add(value)" class="ml-4"
+          >추가하기</base-button
+        >
         </p>
+        
         <hr class="mt-0" />
       </div>
       <div class="row mt-3 col-md-12">
-        <p class="text-bold font-weight-bold col-md-3">새로 추가</p>
-        <base-input class="col-mb-4 mr-3" placeholder="리스트명"></base-input>
-        <base-button>추가</base-button>
+      
       </div>
       <template slot="footer">
-        <base-button type="primary" @click="applyCategory()"
+        <base-input class="col-mb-4 mr-3" placeholder="리스트명" v-model="newname"></base-input>
+        <base-button type="primary" @click="add(newname)"
           >추가하기</base-button
         >
-        <base-button type="link" class="ml-auto" @click="modal.modal1 = false"
+        <base-button type="link" class="ml-auto" @click="modals.modal = false"
           >Close
         </base-button>
       </template>
@@ -52,6 +55,7 @@ export default {
       modals: {
         modal: false,
       },
+      newname: ""
     };
   },
   methods: {
@@ -60,6 +64,7 @@ export default {
         .get("/user/reslist/", {})
         .then((res) => {
           this.reslist = res.data;
+          console.log(res.data)
         })
         .catch((res) => {
           alert("서버 오류");

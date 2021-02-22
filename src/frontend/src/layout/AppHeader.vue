@@ -123,7 +123,6 @@ export default {
     logout: function(){
         if (sessionStorage.getItem("user")!=null){
             sessionStorage.removeItem("user");
-            deleteCookie();
             this.axios.post("/auth/logout",{})
             location.href="/"
         }

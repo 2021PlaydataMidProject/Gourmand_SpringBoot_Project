@@ -92,7 +92,7 @@
         <div>
           <div v-for="(rev, key) in revs" v-bind:key="key" class="row">
             <hr class="col-lg-11 col-sm-11" />
-            <div class="col-lg-2 col-sm-2" @click="move(rev.user.user_num)" >
+            <div class="col-lg-2 col-sm-2">
               <img
                 v-if="rev.user.user_img != null"
                 v-lazy="'img/user/' + rev.user.user_img.name"
@@ -107,7 +107,7 @@
                 class="img-fluid rounded-circle shadow-lg"
                 style="width: 100px"
               />
-              <p class="mt-2 front-weight-bold">{{ rev.user.name }}</p>
+              <p class="mt-2 front-weight-bold" @click="move(rev.user.user_num)">{{ rev.user.name }}</p>
               <div v-if="userCheck(rev.review_num)!=-1">
                 <a href="#" class="font-weight-bold mb-3" @click="updateReview(rev.review_num)">수정하기</a><br>
                 <a href="#" class="font-weight-bold" @click="deleteReview(rev.review_num)">삭제하기</a>

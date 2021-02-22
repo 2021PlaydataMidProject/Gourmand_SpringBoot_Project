@@ -23,7 +23,7 @@
             <template>
               <div class="text-muted text-center mb-3">
                <img src="img/brand/logo.png" alt="logo" width="200" /><br>
-                <small>맛잘알들의 집합소,<br>
+                <small style="color:white">맛잘알들의 집합소,<br>
                      '구르망'에 오신 것을 환영합니다!</small>
               </div>
             </template>
@@ -73,21 +73,6 @@
 </template>
 <script>
 
-import 
-  {
-  saveAuthToCookie,
-  saveUserIdToCookie,
-  saveUserNumToCookie,
-  saveUserNameToCookie,
-
-  getAuthFromCookie,
-  getUserIdFromCookie,
-  getUserNumFromCookie,
-  getUserNameFromCookie,
-  
-  deleteCookie,
-} from '../utils/cookies';
-
 export default {
   data: function () {
     return {
@@ -105,9 +90,6 @@ export default {
         .then((res) => {
           if (res.data) {
             sessionStorage.setItem("user", true);
-            saveUserNumToCookie(res.data.user_num);
-            saveUserIdToCookie(res.data.user_id);
-            saveUserNameToCookie(res.data.name);
 
             location.href = "/";
           } else {

@@ -197,8 +197,10 @@ public class UserController {
 	}
 
 	// 선호 food_type 갯수로 내림 차순 //안됨 - 500
-	@GetMapping("/user/{userNum}/userAnalysis/foodType")
-	public List<String> getFoodTypeByReview(@PathVariable Long userNum) {
+	@GetMapping("/user/userAnalysis/foodType")
+	public List<String> getFoodTypeByReview(HttpServletRequest hsp) {
+		Claims claim = new JwtUtil(secret).getClaims(CookieUtil.getCookie(hsp, "accessToken").getValue());
+		Long userNum = claim.get("user_num", Long.class);
 		return userService.getFoodTypeByReview(userNum);
 	}
 

@@ -172,7 +172,7 @@
               </h3>
               {{ value.avg_star.toFixed(1) }}/5.0
 
-              <a :href="'/respage?' + value.res_num"
+              <a :href="'/respage?res=' + value.res_num"
                 ><h3 class="heading-title mb-0">{{ value.res_name }}</h3></a
               >
               <h3 class="heading">{{ value.category }}</h3>
@@ -220,7 +220,7 @@
             </h3>
             {{ value.avg_star.toFixed(1) }}/5.0
 
-            <a :href="'/respage?' + value.res_num"
+            <a :href="'/respage?res=' + value.res_num"
               ><h3 class="heading-title mb-0">{{ value.res_name }}</h3></a
             >
             <h3 class="heading">{{ value.category }}</h3>
@@ -288,7 +288,7 @@
                 </h3>
                 {{ value.avg_star.toFixed(1) }}/5.0
 
-                <a :href="'/respage?' + value.res_num"
+                <a :href="'/respage?res=' + value.res_num"
                   ><h3 class="heading-title mb-0">{{ value.res_name }}</h3></a
                 >
                 <h3 class="heading">{{ value.category }}</h3>

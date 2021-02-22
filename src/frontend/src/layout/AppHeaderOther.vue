@@ -140,15 +140,12 @@ export default {
     logout: function () {
       if (sessionStorage.getItem("user") != null) {
         sessionStorage.removeItem("user");
-        deleteCookie();
         this.axios.post("/auth/logout", {});
         location.href = "/";
       }
     },
     mymap: function(){
         if (sessionStorage.getItem("user")!=null){
-            axios.post('http://localhost:3000/mymap', sessionStorage.getItem("user") ) 
-                  .then(res => { console.log(res.data) })
 
             location.href="http://localhost:3000/mymap";
         //  resregi
