@@ -192,7 +192,6 @@ npm run serve
 <br>
 
 ### :rice_ball: Node Express 실행 <br>
-
 1. node와 npm 버전 확인 
     <br> 
 ~~~cmd
