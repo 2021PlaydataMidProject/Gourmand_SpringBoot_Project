@@ -203,6 +203,7 @@ npm run serve
 2. 환경 설치 
 
 ~~~cmd
+ npm install
  npm install -g nodemon
  npm install -g express
  npm install -g express-generator 
