@@ -22,29 +22,20 @@
           >
             <template>
               <div class="text-muted text-center mb-3">
-                <small>Sign in with</small>
-              </div>
-              <div class="btn-wrapper text-center">
-                <base-button type="neutral">
-                  <img slot="icon" src="img/icons/common/github.svg" />
-                  Github
-                </base-button>
-
-                <base-button type="neutral">
-                  <img slot="icon" src="img/icons/common/google.svg" />
-                  Google
-                </base-button>
+               <img src="img/brand/logo.png" alt="logo" width="200" /><br>
+                <small>맛잘알들의 집합소,<br>
+                     '구르망'에 오신 것을 환영합니다!</small>
               </div>
             </template>
             <template>
               <div class="text-center text-muted mb-4">
-                <small>Or sign in with credentials</small>
+
               </div>
               <form role="form">
                 <base-input
                   alternative
                   class="mb-3"
-                  placeholder="Email"
+                  placeholder="아이디"
                   addon-left-icon="ni ni-email-83"
                   v-model="id"
                 >
@@ -52,7 +43,7 @@
                 <base-input
                   alternative
                   type="password"
-                  placeholder="Password"
+                  placeholder="비밀번호"
                   addon-left-icon="ni ni-lock-circle-open"
                   v-model="pw"
                 >
@@ -64,7 +55,6 @@
                   >
                 </div>
               </form>
-              <p class="log">{{ logMessage }}</p>
             </template>
           </card>
           <div class="row mt-3">
@@ -107,24 +97,11 @@ export default {
     return {
       id: "",
       pw: "",
-      //log
-      logMessage: "",
     };
   },
   methods: {
-    async login() {
-      try {
-        const userData = {
-          user_id: this.id,
-          pw: this.pw,
-        };
-        // response.data = await loginUser(userData);
-        // console.log(response.data) 
-        //await this.$store.dispatch('LOGIN', userData);
-      }catch(error) {
-        console.log(error.response.data);
-      }finally{
-        return this.axios
+    login: function () {
+      return this.axios
         .post("/auth/login", {
           user_id: this.id,
           pw: this.pw,
@@ -145,7 +122,6 @@ export default {
         .catch((error) => {
           alert("서버 오류입니다. 다시 시도해주세요.");
         });
-      }
     },
   },
 };

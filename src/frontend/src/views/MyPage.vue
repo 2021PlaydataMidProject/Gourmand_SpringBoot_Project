@@ -20,12 +20,12 @@
           </div>
           <div class="col-md-6">
             <div class="profile-head">
-              <h5>{{userInfo.user_id}}({{userInfo.name}})</h5>
+              <h5>{{userInfo.user_id}}&nbsp;({{userInfo.name}})</h5>
               <p class="proile-rating">
-                평가 <span>{{userInfo.rev_cnt}}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                평가 <span>{{userInfo.rev_cnt}}&nbsp;&nbsp;</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               </p>
 
-              <p class="proile-rating">나의 리스트 <span>{{Object.keys(listInfo).length}}</span></p>
+              <p class="proile-rating">나의 리스트 &nbsp;&nbsp;<span>{{Object.keys(listInfo).length}}</span></p>
              
             </div>
           </div>

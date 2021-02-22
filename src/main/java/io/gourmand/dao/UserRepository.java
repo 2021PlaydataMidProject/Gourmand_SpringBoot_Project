@@ -9,6 +9,7 @@ import org.springframework.data.repository.query.Param;
 
 import io.gourmand.domain.Review;
 import io.gourmand.domain.User;
+import io.gourmand.dto.UserDTO.UserRegister;
 
 public interface UserRepository extends JpaRepository<User, Long> {
 
@@ -18,9 +19,10 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
 	User findUserByName(String username);
 
-	// 선호입맛 리스트
-	@Query(value = "select food_type from user,review where user.user_num = review.user_num order by food_type desc", nativeQuery = true)
-	List<User> findListByfoodType(@Param("foodType") Review foodType);
+	User findByUserNum(Long userNum);
+
+	void save(UserRegister entity);
+
 
 	// 해당 가게를 리스트에 등록한 유저 반환
 	@Query(value = "select user.* from user, res, user_res_list where res.res_num = :resNum and res.res_num = user_res_list.res_num and user_res_list.user_num = user.user_num", nativeQuery = true)

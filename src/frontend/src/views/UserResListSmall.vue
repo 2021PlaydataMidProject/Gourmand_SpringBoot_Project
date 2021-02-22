@@ -1,33 +1,34 @@
 <template>
   <div>
-    <base-button block type="primary" class="mb-3" @click="read()">
+    <base-button block type="primary" class="mb-3" @click="modals.modal = true">
       내 맛집 리스트에 등록하기
     </base-button>
     <modal :show.sync="modals.modal">
-      <h5 class="mb-5">추가할 리스트를 클릭하세요.</h5>
+      <h5 class="mb-5">추가할 리스트를 선택하세요.</h5>
       <div v-if="reslist.length == 0">
         <h5 class="h5 font-weight-bold">아직 등록된 리스트가 없어요.</h5>
       </div>
       <div v-else class="col-md-12">
-        <div
+        <p
           v-for="(value, key) in reslist"
           v-bind:key="key"
-          class="font-weight-bold row"
+          class="font-weight-bold"
         >
-          <span class="col-md-8 mb-3">{{ value }}</span>
-          <base-button type="primary" @click="add(value)">추가하기</base-button>
-        </div>
-        <hr class="mt-3" />
+          {{ value }}
+        </p>
+        <hr class="mt-0" />
+      </div>
+      <div class="row mt-3 col-md-12">
+        <p class="text-bold font-weight-bold col-md-3">새로 추가</p>
+        <base-input class="col-mb-4 mr-3" placeholder="리스트명"></base-input>
+        <base-button>추가</base-button>
       </div>
       <template slot="footer">
-        <base-input
-          class="mr-3"
-          placeholder="새로운 리스트명"
-          v-model="newname"
-        ></base-input>
-        <base-button type="primary" @click="add(newname)">추가하기</base-button>
-        <base-button type="link" class="ml-auto" @click="modals.modal = false"
-          >닫기
+        <base-button type="primary" @click="applyCategory()"
+          >추가하기</base-button
+        >
+        <base-button type="link" class="ml-auto" @click="modal.modal1 = false"
+          >Close
         </base-button>
       </template>
     </modal>
@@ -51,7 +52,6 @@ export default {
       modals: {
         modal: false,
       },
-      newname: "",
     };
   },
   methods: {

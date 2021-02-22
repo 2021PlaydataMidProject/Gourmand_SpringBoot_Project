@@ -10,5 +10,4 @@ public class GourmandApplication {
 		SpringApplication.run(GourmandApplication.class, args);
 	}
 
-	
 }

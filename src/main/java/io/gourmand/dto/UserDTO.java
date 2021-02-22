@@ -28,8 +28,9 @@ public class UserDTO {
 		private String pw;
 		private Long userNum;
 
-		public static SigninRequest of(User user) {
-			return SigninRequest.builder().userId(user.getUserId()).pw(user.getPw()).build();
+		
+		public static SigninResponse of(User user) {
+			return SigninResponse.builder().userNum(user.getUserNum()).userId(user.getUserId()).name(user.getName()).build();
 		}
 	}
 	
@@ -40,7 +41,6 @@ public class UserDTO {
 	@ToString
 	@Builder
 	public static class SigninResponse {
-		
 		private Long userNum;
 		private String userId;
 		private String name;
@@ -50,7 +50,7 @@ public class UserDTO {
 		}
 	}
 	
-	// 회원가입을 위한 DTO - 이미지 관련 추가, 날짜/드롭다운 등 변경 필요
+	// 회원가입을 위한 DTO 
 	@AllArgsConstructor
 	@NoArgsConstructor
 	@Getter
@@ -72,7 +72,7 @@ public class UserDTO {
 		}
 	}
 
-	// 회원 1인의 전체 정보 불러오기 - // thread 컬럼명 Reply로 변경
+	// 회원 1인의 전체 정보 불러오기 
 	@Getter
 	@Setter
 	@NoArgsConstructor
@@ -103,7 +103,7 @@ public class UserDTO {
 		}
 	}
 
-	// 회원 이미지와 간단 설명 - 근데 리뷰수, LIKE수는 어떻게 카운트하지???
+	// 회원 이미지와 간단 설명
 	@NoArgsConstructor
 	@AllArgsConstructor
 	@Setter
@@ -123,7 +123,6 @@ public class UserDTO {
 			}
 			return UserThumbnail.builder().userNum(user.getUserNum()).userId(user.getUserId()).name(user.getName())
 					.pageStatus(user.getPageStatus()).userImg(umg)
-					// 대표 이미지 선택방법 고려해야함
 					.build();
 		}
 	}

@@ -11,12 +11,10 @@ import java.util.Optional;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
-import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
 import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
@@ -45,7 +43,6 @@ import io.gourmand.util.CookieUtil;
 import io.gourmand.util.JwtUtil;
 
 @Service
-@Transactional
 public class UserService {
 
 	@Autowired
@@ -102,6 +99,44 @@ public class UserService {
 		res.addCookie(deleteToken);
 	}
 
+   // 회원 정보 수정
+ 	public User updateUser(UserRegister user, UserStandardRegister userStandard, Long userNum) {
+ 		User us = userDAO.findByUserNum(userNum); //
+ 		us.setName(user.getName());
+ 		us.setPw(user.getPw());
+ 		us.setDob(user.getDob());
+ 		us.setJob(user.getJob());
+ 		us.setPageStatus(user.getPageStatus());
+ 		
+ 		UserStandard userSt = us.getUserStandard();
+ 		userSt.setUAccess(userStandard.getUaccess());
+ 		userSt.setUClean(userStandard.getUclean());
+ 		userSt.setUCost(userStandard.getUcost());
+ 		userSt.setUFlavor(userStandard.getUflavor());
+ 		userSt.setUKindness(userStandard.getUkindness());
+ 		userSt.setUMood(userStandard.getUmood());
+ 		
+ 		return us;
+ 	}
+ 	
+ 	
+ 	// 회원 이미지 삭제
+	public void deleteUserImg(Long id) {
+		userImgDAO.deleteById(id);
+	}
+
+	// 회원 삭제
+	public void deleteUser(Long userNum) {
+		User us = userDAO.findByUserNum(userNum); 
+		us.getUserImg().forEach(img -> userImgDAO.delete(img));
+		userDAO.delete(us);
+		}	
+	
+	// 회원 정보 삭제
+	public void deleteUserStandard(Long id) {
+		userStandardDAO.deleteById(id);
+		}	
+	
 	// 회원 정보 조회
 	public Optional<User> getUser(Long userNum) {
 		return userDAO.findById(userNum);

@@ -130,9 +130,6 @@ export default {
     },
     mymap: function(){
         if (sessionStorage.getItem("user")!=null){
-            axios.post('http://localhost:3000/mymap', sessionStorage.getItem("user") ) 
-                  .then(res => { console.log(res.data) })
-
             location.href="http://localhost:3000/mymap";
         //  resregi
         } else{
@@ -143,4 +140,8 @@ export default {
 };
 </script>
 <style>
+<<<<<<< HEAD
 </style>
+=======
+</style>
+>>>>>>> origin/yeonji
