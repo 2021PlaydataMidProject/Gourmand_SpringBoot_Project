@@ -3,6 +3,8 @@
 <br>
 ![resized-image-Promo (1)](https://user-images.githubusercontent.com/73862452/108668344-67732480-751e-11eb-9450-584d4ede07f6.jpeg)
 
+<br>
+
 <table>
 <tr>
 <td>
@@ -13,7 +15,9 @@
 </td>
 </tr>
 <tr>
+<td>
 <img src="src\frontend\public\img\theme\3.gif"/>
+</td>
 </tr>
 </table>
 
