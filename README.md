@@ -204,7 +204,7 @@ json 객체를 String 으로 변환해주는 JSON.stringfy() 함수를 사용해
 ~~~cmd
  cd C:\Users\Playdata\Documents\GitHub\Gourmand_SpringBoot_Project\src\frontend
  npm install
- npm install –save chart.js vue-star-rating npm install -s cookie npm install cookie-parser
+ npm install –save chart.js vue-star-rating 
 ~~~
 
 <br><br>
@@ -231,12 +231,18 @@ npm run serve
 2. 환경 설치 
 
 ~~~cmd
+ npm install
  npm install -g nodemon
  npm install -g express
  npm install -g express-generator 
  npm install cores –save
  npm install express-session –save
  npm install axios –save 
+ npm install -s cookie
+ npm install cookie-parser
+ npm install jsonwebtoken
+ npm install jwt-decode
+
  
 ~~~
 
