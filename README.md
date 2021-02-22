@@ -351,10 +351,6 @@ getAllOrderByUserNumNDate  // 유저 당 리뷰를 시간순으로 반환<br>("/
 
 ## Reference 
 
-<br></br>
- 
-## Appendix
-
 #### :bento: 프로젝트 진행 과정 
 https://drive.google.com/drive/folders/1-G8_Bw57G7msK3BAfzhLRIw_ZSRumXYm
 
@@ -362,6 +358,9 @@ https://drive.google.com/drive/folders/1-G8_Bw57G7msK3BAfzhLRIw_ZSRumXYm
 https://kowo1001.github.io/project/springboot-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EC%B0%B8%EA%B3%A0%EB%82%B4%EC%9A%A9/
 #### :bagel: 프로젝트 관련 참고 내용 2.
 https://ta-ye.github.io/study/#Vue.js
+
+### :bagel: 로고
+https://www.flaticon.com/
 
 
 ## Contributors
