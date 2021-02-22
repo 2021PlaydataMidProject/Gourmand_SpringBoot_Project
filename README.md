@@ -242,12 +242,9 @@ npm run serve
  npm install cookie-parser
  npm install jsonwebtoken
  npm install jwt-decode
-
- 
 ~~~
 
 <br><br>
-
 3. 서버 실행
 
 ~~~cmd
