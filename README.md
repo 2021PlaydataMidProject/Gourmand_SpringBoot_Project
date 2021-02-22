@@ -2,8 +2,7 @@
 ## by Team 모도리 ('빈틈없이 아주 야무진 사람'이라는 뜻의 순우리말)
 <br><br>
 
-![logocopy](https://user-images.githubusercontent.com/61037197/108632311-8d161480-74b1-11eb-8a4a-f7ac3d26a2af.PNG){: width="400"}
-
+<img src="https://user-images.githubusercontent.com/61037197/108632311-8d161480-74b1-11eb-8a4a-f7ac3d26a2af.PNG", width="400">
 #### 주제선정이유1 <br>
 
 
