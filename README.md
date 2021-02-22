@@ -176,19 +176,6 @@
 npm run serve
 ~~~
 <br>
-
-### :rotating_light: 기타 필수 라이브러리 및 도구 <br>
-<br>
-package.json에 작성되어 있는 modules의 라이브러리가 필요합니다. 경로 지정 후 아래의 명령어를 사용하여 cmd창에서 설치합니다. 
-<br>
-
-~~~cmd 
-npm install
-~~~
- 
-<br>
-
- 
 <br>
 
 ### :rice_ball: Node express 실행 <br>
@@ -296,7 +283,7 @@ getAllOrderByUserNumNDate// 유저 당 리뷰를 시간순으로 반환("/res/us
 getAllOrderByUserNumNStar   // 유저 당 리뷰를 별점순으로 반환("/res/user/review/writeDate/{id}")타인의 페이지<br>
 getAllOrderByUserNumNDate// 유저 당 리뷰를 시간순으로 반환("/res/user/review/Star/{id}")타인의 페이지<br>
 </details>
-
+ <br>
 
 ## Reference 
 
