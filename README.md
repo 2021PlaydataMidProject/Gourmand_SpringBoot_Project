@@ -3,11 +3,19 @@
 <br>
 ![resized-image-Promo (1)](https://user-images.githubusercontent.com/73862452/108668344-67732480-751e-11eb-9450-584d4ede07f6.jpeg)
 
-
+<table>
+<tr>
+<td>
 <img src="src\frontend\public\img\theme\1.gif"/>
+</td>
+<td>
 <img src="src\frontend\public\img\theme\2.gif"/>
+</td>
+</tr>
+<tr>
 <img src="src\frontend\public\img\theme\3.gif"/>
-
+</tr>
+</table>
 
 
 <h3><b>😋 먹기 위해 산다!</b></h3><br>
