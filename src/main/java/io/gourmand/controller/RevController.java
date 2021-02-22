@@ -35,7 +35,9 @@ import io.gourmand.service.RevService;
 import io.gourmand.util.CookieUtil;
 import io.gourmand.util.JwtUtil;
 import io.jsonwebtoken.Claims;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @RestController
 public class RevController {
 
@@ -50,7 +52,7 @@ public class RevController {
 	// 모든 댓글 정보 조회
 	@GetMapping("/rev/{id}/revsinfo")
 	public String getReviewList(@ModelAttribute("user") User user, Model model, Review review) {
-
+		
 		if (user.getUserId() == null) {
 			return "redirect:login";
 		}
@@ -71,9 +73,10 @@ public class RevController {
 	public void createRev(@RequestParam("reviewRegi") String rev, @RequestParam("resNum") String resNum,
 			@RequestParam("reviewStandard") String rstandard, @RequestParam("revImg") List<MultipartFile> revImg,
 			HttpServletRequest hsp) {
-
+		
 		Claims claim = new JwtUtil(secret).getClaims(CookieUtil.getCookie(hsp, "accessToken").getValue());
 		Long userNum = claim.get("user_num", Long.class);
+		log.info("댓글 저장 : 가게,"+ resNum + ",회원," + userNum);
 		ObjectMapper mapper = new ObjectMapper();
 		try {
 			ReviewStandard rs = revService.insertRevSt(mapper.readValue(rstandard, ReviewStandardRegister.class));
@@ -103,6 +106,7 @@ public class RevController {
 
 		Claims claim = new JwtUtil(secret).getClaims(CookieUtil.getCookie(hsp, "acessToken").getValue());
 		Long userNum = claim.get("user_num", Long.class);
+		log.info("댓글 수정 : 가게,"+ resNum + ",회원," + userNum);
 		ObjectMapper mapper = new ObjectMapper();
 		try {
 			Review review = revService.updateRev(mapper.readValue(rev, RevRegister.class),
@@ -125,10 +129,11 @@ public class RevController {
 
 	// 댓글 삭제
 	@PostMapping("/rev/{res}/deleteReview/{num}")
-	public void deleteReview(@PathVariable("num") Long revNum, @PathVariable("res") Long resNum, HttpServletRequest hsp) {
+	public void deleteReview(@PathVariable("num") Long revNum, @PathVariable("res") Long resNum,
+			HttpServletRequest hsp) {
 		Claims claim = new JwtUtil(secret).getClaims(CookieUtil.getCookie(hsp, "accessToken").getValue());
 		Long userNum = claim.get("user_num", Long.class);
-		
+		log.info("댓글 삭제 : 가게,"+ resNum + ",회원," + userNum);
 		revService.deleteReview(revNum, userNum);
 		resService.updateResAvgStar(resNum);
 	}
@@ -158,9 +163,9 @@ public class RevController {
 	public List<ReviewThumbnail> returnAllOrderByTime() {
 		return revService.getRevOrderByTime();
 	}
-	
+
 	@GetMapping("/rev/user/cnt")
-	public List<Long> returnAllRevNumOfUser(HttpServletRequest hsp){
+	public List<Long> returnAllRevNumOfUser(HttpServletRequest hsp) {
 		Claims claim = new JwtUtil(secret).getClaims(CookieUtil.getCookie(hsp, "accessToken").getValue());
 		Long userNum = claim.get("user_num", Long.class);
 		System.out.println(userNum);
