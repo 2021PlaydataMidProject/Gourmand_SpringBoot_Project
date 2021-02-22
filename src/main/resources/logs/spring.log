@@ -727,3 +727,32 @@ Using generated security password: 953f46ae-acc1-4c79-856b-24c252411be9
 2021-02-22 10:41:09.424  INFO 10568 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 80 (http) with context path ''
 2021-02-22 10:41:09.429  INFO 10568 --- [restartedMain] io.gourmand.GourmandApplication          : Started GourmandApplication in 1.011 seconds (JVM running for 3694.192)
 2021-02-22 10:41:09.430  INFO 10568 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2021-02-22 11:00:19.872  INFO 10568 --- [restartedMain] io.gourmand.GourmandApplication          : Starting GourmandApplication on DESKTOP-RCD3Q83 with PID 10568 (C:\MyGit\midProject\Gourmand_SpringBoot_Project\target\classes started by Playdata in C:\MyGit\midProject\Gourmand_SpringBoot_Project)
+2021-02-22 11:00:19.872  INFO 10568 --- [restartedMain] io.gourmand.GourmandApplication          : No active profile set, falling back to default profiles: default
+2021-02-22 11:00:20.456  INFO 10568 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-02-22 11:00:20.561  INFO 10568 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 104ms. Found 13 JPA repository interfaces.
+2021-02-22 11:00:20.850  INFO 10568 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 80 (http)
+2021-02-22 11:00:20.851  INFO 10568 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-02-22 11:00:20.851  INFO 10568 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.41]
+2021-02-22 11:00:20.875  INFO 10568 --- [restartedMain] o.a.c.c.C.[Tomcat-3].[localhost].[/]     : Initializing Spring embedded WebApplicationContext
+2021-02-22 11:00:20.875  INFO 10568 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 999 ms
+2021-02-22 11:00:20.997  INFO 10568 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-02-22 11:00:21.004  INFO 10568 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-48 - Starting...
+2021-02-22 11:00:21.008  INFO 10568 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-48 - Start completed.
+2021-02-22 11:00:21.009  INFO 10568 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+2021-02-22 11:00:21.190  INFO 10568 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-02-22 11:00:21.190  INFO 10568 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-02-22 11:00:21.376  WARN 10568 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-02-22 11:00:21.720  INFO 10568 --- [restartedMain] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: e5e2044d-8659-4d48-90b1-806a47cc9d35
+
+2021-02-22 11:00:21.733  INFO 10568 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7957991a, org.springframework.security.web.context.SecurityContextPersistenceFilter@54bab761, org.springframework.security.web.header.HeaderWriterFilter@b5ac0db, org.springframework.security.web.authentication.logout.LogoutFilter@8941efe, io.gourmand.jwt.JwtAuthenticationFilter@5f9091c5, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7410a442, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2991ee03, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@73a02714, org.springframework.security.web.session.SessionManagementFilter@785b1fdc, org.springframework.security.web.access.ExceptionTranslationFilter@1dd7bbb7]
+2021-02-22 11:00:21.820  INFO 10568 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-02-22 11:00:22.230  INFO 10568 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2021-02-22 11:00:22.247  INFO 10568 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 80 (http) with context path ''
+2021-02-22 11:00:22.254  INFO 10568 --- [restartedMain] io.gourmand.GourmandApplication          : Started GourmandApplication in 2.431 seconds (JVM running for 4847.019)
+2021-02-22 11:00:22.258  INFO 10568 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2021-02-22 11:00:25.314  INFO 10568 --- [http-nio-80-exec-1] o.a.c.c.C.[Tomcat-3].[localhost].[/]     : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-02-22 11:00:25.315  INFO 10568 --- [http-nio-80-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-02-22 11:00:25.320  INFO 10568 --- [http-nio-80-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 4 ms
