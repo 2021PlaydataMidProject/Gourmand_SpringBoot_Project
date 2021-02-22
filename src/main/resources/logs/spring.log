@@ -1606,3 +1606,45 @@ Using generated security password: 247e2196-ec14-4238-880d-4e71bb8d0be6
 2021-02-22 17:50:33.414  INFO 11816 --- [http-nio-80-exec-3] io.gourmand.controller.ResController     : 회원리스트에 음식점 추가 : 회원,8,음식점,1
 2021-02-22 17:51:08.853  INFO 11816 --- [http-nio-80-exec-1] io.gourmand.controller.RevController     : 댓글 저장 : 가게,1,회원,8
 2021-02-22 18:43:22.042  WARN 11816 --- [HikariPool-8 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-8 - Thread starvation or clock leap detected (housekeeper delta=47s274ms229µs800ns).
+2021-02-22 18:51:57.500  INFO 11816 --- [Thread-39] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-02-22 18:51:57.504  INFO 11816 --- [Thread-39] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-02-22 18:51:57.504  INFO 11816 --- [Thread-39] com.zaxxer.hikari.HikariDataSource       : HikariPool-8 - Shutdown initiated...
+2021-02-22 18:51:57.504  INFO 11816 --- [Thread-39] com.zaxxer.hikari.HikariDataSource       : HikariPool-8 - Shutdown completed.
+2021-02-22 18:51:58.113  INFO 11816 --- [restartedMain] io.gourmand.GourmandApplication          : Starting GourmandApplication on DESKTOP-RCD3Q83 with PID 11816 (C:\MyGit\midProject\Gourmand_SpringBoot_Project\target\classes started by Playdata in C:\MyGit\midProject\Gourmand_SpringBoot_Project)
+2021-02-22 18:51:58.113  INFO 11816 --- [restartedMain] io.gourmand.GourmandApplication          : No active profile set, falling back to default profiles: default
+2021-02-22 18:51:58.393  INFO 11816 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-02-22 18:51:58.440  INFO 11816 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 54ms. Found 13 JPA repository interfaces.
+2021-02-22 18:51:58.612  INFO 11816 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 80 (http)
+2021-02-22 18:51:58.627  INFO 11816 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-02-22 18:51:58.627  INFO 11816 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.41]
+2021-02-22 18:51:58.644  INFO 11816 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-02-22 18:51:58.644  INFO 11816 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 531 ms
+2021-02-22 18:51:58.707  INFO 11816 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-02-22 18:51:58.707  INFO 11816 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-9 - Starting...
+2021-02-22 18:51:58.707  INFO 11816 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-9 - Start completed.
+2021-02-22 18:51:58.707  INFO 11816 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+2021-02-22 18:51:58.847  INFO 11816 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-02-22 18:51:58.847  INFO 11816 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-02-22 18:51:59.082  WARN 11816 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-02-22 18:51:59.160  INFO 11816 --- [restartedMain] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: f398a0bf-ec36-4cdc-9bbb-3ea5c1c3bdc0
+
+2021-02-22 18:51:59.176  INFO 11816 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@1cd984ea, org.springframework.security.web.context.SecurityContextPersistenceFilter@5f399afd, org.springframework.security.web.header.HeaderWriterFilter@19c3bae9, org.springframework.security.web.authentication.logout.LogoutFilter@543d7b6b, io.gourmand.jwt.JwtAuthenticationFilter@57471e4d, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@592221df, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5db2dce0, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@173f3336, org.springframework.security.web.session.SessionManagementFilter@5ee8901a, org.springframework.security.web.access.ExceptionTranslationFilter@15f26de8]
+2021-02-22 18:51:59.207  INFO 11816 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-02-22 18:51:59.301  INFO 11816 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2021-02-22 18:51:59.316  INFO 11816 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 80 (http) with context path ''
+2021-02-22 18:51:59.316  INFO 11816 --- [restartedMain] io.gourmand.GourmandApplication          : Started GourmandApplication in 1.239 seconds (JVM running for 21178.197)
+2021-02-22 18:51:59.316  INFO 11816 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2021-02-22 18:52:16.466  INFO 11816 --- [http-nio-80-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-02-22 18:52:16.473  INFO 11816 --- [http-nio-80-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-02-22 18:52:16.482  INFO 11816 --- [http-nio-80-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 9 ms
+2021-02-22 18:53:06.788  INFO 11816 --- [http-nio-80-exec-9] io.gourmand.controller.UserController    : 회원가입 : gourmand1212
+2021-02-22 18:53:16.279  INFO 11816 --- [http-nio-80-exec-10] io.gourmand.controller.LoginController   : 로그인 시도 : gourmand1212
+2021-02-22 18:53:56.205  INFO 11816 --- [http-nio-80-exec-9] io.gourmand.controller.RevController     : 댓글 저장 : 가게,121,회원,13
+2021-02-22 18:54:12.430  INFO 11816 --- [http-nio-80-exec-2] io.gourmand.controller.ResController     : 회원리스트에 음식점 추가 : 회원,13,음식점,121
+2021-02-22 18:54:58.060  INFO 11816 --- [http-nio-80-exec-1] io.gourmand.controller.ResController     : 지역 검색 : 용산
+2021-02-22 18:55:53.666  INFO 11816 --- [http-nio-80-exec-4] io.gourmand.controller.LoginController   : 로그아웃 : 13
+2021-02-22 18:56:33.469  INFO 11816 --- [http-nio-80-exec-10] io.gourmand.controller.UserController    : 회원가입 : gourmand1111
+2021-02-22 18:56:41.689  INFO 11816 --- [http-nio-80-exec-1] io.gourmand.controller.LoginController   : 로그인 시도 : gourmand1111
+2021-02-22 18:57:22.717  INFO 11816 --- [http-nio-80-exec-10] io.gourmand.controller.RevController     : 댓글 저장 : 가게,316,회원,14
