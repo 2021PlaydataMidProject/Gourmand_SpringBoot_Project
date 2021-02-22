@@ -5,7 +5,6 @@ import AppHeaderOther from "./layout/AppHeaderOther";
 import AppFooter from "./layout/AppFooter";
 import Login from "./views/Login.vue";
 import Register from "./views/Register.vue";
-import Profile from "./views/Profile.vue";
 import Home from "./views/Home.vue";
 import ResTest from "./views/ResTest.vue";
 import UserSignUp from "./views/UserSignUp.vue";
@@ -14,7 +13,6 @@ import ResPage from "./views/ResPage.vue";
 import UserEdit from "./views/UserEdit.vue";
 import MyPage from "./views/MyPage.vue";
 import UserPage from "./views/UserPage.vue"
-import StarRating from "./views/StarRating.vue";
 import MapForAllSearch from "./views/MapForAllSearch.vue"
 import GourmandGuide from "./views/GourmandGuide.vue"
 import RevRegi from "./views/RevRegi.vue"
@@ -51,15 +49,6 @@ export default new Router({
       components: {
         header: AppHeaderOther,
         default: Register,
-        footer: AppFooter
-      }
-    },
-    {
-      path: "/profile",
-      name: "profile",
-      components: {
-        header: AppHeaderOther,
-        default: Profile,
         footer: AppFooter
       }
     },
@@ -150,15 +139,6 @@ export default new Router({
       components: {
         header: AppHeaderOther,
         default: UserPage,
-        footer: AppFooter
-      }
-    },
-    {
-      path: "/starrating",
-      name: "starRating",
-      components: {
-        header: AppHeaderOther,
-        default: StarRating,
         footer: AppFooter
       }
     },

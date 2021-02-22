@@ -354,10 +354,8 @@ export default {
             this.name = this.celebs[value];
           })
           .catch((error) => {
-            console.log("dhfb");
           });
       } else if (value == 6) {
-        ("/res/thumbnail/avgstar/{limit}/{xValue},{yValue}");
         this.axios
           .get(`/res/thumbnail/avgstar/500/37.2822,126.9994`, {})
           .then((res) => {
@@ -397,6 +395,9 @@ export default {
         this.name = "";
       }
     },
+    move(value){
+      location.href=`/userpage?id=${value}`;
+    }
   },
 };
 </script>
