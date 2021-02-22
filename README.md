@@ -60,6 +60,20 @@
 			   내가 좋아할만한 맛집을 추천한다.
       4. 방송맛집, 연예인 맛집 등을 지도 위 리스트로 보기 편하게 소개한다.
 
+## STRUCTURE 
+
+
+<div>
+
+![erd](https://user-images.githubusercontent.com/61037197/108632719-bdf74900-74b3-11eb-848a-3d3f3e18b5ef.PNG)
+
+## MODELING    
+
+### 메뉴트리
+<div> 
+
+![tree](https://user-images.githubusercontent.com/61037197/108651210-a300f500-7504-11eb-8c7e-5e32c1f15f5a.jpg)
+
 ## Service
 
 #### :world_map: 나만의 맛집들을 지도 보여주기
