@@ -1,6 +1,6 @@
 # Project : 구르망(gourmand)
 ###                   By Team 모도리( 빈틈없이 아주 야무진 사람 ) 
-<br><br>
+<br>
 
 ![resized-image-Promo (1)](https://user-images.githubusercontent.com/73862452/108668344-67732480-751e-11eb-9450-584d4ede07f6.jpeg)
 <h3><b>😋 먹기 위해 산다!</b></h3><br>
@@ -207,7 +207,7 @@ json 객체를 String 으로 변환해주는 JSON.stringfy() 함수를 사용해
  npm install –save chart.js vue-star-rating npm install -s cookie npm install cookie-parser
 ~~~
 
-<br>
+<br><br>
 
 2. 설치 완료시 서버 실행 <br>
 ~~~cmd
@@ -227,7 +227,7 @@ npm run serve
  npm -version
 ~~~
 
-<br>
+<br><br>
 2. 환경 설치 
 
 ~~~cmd
@@ -240,7 +240,7 @@ npm run serve
  
 ~~~
 
-<br>
+<br><br>
 
 3. 서버 실행
 
