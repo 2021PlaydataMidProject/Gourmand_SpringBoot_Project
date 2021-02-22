@@ -200,18 +200,6 @@ npm run serve
 
 
 ## Controller - APIs
-<details>
-<summary>Click to toggle contents of `code`</summary>
-~~~
-CODE!
-~~~
-</details>
-
-<details>
-<summary>Click to toggle contents of other `code`</summary>
-~~~
-MORE CODE!
-~~~
 </details><details>
 <summary>login controller</summary>
 signin         //로그인<br>
@@ -236,8 +224,6 @@ deleteRes      // 가게 정보 삭제<br>
 insetResToUser      // 가게 이미지만 추가   <br>
 insertImgOfRes      // 가게 정보 수정<br>
 </details>
-
-
    
 <details>
 <summary>rev controller</summary>
@@ -251,6 +237,7 @@ returnAllRevOfRes      // 가게에 대한 리뷰 Thumbnail<br>
 returnResStandard      // 가게에 대한 standard 정보<br>
 returnAllOrderByTime   // 시간순으로 12개의 revThumbnail<br>
 returnAllRevNumOfUser   // 회원의 모든리뷰 수<br>
+</details>
 
 <details>
 <summary>user controller</summary>
@@ -276,7 +263,7 @@ getAllOrderByUserNumNDate// 유저 당 리뷰를 시간순으로 반환("/res/us
 
 ## Reference 
 
-<br><br>
+<br></br>
  
 ## Appendix
 
