@@ -1603,3 +1603,6 @@ Using generated security password: 247e2196-ec14-4238-880d-4e71bb8d0be6
 2021-02-22 17:28:23.483  INFO 11816 --- [http-nio-80-exec-7] io.gourmand.controller.ResController     : 회원리스트에 음식점 추가 : 회원,12,음식점,5
 2021-02-22 17:37:56.176  INFO 11816 --- [http-nio-80-exec-8] io.gourmand.controller.LoginController   : 로그아웃 : 12
 2021-02-22 17:38:07.516  INFO 11816 --- [http-nio-80-exec-9] io.gourmand.controller.LoginController   : 로그인 시도 : gourmand1
+2021-02-22 17:50:33.414  INFO 11816 --- [http-nio-80-exec-3] io.gourmand.controller.ResController     : 회원리스트에 음식점 추가 : 회원,8,음식점,1
+2021-02-22 17:51:08.853  INFO 11816 --- [http-nio-80-exec-1] io.gourmand.controller.RevController     : 댓글 저장 : 가게,1,회원,8
+2021-02-22 18:43:22.042  WARN 11816 --- [HikariPool-8 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-8 - Thread starvation or clock leap detected (housekeeper delta=47s274ms229µs800ns).
