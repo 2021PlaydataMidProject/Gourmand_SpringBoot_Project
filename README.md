@@ -286,6 +286,8 @@ console.log(decoded);
 
 
 ## Controller - APIs
+
+<details>
 <summary>login controller</summary>
 signin       		  //로그인 		<br>("/auth/login")<br>
 logout       		  //로그아웃		<br>("/auth/logout")
