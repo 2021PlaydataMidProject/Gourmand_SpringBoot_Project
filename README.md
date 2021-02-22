@@ -154,7 +154,8 @@
 #### :sushi: KaKao Web Dynamic Map
      1) 검색을 통한 음식점 정보 찾기에 활용
 
-
+#### :hamburger: Naver Local Search
+     1) 음식점 명을 이용해 음식점 주소 찾기에 활용
 
 ## Setting Up <br> 
 
