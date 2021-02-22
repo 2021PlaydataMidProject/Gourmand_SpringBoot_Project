@@ -1,8 +1,15 @@
 # Project : 구르망(gourmand)
 ###                   By Team 모도리( 빈틈없이 아주 야무진 사람 ) 
 <br>
-
 ![resized-image-Promo (1)](https://user-images.githubusercontent.com/73862452/108668344-67732480-751e-11eb-9450-584d4ede07f6.jpeg)
+
+
+<img src="src\frontend\public\img\theme\1.gif"/>
+<img src="src\frontend\public\img\theme\2.gif"/>
+<img src="src\frontend\public\img\theme\3.gif"/>
+
+
+
 <h3><b>😋 먹기 위해 산다!</b></h3><br>
 
 전날 밤 잠들기 전부터 '내일 점심 뭐 먹지'를 고민하는,<br>
