@@ -176,13 +176,13 @@ json 객체를 String 으로 변환해주는 JSON.stringfy() 함수를 사용해
 
 
 #### :ramen: Naver Geocoding
-     1) 음식점 명을 이용하여 음식 유형/카테고리를 불러옴
+     1) 음식점명을 이용하여 음식 유형/카테고리를 불러옴
 
 #### :sushi: KaKao Web Dynamic Map
      1) 검색을 통한 음식점 정보 찾기에 활용
 
 #### :hamburger: Naver Local Search
-     1) 음식점 명을 이용해 음식점 주소 찾기에 활용
+     1) 음식점명을 이용해 음식점 주소 찾기에 활용
 
 ## Setting Up <br> 
 
