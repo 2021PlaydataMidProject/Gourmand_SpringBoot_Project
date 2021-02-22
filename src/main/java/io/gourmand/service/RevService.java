@@ -25,6 +25,7 @@ import io.gourmand.domain.ReviewStandard;
 import io.gourmand.dto.RevDTO.RevRegister;
 import io.gourmand.dto.RevDTO.ReviewThumbnail;
 import io.gourmand.dto.ReviewStandardDTO.ReviewStandardRegister;
+import io.gourmand.exception.UserNotMatchedException;
 
 @Service
 public class RevService {
@@ -53,8 +54,11 @@ public class RevService {
 	}
 
 	// 댓글 삭제
-	public void deleteReview(Long revNum) {
+	public void deleteReview(Long revNum, Long userNum){
 		Review rev = revDAO.findById(revNum).get();
+		if (rev.getUser().getUserNum() != userNum) {
+			throw new UserNotMatchedException();
+		}
 		rev.getReviewImg().forEach(img -> revImgDAO.delete(img));
 		rev.getReviewlikes().forEach(likes -> revLikeDAO.delete(likes));
 		revDAO.delete(rev);
@@ -70,8 +74,13 @@ public class RevService {
 	}
 
 	// 댓글 수정
-	public Review updateRev(RevRegister rev, ReviewStandardRegister regi, Long revNum) {
+	public Review updateRev(RevRegister rev, ReviewStandardRegister regi, Long revNum, Long userNum) throws UserNotMatchedException{
 		Review review = revDAO.findById(revNum).get();
+		
+		if (review.getUser().getUserNum()!=userNum) {
+			throw new UserNotMatchedException();
+		}
+		
 		review.setFoodType(rev.getFoodType());
 		review.setReview(rev.getReview());
 		
@@ -108,6 +117,10 @@ public class RevService {
 		List<ReviewThumbnail> rt = new ArrayList<>();
 		revDAO.findAllOrderByDate().forEach(rev -> rt.add(ReviewThumbnail.of(rev)));
 		return rt;
+	}
+	
+	public List<Long> getAllRevNumOfUser(Long userNum){
+		return revDAO.findAllReviewNumOfUser(userNum);
 	}
 	
 	// 리뷰 이미지 삭제

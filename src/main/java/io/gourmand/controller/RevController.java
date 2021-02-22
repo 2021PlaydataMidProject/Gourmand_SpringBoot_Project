@@ -3,7 +3,10 @@ package io.gourmand.controller;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -29,7 +32,12 @@ import io.gourmand.dto.RevDTO.ReviewThumbnail;
 import io.gourmand.dto.ReviewStandardDTO.ReviewStandardRegister;
 import io.gourmand.service.ResService;
 import io.gourmand.service.RevService;
+import io.gourmand.util.CookieUtil;
+import io.gourmand.util.JwtUtil;
+import io.jsonwebtoken.Claims;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @RestController
 public class RevController {
 
@@ -38,10 +46,13 @@ public class RevController {
 	@Autowired
 	private ResService resService;
 
+	@Value("${jwt.secret}")
+	private String secret;
+
 	// 모든 댓글 정보 조회
 	@GetMapping("/rev/{id}/revsinfo")
 	public String getReviewList(@ModelAttribute("user") User user, Model model, Review review) {
-
+		
 		if (user.getUserId() == null) {
 			return "redirect:login";
 		}
@@ -59,9 +70,13 @@ public class RevController {
 
 	// 댓글 정보 저장
 	@PostMapping("/rev/regi")
-	public void createRev(@RequestParam("reviewRegi") String rev, @RequestParam("userNum") String userNum,
-			@RequestParam("resNum") String resNum, @RequestParam("reviewStandard") String rstandard,
-			@RequestParam("revImg") List<MultipartFile> revImg) {
+	public void createRev(@RequestParam("reviewRegi") String rev, @RequestParam("resNum") String resNum,
+			@RequestParam("reviewStandard") String rstandard, @RequestParam("revImg") List<MultipartFile> revImg,
+			HttpServletRequest hsp) {
+		
+		Claims claim = new JwtUtil(secret).getClaims(CookieUtil.getCookie(hsp, "accessToken").getValue());
+		Long userNum = claim.get("user_num", Long.class);
+		log.info("댓글 저장 : 가게,"+ resNum + ",회원," + userNum);
 		ObjectMapper mapper = new ObjectMapper();
 		try {
 			ReviewStandard rs = revService.insertRevSt(mapper.readValue(rstandard, ReviewStandardRegister.class));
@@ -87,11 +102,15 @@ public class RevController {
 	@PutMapping("/rev/{revNum}/update")
 	public void updateRev(@PathVariable("revNum") Long revNum, @RequestParam("reviewRegi") String rev,
 			@RequestParam("resNum") String resNum, @RequestParam("reviewStandard") String rstandard,
-			@RequestParam("revImg") List<MultipartFile> revImg) {
+			@RequestParam("revImg") List<MultipartFile> revImg, HttpServletRequest hsp) {
+
+		Claims claim = new JwtUtil(secret).getClaims(CookieUtil.getCookie(hsp, "acessToken").getValue());
+		Long userNum = claim.get("user_num", Long.class);
+		log.info("댓글 수정 : 가게,"+ resNum + ",회원," + userNum);
 		ObjectMapper mapper = new ObjectMapper();
 		try {
 			Review review = revService.updateRev(mapper.readValue(rev, RevRegister.class),
-					mapper.readValue(rstandard, ReviewStandardRegister.class), revNum);
+					mapper.readValue(rstandard, ReviewStandardRegister.class), revNum, userNum);
 			revImg.forEach(rmg -> {
 				ReviewImg rimg = revService.insertRevImg(rmg, review);
 				try {
@@ -110,8 +129,12 @@ public class RevController {
 
 	// 댓글 삭제
 	@PostMapping("/rev/{res}/deleteReview/{num}")
-	public void deleteReview(@PathVariable("num") Long revNum, @PathVariable("res") Long resNum) {
-		revService.deleteReview(revNum);
+	public void deleteReview(@PathVariable("num") Long revNum, @PathVariable("res") Long resNum,
+			HttpServletRequest hsp) {
+		Claims claim = new JwtUtil(secret).getClaims(CookieUtil.getCookie(hsp, "accessToken").getValue());
+		Long userNum = claim.get("user_num", Long.class);
+		log.info("댓글 삭제 : 가게,"+ resNum + ",회원," + userNum);
+		revService.deleteReview(revNum, userNum);
 		resService.updateResAvgStar(resNum);
 	}
 
@@ -139,5 +162,13 @@ public class RevController {
 	@GetMapping("/rev/main/nologin")
 	public List<ReviewThumbnail> returnAllOrderByTime() {
 		return revService.getRevOrderByTime();
+	}
+
+	@GetMapping("/rev/user/cnt")
+	public List<Long> returnAllRevNumOfUser(HttpServletRequest hsp) {
+		Claims claim = new JwtUtil(secret).getClaims(CookieUtil.getCookie(hsp, "accessToken").getValue());
+		Long userNum = claim.get("user_num", Long.class);
+		System.out.println(userNum);
+		return revService.getAllRevNumOfUser(userNum);
 	}
 }

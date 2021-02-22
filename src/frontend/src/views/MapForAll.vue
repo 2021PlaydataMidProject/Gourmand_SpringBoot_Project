@@ -35,7 +35,11 @@
               <base-radio name="9" class="mb-3 mr-1" v-model="radio.radio1">
                 <small> 9km 이내 </small>
               </base-radio>
-              <base-radio name="9999999" class="mb-3 mr-1" v-model="radio.radio1">
+              <base-radio
+                name="9999999"
+                class="mb-3 mr-1"
+                v-model="radio.radio1"
+              >
                 <small> 전체 </small>
               </base-radio>
             </div>
@@ -110,23 +114,27 @@
         <span>맛집 지도</span>
         <hr />
       </h2>
-      <div class="row">
+
+      <div class="row" id="pag">
         <!--eslint-disable-next-line vue/no-use-v-if-with-v-for-->
-        <div v-for="(value, key) in resThumbnails" v-if="check(value.category)" v-bind:key="key" class="col-lg-3 col-sm-4">
+        <div v-for="(value, key) in itemsForList" v-if="check(value.category)"
+          v-bind:key="key"
+          class="col-lg-3 col-sm-4"
+        >
+          <div class="image-container col-md-12">
           <img
             v-if="value.res_img != null"
             :src="'img/res/' + value.res_img.name"
             alt="Rounded image"
             class="img-fluid rounded shadow"
-            style="height: 150px"
           />
           <img
             v-else
-            v-lazy="'img/theme/team-1-800x800.jpg'"
+            v-lazy="'img/theme/dish.png'"
             alt="Rounded image"
             class="img-fluid rounded shadow"
-            style="width: 150px"
           />
+          </div>
           <h3 class="heading mb-1">
             <star-rating
               :value="3"
@@ -138,7 +146,7 @@
               :rating="value.avg_star"
             ></star-rating>
           </h3>
-          {{ value.avg_star.toFixed(1) }}/5.0
+          {{ getStar(value.avg_star) }}/5.0
 
           <a href="#" @click="move(value.res_num)"
             ><h3 class="heading-title mb-0">{{ value.res_name }}</h3></a
@@ -147,6 +155,16 @@
           <h6 class="mb-0">{{ value.res_address }}</h6>
           <hr />
         </div>
+      </div>
+      <div class="row">
+      <div class="col-md-5"/>
+      <b-pagination
+        v-model="currentPage"
+        :total-rows="row"
+        :per-page="perPage"
+        aria-controls="pag"
+        class=""
+      ></b-pagination>
       </div>
     </div>
   </section>
@@ -157,6 +175,7 @@ import BaseNav from "@/components/BaseNav";
 import CloseButton from "@/components/CloseButton";
 import Modal from "@/components/Modal.vue";
 import StarRating from "vue-star-rating";
+import { BPagination } from "bootstrap-vue";
 
 export default {
   components: {
@@ -164,6 +183,7 @@ export default {
     CloseButton,
     Modal,
     StarRating,
+    BPagination,
   },
   //star rating 별점
   computed: {
@@ -177,10 +197,19 @@ export default {
         ? "Click to select " + this.mouseOverRating + " stars"
         : "No rating selected";
     },
+    row() {
+      return this.resThumbnails.length;
+    },
+    itemsForList() {
+      return this.resThumbnails.slice(
+        (this.currentPage - 1) * this.perPage,
+        this.currentPage * this.perPage
+      );
+    },
   },
   data() {
     return {
-      resThumbnails: null,
+      resThumbnails: [],
       modals: {
         modal1: false,
         modal2: false,
@@ -195,7 +224,7 @@ export default {
         기타: true,
       },
       radio: {
-        radio1: "",
+        radio1: "3",
         radio2: "",
       },
       xValue: 37.2822,
@@ -205,6 +234,9 @@ export default {
       resetableRating: 2,
       currentRating: "No Rating",
       mouseOverRating: null,
+
+      perPage: 20,
+      currentPage: 1,
     };
   },
   mounted() {
@@ -243,8 +275,8 @@ export default {
       }
       this.modals.modal1 = false;
     },
-    move(resnum){
-      this.$router.push({ path: "/respage", query: { res: resnum }});
+    move(resnum) {
+      this.$router.push({ path: "/respage", query: { res: resnum } });
     },
     check(category) {
       return (
@@ -260,6 +292,9 @@ export default {
     },
     setCurrentSelectedRating(rating) {
       this.currentSelectedRating = "You have Selected: " + rating + " stars";
+    },
+    getStar(star) {
+      return star.toFixed(1);
     },
   },
 };
@@ -280,11 +315,13 @@ body {
   color: #999;
   background: #fff;
 }
+
+.image-container {
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 150px;
+  height: 150px;
+}
 </style>
-
-
-
-
-
-
->>>>>>> mainpage

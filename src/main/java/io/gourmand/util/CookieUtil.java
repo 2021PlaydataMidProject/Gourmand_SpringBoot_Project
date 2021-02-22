@@ -16,7 +16,7 @@ public class CookieUtil {
         return token;
     }
 
-    public Cookie getCookie(HttpServletRequest req, String cookieName){
+    public static Cookie getCookie(HttpServletRequest req, String cookieName){
         final Cookie[] cookies = req.getCookies();
         if(cookies==null) return null;
         for(Cookie cookie : cookies){

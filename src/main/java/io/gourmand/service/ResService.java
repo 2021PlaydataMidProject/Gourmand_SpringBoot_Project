@@ -20,6 +20,7 @@ import io.gourmand.dao.UserRepository;
 import io.gourmand.dao.UserResListRepository;
 import io.gourmand.domain.Res;
 import io.gourmand.domain.ResImg;
+import io.gourmand.domain.UserResList;
 import io.gourmand.dto.ResDTO.ResInfo;
 import io.gourmand.dto.ResDTO.ResRegister;
 import io.gourmand.dto.ResDTO.ResThumbnail;
@@ -93,6 +94,12 @@ public class ResService {
 		return resThumbList;
 	}
 	
+	// UserResList 추가
+	public void insertResList(String listName, Long resNum, Long userNum) {
+		urlDAO.save(UserResList.builder().listName(listName).res(resDAO.findById(resNum).get()).user(userDAO.findById(userNum).get()).build());
+	}
+	
+	
 	public void updateResAvgStar(Long res) {
 		resDAO.updateResAvgStar(res);
 	}
@@ -102,7 +109,6 @@ public class ResService {
 		return resDAO.save(ResRegister.toEntity(res));
 	}
 
-	//가게 정보 수정
 	public void updateRes(Long id, ResRegister resRegi) {
 		Res newres = resDAO.findById(id).get();
 		Res res = ResRegister.toEntity(resRegi);
@@ -123,6 +129,11 @@ public class ResService {
 	public ResImg insertResImg(MultipartFile resImg, Res res) {
 		return resImgDAO.save(ResImg.of(resImg, res));
 	}
+	
+	// MultipartFile -> entity -> SQL저장
+		public ResImg insertResImg(MultipartFile resImg, Long res) {
+			return resImgDAO.save(ResImg.of(resImg, resDAO.findById(res).get()));
+		}
 
 	// MultipartFile -> 저장
 	public void saveImg(MultipartFile file, ResImg res) throws IOException {

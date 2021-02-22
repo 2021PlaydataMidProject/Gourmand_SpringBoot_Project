@@ -41,9 +41,6 @@
             <b-carousel-slide
               img-src="img/theme/img-1-1200x1000.jpg"
             ></b-carousel-slide>
-            <b-carousel-slide
-              img-src="img/theme/img-2-1200x1000.jpg"
-            ></b-carousel-slide>
           </b-carousel>
         </div>
       </div>
@@ -60,45 +57,44 @@
             >
               <hr class="col-lg-8 col-sm-8" />
               <div class="col-lg-12 col-sm-12 text-left row">
-                <div class="col-lg-3 col-sm-3">
-                <img
-                  v-if="rev.user.user_img != null"
-                  v-lazy="'img/user/' + rev.user.user_img.name"
-                  alt="Raised circle image"
-                  class="img-fluid rounded-circle shadow-lg"
-                  style="width: 50px"
-                />
-                <img
-                  v-else
-                  v-lazy="'img/theme/team-4-800x800.jpg'"
-                  alt="Raised circle image"
-                  class="img-fluid rounded-circle shadow-lg"
-                  style="height: 30px"
-                />
+                <div class="image-container2">
+                  <img
+                    v-if="rev.user.user_img != null"
+                    v-lazy="'img/user/' + rev.user.user_img.name"
+                    alt="Raised circle image"
+                    class="img-fluid rounded-circle shadow-lg"
+                  />
+                  <img
+                    v-else
+                    v-lazy="'img/theme/team-4-800x800.jpg'"
+                    alt="Raised circle image"
+                    class="img-fluid rounded-circle shadow-lg"
+                  />
                 </div>
                 <p class="front-weight-bold">
-                  {{ rev.user.name }}({{rev.user.user_id}})
+                  {{ rev.user.name }}({{ rev.user.user_id }})
                 </p>
-                <hr class="col-sm-10 mt-0">
+                <hr class="col-sm-10 mt-0" />
               </div>
-              <div class="col-md-6">
+              <div class="col-md-6 image-container">
                 <img
                   v-if="rev.review_img != null"
                   v-lazy="'img/rev/' + rev.review_img.name"
                   alt="Rounded image"
                   class="img-fluid rounded shadow"
-                  style="width: 150px"
                 />
                 <img
                   v-else
-                  v-lazy="'img/theme/team-4-800x800.jpg'"
+                  v-lazy="'img/theme/dish.png'"
                   alt="Rounded image"
                   class="img-fluid rounded shadow"
-                  style="width: 150px"
                 />
               </div>
               <div class="text-left">
-                <small><a :href="'/respage?res='+rev.res_num">{{ rev.res_name }}</a></small
+                <small
+                  ><a :href="'/respage?res=' + rev.res_num">{{
+                    rev.res_name
+                  }}</a></small
                 ><br />
                 <small>{{ rev.write_date }}</small
                 ><br />
@@ -192,3 +188,21 @@ export default {
   },
 };
 </script>
+<style>
+.image-container {
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 100px;
+}
+.image-container2 {
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+}
+</style>

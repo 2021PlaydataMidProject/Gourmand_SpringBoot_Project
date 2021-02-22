@@ -1,107 +1,110 @@
 <template>
-  <section class="section section-shaped section-lg my-0">
-    <div class="col-md-30">
+  <section class="col-md-9">
+    <div class="col-md-12">
       <b-tabs content-class="mt-3">
         <b-tab title="별점순" active>
-        <div class="row">
-          <div class="col-md">
-            <label>5.0</label>
-          </div>
-          <div v-for="(rev, key) in revs" v-bind:key="key" class="row">
-            <!-- <hr class="col-lg-11 col-sm-11" />-->
-            <div class="col-md-6">
-              <img
-                v-if="rev.review_img != null"
-                v-lazy="'img/rev/' + rev.review_img.name"
-                alt="Rounded image"
-                class="img-fluid rounded shadow"
-                style="width: 150px"
-              />
-              <img
-                v-else
-                v-lazy="'img/theme/team-4-800x800.jpg'"
-                alt="Rounded image"
-                class="img-fluid rounded shadow"
-                style="width: 150px"
-              />
+          <div class="row">
+            <div
+              v-for="(rev, key) in revs_star"
+              v-bind:key="key"
+              class="row col-md-4 mb-5"
+            >
+              <!-- <hr class="col-lg-11 col-sm-11" />-->
+              <div class="col-md-12 image-container">
+                <img
+                  v-if="rev.review_img != null"
+                  v-lazy="'img/rev/' + rev.review_img.name"
+                  alt="Rounded image"
+                  class="img-fluid rounded shadow"
+                />
+                <img
+                  v-else
+                  v-lazy="'img/theme/dish.png'"
+                  alt="Rounded image"
+                  class="img-fluid rounded shadow"
+                />
+              </div>
+              <div class="col-lg-12">
+                <small class="mr-4"
+                  ><a :href="'/respage?res=' + rev.res_num">{{
+                    rev.res_name
+                  }}</a></small
+                >
+                <p class="mb-0">
+                  <small>{{ rev.write_date }}</small>
+                </p>
+                <star-rating
+                  :show-rating="true"
+                  @hover:rating="mouseOverRating = $event"
+                  :increment="0.5"
+                  :starSize="25"
+                  :readOnly="true"
+                  :rating="
+                    (rev.review_standard.rflavor +
+                      rev.review_standard.rcost_value +
+                      rev.review_standard.rkindness +
+                      rev.review_standard.rmood +
+                      rev.review_standard.raccess +
+                      rev.review_standard.rclean) /
+                    6
+                  "
+                ></star-rating>
+                <hr class="mb-0" />
+              </div>
             </div>
-            <div class="col-lg-10">
-              <small
-                ><a :href="'/respage?' + rev.res_num">{{
-                  rev.res_name
-                }}</a></small
-              >
-              <br /><br />
-              <star-rating
-                :show-rating="false"
-                @hover:rating="mouseOverRating = $event"
-                :increment="0.5"
-                :starSize="25"
-                :readOnly="true"
-                :rating="
-                  (rev.review_standard.rflavor +
-                    rev.review_standard.rcost_value +
-                    rev.review_standard.rkindness +
-                    rev.review_standard.rmood +
-                    rev.review_standard.raccess +
-                    rev.review_standard.rclean) /
-                  6
-                "
-              ></star-rating>
-            </div>
           </div>
-        </div>
         </b-tab>
         <b-tab title="작성순">
-         <div class="row">
-          <div class="col-md-1">
-            <label>2021.02</label>
-          </div>
-        <div v-for="(rev, key) in revs" v-bind:key="key" class="row">
-            <hr class="col-lg-11 col-sm-11" />
-            <div class="col-md-6">
-              <img
-                v-if="rev.review_img != null"
-                v-lazy="'img/rev/' + rev.review_img.name"
-                alt="Rounded image"
-                class="img-fluid rounded shadow"
-                style="width: 150px"
-              />
-              <img
-                v-else
-                v-lazy="'img/theme/team-4-800x800.jpg'"
-                alt="Rounded image"
-                class="img-fluid rounded shadow"
-                style="width: 150px"
-              />
+          <div class="row">
+            <div
+              v-for="(rev, key) in revs_date"
+              v-bind:key="key"
+              class="row col-md-4 mb-5"
+            >
+              <div class="col-md-12 image-container">
+                <img
+                  v-if="rev.review_img != null"
+                  v-lazy="'img/rev/' + rev.review_img.name"
+                  alt="Rounded image"
+                  class="img-fluid rounded shadow"
+                />
+                <img
+                  v-else
+                  v-lazy="'img/theme/dish.png'"
+                  alt="Rounded image"
+                  class="img-fluid rounded shadow"
+                />
+              </div>
+              <div class="col-lg-12">
+                <small
+                  ><a :href="'/respage?res=' + rev.res_num">{{
+                    rev.res_name
+                  }}</a></small
+                >
+                <p class="mb-0">
+                  <small>{{ rev.write_date }}</small>
+                </p>
+                <star-rating
+                  :show-rating="true"
+                  @hover:rating="mouseOverRating = $event"
+                  :increment="0.5"
+                  :starSize="25"
+                  :readOnly="true"
+                  :rating="
+                    (rev.review_standard.rflavor +
+                      rev.review_standard.rcost_value +
+                      rev.review_standard.rkindness +
+                      rev.review_standard.rmood +
+                      rev.review_standard.raccess +
+                      rev.review_standard.rclean) /
+                    6
+                  "
+                ></star-rating>
+                <hr class="mb-0" />
+              </div>
             </div>
-            <div class="col-lg-10">
-              <small
-                ><a :href="'/respage?' + rev.res_num">{{
-                  rev.res_name
-                }}</a></small
-              >
-              <br /><br />
-              <star-rating
-                :show-rating="false"
-                @hover:rating="mouseOverRating = $event"
-                :increment="0.5"
-                :starSize="25"
-                :readOnly="true"
-                :rating="
-                  (rev.review_standard.rflavor +
-                    rev.review_standard.rcost_value +
-                    rev.review_standard.rkindness +
-                    rev.review_standard.rmood +
-                    rev.review_standard.raccess +
-                    rev.review_standard.rclean) /
-                  6
-                "
-              ></star-rating>
-            </div>
           </div>
-         </div>
-         </b-tab>
+        </b-tab>
       </b-tabs>
     </div>
   </section>
@@ -114,9 +117,10 @@ import { BTab } from "bootstrap-vue";
 export default {
   data() {
     return {
-      user_id:"",
-      name:"",
-      revs: [],
+      user_id: "",
+      name: "",
+      revs_date: [],
+      revs_star: [],
       data: [],
       resnum: 0,
     };
@@ -125,7 +129,6 @@ export default {
     StarRating,
     BTabs,
     BTab,
-    
   },
   computed: {
     currentRatingText() {
@@ -140,33 +143,22 @@ export default {
     },
   },
   mounted() {
-    console.log(sessionStorage.getItem("user"))
-     this.axios
-      .get("/rev/main/nologin", {})
+    this.axios
+      .get("/res/user/review/Star", {})
       .then((rev) => {
-        this.revs = rev.data;
+        this.revs_star = rev.data;
       })
       .catch((error) => {
         alert("서버 오류");
       });
     this.axios
-      .get(`/rev/res/${str}/standard`, {})
-      .then((rs) => {
-        var standard = rs.data.split(",");
-        this.data = [
-          parseFloat(standard[0]),
-          parseFloat(standard[2]),
-          parseFloat(standard[4]),
-          parseFloat(standard[3]),
-          parseFloat(standard[5]),
-          parseFloat(standard[1]),
-        ];
+      .get("/res/user/review/writeDate", {})
+      .then((rev) => {
+        this.revs_date = rev.data;
       })
       .catch((error) => {
         alert("서버 오류");
       });
-
-    this.resnum = str;
   },
   methods: {
     //별점순 시간순 카테고리 변경시
@@ -183,4 +175,12 @@ export default {
 };
 </script>
 <style>
+.image-container {
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 100px;
+}
 </style>

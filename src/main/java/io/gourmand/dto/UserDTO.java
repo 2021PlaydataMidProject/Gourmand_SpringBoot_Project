@@ -10,8 +10,6 @@ import io.gourmand.domain.Followers;
 import io.gourmand.domain.ListLikes;
 import io.gourmand.domain.Reply;
 import io.gourmand.domain.Review;
-
-import io.gourmand.domain.ReviewLikes;
 import io.gourmand.domain.User;
 import io.gourmand.domain.UserImg;
 import io.gourmand.domain.UserResList;
@@ -24,24 +22,6 @@ import lombok.Setter;
 import lombok.ToString;
 
 public class UserDTO {
-
-// 전체 User table 객체명
-
-//	private Long userNum;
-//	private String userId;
-//	private List<Followers> followers;
-//	private List<Followers> following;
-//	private String pw;
-//	private String name;
-//	private String dob;
-//	private String job;
-//	private int pageStatus;
-//	private LocalDate suDate;
-//	private UserStandard userStandard;	
-//	private List<Reply> reply; 
-//	private List<UserImg> userImg;
-//	private List<ReviewLikes> reviewLikes;
-//	private List<ListLikes> listLikes;
 
 	@Getter
 	@Setter
@@ -76,7 +56,7 @@ public class UserDTO {
 		}
 	}
 	
-	// 회원가입을 위한 DTO - 이미지 관련 추가, 날짜/드롭다운 등 변경 필요
+	// 회원가입을 위한 DTO 
 	@AllArgsConstructor
 	@NoArgsConstructor
 	@Getter
@@ -101,39 +81,38 @@ public class UserDTO {
 		}
 	}
 
-	// 회원 1인의 전체 정보 불러오기 - // thread 컬럼명 Reply로 변경
+	// 회원 1인의 전체 정보 불러오기 
 	@Getter
 	@Setter
 	@NoArgsConstructor
 	@AllArgsConstructor
 	@Builder
 	public static class UserInfo {
-		private Long userNum;
 		private String userId;
-		private List<Followers> followers;
-		private List<Followers> following;
-		private String pw;
 		private String name;
 		private String dob;
 		private String job;
 		private int pageStatus;
 		private LocalDate suDate;
 		private UserStandard userStandard;
-		private List<Reply> reply;
 		private List<UserImg> userImg;
-		private List<ReviewLikes> reviewLikes;
-		private List<ListLikes> listLikes;
+		private int revCnt;
 
 		public static UserInfo of(User user) {
-			return UserInfo.builder().userNum(user.getUserNum()).userId(user.getUserId()).followers(user.getFollowers())
-					.followers(user.getFollowing()).pw(user.getPw()).name(user.getName()).job(user.getJob())
-					.pageStatus(user.getPageStatus()).suDate(user.getSuDate()).userStandard(user.getUserStandard())
-					.reply(user.getReply()).userImg(user.getUserImg()).reviewLikes(user.getReviewLikes())
-					.listLikes(user.getListLikes()).build();
+			return UserInfo.builder()
+					.userId(user.getUserId())
+					.dob(user.getDob())
+					.name(user.getName())
+					.job(user.getJob())
+					.pageStatus(user.getPageStatus())
+					.suDate(user.getSuDate())
+					.userStandard(user.getUserStandard())
+					.userImg(user.getUserImg())
+					.revCnt(user.getReview().size()).build();
 		}
 	}
 
-	// 회원 이미지와 간단 설명 - 근데 리뷰수, LIKE수는 어떻게 카운트하지???
+	// 회원 이미지와 간단 설명
 	@NoArgsConstructor
 	@AllArgsConstructor
 	@Setter
@@ -153,7 +132,6 @@ public class UserDTO {
 			}
 			return UserThumbnail.builder().userNum(user.getUserNum()).userId(user.getUserId()).name(user.getName())
 					.pageStatus(user.getPageStatus()).userImg(umg)
-					// 대표 이미지 선택방법 고려해야함
 					.build();
 		}
 	}
@@ -176,6 +154,17 @@ public class UserDTO {
 		private User userId;
 		private Review reviewNum;
 		private UserResList listNum;
+
+	}
+
+	@Getter
+	@Setter
+	@NoArgsConstructor
+	@AllArgsConstructor
+	@Builder
+	public static class	UserSimple {
+		private Long userNum;
+		private String userName;
 
 	}
 }

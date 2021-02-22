@@ -22,29 +22,20 @@
           >
             <template>
               <div class="text-muted text-center mb-3">
-                <small>Sign in with</small>
-              </div>
-              <div class="btn-wrapper text-center">
-                <base-button type="neutral">
-                  <img slot="icon" src="img/icons/common/github.svg" />
-                  Github
-                </base-button>
-
-                <base-button type="neutral">
-                  <img slot="icon" src="img/icons/common/google.svg" />
-                  Google
-                </base-button>
+               <img src="img/brand/logo.png" alt="logo" width="200" /><br>
+                <small>맛잘알들의 집합소,<br>
+                     '구르망'에 오신 것을 환영합니다!</small>
               </div>
             </template>
             <template>
               <div class="text-center text-muted mb-4">
-                <small>Or sign in with credentials</small>
+
               </div>
               <form role="form">
                 <base-input
                   alternative
                   class="mb-3"
-                  placeholder="Email"
+                  placeholder="아이디"
                   addon-left-icon="ni ni-email-83"
                   v-model="id"
                 >
@@ -52,7 +43,7 @@
                 <base-input
                   alternative
                   type="password"
-                  placeholder="Password"
+                  placeholder="비밀번호"
                   addon-left-icon="ni ni-lock-circle-open"
                   v-model="pw"
                 >
@@ -68,13 +59,10 @@
           </card>
           <div class="row mt-3">
             <div class="col-6">
-              <a href="#" class="text-light">
-                <small>Forgot password?</small>
-              </a>
             </div>
             <div class="col-6 text-right">
-              <a href="#" class="text-light">
-                <small>Create new account</small>
+              <a href="/register" class="text-primary">
+                <small>계정생성하기</small>
               </a>
             </div>
           </div>
@@ -83,7 +71,6 @@
     </div>
   </section>
 </template>
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
 
 import 
@@ -117,9 +104,7 @@ export default {
         })
         .then((res) => {
           if (res.data) {
-            console.log(res);
-            sessionStorage.setItem("user", res.data.user_num);
-            console.log(sessionStorage.getItem("user"))
+            sessionStorage.setItem("user", true);
             saveUserNumToCookie(res.data.user_num);
             saveUserIdToCookie(res.data.user_id);
             saveUserNameToCookie(res.data.name);

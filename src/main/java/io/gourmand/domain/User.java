@@ -1,12 +1,9 @@
 package io.gourmand.domain;
 
-import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -15,10 +12,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
-
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -84,11 +77,12 @@ public class User  {
 	@OneToMany(mappedBy = "user", fetch=FetchType.LAZY)
 	private List<ListLikes> listLikes;
 	
+	@OneToMany(mappedBy = "user", fetch=FetchType.LAZY)
+	private List<Review> review;
+	
 	public User(String name) {
 	    this.name = name;
 	}
-	
-
 }
 
 
