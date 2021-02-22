@@ -2,8 +2,7 @@
 ###                   By Team 모도리( 빈틈없이 아주 야무진 사람 ) 
 <br><br>
 
-![logo1](https://user-images.githubusercontent.com/73862452/108666568-bd45cd80-751a-11eb-8166-d8e06e03e3ea.jpeg)
-
+![resized-image-Promo (1)](https://user-images.githubusercontent.com/73862452/108668344-67732480-751e-11eb-9450-584d4ede07f6.jpeg)
 <h3><b>😋 먹기 위해 산다!</b></h3><br>
 
 전날 밤 잠들기 전부터 '내일 점심 뭐 먹지'를 고민하는,<br>
@@ -16,7 +15,7 @@
 '아, 저거 맛있었지!'하다 잠드는,<br>
 미각으로 온 세상을 기억하는 프로 기억러(like 장문희🤗),<br><br><br>
 
-![resized-image-Promo](https://user-images.githubusercontent.com/73862452/108666572-c040be00-751a-11eb-8b71-063271f0bd4d.jpeg)
+<img src="https://imgur.com/TEYlgLY" width=300 />
 <h3><b>세상은 넓고, 맛있는 음식은 많다!<b><br>
 우리 모두 맛있는 것만 먹고 살 자격이 있습니다!!!!!</b></h3><br><br>
 
@@ -104,7 +103,7 @@
 
 ### Backend  <br>
 
-   1) 지도 백엔드 서버에서 오류발생 <br>
+   1)지도 백엔드 서버에서 오류발생 <br>
    > ErrorCode <br>
    
   ```
@@ -164,7 +163,7 @@ Entity 클래스와 DTO 클래스를 분리하는 이유<br>
 ### :croissant: SpringBoot 실행 <br>
 
 먼저 eclispe의 해당 파일을 열어 import 하신 후, <br>
-파일의 java resources -> src/main/java -> io.gourmand ->Gourmand application을 spring boot app으로 실행시켜 줍니다.<br>
+파일의 java resources -> src/main/java -> io.gourmand -> Gourmand application을 spring boot app으로 실행시켜 줍니다.<br>
 <br>
 
 
@@ -176,8 +175,7 @@ Entity 클래스와 DTO 클래스를 분리하는 이유<br>
 ~~~cmd
  cd C:\Users\Playdata\Documents\GitHub\Gourmand_SpringBoot_Project\src\frontend
  npm install
- npm install –save chart.js vue-star-rating
-
+ npm install –save chart.js vue-star-rating npm install -s cookie npm install cookie-parser
 ~~~
 
 <br>
@@ -192,8 +190,9 @@ npm run serve
 <br>
 
 ### :rice_ball: Node Express 실행 <br>
+
 1. node와 npm 버전 확인 
-    
+    <br> 
 ~~~cmd
  node -version 
  npm -version
@@ -203,17 +202,13 @@ npm run serve
 2. 환경 설치 
 
 ~~~cmd
- npm install
  npm install -g nodemon
  npm install -g express
  npm install -g express-generator 
  npm install cores –save
  npm install express-session –save
  npm install axios –save 
- npm install -s cookie
- npm install cookie-parser
- npm install jsonwebtoken
- npm install jwt-decode
+ 
 ~~~
 
 <br>
@@ -313,7 +308,7 @@ console.log(decoded);
 	getReviewList     	 // 모든 리뷰 정보 조회
 	getReview     		 // 하나의 리뷰 정보 조회
 	createRev     		 // 리뷰 정보 저장
-	updateRev     		 // 리뷰 수정
+	updateRev     		// 리뷰 수정
 	deleteReview      	// 리뷰 삭제
 	deleteRevImg     	// 리뷰 이미지 삭제
 	returnAllRevOfRes       // 가게에 대한 리뷰 Thumbnail
@@ -326,22 +321,22 @@ console.log(decoded);
 <summary>user controller</summary>
 	
 	createUser      	// 회원 가입 
-	updateUser      // 유저 정보 수정
-	deleteUserStandardUser   // 회원 기준 삭제
-	deleteUser      // 회원 삭제
-	deleteUserImg      // 회원 이미지 삭제
-	createUserStandard   // 회원 기준 저장
-	returnUserResList      // 회원의 list 이름들 반환 (list에 저장용)
+	updateUser     		// 유저 정보 수정
+	deleteUserStandardUser  // 회원 기준 삭제
+	deleteUser      	// 회원 삭제
+	deleteUserImg     	// 회원 이미지 삭제
+	createUserStandard	// 회원 기준 저장
+	returnUserResList       // 회원의 list 이름들 반환 (list에 저장용)
 	getUserIdOfFamousUser   // 인기 많은 유저의 아이디와 닉네임
-	getResOfList      // 내 리스트 불러오기
-	getUserCountByList   // 내가 작성한 리스트 카운트 불러오는거
-	getUserInfo      // 내 전체 정보 가져오기
-	getResOfList      // 회원 리스트 불러오기
-	getUserCountByList   // 리스트 카운트 불러오는거
+	getResOfList            // 내 리스트 불러오기
+	getUserCountByList      // 내가 작성한 리스트 카운트 불러오는거
+	getUserInfo             // 내 전체 정보 가져오기
+	getResOfList            // 회원 리스트 불러오기
+	getUserCountByList      // 리스트 카운트 불러오는거
 	getAllOrderByUserNumNStar   // 유저 당 리뷰를 별점순으로 반환("/res/user/review/writeDate")나의 페이지
-	getAllOrderByUserNumNDate// 유저 당 리뷰를 시간순으로 반환("/res/user/review/Star")나의 페이지
+	getAllOrderByUserNumNDate   // 유저 당 리뷰를 시간순으로 반환("/res/user/review/Star")나의 페이지
 	getAllOrderByUserNumNStar   // 유저 당 리뷰를 별점순으로 반환("/res/user/review/writeDate/{id}")타인의 페이지
-	getAllOrderByUserNumNDate// 유저 당 리뷰를 시간순으로 반환("/res/user/review/Star/{id}")타인의 페이지
+	getAllOrderByUserNumNDate  // 유저 당 리뷰를 시간순으로 반환("/res/user/review/Star/{id}")타인의 페이지
 </details>
 
 
@@ -361,10 +356,4 @@ https://ta-ye.github.io/study/#Vue.js
 
 
 ## Contributors
-<div>
-&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<a href="https://github.com/YeonjiKim0316"><img src="https://avatars3.githubusercontent.com/u/73862452?s=460&u=6091225c2e241fcef51c99e69c772b845aa03073&v=4" width="40" /></a> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<a href="https://github.com/YUNHYE-0107"><img src="https://avatars0.githubusercontent.com/u/74332188?s=460&v=4" width="40"/></a>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<a href="https://github.com/jmlee0415"><img src="https://avatars0.githubusercontent.com/u/74332188?s=460&v=4" width="40"/></a>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<a href="https://github.com/Ta-Ye"><img src="https://avatars0.githubusercontent.com/u/74332188?s=460&v=4" width="40"/></a>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<a href="https://github.com/kowo1001"><img src="https://avatars0.githubusercontent.com/u/74332188?s=460&v=4" width="40"/></a>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<a href="https://github.com/minyeong-park"><img src="https://avatars0.githubusercontent.com/u/74332188?s=460&v=4" width="40"/></a><br>
-<a href="https://github.com/YeonjiKim0316">YeonjiKim0316</a> <a href="https://github.com/YUNHYE-0107">YUNHYE-0107</a>
-<a href="https://github.com/jmlee0415">jmlee0415</a> <a href="https://github.com/Ta-Ye">Ta-Ye</a>
-<a href="https://github.com/kowo1001">kowo1001</a> <a href="https://github.com/minyeong-park">minyeong-park</a>
-
 
