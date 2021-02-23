@@ -25,8 +25,8 @@ public class NaverSearch {
 				+ "&display=20&start=1&sort=random"; // json 결과
 
 		Map<String, String> requestHeaders = new HashMap<>();
-		requestHeaders.put("X-Naver-Client-Id", "UFNeM5RiLEVXqUj4oPAn");
-		requestHeaders.put("X-Naver-Client-Secret", "W3OmDM8CIX");
+		requestHeaders.put("X-Naver-Client-Id", "아이디");
+		requestHeaders.put("X-Naver-Client-Secret", "시크릿");
 		String responseBody = get(apiURL, requestHeaders);
 		String[] body = responseBody.split("\"");
 		return body[39];

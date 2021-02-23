@@ -30,8 +30,8 @@ public class NaverGeoCoding {
 			URL url = new URL(null, api, new sun.net.www.protocol.https.Handler());
 			HttpsURLConnection http = (HttpsURLConnection) url.openConnection();
 			http.setRequestProperty("Content-Type", "application/json");
-			http.setRequestProperty("X-NCP-APIGW-API-KEY-ID", "d924rxdmto");
-			http.setRequestProperty("X-NCP-APIGW-API-KEY", "74ycGacSFvsUSkykUXWXsAxZgWe048oWkO4LIkXh");
+			http.setRequestProperty("X-NCP-APIGW-API-KEY-ID", "키아이디");
+			http.setRequestProperty("X-NCP-APIGW-API-KEY", "키");
 			http.setRequestMethod("GET");
 			http.connect();
 
