@@ -3,21 +3,41 @@
 <br>
 
 ![resized-image-Promo (1)](https://user-images.githubusercontent.com/73862452/108668344-67732480-751e-11eb-9450-584d4ede07f6.jpeg)
+
+<br>
+
+<table>
+<tr>
+<td>
+<img src="src\frontend\public\img\theme\1.gif"/>
+</td>
+<td>
+<img src="src\frontend\public\img\theme\2.gif"/>
+</td>
+</tr>
+<tr>
+<td>
+<img src="src\frontend\public\img\theme\3.gif"/>
+</td>
+</tr>
+</table>
+
+
 <h3><b>😋 먹기 위해 산다!</b></h3><br>
 
 전날 밤 잠들기 전부터 '내일 점심 뭐 먹지'를 고민하는,<br>
-세상이 식사시간 중심으로 돌아가는 프로 직장인(like 현준🤓),<br><br>
+세상이 식사시간 중심으로 돌아가는 프로 직장인(🤓),<br><br>
 
 오직 야식을 위해<br>
-두 시간 넘게 러닝머신을 뛰고 온 프로 운동러(like 최지수🏃‍♀️),<br><br>
+두 시간 넘게 러닝머신을 뛰고 온 프로 운동러(🏃‍♀️),<br><br>
 
 밤마다 사진첩 한가득 찍은 음식 사진 보며<br>
 '아, 저거 맛있었지!'하다 잠드는,<br>
-미각으로 온 세상을 기억하는 프로 기억러(like 장문희🤗),<br><br><br>
+미각으로 온 세상을 기억하는 프로 기억러(🤗),<br><br><br>
 
 ![resized-image-Promo](https://user-images.githubusercontent.com/73862452/108668669-e6685d00-751e-11eb-8d21-246b8f505e1f.jpeg)
-<h3><b>세상은 넓고, 맛있는 음식은 많다!<b><br>
-우리 모두 맛있는 것만 먹고 살 자격이 있습니다!!!!!</b></h3><br><br>
+<h3><b>세상은 넓고, 맛있는 음식은 많다!<br>
+우리 모두 맛있는 것만 먹고 살 자격이 있습니다!!!!!</h3><br><br></b>
 
 구르망 (Gourmand)은<br>
 맛잘알들의 리뷰를 각자의 지도와 리스트로 관리하고,<br>
@@ -48,9 +68,9 @@
     저희의 분석 결과 현재의 맛집 관련 서비스들의 개선점은 아래와 같습니다. 
     
     - 입맛과 취향은 서로 다른데 모두에게 획일화된 평가 기준, 가중치를 적용하고,
-    - 정보의 가독성 부족 : 이미지, 영상 시대에 걸맞지 않게 맛집에 대한 정보들은 텍스트 중심으로 유통됩니다. 
+    - 이미지, 영상 시대에 걸맞지 않게 맛집에 대한 정보들은 텍스트 중심으로 유통되어 가독성이 부족합니다. 
     - 개별 장소 중심의 인터페이스로 인해 ‘리스트형 공유’가 불편하며,
-    - 가본 곳, 가볼 곳의 구분 불가 : 현재 제공되는 맛집 관련 서비스들은 가본 곳과 가볼 곳이  
+    - 현재 제공되는 맛집 관련 서비스들은 가본 곳과 가볼 곳을 구분해 제공하지 않는다. 
     - 누굴 믿지?: 광고, 서비스, 할인으로 인해 생긴 별점 인플레이션이 진짜 맛집을 가려내는 데 소음으로 작용합니다.
 
 ### 3) Problem Solving!
@@ -205,16 +225,12 @@ json 객체를 String 으로 변환해주는 JSON.stringfy() 함수를 사용해
  npm install
  npm install –save chart.js vue-star-rating 
 ~~~
-
-<br><br>
+<br>
 
 2. 설치 완료시 서버 실행 <br>
 ~~~cmd
 npm run serve
 ~~~
-<br>
-
- 
 <br>
 
 ### :rice_ball: Node Express 실행 <br>
@@ -226,7 +242,7 @@ npm run serve
  npm -version
 ~~~
 
-<br><br>
+<br>
 2. 환경 설치 
 
 ~~~cmd
@@ -243,7 +259,7 @@ npm run serve
  npm install jwt-decode
 ~~~
 
-<br><br>
+<br>
 3. 서버 실행
 
 ~~~cmd
@@ -312,64 +328,68 @@ console.log(decoded);
 ## Controller - APIs
 
 <details>
-<summary>login controller</summary>
-signin       		  //로그인 		<br>("/auth/login")<br>
-logout       		  //로그아웃		<br>("/auth/logout")
+<summary>login controller (로그인 관련 기능) </summary>
+	
+	signin       		  //로그인 		("/auth/login")
+	logout       		  //로그아웃	       ("/auth/logout") 
 </details>
 
 <details>
-<summary>res controller</summary>
-getResInfo 	  	  // 가게 정보를 담은 페이지			<br>("/res/{id}/resinfo")<br>
-getResThumbnail     	  // Thumbnail 정보를 담은 페이지		<br>("/res/{id}/thumbnail")<br>
-getAllResThumbnail  	  // 거리별(default) 모든 Thumbnail		<br>("/res/thumbnail/{xValue},{yValue}/{limit}")<br>
-getResThumbnailByCategory   // 카테고리별				<br>("/res/thumbnail/category/{category}/{xValue},{yValue}")<br>
-getResThumbnailByAvgStar    // 별점순 				<br>("/res/thumbnail/avgstar/{limit}/{xValue},{yValue}") <br>
-getResThumbnailByResName   // 이름 검색				<br>("/res/thumbnail/search/{name}/{xValue},{yValue}/{limit}")<br>
-getResThumbnailByLocation    // 지역 검색				<br>("/res/thumbnail/region/{region}/{limit}")<br>
-getUserByRes    		   // 해당 가게를 리스트에 넣은 유저 반환	<br>("/res/{id}/user")<br>
-getResOfList    		   // 해당 유저의 모든 리스트 맵으로 반환	<br>("/res/user/{id}/list")<br>
-insetResToUser   	  	   // reslist 추가				<br>("/res/user/insert")<br>
-createRes     		   // 가게 정보 저장			<br>("/res/regi")<br>
-updateRes  		   // 가게 정보 수정			<br>("res/{id}/update")<br>
-deleteRes    		   // 가게 정보 삭제			<br>("res/{id}/delete")<br>
-insertImgOfRes  		   // 가게 이미지만 추가			<br>("/res/{id}/update/img")  <br>   		  
+<summary>res controller (식당 관련 기능) </summary>
+	
+	getResInfo 	  	  	// 가게 정보를 담은 페이지			("/res/{id}/resinfo")
+	getResThumbnail     	  	// Thumbnail 정보를 담은 페이지			  ("/res/{id}/thumbnail")
+	getAllResThumbnail  	 	// 거리별(default) 모든 Thumbnail		    ("/res/thumbnail/{xValue},{yValue}/{limit}")
+	getResThumbnailByCategory   	// 카테고리별				    ("/res/thumbnail/category/{category}/{xValue},{yValue}")
+	getResThumbnailByAvgStar    	// 별점순 					      ("/res/thumbnail/avgstar/{limit}/{xValue},{yValue}") 
+	getResThumbnailByResName   	// 이름 검색				     ("/res/thumbnail/search/{name}/{xValue},{yValue}/{limit}")
+	getResThumbnailByLocation    	// 지역 검색				     ("/res/thumbnail/region/{region}/{limit}")
+	getUserByRes    		// 해당 가게를 리스트에 넣은 유저 반환		    ("/res/{id}/user")
+	getResOfList    		// 해당 유저의 모든 리스트 맵으로 반환		    ("/res/user/{id}/list")
+	insetResToUser   	  	// reslist 추가				       ("/res/user/insert")
+	createRes     		   	// 가게 정보 저장				    ("/res/regi")	
+	updateRes  		   	// 가게 정보 수정				    ("res/{id}/update")
+	deleteRes    		   	// 가게 정보 삭제				    ("res/{id}/delete")
+	insertImgOfRes  		// 가게 이미지만 추가				  ("/res/{id}/update/img")		  
 </details>
 
 
 <details>
-<summary>rev controller</summary>
-getReviewList      		// 모든 리뷰 정보 조회			<br>("/rev/{id}/revsinfo")<br>
-getReview      		// 하나의 리뷰 정보 조회			<br>("/rev/{revNum}/revinfo")<br>
-createRev     		 // 리뷰 정보 저장				<br>("/rev/regi")<br>
-updateRev     		 // 리뷰 수정				<br>("/rev/{revNum}/update")<br>
-deleteReview     		 // 리뷰 삭제				<br>("/rev/{res}/deleteReview/{num}")<br>
-deleteRevImg     		 // 리뷰 이미지 삭제			<br>("/rev/delete/img")<br>
-returnAllRevOfRes    	  // 가게에 대한 리뷰 Thumbnail		<br>("/rev/res/{id}")<br>
-returnResStandard     	 // 가게에 대한 standard 정보		<br>("/rev/res/{id}/standard")<br>
-returnAllOrderByTime  	 // 시간순으로 12개의 revThumbnail		<br>("/rev/main/nologin")<br>
-returnAllRevNumOfUser  	 // 회원의 모든리뷰 수			<br>("/rev/user/cnt")<br>
+<summary>rev controller (리뷰 관련 기능)</summary>
+
+	getReviewList      		// 모든 리뷰 정보 조회		      ("/rev/{id}/revsinfo")
+	getReview      			// 하나의 리뷰 정보 조회		     ("/rev/{revNum}/revinfo")
+	createRev     		 	// 리뷰 정보 저장		       ("/rev/regi")
+	updateRev     		 	// 리뷰 수정			 ("/rev/{revNum}/update")
+	deleteReview     		// 리뷰 삭제			 ("/rev/{res}/deleteReview/{num}")
+	deleteRevImg     		// 리뷰 이미지 삭제		       ("/rev/delete/img")
+	returnAllRevOfRes    	  	// 가게에 대한 리뷰 Thumbnail	       ("/rev/res/{id}")
+	returnResStandard     	 	// 가게에 대한 standard 정보	       ("/rev/res/{id}/standard")
+	returnAllOrderByTime  	 	// 시간순으로 12개의 revThumbnail     ("/rev/main/nologin")
+	returnAllRevNumOfUser  	 	// 회원의 모든리뷰 수		      ("/rev/user/cnt")
 </details>
 
 <details>
-<summary>user controller</summary>
-createUser    		  // 회원 가입<br>("/user/regi")<br>
-updateUser    		  // 유저 정보 수정<br>("/user/update")<br>
-deleteUserStandardUser 	  // 회원 기준 삭제<br>("/user/userstandard")<br>
-deleteUser     		  // 회원 삭제<br>("/user")<br>
-deleteUserImg   		  // 회원 이미지 삭제<br>("/user/img")<br>
-createUserStandard  	  // 회원 기준 저장<br>("/user/regiNewStandard")<br>
-returnUserResList     	  // 회원의 list 이름들 반환 (list에 저장용)<br>("/user/reslist/")<br>
-getUserIdOfFamousUser 	  // 인기 많은 유저의 아이디와 닉네임<br>("/user/popular")<br>
-getResOfList    		  // 내 리스트 불러오기<br>("/user/list")<br>
-getUserCountByList   	  // 내가 작성한 리스트 카운트 불러오는거<br>("/user/count/list")<br>
-getUserInfo     		  // 내 전체 정보 가져오기<br>("/user/info")("/user/count/list/{id}")<br>
-getResOfList    		  // 회원 리스트 불러오기<br>("/user/list/{id}")<br>
-getUserCountByList  	  // 리스트 카운트 불러오기<br>("/user/count/list/{id}")<br>
-getFoodTypeByReview	  // 선호 food_type 갯수로 내림 차순<br>("/user/{userNum}/userAnalysis/foodType")<br>
-getAllOrderByUserNumNStar   // 유저 당 리뷰를 별점순으로 반환<br>("/res/user/review/writeDate")나의 페이지<br>
-getAllOrderByUserNumNDate  // 유저 당 리뷰를 시간순으로 반환<br>("/res/user/review/Star")나의 페이지<br>
-getAllOrderByUserNumNStar   // 유저 당 리뷰를 별점순으로 반환<br>("/res/user/review/writeDate/{id}")타인의 페이지<br>
-getAllOrderByUserNumNDate  // 유저 당 리뷰를 시간순으로 반환<br>("/res/user/review/Star/{id}")타인의 페이지<br>
+<summary>user controller (이용자 관련 기능)</summary>
+	
+	createUser	    	 // 회원 가입		 	        ("/user/regi")
+	updateUser    		 // 유저 정보 수정			      ("/user/update")
+	deleteUserStandardUser 	 // 회원 기준 삭제			      ("/user/userstandard")
+	deleteUser     		 // 회원 삭제		     	        ("/user")
+	deleteUserImg   	 // 회원 이미지 삭제	        	     ("/user/img")
+	createUserStandard  	 // 회원 기준 저장		 	      ("/user/regiNewStandard")
+	returnUserResList     	 // 회원의 list 이름들 반환 (list에 저장용)	 ("/user/reslist/")
+	getUserIdOfFamousUser 	 // 인기 많은 유저의 아이디와 닉네임		("/user/popular")
+	getResOfList    	 // 내 리스트 불러오기			     ("/user/list")
+	getUserCountByList   	 // 내가 작성한 리스트 카운트 불러오기	       ("/user/count/list")
+	getUserInfo     	// 내 전체 정보 가져오기			    ("/user/info")												   ("/user/count/list/{id}")
+	getResOfList    	// 회원 리스트 불러오기			    ("/user/list/{id}")
+	getUserCountByList  	// 리스트 카운트 불러오기			   ("/user/count/list/{id}")
+	getFoodTypeByReview	// 선호 food_type 갯수로 내림 차순    	   ("/user/{userNum}/userAnalysis/foodType")
+	getAllOrderByUserNumNStar  	// 유저 당 리뷰를 별점순으로 반환 at 나의 페이지     ("/res/user/review/writeDate") 
+	getAllOrderByUserNumNDate  	// 유저 당 리뷰를 시간순으로 반환 at 나의 페이지     ("/res/user/review/Star")
+	getAllOrderByUserNumNStar 	// 유저 당 리뷰를 별점순으로 반환 at 타인 페이지	   ("/res/user/review/writeDate/{id}")
+	getAllOrderByUserNumNDate  	// 유저 당 리뷰를 시간순으로 반환 at 타인 페이지	   ("/res/user/review/Star/{id}")
 </details>
 
 ## Reference 
