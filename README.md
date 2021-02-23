@@ -37,7 +37,7 @@
 
 ![resized-image-Promo](https://user-images.githubusercontent.com/73862452/108668669-e6685d00-751e-11eb-8d21-246b8f505e1f.jpeg)
 <h3><b>세상은 넓고, 맛있는 음식은 많다!<b><br>
-우리 모두 맛있는 것만 먹고 살 자격이 있습니다!!!!!</b></h3><br><br>
+우리 모두 맛있는 것만 먹고 살 자격이 있습니다!!!!!</h3><br><br></b>
 
 구르망 (Gourmand)은<br>
 맛잘알들의 리뷰를 각자의 지도와 리스트로 관리하고,<br>
