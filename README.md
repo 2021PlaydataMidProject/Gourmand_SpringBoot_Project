@@ -333,7 +333,7 @@ console.log(decoded);
 
 <details>
 <summary>login controller</summary>
-signin       		  //로그인 		<br>("/auth/login")<br>
+signin       		  //로그인 		<br>("/auth/login")<br><br>
 logout       		  //로그아웃		<br>("/auth/logout")
 </details>
 
