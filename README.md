@@ -330,66 +330,66 @@ console.log(decoded);
 <details>
 <summary>login controller (로그인 관련 기능) </summary>
 	
-	signin       		  //로그인 		<br>("/auth/login")<br><br>
-	logout       		  //로그아웃		<br>("/auth/logout") 
+	signin       		  //로그인 		("/auth/login")
+	logout       		  //로그아웃	       ("/auth/logout") 
 </details>
 
 <details>
 <summary>res controller (식당 관련 기능) </summary>
 	
-	getResInfo 	  	  	// 가게 정보를 담은 페이지			<br>("/res/{id}/resinfo")<br><br>
-	getResThumbnail     	  	// Thumbnail 정보를 담은 페이지		<br>("/res/{id}/thumbnail")<br><br>
-	getAllResThumbnail  	 	// 거리별(default) 모든 Thumbnail		<br>("/res/thumbnail/{xValue},{yValue}/{limit}")<br><br>
-	getResThumbnailByCategory   	// 카테고리별				<br>("/res/thumbnail/category/{category}/{xValue},{yValue}")<br><br>
-	getResThumbnailByAvgStar    	// 별점순 				<br>("/res/thumbnail/avgstar/{limit}/{xValue},{yValue}") <br><br>
-	getResThumbnailByResName   	// 이름 검색				<br>("/res/thumbnail/search/{name}/{xValue},{yValue}/{limit}")<br><br>
-	getResThumbnailByLocation    	// 지역 검색				<br>("/res/thumbnail/region/{region}/{limit}")<br><br>
-	getUserByRes    		// 해당 가게를 리스트에 넣은 유저 반환	<br>("/res/{id}/user")<br><br>
-	getResOfList    		// 해당 유저의 모든 리스트 맵으로 반환	<br>("/res/user/{id}/list")<br><br>
-	insetResToUser   	  	// reslist 추가				<br>("/res/user/insert")<br><br>
-	createRes     		   	// 가게 정보 저장			<br>("/res/regi")<br><br>
-	updateRes  		   	// 가게 정보 수정			<br>("res/{id}/update")<br><br>
-	deleteRes    		   	// 가게 정보 삭제			<br>("res/{id}/delete")<br><br>
-	insertImgOfRes  		// 가게 이미지만 추가			<br>("/res/{id}/update/img")  <br><br>   		  
+	getResInfo 	  	  	// 가게 정보를 담은 페이지			("/res/{id}/resinfo")
+	getResThumbnail     	  	// Thumbnail 정보를 담은 페이지			  ("/res/{id}/thumbnail")
+	getAllResThumbnail  	 	// 거리별(default) 모든 Thumbnail		    ("/res/thumbnail/{xValue},{yValue}/{limit}")
+	getResThumbnailByCategory   	// 카테고리별				    ("/res/thumbnail/category/{category}/{xValue},{yValue}")
+	getResThumbnailByAvgStar    	// 별점순 					      ("/res/thumbnail/avgstar/{limit}/{xValue},{yValue}") 
+	getResThumbnailByResName   	// 이름 검색				     ("/res/thumbnail/search/{name}/{xValue},{yValue}/{limit}")
+	getResThumbnailByLocation    	// 지역 검색				     ("/res/thumbnail/region/{region}/{limit}")
+	getUserByRes    		// 해당 가게를 리스트에 넣은 유저 반환		    ("/res/{id}/user")
+	getResOfList    		// 해당 유저의 모든 리스트 맵으로 반환		    ("/res/user/{id}/list")
+	insetResToUser   	  	// reslist 추가				       ("/res/user/insert")
+	createRes     		   	// 가게 정보 저장				    ("/res/regi")	
+	updateRes  		   	// 가게 정보 수정				    ("res/{id}/update")
+	deleteRes    		   	// 가게 정보 삭제				    ("res/{id}/delete")
+	insertImgOfRes  		// 가게 이미지만 추가				  ("/res/{id}/update/img")		  
 </details>
 
 
 <details>
 <summary>rev controller (리뷰 관련 기능)</summary>
 
-	getReviewList      		// 모든 리뷰 정보 조회			<br>("/rev/{id}/revsinfo")<br><br>
-	getReview      			// 하나의 리뷰 정보 조회			<br>("/rev/{revNum}/revinfo")<br><br>
-	createRev     		 	// 리뷰 정보 저장				<br>("/rev/regi")<br><br>
-	updateRev     		 	// 리뷰 수정				<br>("/rev/{revNum}/update")<br><br>
-	deleteReview     		// 리뷰 삭제				<br>("/rev/{res}/deleteReview/{num}")<br><br>
-	deleteRevImg     		// 리뷰 이미지 삭제			<br>("/rev/delete/img")<br><br>
-	returnAllRevOfRes    	  	// 가게에 대한 리뷰 Thumbnail		<br>("/rev/res/{id}")<br><br>
-	returnResStandard     	 	// 가게에 대한 standard 정보		<br>("/rev/res/{id}/standard")<br><br>
-	returnAllOrderByTime  	 	// 시간순으로 12개의 revThumbnail		<br>("/rev/main/nologin")<br><br>
-	returnAllRevNumOfUser  	 	// 회원의 모든리뷰 수			<br>("/rev/user/cnt")<br><br>
+	getReviewList      		// 모든 리뷰 정보 조회		      ("/rev/{id}/revsinfo")
+	getReview      			// 하나의 리뷰 정보 조회		     ("/rev/{revNum}/revinfo")
+	createRev     		 	// 리뷰 정보 저장		       ("/rev/regi")
+	updateRev     		 	// 리뷰 수정			 ("/rev/{revNum}/update")
+	deleteReview     		// 리뷰 삭제			 ("/rev/{res}/deleteReview/{num}")
+	deleteRevImg     		// 리뷰 이미지 삭제		       ("/rev/delete/img")
+	returnAllRevOfRes    	  	// 가게에 대한 리뷰 Thumbnail	       ("/rev/res/{id}")
+	returnResStandard     	 	// 가게에 대한 standard 정보	       ("/rev/res/{id}/standard")
+	returnAllOrderByTime  	 	// 시간순으로 12개의 revThumbnail     ("/rev/main/nologin")
+	returnAllRevNumOfUser  	 	// 회원의 모든리뷰 수		      ("/rev/user/cnt")
 </details>
 
 <details>
 <summary>user controller (이용자 관련 기능)</summary>
 	
-	createUser	    		// 회원 가입<br>("/user/regi")<br><br>
-	updateUser    			// 유저 정보 수정<br>("/user/update")<br><br>
-	deleteUserStandardUser 	  	// 회원 기준 삭제<br>("/user/userstandard")<br><br>
-	deleteUser     		  	// 회원 삭제<br>("/user")<br><br>
-	deleteUserImg   		// 회원 이미지 삭제<br>("/user/img")<br><br>
-	createUserStandard  	  	// 회원 기준 저장<br>("/user/regiNewStandard")<br><br>
-	returnUserResList     	  	// 회원의 list 이름들 반환 (list에 저장용)<br>("/user/reslist/")<br><br>
-	getUserIdOfFamousUser 	  	// 인기 많은 유저의 아이디와 닉네임<br>("/user/popular")<br><br>
-	getResOfList    		// 내 리스트 불러오기<br>("/user/list")<br><br>
-	getUserCountByList   	  	// 내가 작성한 리스트 카운트 불러오는거<br>("/user/count/list")<br><br>
-	getUserInfo     		// 내 전체 정보 가져오기<br>("/user/info")("/user/count/list/{id}")<br><br>
-	getResOfList    		// 회원 리스트 불러오기<br>("/user/list/{id}")<br><br>
-	getUserCountByList  	  	// 리스트 카운트 불러오기<br>("/user/count/list/{id}")<br><br>
-	getFoodTypeByReview	  	// 선호 food_type 갯수로 내림 차순<br>("/user/{userNum}/userAnalysis/foodType")<br><br>
-	getAllOrderByUserNumNStar   	// 유저 당 리뷰를 별점순으로 반환<br>("/res/user/review/writeDate")나의 페이지<br><br>
-	getAllOrderByUserNumNDate  	// 유저 당 리뷰를 시간순으로 반환<br>("/res/user/review/Star")나의 페이지<br><br>
-	getAllOrderByUserNumNStar 	// 유저 당 리뷰를 별점순으로 반환<br>("/res/user/review/writeDate/{id}")타인의 페이지<br><br>
-	getAllOrderByUserNumNDate  	// 유저 당 리뷰를 시간순으로 반환<br>("/res/user/review/Star/{id}")타인의 페이지<br><br>
+	createUser	    	 // 회원 가입		 	        ("/user/regi")
+	updateUser    		 // 유저 정보 수정			      ("/user/update")
+	deleteUserStandardUser 	 // 회원 기준 삭제			      ("/user/userstandard")
+	deleteUser     		 // 회원 삭제		     	        ("/user")
+	deleteUserImg   	 // 회원 이미지 삭제	        	     ("/user/img")
+	createUserStandard  	 // 회원 기준 저장		 	      ("/user/regiNewStandard")
+	returnUserResList     	 // 회원의 list 이름들 반환 (list에 저장용)	 ("/user/reslist/")
+	getUserIdOfFamousUser 	 // 인기 많은 유저의 아이디와 닉네임		("/user/popular")
+	getResOfList    	 // 내 리스트 불러오기			     ("/user/list")
+	getUserCountByList   	 // 내가 작성한 리스트 카운트 불러오기	       ("/user/count/list")
+	getUserInfo     	// 내 전체 정보 가져오기			    ("/user/info")												   ("/user/count/list/{id}")
+	getResOfList    	// 회원 리스트 불러오기			    ("/user/list/{id}")
+	getUserCountByList  	// 리스트 카운트 불러오기			   ("/user/count/list/{id}")
+	getFoodTypeByReview	// 선호 food_type 갯수로 내림 차순    	   ("/user/{userNum}/userAnalysis/foodType")
+	getAllOrderByUserNumNStar  	// 유저 당 리뷰를 별점순으로 반환 at 나의 페이지     ("/res/user/review/writeDate") 
+	getAllOrderByUserNumNDate  	// 유저 당 리뷰를 시간순으로 반환 at 나의 페이지     ("/res/user/review/Star")
+	getAllOrderByUserNumNStar 	// 유저 당 리뷰를 별점순으로 반환 at 타인 페이지	   ("/res/user/review/writeDate/{id}")
+	getAllOrderByUserNumNDate  	// 유저 당 리뷰를 시간순으로 반환 at 타인 페이지	   ("/res/user/review/Star/{id}")
 </details>
 
 ## Reference 
