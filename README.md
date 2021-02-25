@@ -405,6 +405,10 @@ https://ta-ye.github.io/study/#Vue.js
 ### :bagel: 로고
 https://www.flaticon.com/
 
+## 향후 구현 예정
+- docker로 3개 세버 한번에 올리기
+- 가게 예약시스템 만들기
+- Admin과 Manager, Guest로 접근 권한에 따른 페이지 이동 구현해보기
 
 ## Contributors
 
